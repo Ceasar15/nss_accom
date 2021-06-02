@@ -1,5 +1,5 @@
 """
-WSGI config for hotel_ms project.
+WSGI config for nss_accom project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hotel_ms.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'nss_accom.settings')
 
 application = get_wsgi_application()

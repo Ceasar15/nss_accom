@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 """
 
+from dotenv import load_dotenv
+load_dotenv()
+
 import os
 import django_heroku
 
@@ -22,7 +25,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ')!_3y6m$p)p=knh_7292_m@=_8irw07y&jq@wk0w#ho80nqr*o'
+#SECRET_KEY = ')!_3y6m$p)p=knh_7292_m@=_8irw07y&jq@wk0w#ho80nqr*o'
+SECRET_KEY = os.environ.get('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

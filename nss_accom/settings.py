@@ -26,7 +26,7 @@ SECRET_KEY = ')!_3y6m$p)p=knh_7292_m@=_8irw07y&jq@wk0w#ho80nqr*o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['nss_accom.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -108,6 +108,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.instagram.InstagramOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/

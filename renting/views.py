@@ -44,7 +44,7 @@ def renting_house_results(request):
 	PUB_KEY = settings.MAPBOX_PUBLIC_KEY
 	if request.method == 'POST':
 		place = (request.POST['place']).replace('#','')
-		url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'+place+'.json?access_token=pk.eyJ1IjoiaXZhcmR1IiwiYSI6ImNrYm80c2E5NjFnemcycXM0YXE3cTZmaWwifQ.RUzXxKHAH_vuUSs0hc4t7g&limit=1'
+		url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'+place+'.json?access_token=pk.eyJ1IjoiY2Vhc2FyMTUiLCJhIjoiY2twZnhiZnYxMG50YjJwbzQyYTdrbzJhbCJ9.nsgEFT67yL9ApSnvihlSuA'
 		response = requests.get(url)
 		json_resp = response.json()
 	

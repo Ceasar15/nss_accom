@@ -8,8 +8,8 @@ from django.template.loader import render_to_string
 
 from .forms import SearchForm, RentalHouseForm, HouseHasForm, AmenitiesForm, RulesForm, PreferredTenantForm, HouseImagesForm, HouseImagesEditForm
 from .models import NewRentalHouse, HouseHas, Amenities, PreferredTenant, Rules, HouseImages
-#from users.models import UserType
-#from users.forms import UserTypeForm
+from users.models import UserType
+from users.forms import UserTypeForm
 
 import requests, pgeocode, pandas, json
 from datetime import datetime

@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'renting.apps.RentingConfig',
-    # 'payment.apps.PaymentConfig',
+    'users.apps.UsersConfig'
 ]
 
 MIDDLEWARE = [

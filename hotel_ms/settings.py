@@ -8,6 +8,7 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
+
 """
 
 import os
@@ -124,8 +125,10 @@ USE_TZ = True
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
 # For password reset
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 # For session expire
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
@@ -137,6 +140,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-
-

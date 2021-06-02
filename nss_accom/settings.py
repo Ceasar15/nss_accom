@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'renting.apps.MainConfig',
+    'renting.apps.RentingConfig',
     # 'payment.apps.PaymentConfig',
 ]
 

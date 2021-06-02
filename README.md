@@ -1,3 +1,6 @@
+Niebo is a real estate platform where users who are owners of the house can post their rental ads and also users who are tenants can look for the homes based on the location, price and dates.
+
+
 ## Features
 Users are categorized into two types Landlord and Tenant in this WebApplication
 

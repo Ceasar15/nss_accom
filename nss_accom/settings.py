@@ -156,5 +156,12 @@ from nss_accom import gcloud
 DEFAULT_FILE_STORAGE = 'gcloud.GoogleCloudMediaFileStorage'
 
 
+
 MEDIA_URL = '/media/'
+# MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(os.environ.get('GS_MEDIA_BUCKET_NAME'))
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Adding the settings is very import and choosing the environ names
+GS_PROJECT_ID = os.environ['GS_PROJECT_ID']
+GS_MEDIA_BUCKET_NAME = os.environ['GS_MEDIA_BUCKET_NAME']
+GOOGLE_APPLICATION_CREDENTIALS = os.environ['GOOGLE_APPLICATION_CREDENTIALS']

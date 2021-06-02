@@ -55,22 +55,22 @@ def house_images(instance, filename):
 
 
 class NewRentalHouse(models.Model):
-	house_no = models.CharField(max_length=100)
-	street_address = models.TextField()
-	# area = models.CharField(max_length=150)
-	city = models.CharField(max_length=150)
-	zipcode = models.CharField(max_length=12)
-	# state = models.CharField(max_length=100, choices=STATE_CHOICES)
-	country = models.CharField(max_length=100, default='Poland')
-	
-	longitude = models.DecimalField(max_digits=4, decimal_places=2)
-	latitude = models.DecimalField(max_digits=4, decimal_places=2)
-
-	user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-	in_date = models.DateField()
-	out_date = models.DateField()
-	rent = models.PositiveIntegerField(default=100)
+    house_no = models.CharField(max_length=100)
+    state = models.CharField(max_length=100, choices=STATE_CHOICES)
+    street_address = models.TextField()
+    area = models.CharField(max_length=150)
+    city = models.CharField(max_length=150)
+    zipcode = models.CharField(max_length=12)
+    country = models.CharField(max_length=100, default='Ghana')
+    longitude = models.DecimalField(max_digits=4, decimal_places=2)
+    latitude = models.DecimalField(max_digits=4, decimal_places=2)
+    
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    in_date = models.DateField()
+    out_date = models.DateField()
+    
+    rent = models.PositiveIntegerField(default=100)
 
 class HouseImages(models.Model):
 	images = models.ImageField(upload_to=house_images, blank=True)

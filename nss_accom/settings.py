@@ -131,6 +131,7 @@ USE_TZ = True
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 # For password reset
@@ -144,6 +145,16 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+#Default storage setting for the media fo niebo on GCP bucket 
+import sys
+sys.path.append(os.path.dirname(os.path.realpath(__file__)))
+from nss_accom import gcloud
+#Media file storage
+DEFAULT_FILE_STORAGE = 'gcloud.GoogleCloudMediaFileStorage'
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

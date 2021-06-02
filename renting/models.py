@@ -5,22 +5,23 @@ from datetime import date
 # Create your models here.
 
 STATE_CHOICES = [
-	('Lower Silesia','Lower Silesia'),
-('Kujawsko_Pomorskie','Kujawsko_Pomorskie'),
-('Łódź Province','Łódź Province'),
-('Lublin Province','Lublin Province'),
-('Lubuskie Province','Lubuskie Province'),
-('Małopolska Province','Małopolska Province'),
-('Masovia Province','Masovia Province'),
-('Masovia Province','Masovia Province'),
-('Podkarpackie Province','Podkarpackie Province'),
-('Podlasie Province','Podlasie Province'),
-('Pomerania Province','Pomerania Province'),
-('Silesia Province','Silesia Province'),
-('Holy Cross Province','Holy Cross Province'),
-('Warmia_Masuria','Warmia_Masuria'),
-('Wielkopolska Province','Wielkopolska Province'),
-('West Pomerania','West Pomerania')
+
+	('Greater Accra Region','Greater Accra Region'),
+('Ashanti Region','Ashanti Region'),
+('Western North Region','Western North Region'),
+('Western Region','Western Region'),
+('Volta Region','Volta Region'),
+('Eastern Region','Eastern Region'),
+('Upper East Region','Upper East Region'),
+('North East Region','North East Region'),
+('Ahafo Region','Ahafo Region'),
+('Bono Region','Bono Region'),
+('Savannah Region','Savannah Region'),
+('Bono East Region','Bono East Region'),
+('Oti Region','Oti Region'),
+('Northern Region','Northern Region'),
+('Upper West Region','Upper West Region'),
+('Central Region','Central Region'),
 ]
 
 HH_FIELD_CHOICES = (
@@ -56,7 +57,7 @@ def house_images(instance, filename):
 
 class NewRentalHouse(models.Model):
     house_no = models.CharField(max_length=100)
-    state = models.CharField(max_length=100, choices=STATE_CHOICES)
+    region = models.CharField(max_length=100, choices=STATE_CHOICES)
     street_address = models.TextField()
     area = models.CharField(max_length=150)
     city = models.CharField(max_length=150)
@@ -94,6 +95,7 @@ class HouseHas(models.Model):
 
 	nrh = models.OneToOneField(NewRentalHouse, on_delete=models.CASCADE) 
 
+state = models.CharField(max_length=100, choices=STATE_CHOICES)
 
 class Amenities(models.Model):
 

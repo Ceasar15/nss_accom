@@ -1,4 +1,4 @@
-Niebo is a real estate platform where users who are owners of the house can post their rental ads and also users who are tenants can look for the homes based on the location, price and dates.
+NSS_Accom is a real estate platform where users who are owners of the house can post their rental ads and also users who are tenants can look for the homes based on the location, price and dates.
 
 
 ## Features
@@ -13,11 +13,10 @@ Users are categorized into two types Landlord and Tenant in this WebApplication
   - Contact details will be available to contact the Landlord to check in
   
 ## Authentication
-Users can sign up using the popular methods and Niebo saves only the minimal data of user like username and email id.
+Users can sign up using the popular methods and NSS_Accom saves only the minimal data of user like username and email id.
     Google
     Facebook
  
-
 
 ## Skills
 ##### Back-end Technology
@@ -34,4 +33,4 @@ Users can sign up using the popular methods and Niebo saves only the minimal dat
     MapBOX
 
 ## Demo
-Want to take a look at this site.. ? Here is the link [Nibeo](https://niebo.herokuapp.com/), application is deployed on heroku.
+Want to take a look at this site.. ? Here is the link [NSS_Accom](https://nss_accom.herokuapp.com/), application is deployed on heroku.

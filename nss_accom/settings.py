@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -165,3 +166,17 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 GS_PROJECT_ID = os.environ['GS_PROJECT_ID']
 GS_MEDIA_BUCKET_NAME = os.environ['GS_MEDIA_BUCKET_NAME']
 GOOGLE_APPLICATION_CREDENTIALS = os.environ['GOOGLE_APPLICATION_CREDENTIALS']
+
+#Mapbox-GSL private and publick keys for accessing the maps data
+MAPBOX_PRIVATE_KEY = os.environ.get('MAPBOX_PRIVATE_KEY')
+MAPBOX_PUBLIC_KEY = os.environ.get('MAPBOX_PUBLIC_KEY')
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
+
+SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get('SOCIAL_AUTH_FACEBOOK_KEY')
+SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get('SOCIAL_AUTH_FACEBOOK_SECRET')
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+django_heroku.settings(locals())

@@ -101,8 +101,8 @@ def renting_house_results(request):
 		}
 				
 
-		if house_list:
-			for hous_obj in house_list:
+		if houses_list:
+			for hous_obj in houses_list:
 				try:
 					rl = Rules.objects.get(nrh=hous_obj)
 					pt = PreferredTenant.objects.get(nrh=hous_obj)

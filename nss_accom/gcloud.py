@@ -9,6 +9,3 @@ class GoogleCloudMediaFileStorage(GoogleCloudStorage):
 
 	def url(self, name):
 		return urljoin(settings.MEDIA_URL, name)
-
-
-WTF = 'Yes it is'

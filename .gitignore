@@ -146,3 +146,6 @@ idea
 vscode
 /.vscode
 /.vscode
+
+# Google Credentials 
+nss-accom-2a99f1221647.json

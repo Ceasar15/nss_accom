@@ -152,14 +152,14 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 #Default storage setting for the media fo niebo on GCP bucket 
 import sys
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 from nss_accom import gcloud
 #Media file storage
-DEFAULT_FILE_STORAGE = 'gcloud.GoogleCloudMediaFileStorage'
+# DEFAULT_FILE_STORAGE = 'gcloud.GoogleCloudMediaFileStorage'
 
 
 
@@ -168,13 +168,13 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Adding the settings is very import and choosing the environ names
-GS_PROJECT_ID = os.environ['GS_PROJECT_ID']
-GS_MEDIA_BUCKET_NAME = os.environ['GS_MEDIA_BUCKET_NAME']
-GOOGLE_APPLICATION_CREDENTIALS = os.environ['GOOGLE_APPLICATION_CREDENTIALS']
+# GS_PROJECT_ID = os.environ['GS_PROJECT_ID']
+# GS_MEDIA_BUCKET_NAME = os.environ['GS_MEDIA_BUCKET_NAME']
+# GOOGLE_APPLICATION_CREDENTIALS = os.environ['GOOGLE_APPLICATION_CREDENTIALS']
 
 #Mapbox-GSL private and publick keys for accessing the maps data
-MAPBOX_PRIVATE_KEY = os.environ.get('MAPBOX_PRIVATE_KEY')
-MAPBOX_PUBLIC_KEY = os.environ.get('MAPBOX_PUBLIC_KEY')
+# MAPBOX_PRIVATE_KEY = os.environ.get('MAPBOX_PRIVATE_KEY')
+# MAPBOX_PUBLIC_KEY = os.environ.get('MAPBOX_PUBLIC_KEY')
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')

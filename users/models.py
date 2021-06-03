@@ -5,7 +5,7 @@ from users.managers import UT
 
 CHOICES = (
 	('owner','Owner'),
-	('tenant','Tenant')
+	('tenant','Student')
 )
 
 # class User(User):

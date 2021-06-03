@@ -89,10 +89,10 @@ DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'Hotel',
-        'USER': 'bookmarks',
-        'PASSWORD': 'edem1234',
-        'HOST': 'localhost',
+        'NAME': os.environ.get('NAME'),
+        'USER': os.environ.get('USER'),
+        'PASSWORD': os.environ.get('PASSWORD'),
+        'HOST': os.environ.get('HOST'),
         'PORT': '',
         'ATOMIC_REQUESTS': True,
     }

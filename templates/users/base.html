@@ -1,0 +1,316 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nss_Accom</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="{%static 'img/house-logo.png' %}" type="image/x-icon"/>
+   	<!-- MapBox GL - CSS -->
+	<link href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet' />
+	<link
+	rel="stylesheet"
+	href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css"
+	type="text/css"
+	/>
+	<!-- Bulma-CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+	<!-- Bulma-Calendar CSS -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bulma-calendar.min.css' %}">
+	<!-- Bulma-carousel -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/css/bulma-carousel.min.css">
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- Google fonts --> 
+	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet"> 
+	<script type="text/javascript" src="{% static 'js/bulma-calendar.min.js' %}"></script>
+	<script src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
+	<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+
+
+	<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://kit.fontawesome.com/0d12e37eba.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/js/bulma-carousel.min.js"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177958902-1"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-177958902-1');
+	</script>
+
+
+</head>
+<body id='mn-bd' class="has-navbar-fixed-top">
+	<div class="modal" id='lgn-mod'>
+		<div class="modal-background"></div>
+		<div class="modal-content">
+	    <!-- Any other Bulma elements you want -->
+		    <div class="box" id='mc-id'>
+		    	<div class="modal-card-body">
+				    <div class="lg-col">
+				    	<div class="lg-btn">
+				    	<h6 class="title has-text-dark is-size-4 has-text-weight-light">Sign In to <span class="has-text-weight-medium" id='tit-neibo'>nss_accom</span></h6>
+				    	</div>
+				    	<div class="lg-btn">
+				    		<a class="button g has-text-link" href="{% url 'social:begin' 'google-oauth2' %}?next={{request.path}}"><span class="px-1"><i class="fab fa-google"></i></span>Login with Google</a>
+				    	</div>
+				    	<div class="lg-btn">
+				    		<a class="button has-text-link" href="{% url 'social:begin' 'facebook' %}"><span class="px-1"><i class="fab fa-facebook-f"></i></span>Login with Facebook</a>
+				    	</div>
+					</div>
+				</div>
+	    	</div>
+		</div>
+	  <button class="modal-close is-large" aria-label="close"></button>
+	</div>
+	<div class="modal" id='own-lgn-mod'>
+		<div class="modal-background"></div>
+		<div class="modal-content">
+	    <!-- Any other Bulma elements you want -->
+		    <div class="box" id='mc-id'>
+		    	<div class="modal-card-body">
+				    <div class="lg-col">
+				    	<div class="lg-btn">
+				    	<h6 class="title has-text-dark is-size-4 has-text-weight-light">Sign In to <span class="has-text-weight-medium" id='own-tit-neibo'>n</span></h6>
+				    	</div>
+				    	<div class="lg-btn">
+				    		<a class="button g has-text-link" href="{% url 'social:begin' 'google-oauth2' %}?next=/post_ad"><span class="px-1"><i class="fab fa-google"></i></span>Login with Google</a>
+				    	</div>
+				    	<div class="lg-btn">
+				    		<a class="button has-text-link" href="{% url 'social:begin' 'facebook' %}"><span class="px-1"><i class="fab fa-facebook-f"></i></span>Login with Facebook</a>
+				    	</div>
+					</div>
+				</div>
+	    	</div>
+		</div>
+	  <button class="modal-close is-large" aria-label="close"></button>
+	</div>
+	<div class="modal" id='cmpl-lgn-mod'>
+		<div class="modal-background"></div>
+		<div class="modal-content">
+	    <!-- Any other Bulma elements you want -->
+		    <div class="box" id='mc-id'>
+		    	<div class="modal-card-body">
+				    <div class="lg-col">
+				    	<div class="lg-btn">
+				    	<h6 class="title has-text-dark is-size-4 has-text-weight-light">Sign In to <span class="has-text-weight-medium" id='tit-neibo'>nss_accom</span></h6>
+				    	</div>
+				    	<div class="lg-btn">
+				    		<a class="button g has-text-link" href="{% url 'social:begin' 'google-oauth2' %}?next={{request.path}}"><span class="px-1"><i class="fab fa-google"></i></span>Login with Google</a>
+				    	</div>
+				    	<div class="lg-btn">
+				    		<a class="button has-text-link" href="{% url 'social:begin' 'facebook' %}"><span class="px-1"><i class="fab fa-facebook-f"></i></span>Login with Facebook</a>
+				    	</div>
+					</div>
+				</div>
+	    	</div>
+		</div>
+	</div>
+	<nav id='navbar-shadow' class="navbar is-fixed-top is-fullheight-with-navbar" role="navigation" aria-label="main navigation">
+		  <div class="navbar-brand nb-lg">
+		    <a class="navbar-item" href="{% url 'renting:home' %}">
+		      <img src="{% static '/img/house-logo.png' %}">
+		    </a>
+		    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+		      <span aria-hidden="true"></span>
+		      <span aria-hidden="true"></span>
+		      <span aria-hidden="true"></span>
+		    </a>
+		  </div>
+
+		  <div id="navbarBasicExample" class="navbar-menu">
+		  	{% block navbar %}
+			  	{% if user.ut.user_type == 'owner' %}
+			    <div class="navbar-start">
+				    <a class="navbar-item" href="{% url 'renting:home' %}">
+				        Home
+				    </a>
+				    <a class="navbar-item" href="{% url 'renting:rent_ad_list' %}">
+				        My Rent Ads
+				    </a>
+			    </div>
+		 	    <div id="dd-ll" class="navbar-item has-dropdown is-hoverable">
+			        <a class="navbar-link">
+			          LandLord
+			        </a>
+					
+			        <div class="navbar-dropdown">
+			          <a class="navbar-item" id='tt'>
+			            Tenant
+			          </a>
+			        </div>
+			    </div> 
+			    {% elif user.ut.user_type == 'tenant' %}
+				<div class="navbar-end">
+				    <div id="dd-tt" class="navbar-item has-dropdown is-hoverable">
+				        <a class="navbar-link">
+				        Tenant
+				        </a>
+				        <div class="navbar-dropdown">
+					        <a class="navbar-item" id='ll'>
+					        LandLord
+					        </a>
+				        </div>
+				    </div> 
+			    </div>
+			    {% endif %}
+		      {% endblock navbar%}
+		    </div>
+
+		    <div class="navbar-end nb-end">
+		    	{% if user.is_authenticated %}	
+		    	<div class="navbar-item has-dropdown is-hoverable">
+			    		<!-- <span class='button is-primary'>{{user.username}}</span> -->
+			    		<a class="navbar-link" aria-haspopup="true" aria-controls="dropdown-menu">
+					      <span>{{user.username}}</span>
+					    </a>
+			      	<div class="navbar-dropdown">
+		          		<a class="navbar-item" href="{% url 'users:settings' %}">
+		            	Settings
+		          		</a>
+		       		</div>
+		      	</div>
+		      	<div class="navbar-item">
+		    		<div class="buttons">
+						<a class="button is-light" href="{% url 'logout' %}">Log Out</a>
+			      	</div>
+		      	</div>
+		      	{% else %}
+		      	<div class="navbar-item">
+		      		<div class="buttons">
+			      		<a id='lgn' class="button is-primary">
+				            <strong>Log in</strong>
+				        </a>
+			        </div>
+		      	</div>
+		      	{% endif %}
+		    </div>
+		  </div>
+		</nav>
+	<section id='sec-id' class="hero is-fullheight has-carousel">
+			{% block carousel %}
+			{% endblock carousel %}
+		<div class="hero-body ">
+			<!-- <div class="container" id='bdy-ma'> -->
+			{% block body %}
+
+			{% endblock %}
+			<!-- </div> -->
+		</div>
+		<div class="hero-foot">
+			{% block footer %}
+			<div class="fot columns is-centered has-background-info">
+				<span class="has-text-white-bis">
+					<footer>&copy; Copyright 2021 Nss_Accom</footer>
+				</span>	
+			</div>
+			{% endblock footer %}
+		</div>
+	</section>
+			<script type="text/javascript">
+			// Initialize all input of date type.
+// 			const calendars = bulmaCalendar.attach('[type="date"]', {dateFormat:'YYYY/MM/DD'});
+// // startDate: new Date('10/24/2021')
+// 			// Loop on each calendar initialized
+// 			calendars.forEach(calendar => {
+// 				// Add listener to date:selected event
+// 				calendar.on('date:selected', date => {
+// 					console.log(date);
+// 				});
+// 			});
+
+// 			// To access to bulmaCalendar instance of an element
+// 			const element = document.querySelector('#dd');
+// 			if (element) {
+// 				// bulmaCalendar instance is available as element.bulmaCalendar
+// 				element.bulmaCalendar.on('select', datepicker => {
+// 					// console.log(datepicker.data.value());
+// 					element.value = datepicker.data.value();
+// 				});
+// 			}
+			// Initialize all input of date type.
+			const calendars = bulmaCalendar.attach('[type="date"]', {
+				'minDate': new Date(new Date().getFullYear(), new Date().getMonth(),1),
+				'maxDate':new Date(new Date().getFullYear(),11,31),
+				'enableYearSwitch':false,
+				'startDate': new function(){
+					return new Date()
+				},
+				'disabledDates': new function(){
+					var list = [];
+					var today = new Date()
+					var startDate = new Date(today.getFullYear(), today.getMonth(),1)
+					var endDate = new Date(today.getFullYear(), today.getMonth(),today.getDate())
+					while(startDate < endDate){
+						// console.log(startDate, endDate)
+						var relDate = new Date(startDate)
+						list.push(relDate);
+						startDate.setDate(startDate.getDate()+1)
+					} 
+					return list
+					
+				},
+				'displayMode':'default',
+				// 'isRange':true,
+				'allowSameDayRange':false
+
+			});
+
+			// Loop on each calendar initialized
+			// calendars.forEach(calendar => {
+			// 	// Add listener to date:selected event
+			// 	calendar.on('date:selected', date => {
+			// 		// console.log(date);
+			// 	});
+			// });
+
+			// // To access to bulmaCalendar instance of an element
+			// const element = document.querySelector('.dd');
+			// // console.log(element, 'noelement');
+			// if (element) {
+			// 	// bulmaCalendar instance is available as element.bulmaCalendar
+			// 	// console.log(element.);
+
+			// 	element.bulmaCalendar.on('select', datepicker => {
+			// 		// console.log(datepicker.isStartDate);
+			// 		// console.log(datepicker.data.value());
+			// 	});
+			// }
+
+			$(function(){
+			$(".datetimepicker-dummy-input").click(function() {
+				// console.log($('.datetimepicker-dummy-input'));
+			    $('html,body').animate({
+			        scrollTop: $(".hero-foot").offset().top},
+			        'slow');
+			    // datetimepicker-footer-cancel
+			});
+			$('.datetimepicker-clear-button').on('click', function(event) {
+				// body...
+				event.preventDefault();
+			});
+
+			// Avoding rental search without empty values
+			$('#rental-search').on('submit', function(event){
+				var res = false
+				$('.datetimepicker-dummy-input').each(function(){
+					res = res || $(this).val() == '';
+					// console.log($(this).val())
+				})
+				// console.log(res);
+				if($('.mapboxgl-ctrl-geocoder--input').val() == '' || res == true){
+					// console.log('here..!!');
+				event.preventDefault();	
+				}
+			});
+		});
+		</script>
+		<script type="text/javascript" src="{% static 'js/rental_post.js' %}"></script>
+</body>
+</html>

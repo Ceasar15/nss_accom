@@ -11,7 +11,11 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 """
 
+from dotenv import load_dotenv
+load_dotenv()
+
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,12 +25,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ')!_3y6m$p)p=knh_7292_m@=_8irw07y&jq@wk0w#ho80nqr*o'
+#SECRET_KEY = ')!_3y6m$p)p=knh_7292_m@=_8irw07y&jq@wk0w#ho80nqr*o'
+SECRET_KEY = os.environ.get('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['nss_accom.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -38,8 +44,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'main.apps.MainConfig',
-    # 'payment.apps.PaymentConfig',
+    'renting.apps.RentingConfig',
+    'users.apps.UsersConfig',
+    'social_django',
+
 ]
 
 MIDDLEWARE = [
@@ -76,6 +84,7 @@ WSGI_APPLICATION = 'nss_accom.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 
 DATABASES = {
     'default': {
@@ -108,6 +117,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.instagram.InstagramOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
@@ -124,6 +140,7 @@ USE_TZ = True
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 # For password reset
@@ -138,5 +155,36 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+#Default storage setting for the media fo nss_accom on GCP bucket 
+import sys
+sys.path.append(os.path.dirname(os.path.realpath(__file__)))
+from nss_accom import gcloud
+#Media file storage
+# DEFAULT_FILE_STORAGE = 'gcloud.GoogleCloudMediaFileStorage'
+
+
+
 MEDIA_URL = '/media/'
+# MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(os.environ.get('GS_MEDIA_BUCKET_NAME'))
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Adding the settings is very import and choosing the environ names
+# GS_PROJECT_ID = os.environ['GS_PROJECT_ID']
+# GS_MEDIA_BUCKET_NAME = os.environ['GS_MEDIA_BUCKET_NAME']
+# GOOGLE_APPLICATION_CREDENTIALS = os.environ['GOOGLE_APPLICATION_CREDENTIALS']
+
+#Mapbox-GSL private and publick keys for accessing the maps data
+#MAPBOX_PRIVATE_KEY = os.environ.get('MAPBOX_PRIVATE_KEY')
+MAPBOX_PUBLIC_KEY = os.environ.get('MAPBOX_PUBLIC_KEY')
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
+
+SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get('SOCIAL_AUTH_FACEBOOK_KEY')
+SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get('SOCIAL_AUTH_FACEBOOK_SECRET')
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+django_heroku.settings(locals())

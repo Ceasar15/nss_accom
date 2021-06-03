@@ -119,8 +119,11 @@ celerybeat-schedule
 .venv
 env/
 env
+my_env
+my_env/
 venv/
 ENV/
+
 
 # Spyder project settings
 .spyderproject
@@ -143,3 +146,6 @@ idea
 vscode
 /.vscode
 /.vscode
+
+# Google Credentials 
+nss-accom-2a99f1221647.json

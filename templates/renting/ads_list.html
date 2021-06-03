@@ -1,0 +1,133 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% block body %}
+<div class="container" id='ad-con'>
+	<div class="modal" id='del-cncl'>
+		<div class="modal-background"></div>
+		<div class="modal-content">
+		<!-- Any other Bulma elements you want -->
+			<div class="box" id='mc-id'>
+				<div class="modal-card-body">
+					<div class="columns is-centered">
+						<h6 class="title has-text-dark is-size-4 has-text-weight-light">Are you sure, you want to delete this <span class="has-text-weight-medium">Rent Ad..?</span></h6>
+					</div>
+	
+	
+					<div class="columns is-centered">
+						<div class="column is-one-quarter">
+							<button id="md-cncl" class="button is-small is-fullwidth is-warning">Cancel</button>
+						</div>
+						<div class="column is-one-quarter">
+							<a href="" id="md-del" class="button is-small is-fullwidth is-danger">Yes</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	  <button class="modal-close is-large" aria-label="close"></button>
+	</div>
+	<div class="modal" id='cmpul-lgn-mod'>
+		<div class="modal-background"></div>
+		<div class="modal-content">
+	    <!-- Any other Bulma elements you want -->
+		    <div class="box" id='mc-id'>
+		    	<div class="modal-card-body">
+				    <div class="lg-col">
+				    	<div class="lg-btn">
+				    	<h6 class="title has-text-dark is-size-4 has-text-weight-light">Sign In to <span class="has-text-weight-medium" id='tit-neibo'>nss_accom</span>to view more about house details</h6>
+				    	</div>
+				    	<div class="lg-btn">
+				    		<a class="button g has-text-link" href="{% url 'social:begin' 'google-oauth2' %}?next={{request.path}}"><span class="px-1"><i class="fab fa-google"></i></span>Login with Google</a>
+				    	</div>
+				    	<div class="lg-btn">
+				    		<a class="button has-text-link" href="{% url 'social:begin' 'facebook' %}"><span class="px-1"><i class="fab fa-facebook-f"></i></span>Login with Facebook</a>
+				    	</div>
+					</div>
+				</div>
+	    	</div>
+		</div>
+	</div>
+	<article class="message is-primary mes-cls">
+		<div class="message-header">
+			<h6 class="title is-4"><span class="has-text-white">Complete Ads</span></h6>
+		</div>	
+	</article>
+	
+	<div class="columns is-multiline" id="ad-cl">
+		{% if houses_list %}
+			{% for house in houses_list %}
+			<div class="column is-one-quarter box hurs" id="house-{{house.id}}">
+				<a href="{% url 'renting:house_details' house.id %}">
+					<p class="title is-6">#{{house.house_no}},</p>
+					<p class="subtitle is-6">{{house.street_address}}, {{house.zipcode}}, {{house.city}},
+					{{house.country}}</p>
+					{% for img in house.houseimages_set.all %}
+						{% if forloop.counter == 1 %}
+							<img class="img-ad-cls" src="{{img.images.url}}">
+						{% endif %}
+					{% empty %}
+						<div class="columns is-centered">
+							<i class="fa fa-picture-o fa-10x has-text-grey-light" aria-hidden="true"></i>
+						</div>
+					{% endfor %}
+				</a>
+				<div class="level del-ovr is-vcentered" id='{{house.id}}'>
+					<div class="left"></div>
+					<div class="right"></div>
+				</div>	
+			</div>
+			{% endfor %}
+		{% else %}
+		<div class="box column is-full resul-txt">Sorry..!! You don't have any ads..<a class="button is-primary" href="{% url 'renting:post_rent_ad' %}">Post Ad</a></div>
+		{% endif %}
+	</div>
+	{% if edit_list %}
+	<article class="message is-warning mes-cls">
+		<div class="message-header">
+			<h6 class="title is-4"><span class="has-text-white">Incomplete Ads</span></h6>
+		</div>	
+	</article>
+	<div class="columns is-multiline" id="ad-cll">	
+		{% for house in edit_list %}
+		<div class="column is-one-quarter box hurs" id="house-{{house.id}}">
+			<a href="{% url 'renting:edit_whole' house.id %}">
+				<p class="ncr title is-6">#{{house.house_no}},</p>
+				<p class="ncr subtitle is-6">{{house.street_address}}, {{house.zipcode}}, {{house.city}},
+				{{house.country}}</p>
+				{% for img in house.houseimages_set.all %}
+					{% if forloop.counter == 1 %}
+						<img class="img-ad-cls" src="{{img.images.url}}">
+					{% endif %}
+				{% empty %}
+					<div class="columns is-centered">
+						<i class="fa fa-picture-o fa-10x has-text-grey-light" aria-hidden="true"></i>
+					</div>
+				{% endfor %}
+			</a>
+			<div class="level del-ovr incp is-vcentered" id='{{house.id}}'>
+				<div class="left"></div>
+				<div class="right"></div>
+			</div>		
+		</div>
+		{% endfor %}
+	</div>
+	{% endif %}
+</div>
+
+<script type="text/javascript">
+$(function(){
+		var modl = '{{modl}}'
+		if(modl){
+			$('#cmpul-lgn-mod').attr('class','modal is-active');
+		}
+		else{
+			console.log('failed');
+		}
+	// carousel
+	bulmaCarousel.attach('#carousel-demo', {'autoplay':true, 'infinite':true, });
+
+});
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,418 @@
+.nb-lg{
+	margin-left: 9rem;
+}
+.nb-end{
+	margin-right: 9rem;
+}
+.navbar-item img {
+    max-height: 5rem;
+}
+
+.mapboxgl-ctrl-geocoder, .mapboxgl-ctrl-geocoder--input{
+	width: auto;	
+}
+.mapboxgl-ctrl-geocoder--input{
+	font: inherit;
+    width: 100%;
+    border: 0;
+    background-color:white; 
+    margin: 0;
+    min-height: 2.5rem;
+    /* border-color: lightgrey; */
+    /* color: #404040; */
+    /* color: rgba(0, 0, 0, 0.75); */
+    padding: 6px 45px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+}
+.pd-geo{
+	padding-left: 7rem;
+}
+.datetimepicker-dummy, .datetimepicker-dummy-wrapper, .datetimepicker-dummy-input{
+	min-width: 100%;
+	background: white;
+}
+
+#pp-disp{
+	background-color: #fff;
+	padding: 1rem;
+	box-shadow: 0px 1px 10px #ddd, 0 1px 20px #ccc; 
+}
+
+::-ms-input-placeholder{
+	opacity: 1;
+	color: #000;
+} 
+::-webkit-input-placeholder{
+		opacity: 1;
+	color: #000;
+} 
+::-moz-placeholder {
+	opacity: 1;
+	color: #000;
+}
+
+input::placeholder{
+	color: #000;
+}
+
+.cc-cls{
+	margin-bottom: 0.2rem; 
+}
+
+.cv-cls{
+	margin-right: -0.1rem;
+}
+.label{
+	cursor: pointer;
+}
+
+#ha-e, #hh-e, #am-e, #rl-e, #pt-e, #ha-sa, #hh-sa, #am-sa, #rl-sa, #pt-sa{
+	display: none;
+}
+
+/*input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button{
+	-webkit-appearance:none;
+	margin:0;
+}*/
+
+.marker{
+	background-size: cover;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+#rhd-col{
+	height: 85vh;
+	overflow-y: auto;
+	position: fixed;
+	left: 0;
+}
+
+#oth-map{
+	position: fixed;
+	z-index: 3;
+	overflow: hidden;
+	top: 6rem;
+	bottom: 0rem;
+	right: 0rem;
+}
+.mp-cls{
+	width: 48vw;
+	height: 85vh;
+}
+
+#sub-hd{
+	position: sticky;
+	top: 6rem;
+	z-index: 5;
+	margin-bottom: 1rem;
+}
+
+body.has-navbar-fixed-top{
+	padding-top: 6rem;
+}
+.hero-body{
+	padding: 1.5rem;
+	padding-top: 0rem;
+}
+img.img-cls{
+	width: 21rem;
+	height: 12rem;
+}
+.column.hsrs,.column.hurs{
+	margin-bottom: 0.25rem;
+	margin-right: 0.25rem;
+	box-shadow:-0.1em 0.01em 0.4em 0.2em rgba(10,10,10,.1),0 0 0 1px rgba(10,10,10,.02);
+	-webkit-box-shadow:-0.1em 0.01em 0.4em 0.2em rgba(10,10,10,.1),0 0 0 1px rgba(10,10,10,.02);
+	-moz-box-shadow:-0.1em 0.01em 0.4em 0.2em rgba(10,10,10,.1),0 0 0 1px rgba(10,10,10,.02);
+	border-radius: 0;
+}
+
+#sec-col{
+	margin-top: 0rem;
+}
+#hdr{
+	margin-top: -2.5rem;
+}
+
+#sec-col.columns{
+	margin-top: 0rem;
+}
+
+#rh-bdy{
+	min-height: 84vh;
+	max-width: 100vw;
+}
+#rhd-plc.columns {
+    margin-left: 1rem;
+    margin-right: 0rem;
+    margin-bottom: 0rem;
+    margin-top: 0rem;
+}
+
+#sec-id.is-fullheight{
+	min-height: 90vh;
+}
+
+#navbar-shadow{
+	box-shadow: 0 .5em 1em -.125em rgba(10,10,10,.1),0 0 0 1px rgba(10,10,10,.02);
+}
+
+.inpline{
+	min-width: 23vw; 
+}
+
+.hm{
+	display: flex;
+	align-items: center;
+}
+
+.lg-col{
+	display: block;
+	text-align: center;
+	align-items: center;
+	margin-top: 1rem
+	
+
+}
+
+.lg-btn{
+	margin: 1rem;
+}
+
+.g{
+	padding-left: 1.25rem;
+	padding-right:1.25rem; 
+}
+
+.column.hsrs {
+	width: 49%;
+}
+.hsrs, .hurs{
+	cursor: pointer;
+
+}
+.hsrs:hover, .hurs:hover{
+	/*background: white;*/
+	box-shadow: 0 .5em 1em -.125em rgba(10,10,10,.1),0 0 0 1px rgba(10,10,10,.02);
+}
+
+.column.hurs{
+	margin-right: 0;
+}
+#srch-bar{
+	display: none;
+}
+
+.hm-img{
+	width: 100vw;
+	height: 70vh;
+	/*margin: auto;*/
+}
+#carou{
+	/*min-width: 100vw;*/
+	min-height: 80vh;
+	margin-left: auto;
+	margin-right: auto; 
+	/*margin: auto;*/
+}
+
+.wlc-title{
+	font-family: 'Raleway', sans-serif;
+	font-size: 1.2rem;
+}
+.mapboxgl-ctrl-geocoder--input:focus{
+	box-shadow:0 1px 5px rgba(81, 203, 238, 1)
+}
+
+.ncr{
+	cursor: default;
+}
+
+.lt{
+	text-decoration: line-through;
+}
+
+.sub-txt{
+	font-size: 0.8rem;
+	background-color: #daebeb;
+}
+.hs-img{
+	width: 90vw;
+	height: 60vh;
+}
+
+.hs-img-n{
+	width: 80vw;
+	height: 50vh;
+}
+
+/* .til{
+	background-color: #f0f0f0;*/
+	/*padding: 0.2rem;
+} 
+*/
+.resul-txt{
+	font-size: 2rem;
+}
+
+#ad-cl,#ad-cll{
+	margin: 0rem;
+}
+#ad-con{
+	max-width: 80vw;
+}
+.mes-cls{
+	margin-top: 1rem;
+}
+.img-ad-cls{
+	width: 18rem;
+	height: 10rem;
+	transform: scale(1);
+}
+.img-div, .hurs{
+	position: relative;
+}
+
+/*.img-div:hover{
+	opacity: 0.8;
+}*/
+
+.ovr{
+	position: absolute;
+	cursor: pointer;
+	top: 0rem;
+	bottom: 0rem;
+	right: 0rem;
+	left: 0rem;
+	height: 100%;
+	width: 100%;
+	z-index: 10;
+	color: #000;
+	/*opacity: 1;*/
+	/*box-shadow: 0 .5em 1em -.125em rgba(10,10,10,.1),0 0 0 1px rgba(10,10,10,.02);*/
+}
+.del-ovr{
+	position: absolute;
+	cursor: pointer;
+	bottom: 0rem;
+	z-index: 10;
+	color: #000;
+	width: 95%;
+	height: 30%;
+	/* left: 0rem; */
+	/* right: 0rem; */
+
+	/*opacity: 1;*/
+	/*box-shadow: 0 .5em 1em -.125em rgba(10,10,10,.1),0 0 0 1px rgba(10,10,10,.02);*/
+}
+.del-ovr.left,.del-ovr.right{
+	padding: 0.5rem;
+}
+.fa-times-circle:hover{
+	box-shadow: 0 .5em 1em -.125em rgba(10,10,10,.1),0 0 0 1px rgba(10,10,10,.02);
+	color: #ef0808;
+}
+.fa-times-circle{
+	position: absolute;
+	color: red;
+	/* background-color: #ccc; */
+	opacity: 1;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+ 	-ms-transform: translate(-50%, -50%);
+  	text-align: center;
+}
+
+
+#sec_on{
+	/*display: none;*/
+	height: 45vh;
+}
+
+#sec_two{
+	display: none;
+	height: 48vh;
+}
+
+.set-hd{
+	outline: none;
+}
+
+.set-nvbr-mn{
+	flex-grow: 0;
+}
+
+#ip-bt{
+	margin-top: 1rem;
+}
+
+.hero-foot{
+	height: 5vh;	
+}
+
+.fot.columns{
+	margin-top: 0;
+}
+
+#hm-h-t-div{
+	height: 40vh;
+}
+.column.fl{
+	min-height: 5rem;
+	margin-top: 1rem;
+	/*min-width: 10rem;*/
+	display: flex;
+}
+
+.hl{
+	margin-top: 0.5rem;
+    min-width: 5rem;
+    padding-left: 0.3rem;
+    text-decoration: underline;
+}
+
+.brdr{
+	box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.02)
+}
+
+#srt{
+   position: relative;
+}
+.srtul{
+	position: absolute;
+    top: 3rem;
+    background-color: white;
+	/* padding: 0.5rem; */
+	box-shadow:1px 4px 6px -1px grey;
+}
+li.srtli{
+	cursor: pointer;
+	padding:0.5rem;
+}
+
+.srtli:hover{
+	/* background-color: turquoise; */
+	background-color:#f1efef;
+
+}
+
+.bhk{
+	min-width: 7rem;
+	width: 7rem;
+}
+.st{
+	padding-right: 0.5em;
+}
+
+select option{
+	background-color: white;
+	box-shadow: 1px 4px 6px -1px grey;
+}

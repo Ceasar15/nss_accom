@@ -154,7 +154,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-#Default storage setting for the media fo niebo on GCP bucket 
+#Default storage setting for the media fo nss_accom on GCP bucket 
 import sys
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 from nss_accom import gcloud

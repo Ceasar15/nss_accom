@@ -587,7 +587,7 @@ $(function(){
 				$('#owner').removeClass('is-light');
 				// console.log('...?')
 				// console.log($('#tit-neibo'));
-				$('#own-tit-neibo').text('niebo to post your rent ad..!!')
+				$('#own-tit-neibo').text('post your rent ad..!!')
 				// $('owner').addClass('is-warning');
 				$('#tenet').addClass('is-light');
 				$('#own-lgn-mod').attr('class','modal is-active');

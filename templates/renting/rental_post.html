@@ -55,11 +55,11 @@
 					</div>
 				</div>
 				<div class="columns">
-	<!-- 				<div class="column">
+					<div class="column">
 						{{form.area.errors}}
 						{{form.area.label}}
 						{{form.area}}
-					</div> -->
+					</div>
 					<div class="column">
 						{{form.zipcode.errors}}
 						{{form.zipcode.label}}
@@ -72,22 +72,22 @@
 					</div>
 
 				</div>
-	<!-- 			<div class="columns">
+				<div class="columns">
 					<div class="column field">
-						{{form.state.errors}}
-						{{form.state.label}}
+						{{form.region.errors}}
+						{{form.region.label}}
 						<div class="control">
 							<div class="select is-small">
-								{{form.state}}
+								{{form.region}}
 							</div>
 						</div>
 					</div>
-					<div class="column">
+					<!-- <div class="column">
 						{{form.zipcode.errors}}
 						{{form.zipcode.label}}
 						{{form.zipcode}}
-					</div>
-				</div> -->
+					</div> -->
+				</div>
 				<div class="columns">
 					<div class="column">
 						{{form.country.errors}}
@@ -95,7 +95,7 @@
 						{{form.country}}
 					</div>
 				</div>
-				<div class="columns">
+				<!-- <div class="columns">
 					<div class="column">
 						{{form.longitude.errors}}
 						{{form.longitude.label}}
@@ -106,7 +106,7 @@
 						{{form.latitude.label}}
 						{{form.latitude}}
 					</div>
-				</div>
+				</div> -->
 				<div class="columns">
 					<div class="column" id='avl'>
 						<h5><small>Availability of house</small></h5>
@@ -266,11 +266,11 @@ margin-top: 1rem;
 <script type="text/javascript">
 $(function(){
 	mapboxgl.accessToken = 
-		'pk.eyJ1IjoiaXZhcmR1IiwiYSI6ImNrYm80c2E5NjFnemcycXM0YXE3cTZmaWwifQ.RUzXxKHAH_vuUSs0hc4t7g';
+		'pk.eyJ1IjoiY2Vhc2FyMTUiLCJhIjoiY2twZnhiZnYxMG50YjJwbzQyYTdrbzJhbCJ9.nsgEFT67yL9ApSnvihlSuA';
 	var map = new mapboxgl.Map({
 		container: 'map',
 		style: 'mapbox://styles/mapbox/streets-v11',
-		center: [20.977185,52.234062],
+		center: [7.946527,-1.023194],
 		zoom: 10,
 
 	});

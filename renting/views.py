@@ -92,7 +92,7 @@ def renting_house_results(request):
 			house_list = NewRentalHouse.objects.filter(city=place_name, in_date__lte=in_d, out_date__gte=ot_d)
 
 		features = []
-		houses_list = {}
+		house_list = {}
 		bhks = {
 			'one':1,'two':2,'three':3,'three_plus':'3+','zero':0
 		}
@@ -101,8 +101,8 @@ def renting_house_results(request):
 		}
 				
 
-		if houses_list:
-			for hous_obj in houses_list:
+		if house_list:
+			for hous_obj in house_list:
 				try:
 					rl = Rules.objects.get(nrh=hous_obj)
 					pt = PreferredTenant.objects.get(nrh=hous_obj)
@@ -180,8 +180,8 @@ def renting_house_results(request):
 # Make it as only post
 # @login_required
 def post_rent_ad(request):
-	# print(request.FILES or None)
-	form = RentalHouseForm(initial={'country':'Poland'}, data=request.POST or None)
+
+	form = RentalHouseForm(initial={'country':'Ghana'}, data=request.POST or None)
 	img_form = HouseImagesForm(files=request.FILES)
 	PUB_KEY = settings.MAPBOX_PUBLIC_KEY
 	if request.method == 'POST' and request.user.is_authenticated:

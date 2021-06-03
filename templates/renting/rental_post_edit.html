@@ -79,10 +79,10 @@
 				</div>
 			</div>
 			<div class="columns">
-<!-- 				<div class="column">
+				<div class="column">
 					{{form.area.label}}
 					{{form.area}}
-				</div> -->
+				</div>
 				<div class="column">
 					{{form.city.label}}
 					{{form.city}}
@@ -92,27 +92,27 @@
 					{{form.zipcode}}
 				</div>
 			</div>
-<!-- 			<div class="columns">
+			<div class="columns">
 				<div class="column field">
-					{{form.state.label}}
+					{{form.region.label}}
 					<div class="control">
 						<div class="select is-small">
-							{{form.state}}
+							{{form.region}}
 						</div>
 					</div>
 				</div>
-				<div class="column">
+				<!-- <div class="column">
 					{{form.zipcode.label}}
 					{{form.zipcode}}
-				</div>
-			</div> -->
+				</div> -->
+			</div>
 			<div class="columns">
 				<div class="column">
 					{{form.country.label}}
 					{{form.country}}
 				</div>
 			</div>
-			<div class="columns">
+			<!-- <div class="columns">
 				<div class="column">
 					{{form.longitude.label}}
 					{{form.longitude}}
@@ -121,7 +121,7 @@
 					{{form.latitude.label}}
 					{{form.latitude}}
 				</div>
-			</div>
+			</div> -->
 			<div class="columns">
 				<div class="column" id='avl'>
 					<h5><small>Availability of house</small></h5>
@@ -570,7 +570,7 @@ $(function(){
 	var map = new mapboxgl.Map({
 		container: 'map',
 		style: 'mapbox://styles/mapbox/streets-v11',
-		center: [20.977185,52.234062],
+		center: [7.946527,-1.023194],
 		zoom: 10,
 
 	});

@@ -8,7 +8,7 @@ from .forms import RentalHouseForm
 class HouseAddrTest(TestCase):
 
 	def setUp(self):
-		self.form = RentalHouseForm(data={'csrfmiddlewaretoken': 'al5JJ7DcROZVfMkUsV045WlUOLmjmjCg5AaOUMJgaHCWFrr1phBMhHn2arEughNi', 'street_address': 'Testing', 'area': 'New Hasnabad', 'city': 'Testing', 'state': 'Lower Silesia', 'zipcode': '560033', 'longitude': '20.98', 'latitude': '52.23'})
+		self.form = RentalHouseForm(data={'csrfmiddlewaretoken': 'al5JJ7DcROZVfMkUsV045WlUOLmjmjCg5AaOUMJgaHCWFrr1phBMhHn2arEughNi', 'street_address': 'Testing', 'area': 'New Hasnabad', 'city': 'Testing', 'region': 'Greater Accra', 'zipcode': '560033', 'longitude': '20.98', 'latitude': '52.23'})
 		# self.form.is_valid()
 		# print(self.form.clean())
 		# , 'house_no': '456ab'

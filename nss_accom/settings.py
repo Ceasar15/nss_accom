@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'renting.apps.RentingConfig',
-    'users.apps.UsersConfig'
+    'users.apps.UsersConfig',
+    'social_django',
+
 ]
 
 MIDDLEWARE = [
@@ -82,6 +84,7 @@ WSGI_APPLICATION = 'nss_accom.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 
 DATABASES = {
     'default': {

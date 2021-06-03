@@ -13,14 +13,14 @@ class RentalHouseForm(forms.ModelForm):
 
 	house_no = forms.CharField(label='House No',widget=forms.TextInput(attrs={'class':'input', 'placeholder':'House No#'}))
 	street_address = forms.CharField(label='Street Address',widget=forms.Textarea(attrs={'class':'input', 'placeholder':'Street Address'}))
-	# area = forms.CharField(widget=forms.TextInput(attrs={'class':'input', 'placeholder':'Area'}))
+	area = forms.CharField(widget=forms.TextInput(attrs={'class':'input', 'placeholder':'Area'}))
 	city = forms.CharField(widget=forms.TextInput(attrs={'class':'input', 'placeholder':'City'}))
-	# state = forms.ChoiceField(label='State/Province', choices=STATE_CHOICES, widget=forms.Select(attrs={'class':'multiple'}))
+	region = forms.ChoiceField(label='REGION', choices=STATE_CHOICES, widget=forms.Select(attrs={'class':'multiple'}))
 	zipcode = forms.CharField(widget=forms.TextInput(attrs={'class':'input', 'placeholder':'ZipCode'}))
 	country = forms.CharField(widget=forms.TextInput(attrs={'class':'input', 'placeholder':'Ghana'}), disabled=True, required=False)
 
-	longitude = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'input has-background-grey-lighter', 'placeholder':'Longitude','readonly':'readonly'}))
-	latitude = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'input has-background-grey-lighter', 'placeholder':'Latitude','readonly':'readonly'}))
+	#longitude = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'input has-background-grey-lighter', 'placeholder':'Longitude'}))
+	#latitude = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'input has-background-grey-lighter', 'placeholder':'Latitude'}))
 
 	in_date = forms.DateField(label='From', widget=forms.DateInput(attrs={'class':'ip-date'}))
 	out_date = forms.DateField(label='To', widget=forms.DateInput(attrs={'class':'ip-date'}))
@@ -40,8 +40,8 @@ class RentalHouseForm(forms.ModelForm):
 			# print(visible)
 
 		# self.fields['state'].widget.attrs['class'] = 'multiple'
-		self.fields['longitude'].widget.attrs['class'] = 'input is-small has-background-grey-lighter'
-		self.fields['latitude'].widget.attrs['class'] = 'input is-small has-background-grey-lighter'
+		#self.fields['longitude'].widget.attrs['class'] = 'input is-small has-background-grey-lighter'
+		#self.fields['latitude'].widget.attrs['class'] = 'input is-small has-background-grey-lighter'
 		self.fields['in_date'].widget.attrs['class'] = 'ip-date'
 		self.fields['out_date'].widget.attrs['class'] = 'ip-date'
 

@@ -63,8 +63,8 @@ class NewRentalHouse(models.Model):
     area = models.CharField(max_length=150)
     zipcode = models.CharField(max_length=12)
     country = models.CharField(max_length=100, default='Ghana')
-    longitude = models.DecimalField(max_digits=4, decimal_places=2)
-    latitude = models.DecimalField(max_digits=4, decimal_places=2)
+    #longitude = models.DecimalField(max_digits=4, decimal_places=2)
+    #latitude = models.DecimalField(max_digits=4, decimal_places=2)
     
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
@@ -95,7 +95,7 @@ class HouseHas(models.Model):
 
 	nrh = models.OneToOneField(NewRentalHouse, on_delete=models.CASCADE) 
 
-state = models.CharField(max_length=100, choices=STATE_CHOICES)
+region = models.CharField(max_length=100, choices=STATE_CHOICES)
 
 class Amenities(models.Model):
 

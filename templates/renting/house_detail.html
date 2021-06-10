@@ -27,7 +27,7 @@
 	<div id='carousel-demo' class="carousel">
 		{% for img in imgs %}
 		<div class="item-{{forloop.counter}}">
-			<img class="hs-img" src="{{img.images.url}}">
+			<img class="hs-img" src="{{img.images.url}}" alt="House Pictures">
 		</div>
 		{% empty %}
 		<div class="item-1">

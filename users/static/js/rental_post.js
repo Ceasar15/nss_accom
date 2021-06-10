@@ -616,7 +616,7 @@ $(function(){
 					// console.log($('#navbar-shadow').find('#dd-ll'));
 					// console.log($('#dd-ll'));
 					// console.log($('#dd-tt'));
-					if(data.user_type == 'Tenant'){
+					if(data.user_type == 'Student'){
 						if($('#dd-ll').length == 1){
 							// console.log('Found dd-ll in the tenet', $('#dd-ll').length == 1);
 							$('#dd-ll').remove();

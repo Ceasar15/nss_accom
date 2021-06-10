@@ -27,7 +27,7 @@
 	<div id='carousel-demo' class="carousel">
 		{% for img in imgs %}
 		<div class="item-{{forloop.counter}}">
-			<img class="hs-img" src="{{img.images.url}}">
+			<img class="hs-img" src="{{img.images.url}}" alt="House Pictures">
 		</div>
 		{% empty %}
 		<div class="item-1">
@@ -118,7 +118,7 @@
 		</div>
 
 	</div>
-	<h6 class="subtitle"><span class="til">Preferred Tenant</span></h6>
+	<h6 class="subtitle"><span class="til">Preferred Student</span></h6>
 	<div class="columns box">
 		<div class="column">
 			<span>Gender: <span class="sub-txt">{% if pt.gender == 'M' %}Male{%elif pt.gender == 'F' %}Female{%else%}Other{%endif%}</span></span>

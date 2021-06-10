@@ -14,8 +14,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 from dotenv import load_dotenv
 load_dotenv()
 
-import os
-import django_heroku
+import dj_database_url, os, django_heroku
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -32,7 +32,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['nss_accom.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['nss-accom.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -52,6 +52,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -89,14 +90,17 @@ DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'Hotel',
+        'NAME': os.environ.get('NAME'),
         'USER': 'bookmarks',
-        'PASSWORD': 'edem1234',
-        'HOST': 'localhost',
+        'PASSWORD': os.environ.get('PASSWORD'),
+        'HOST': os.environ.get('HOST'),
         'PORT': '',
         'ATOMIC_REQUESTS': True,
     }
 }
+
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
@@ -153,8 +157,11 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 #Default storage setting for the media fo nss_accom on GCP bucket 

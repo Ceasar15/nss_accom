@@ -39,7 +39,7 @@
 					{% for house,bed in houses_list.items %}
 					<div class="column is-half box hsrs" id="house-{{house.id}}">
 						<div class="level">
-							<div class="left"><p class="ncr title is-size-5"><i class="fa fa-eur"></i> {{house.rent}} Monthly</p></div>
+							<div class="left"><p class="ncr title is-size-5"> {{house.rent}} Monthly</p></div>
 							<div class="right"><p class="ncr title is-size-5">{{bed}}</p></div>
 						</div>
 						<p class="ncr subtitle is-6">{{house.street_address}}, {{house.zipcode}}, {{house.city}},
@@ -322,7 +322,7 @@
 			}
 			var popup = new mapboxgl.Popup({ closeOnClick: false })
 				.setLngLat(currentFeature.geometry.coordinates)
-				.setHTML('<h3 class="is-size-3 has-text-primary"><i class="fa fa-eur"></i>' + currentFeature.properties.rent + '</h3>' +
+				.setHTML('<h3 class="is-size-3 has-text-primary">' + currentFeature.properties.rent + '</h3>' +
 					'<h4>' + currentFeature.properties.street_address + ',' + currentFeature.properties.postalCode + ',' + currentFeature.properties.city + '</h4>')
 				.addTo(map);
 		}

@@ -26,7 +26,7 @@
 	<h3 class="subtitle"><span class="til">PICTURES</span></h3>
 	<div id='carousel-demo' class="carousel">
 		<!-- {% for img in imgs %} -->
-		
+
 		<div class="item-1">
 			<img class="hs-img" src="{{imgs.images.url}}" alt="House Pictures">
 		</div>
@@ -57,15 +57,15 @@
 			<div class="column is-one-quarter">
 				<span>Balcony: {% if r_hh.balcony == 'Pr' %}<span class="sub-txt">Private</span>{%elif r_hh.balcony == 'Sh'%}<span class="sub-txt">Public</span>{%else%}<span>Not Available</span>{%endif%}</span>
 			</div>
-			<div class="column is-one-quarter">
+			<!-- <div class="column is-one-quarter">
 				<span>{% if r_hh.terrace == 'Y' %}Terrace <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Terrace</span>{%endif%}</span>
-			</div>
-			<div class="column is-one-quarter">
+			</div> -->
+			<!-- <div class="column is-one-quarter">
 				<span>{% if r_hh.garden == 'Y' %}Garden <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Garden</span>{%endif%}</span>
-			</div>
-			<div class="column is-one-quarter">
+			</div> -->
+			<!-- <div class="column is-one-quarter">
 				<span>{% if r_hh.basement == 'Y' %}Basement <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Basement</span>{%endif%}</span>
-			</div>
+			</div> -->
 			<div class="column is-one-quarter">
 				<span>{% if r_hh.parking == 'Y' %}Parking <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Parking</span>{%endif%}</span>
 			</div>
@@ -79,7 +79,7 @@
 	</div>
 	<h6 class="subtitle"><span class="til">Amenities</span></h6>
 	<div class="columns is-multiline box">
-		<div class="column is-one-quarter">
+		<!-- <div class="column is-one-quarter">
 			<span>{% if am.desk == 'Y' %}Desk <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Desk</span>{%endif%}</span>
 		</div>
 		<div class="column is-one-quarter">
@@ -106,11 +106,11 @@
 		</div>
 		<div class="column is-one-quarter">
 			<span>{% if am.heating == 'Y' %}Heating <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Heating</span>{%endif%}</span>
-		</div>
-		<div class="column is-one-quarter">
+		</div> -->
+		<!-- <div class="column is-one-quarter">
 			<span>{% if am.air_conditioning == 'Y' %}Air Conditioning <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Air Conditioning</span>{%endif%}</span>
 			
-		</div>
+		</div> -->
 		<div class="column is-one-quarter">
 			<span>{% if am.bed == 'Y' %}Bed <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Bed</span>{%endif%}</span>
 		</div>
@@ -124,18 +124,18 @@
 		<div class="column">
 			<span>Gender: <span class="sub-txt">{% if pt.gender == 'M' %}Male{%elif pt.gender == 'F' %}Female{%else%}Other{%endif%}</span></span>
 		</div>
-		<div class="column">
+		<!-- <div class="column">
 			<span>{% if pt.couple_friendly == 'Y' %}Couple Friendly <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Couple Friendly</span>{%endif%}</span>
 		</div>
 		<div class="column">
 			<span>{% if pt.bachelor_allowed == 'Y' %}Bachelor Allowed <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Bachelor Allowed</span>{%endif%}</span>
-		</div>
+		</div> -->
 	</div>
 	<h6 class="subtitle"><span class="til">Rules</span></h6>
 	<div class="columns box">
-		<div class="column">
+		<!-- <div class="column">
 			<span>{% if rl.animal_allowed == 'Y' %}Animal Allowed <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Animal Allowed</span>{%endif%}</span>
-		</div>
+		</div> -->
 		<div class="column">
 			<span>{% if rl.smoking_allowed == 'Y' %}Smoking Allowed <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Smoking Allowed</span>{%endif%}</span>
 		</div>
@@ -152,7 +152,7 @@
 			<span>Address:</span>
 			<span>#{{nrh_obj.house_no}},</span>
 			<span>{{nrh_obj.street_address}},</span>
-			<span>{{nrh_obj.zipcode}},</span>
+			<!-- <span>{{nrh_obj.zipcode}},</span> -->
 			<span>{{nrh_obj.city}},</span>
 			<span>{{nrh_obj.country}}.</span>
 		</div>

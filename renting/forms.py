@@ -16,7 +16,7 @@ class RentalHouseForm(forms.ModelForm):
 	area = forms.CharField(widget=forms.TextInput(attrs={'class':'input', 'placeholder':'Area'}))
 	city = forms.CharField(widget=forms.TextInput(attrs={'class':'input', 'placeholder':'City'}))
 	region = forms.ChoiceField(label='REGION', choices=STATE_CHOICES, widget=forms.Select(attrs={'class':'multiple'}))
-	zipcode = forms.CharField(widget=forms.TextInput(attrs={'class':'input', 'placeholder':'ZipCode'}))
+	# zipcode = forms.CharField(widget=forms.TextInput(attrs={'class':'input', 'placeholder':'ZipCode'}))
 	country = forms.CharField(widget=forms.TextInput(attrs={'class':'input', 'placeholder':'Ghana'}), disabled=True, required=False)
 
 	#longitude = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'input has-background-grey-lighter', 'placeholder':'Longitude'}))
@@ -71,11 +71,11 @@ class HouseHasForm(forms.ModelForm):
 	living_room = forms.ChoiceField(choices=HH_FIELD_CHOICES,widget=forms.Select(attrs={'class':'multiple'}))
 	toilet = forms.ChoiceField(choices=HH_FIELD_CHOICES,widget=forms.Select(attrs={'class':'multiple'}))
 	balcony = forms.ChoiceField(choices=HH_FIELD_CHOICES,widget=forms.Select(attrs={'class':'multiple'}))
-	terrace = forms.ChoiceField(choices=FIELD_CHOICES,widget=forms.Select(attrs={'class':'multiple'}))
-	garden = forms.ChoiceField(choices=FIELD_CHOICES,widget=forms.Select(attrs={'class':'multiple'}))
-	basement = forms.ChoiceField(choices=FIELD_CHOICES,widget=forms.Select(attrs={'class':'multiple'}))
+	# terrace = forms.ChoiceField(choices=FIELD_CHOICES,widget=forms.Select(attrs={'class':'multiple'}))
+	# garden = forms.ChoiceField(choices=FIELD_CHOICES,widget=forms.Select(attrs={'class':'multiple'}))
+	# basement = forms.ChoiceField(choices=FIELD_CHOICES,widget=forms.Select(attrs={'class':'multiple'}))
 	parking = forms.ChoiceField(choices=FIELD_CHOICES,widget=forms.Select(attrs={'class':'multiple'}))
-	wheelchair_accessible = forms.ChoiceField(choices=FIELD_CHOICES,widget=forms.Select(attrs={'class':'multiple'}))
+	# wheelchair_accessible = forms.ChoiceField(choices=FIELD_CHOICES,widget=forms.Select(attrs={'class':'multiple'}))
 
 	class Meta:
 		model = HouseHas

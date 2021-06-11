@@ -61,7 +61,7 @@ class NewRentalHouse(models.Model):
     street_address = models.TextField()
     city = models.CharField(max_length=150)
     area = models.CharField(max_length=150)
-    zipcode = models.CharField(max_length=12)
+    # zipcode = models.CharField(max_length=12)
     country = models.CharField(max_length=100, default='Ghana')
     #longitude = models.DecimalField(max_digits=4, decimal_places=2)
     #latitude = models.DecimalField(max_digits=4, decimal_places=2)
@@ -99,16 +99,16 @@ region = models.CharField(max_length=100, choices=STATE_CHOICES)
 
 class Amenities(models.Model):
 
-	desk = models.CharField(max_length=1, choices=FIELD_CHOICES)
-	closet = models.CharField(max_length=1, choices=FIELD_CHOICES)
-	tv = models.CharField(max_length=1, choices=FIELD_CHOICES)
-	washing_machine = models.CharField(max_length=1, choices=FIELD_CHOICES)
-	dryer = models.CharField(max_length=1, choices=FIELD_CHOICES)
-	dishwasher = models.CharField(max_length=1, choices=FIELD_CHOICES)
-	kitchenware = models.CharField(max_length=1, choices=FIELD_CHOICES)
-	wifi = models.CharField(max_length=1, choices=FIELD_CHOICES)
-	heating = models.CharField(max_length=1, choices=FIELD_CHOICES)
-	air_conditioning = models.CharField(max_length=1, choices=FIELD_CHOICES)
+	# desk = models.CharField(max_length=1, choices=FIELD_CHOICES)
+	# closet = models.CharField(max_length=1, choices=FIELD_CHOICES)
+	# tv = models.CharField(max_length=1, choices=FIELD_CHOICES)
+	# washing_machine = models.CharField(max_length=1, choices=FIELD_CHOICES)
+	# dryer = models.CharField(max_length=1, choices=FIELD_CHOICES)
+	# dishwasher = models.CharField(max_length=1, choices=FIELD_CHOICES)
+	# kitchenware = models.CharField(max_length=1, choices=FIELD_CHOICES)
+	# wifi = models.CharField(max_length=1, choices=FIELD_CHOICES)
+	# heating = models.CharField(max_length=1, choices=FIELD_CHOICES)
+	# air_conditioning = models.CharField(max_length=1, choices=FIELD_CHOICES)
 	bed = models.CharField(max_length=1, choices=FIELD_CHOICES)
 	furnished = models.CharField(max_length=1, choices=FIELD_CHOICES)
 
@@ -117,14 +117,14 @@ class Amenities(models.Model):
 
 class PreferredTenant(models.Model):
 	gender = models.CharField(max_length=1, choices=GENDER_PREF)
-	couple_friendly = models.CharField(max_length=1, choices=FIELD_CHOICES)
-	bachelor_allowed = models.CharField(max_length=1, choices=FIELD_CHOICES)
+	# couple_friendly = models.CharField(max_length=1, choices=FIELD_CHOICES)
+	# bachelor_allowed = models.CharField(max_length=1, choices=FIELD_CHOICES)
 
 	nrh = models.OneToOneField(NewRentalHouse, on_delete=models.CASCADE)
 
 
 class Rules(models.Model):
-	animal_allowed = models.CharField(max_length=1, choices=FIELD_CHOICES)
+	# animal_allowed = models.CharField(max_length=1, choices=FIELD_CHOICES)
 	smoking_allowed = models.CharField(max_length=1, choices=FIELD_CHOICES)
 	musical_instrument = models.CharField(max_length=1, choices=FIELD_CHOICES)
 

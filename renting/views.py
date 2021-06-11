@@ -568,6 +568,7 @@ def house_details(request, id):
 			pt = PreferredTenant.objects.get(nrh=nrh_obj)
 			rl = Rules.objects.get(nrh=nrh_obj)
 			imgs = HouseImages.objects.filter(nrh=nrh_obj)
+			imagee = HouseImages.objects.get(nrh=nrh_obj)
 		except:
 			nrh_obj = None
 

@@ -26,11 +26,11 @@
 	<h3 class="subtitle"><span class="til">PICTURES</span></h3>
 	<div id='carousel-demo' class="carousel">
 		{% for img in imgs %}
+		{% if forloop.counter == 1 %}
 		<div class="item-1">
-			{% if forloop.counter == 1 %}
-			<img class="hs-img" src="{{imgs.images.url}}" alt="House Pictures">
-			{% endif %}
+			<img class="hs-img" src="{{img.images.url}}" alt="House Pictures">
 		</div>
+		{% endif %}
 		{% empty %}
 		<div class="item-1">
 			<!-- <i class="fa fa-picture-o fa-100x has-text-grey-light" aria-hidden="true"></i> -->

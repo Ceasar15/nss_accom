@@ -151,7 +151,7 @@
 
 
 	$(function () {
-		mapboxgl.accessToken = 		'pk.eyJ1IjoiY2Vhc2FyMTUiLCJhIjoiY2twZnhiZnYxMG50YjJwbzQyYTdrbzJhbCJ9.nsgEFT67yL9ApSnvihlSuA';
+		mapboxgl.accessToken = 'pk.eyJ1IjoiY2Vhc2FyMTUiLCJhIjoiY2twZnhiZnYxMG50YjJwbzQyYTdrbzJhbCJ9.nsgEFT67yL9ApSnvihlSuA';
 		var geocoder = new MapboxGeocoder({
 			accessToken: mapboxgl.accessToken,
 			mapboxgl: mapboxgl
@@ -187,7 +187,6 @@
 			var map = new mapboxgl.Map({
 				container: 'map',
 				style: 'mapbox://styles/mapbox/streets-v11',
-				// center:[76.49, 11.83],
 				center: [7.946527, -1.023194],
 				zoom: 10
 			});

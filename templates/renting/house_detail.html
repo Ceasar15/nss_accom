@@ -23,25 +23,13 @@
 	    	</div>
 		</div>
 	</div>
-	<h3 class="subtitle"><span class="til">PICTURES</span></h3>
-	<div id='carousel-demo' class="carousel">
+	<h3 class="subtitle" style="text-align: center;" ><span class="til">House Images</span></h3>
+	
+	<div style="position: relative; left: 350px;">
 		{% for img in imgs %}
-		{% if forloop.counter == 1 %}
-		<div class="item-1">
-			<img class="hs-img-n" src="{{img.images.url}}" alt="House Pictures">
-		</div>
-		{% endif %}
-		{% empty %}
-		<div class="item-1">
-			<!-- <i class="fa fa-picture-o fa-100x has-text-grey-light" aria-hidden="true"></i> -->
-			<img class="hs-img-n" src="{% static '/img/splash1.jpg' %}">
-		</div>
-		<div class="item-2">
-			<!-- <i class="fa fa-picture-o fa-100x has-text-grey-light" aria-hidden="true"></i> -->
-			<img class="hs-img-n" src="{% static '/img/hmm-1.png' %}">
-		</div>
+		<img src="{{img.images.url}}" style="height:400px; width: 500px; align-items:center;" alt="Ad Pictures">
 		{% endfor %}
-	</div>
+	</div>	
 
 	<h3 class="subtitle"><span class="til">House Has</span></h3>
 	<div class="columns is-multiline box">

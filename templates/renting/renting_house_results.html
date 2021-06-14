@@ -151,7 +151,7 @@
 
 
 	$(function () {
-		mapboxgl.accessToken = '{{PUB_KEY}}';
+		mapboxgl.accessToken = 		'pk.eyJ1IjoiY2Vhc2FyMTUiLCJhIjoiY2twZnhiZnYxMG50YjJwbzQyYTdrbzJhbCJ9.nsgEFT67yL9ApSnvihlSuA';
 		var geocoder = new MapboxGeocoder({
 			accessToken: mapboxgl.accessToken,
 			mapboxgl: mapboxgl
@@ -168,11 +168,11 @@
 			addMark(houses);
 		} catch{
 			var houses = undefined;
-			mapboxgl.accessToken = '{{PUB_KEY}}';
+			mapboxgl.accessToken = 'pk.eyJ1IjoiY2Vhc2FyMTUiLCJhIjoiY2twZnhiZnYxMG50YjJwbzQyYTdrbzJhbCJ9.nsgEFT67yL9ApSnvihlSuA';
 			var map = new mapboxgl.Map({
 				container: 'map',
 				style: 'mapbox://styles/mapbox/streets-v11',
-				center: [-0.184016, 5.654719,,],
+				center: [-0.184016, 5.654719],
 				zoom: 10
 			});
 			map.scrollZoom.disable();
@@ -183,7 +183,7 @@
 		var cord = '{{cord}}';
 		function addMark(houses){
 
-			mapboxgl.accessToken = '{{PUB_KEY}}';
+			mapboxgl.accessToken = 'pk.eyJ1IjoiY2Vhc2FyMTUiLCJhIjoiY2twZnhiZnYxMG50YjJwbzQyYTdrbzJhbCJ9.nsgEFT67yL9ApSnvihlSuA';
 			var map = new mapboxgl.Map({
 				container: 'map',
 				style: 'mapbox://styles/mapbox/streets-v11',

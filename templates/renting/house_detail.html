@@ -25,12 +25,13 @@
 	</div>
 	<h3 class="subtitle"><span class="til">PICTURES</span></h3>
 	<div id='carousel-demo' class="carousel">
-		<!-- {% for img in imgs %} -->
-
+		{% for img in imgs %}
 		<div class="item-1">
+			{% if forloop.counter == 1 %}
 			<img class="hs-img" src="{{imgs.images.url}}" alt="House Pictures">
+			{% endif %}
 		</div>
-		<!-- {% empty %} -->
+		{% empty %}
 		<div class="item-1">
 			<!-- <i class="fa fa-picture-o fa-100x has-text-grey-light" aria-hidden="true"></i> -->
 			<img class="hs-img-n" src="{% static '/img/splash1.jpg' %}">
@@ -39,7 +40,7 @@
 			<!-- <i class="fa fa-picture-o fa-100x has-text-grey-light" aria-hidden="true"></i> -->
 			<img class="hs-img-n" src="{% static '/img/hmm-1.png' %}">
 		</div>
-		<!-- 	{% endfor %} -->
+		{% endfor %}
 	</div>
 
 	<h3 class="subtitle"><span class="til">House Has</span></h3>

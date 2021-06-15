@@ -86,7 +86,7 @@ class HouseHas(models.Model):
 	bathroom = models.CharField(max_length=2, choices=HH_FIELD_CHOICES)
 	living_room = models.CharField(max_length=2, choices=HH_FIELD_CHOICES)
 	toilet = models.CharField(max_length=2, choices=HH_FIELD_CHOICES)
-	balcony = models.CharField(max_length=2, choices=HH_FIELD_CHOICES)
+	balcony = models.CharField(max_length=2, choices=HH_FIELD_CHOICES)	
 	#terrace = models.CharField(max_length=2, choices=FIELD_CHOICES)
 	#garden = models.CharField(max_length=2, choices=FIELD_CHOICES)
 	#basement = models.CharField(max_length=2, choices=FIELD_CHOICES)

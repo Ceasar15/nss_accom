@@ -138,10 +138,8 @@ def renting_house_results(request):
 					      	'id':hous_obj.id,
 					      	'house_no':hous_obj.house_no,
 					        "street_address":hous_obj.street_address,
-					        "postalCode": hous_obj.zipcode,
 					        "city": hous_obj.city,
 					        "country": hous_obj.country,
-							"rent":hous_obj.rent,
 					      }
 					    }
 					bed = hous_obj.househas.bedroom

@@ -1,5 +1,6 @@
 from django import template
 from django.shortcuts import render, reverse
+from django.template import context
 from django.urls import reverse_lazy
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.core.serializers.json import DjangoJSONEncoder
@@ -57,18 +58,17 @@ class SearchResults(ListView):
 
 
 def renting_house_results(request):
-	PUB_KEY = settings.MAPBOX_PUBLIC_KEY
 	if request.method == 'POST':
     		house_list = NewRentalHouse.objects.all()
 			city_query = request.GET.get('q')
 			if city_query:
     				print(city_query)
-					property_list = property_list.filter(Q(city__icontains == city_query)).distinct()
-			print(property_list)
-	else:
-		cord = request.session.get('cord', '21.01,52.22')
-
-	return render(request,'renting/renting_house_results.html', locals())
+				house_list = house_list.filter(Q(city__icontains = city_query)).distinct()
+			print(house_list)
+		context = {
+			'property_list': house_list
+		}
+		return render(request,'renting/renting_house_results.html', context)
 
 
 # Make it as only post

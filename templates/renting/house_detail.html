@@ -23,26 +23,43 @@
 	    	</div>
 		</div>
 	</div>
-	<h3 class="subtitle"><span class="til">PICTURES</span></h3>
-	<div id='carousel-demo' class="carousel">
-		<!-- {% for img in imgs %} -->
+	
+	<h3 class="subtitle" style="text-align: center;"><span class="til">House Images</span></h3>
+	<div id="demo" class="carousel slide" data-ride="carousel">
 
-		<div class="item-1">
-			<img class="hs-img" src="{{imgs.images.url}}" alt="House Pictures">
-		</div>
-		<!-- {% empty %} -->
-		<div class="item-1">
-			<!-- <i class="fa fa-picture-o fa-100x has-text-grey-light" aria-hidden="true"></i> -->
-			<img class="hs-img-n" src="{% static '/img/splash1.jpg' %}">
-		</div>
-		<div class="item-2">
-			<!-- <i class="fa fa-picture-o fa-100x has-text-grey-light" aria-hidden="true"></i> -->
-			<img class="hs-img-n" src="{% static '/img/hmm-1.png' %}">
-		</div>
-		<!-- 	{% endfor %} -->
-	</div>
 
-	<h3 class="subtitle"><span class="til">House Has</span></h3>
+		<ul class="carousel-indicators">
+		  <li data-target="#demo" data-slide-to="0" class="active"></li>
+		  <li data-target="#demo" data-slide-to="1"></li>
+		  <li data-target="#demo" data-slide-to="2"></li>
+		</ul>
+		
+
+		<div class="carousel-inner">
+		  {% for img in imgs %}  
+		  <div class="carousel-item active">
+			<img src="{{img.images.url}}" style=" position: relative; left: 100px; width: 1000px; height: 500px;" alt="Ad Images 1">
+		  </div>
+		  {% endfor %}
+		</div>
+	  
+		<a class="carousel-control-prev" href="#demo" data-slide="prev">
+		  <span class="carousel-control-prev-icon"></span>
+		</a>
+		<a class="carousel-control-next" href="#demo" data-slide="next">
+		  <span class="carousel-control-next-icon"></span>
+		</a>
+	  
+	</div> 		
+
+
+	<!-- <div style="position: relative; left: 350px;">
+		{% for img in imgs %}
+		<img src="{{img.images.url}}" style="height:400px; width: 500px; align-items:center;" alt="Ad Pictures">
+		{% endfor %}
+	</div>	 -->
+
+	<h3 class="subtitle" style="text-align: center;"><span class="til">House Has</span></h3>
 	<div class="columns is-multiline box">
 
 			<div class="column is-one-quarter">
@@ -77,7 +94,7 @@
 			<!-- </div> -->
 
 	</div>
-	<h6 class="subtitle"><span class="til">Amenities</span></h6>
+	<h6 class="subtitle" style="text-align: center;"><span class="til">Amenities</span></h6>
 	<div class="columns is-multiline box">
 		<!-- <div class="column is-one-quarter">
 			<span>{% if am.desk == 'Y' %}Desk <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Desk</span>{%endif%}</span>
@@ -119,7 +136,7 @@
 		</div>
 
 	</div>
-	<h6 class="subtitle"><span class="til">Preferred Student</span></h6>
+	<h6 class="subtitle" style="text-align: center;"><span class="til">Preferred Student</span></h6>
 	<div class="columns box">
 		<div class="column">
 			<span>Gender: <span class="sub-txt">{% if pt.gender == 'M' %}Male{%elif pt.gender == 'F' %}Female{%else%}Other{%endif%}</span></span>
@@ -131,7 +148,7 @@
 			<span>{% if pt.bachelor_allowed == 'Y' %}Bachelor Allowed <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Bachelor Allowed</span>{%endif%}</span>
 		</div> -->
 	</div>
-	<h6 class="subtitle"><span class="til">Rules</span></h6>
+	<h6 class="subtitle" style="text-align: center;"><span class="til">Rules</span></h6>
 	<div class="columns box">
 		<!-- <div class="column">
 			<span>{% if rl.animal_allowed == 'Y' %}Animal Allowed <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Animal Allowed</span>{%endif%}</span>
@@ -143,10 +160,10 @@
 			<span>{% if rl.musical_instrument == 'Y' %}Musical Instrument <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Musical Instrument</span>{%endif%}</span>
 		</div>
 	</div>
-	<h6 class="subtitle">Contact Details</h6>
+	<h6 class="subtitle" style="text-align: center;">Contact Details</h6>
 	<div class="columns box">
 		<div class="column is-one-third">
-			<h6 class="subtitle is-6">Rent: <span class="is-size-3"><i class="fa fa-money"></i> {{nrh_obj.rent}}</span></h6>
+			<h6 class="subtitle is-6">Rent: <span class="is-size-3"> Ghc {{nrh_obj.rent}}</span></h6>
 		</div>
 		<div class="column is-one-third">
 			<span>Address:</span>

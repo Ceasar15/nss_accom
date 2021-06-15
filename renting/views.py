@@ -58,18 +58,18 @@ class SearchResults(ListView):
 
 
 def renting_house_results(request):
-	if request.method == 'POST':
-    		house_list = NewRentalHouse.objects.all()
-			city_query = request.GET.get('q')
-			if city_query:
-    				print(city_query)
-				house_list = house_list.filter(Q(city__icontains = city_query)).distinct()
-			print(house_list)
+	house_list = NewRentalHouse.objects.all()
+	city_query = request.GET.get('q')
+	if city_query:
+		print(city_query)
+		house_list = house_list.filter(Q(city__icontains = city_query)).distinct()
+		print(house_list)
 		context = {
-			'property_list': house_list
+			'property_list': house_list,
 		}
 		return render(request,'renting/renting_house_results.html', context)
-
+	else:
+		return render(request, 'renting/renting_house_results.html')
 
 # Make it as only post
 # @login_required

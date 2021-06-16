@@ -86,29 +86,14 @@ class HouseHas(models.Model):
 	bathroom = models.CharField(max_length=2, choices=HH_FIELD_CHOICES)
 	living_room = models.CharField(max_length=2, choices=HH_FIELD_CHOICES)
 	toilet = models.CharField(max_length=2, choices=HH_FIELD_CHOICES)
-	balcony = models.CharField(max_length=2, choices=HH_FIELD_CHOICES)	
-	#terrace = models.CharField(max_length=2, choices=FIELD_CHOICES)
-	#garden = models.CharField(max_length=2, choices=FIELD_CHOICES)
-	#basement = models.CharField(max_length=2, choices=FIELD_CHOICES)
+	balcony = models.CharField(max_length=2, choices=HH_FIELD_CHOICES)
 	parking = models.CharField(max_length=2, choices=FIELD_CHOICES)
-	#wheelchair_accessible = models.CharField(max_length=2, choices=FIELD_CHOICES)
-
 	nrh = models.OneToOneField(NewRentalHouse, on_delete=models.CASCADE) 
 
 region = models.CharField(max_length=100, choices=STATE_CHOICES)
 
 class Amenities(models.Model):
 
-	# desk = models.CharField(max_length=1, choices=FIELD_CHOICES)
-	# closet = models.CharField(max_length=1, choices=FIELD_CHOICES)
-	# tv = models.CharField(max_length=1, choices=FIELD_CHOICES)
-	# washing_machine = models.CharField(max_length=1, choices=FIELD_CHOICES)
-	# dryer = models.CharField(max_length=1, choices=FIELD_CHOICES)
-	# dishwasher = models.CharField(max_length=1, choices=FIELD_CHOICES)
-	# kitchenware = models.CharField(max_length=1, choices=FIELD_CHOICES)
-	# wifi = models.CharField(max_length=1, choices=FIELD_CHOICES)
-	# heating = models.CharField(max_length=1, choices=FIELD_CHOICES)
-	# air_conditioning = models.CharField(max_length=1, choices=FIELD_CHOICES)
 	bed = models.CharField(max_length=1, choices=FIELD_CHOICES)
 	furnished = models.CharField(max_length=1, choices=FIELD_CHOICES)
 
@@ -117,14 +102,10 @@ class Amenities(models.Model):
 
 class PreferredTenant(models.Model):
 	gender = models.CharField(max_length=1, choices=GENDER_PREF)
-	# couple_friendly = models.CharField(max_length=1, choices=FIELD_CHOICES)
-	# bachelor_allowed = models.CharField(max_length=1, choices=FIELD_CHOICES)
-
 	nrh = models.OneToOneField(NewRentalHouse, on_delete=models.CASCADE)
 
 
 class Rules(models.Model):
-	# animal_allowed = models.CharField(max_length=1, choices=FIELD_CHOICES)
 	smoking_allowed = models.CharField(max_length=1, choices=FIELD_CHOICES)
 	musical_instrument = models.CharField(max_length=1, choices=FIELD_CHOICES)
 

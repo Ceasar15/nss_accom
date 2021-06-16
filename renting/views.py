@@ -60,11 +60,16 @@ class SearchResults(ListView):
 def renting_house_results(request):
 	house_list = NewRentalHouse.objects.all()
 	city_query = request.GET.get('q')
+	min_price = request.GET.get('min_price')
+	max_price = request.GET.get('max_price')
 	if city_query:
 		print(city_query)
+		print(min_price, max_price)
 		house_list = house_list.filter(Q(city__icontains = city_query)).distinct()
 		print(house_list)
+		rent_price = NewRentalHouse.objects.filter(rent__range=(min_price, max_price))
 		context = {
+			'rent_price': rent_price,
 			'house_list': house_list,
 		}
 		return render(request,'renting/renting_house_results.html', context)

@@ -3,22 +3,18 @@
 {% block footer %}
 {% endblock footer %}
 {% block navbar %}
-<!-- <div id='geocoder' class="inpline"> -->
 
-<form id='srch-form' class="hm" method="get" action="{% url 'renting:disp' %}">
+<!-- <form id='srch-form' class="hm" method="get" action="{% url 'renting:disp' %}">
 	<div class="columns">
 		<div class="navbar-item">
-			<!-- <form method='post'> -->
 				{% csrf_token %}
-
+				<div id='geocoder' class="inpline">
 				</div>
-			<!-- </form> -->
 		</div>
 		<div class="navbar-item" id='srt'>
 			<input type="text" name='q' class="form-control" placeholder="Enter address">
 			<button class="column" type="submit"><i class="icon-magnifying-glass t2"></i>Search</button>
-			<!-- <button id='srtby' class="button"><span class="st">SortBy </span><span> <i class="fas fa-angle-down" aria-hidden="true"></i></span></button> -->
-		</div>
+		</div> -->
 		<!-- <div class="navbar-item">
 			<div class="dropdown" id='bhk_mn'>
 				<div class="select" role="menu">
@@ -32,8 +28,35 @@
 				</div>
 			</div>
 		</div> -->
-	</div>
-</form>
+	<!-- </div>
+</form> -->
+
+<form id='rental-search' class="" method="get" action="{% url 'renting:disp' %}">
+
+	{% csrf_token %}
+	<div class="columns is-centered">
+		  <!-- <div id='geocoder' class="column is-two-fifth pd-geo"></div> -->
+		  <div class="column">
+			  <div class="columns">
+				  <div class="column">
+					<i class="icon-location2"></i>
+					<input type="text" name='q' class="form-control" placeholder="Enter City">
+				  </div>
+				  <div class="price-input">
+					<label for="amount">Max Price </label>
+					<input type="number" name="min_price"  value="{{min_price}}">
+				</div>
+				 <div class="price-input">
+					<label for="amount">Min Price</label>
+					<input type="number" name="max_price"  value="{{max_price}}">
+				</div>	
+				  <button class="column" type="submit"><i class="icon-magnifying-glass t2"></i> Search</button>
+			  </div>
+		  </div>
+	  </div>
+  </form>
+
+
 {% endblock navbar %}
 {% block body %}
 <div class="container" id='rh-bdy'>
@@ -76,9 +99,9 @@
 			</div>
 			
 		</div>
-		<div class="column is-half" id='oth-map'>
+		<!-- <div class="column is-half" id='oth-map'>
 			<div id='map' class="mp-cls"></div>
-		</div>
+		</div> -->
 	</div>
 </div>
 <script>

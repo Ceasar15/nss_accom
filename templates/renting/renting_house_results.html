@@ -42,20 +42,24 @@
 					<i class="icon-location2"></i>
 					<input type="text" name='q' class="form-control" placeholder="Enter City">
 				  </div>
-				  <div class="price-input">
-					<label for="amount">Max Price </label>
-					<input type="number" name="min_price"  value="{{min_price}}">
-				</div>
-				 <div class="price-input">
-					<label for="amount">Min Price</label>
-					<input type="number" name="max_price"  value="{{max_price}}">
-				</div>	
 				  <button class="column" type="submit"><i class="icon-magnifying-glass t2"></i> Search</button>
 			  </div>
 		  </div>
 	  </div>
   </form>
 
+<form action="{% url 'renting:disp' %}" method="get">
+	{% csrf_token %}
+	<div class="price-input">
+		<label for="amount">Max Price </label>
+		<input type="number" name="min_price"  value="{{min_price}}">
+	</div>
+	 <div class="price-input">
+		<label for="amount">Min Price</label>
+		<input type="number" name="max_price"  value="{{max_price}}">
+	</div>	
+	<button class="column" type="submit"><i class="icon-magnifying-glass t2"></i> Search</button>
+</form>
 
 {% endblock navbar %}
 {% block body %}

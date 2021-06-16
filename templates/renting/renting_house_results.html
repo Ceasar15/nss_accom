@@ -36,11 +36,11 @@
 		<div class="column is-half" id='rhd-col'>
 			<div class="columns is-multiline" id="rhd-plc">
 				{% if house_list %}
-					{% for house,bed in house_list %}
+					{% for house in house_list %}
 					<div class="column is-half box hsrs" id="house-{{house.id}}">
 						<div class="level">
 							<div class="left"><p class="ncr title is-size-5"> {{house.rent}} Monthly</p></div>
-							<div class="right"><p class="ncr title is-size-5">{{bed}}</p></div>
+							<div class="right"><p class="ncr title is-size-5">{{house.city}}</p></div>
 						</div>
 						<p class="ncr subtitle is-6">{{house.street_address}}, {{house.city}},
 						{{house.country}}</p>

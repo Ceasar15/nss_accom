@@ -65,7 +65,7 @@ def renting_house_results(request):
 		house_list = house_list.filter(Q(city__icontains = city_query)).distinct()
 		print(house_list)
 		context = {
-			'property_list': house_list,
+			'house_list': house_list,
 		}
 		return render(request,'renting/renting_house_results.html', context)
 	else:

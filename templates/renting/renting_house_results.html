@@ -11,10 +11,10 @@
 				<div id='geocoder' class="inpline"></div>
 			<!-- </form> -->
 		</div>
-		<div class="navbar-item" id='srt'>
+		<!-- <div class="navbar-item" id='srt'>
 			<button id='srtby' class="button"><span class="st">SortBy </span><span> <i class="fas fa-angle-down" aria-hidden="true"></i></span></button>
-		</div>
-		<div class="navbar-item">
+		</div> -->
+		<!-- <div class="navbar-item">
 			<div class="dropdown" id='bhk_mn'>
 				<div class="select" role="menu">
 					<select id="bhk_id">
@@ -26,7 +26,7 @@
 					</select>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </form>
 {% endblock navbar %}
@@ -36,7 +36,7 @@
 		<div class="column is-half" id='rhd-col'>
 			<div class="columns is-multiline" id="rhd-plc">
 				{% if house_list %}
-					{% for house,bed in houses_list.items %}
+					{% for house,bed in house_list %}
 					<div class="column is-half box hsrs" id="house-{{house.id}}">
 						<div class="level">
 							<div class="left"><p class="ncr title is-size-5"> {{house.rent}} Monthly</p></div>

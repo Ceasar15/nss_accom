@@ -96,7 +96,7 @@
 				<form id='rental-search' class="" method="get" action="{% url 'renting:disp' %}">
 					{% csrf_token %}
 					<div class="columns is-centered">
-	  					<div id='geocoder' class="column is-two-fifth pd-geo"></div>
+	  					<!-- <div id='geocoder' class="column is-two-fifth pd-geo"></div> -->
 	  					<div class="column">
 	  						<div class="columns">
 			  					<!-- <div class="column">
@@ -108,6 +108,10 @@
 			  					<!-- <div class="column">
 			  						<input id='rt-srch' class="button is-danger is-rounded" type="submit" name="Search" value="Search">
 			  					</div> -->
+								  <div class="search-field">
+									<i class="icon-location2"></i>
+									<input type="text" name='q' class="form-control" placeholder="Enter address">
+								  </div>
 								  <button class="btn btn-success" type="submit"><i class="icon-magnifying-glass t2"></i> Start Search</button>
 		  					</div>
 	  					</div>

@@ -3,17 +3,22 @@
 {% block footer %}
 {% endblock footer %}
 {% block navbar %}
-<form id='srch-form' class="hm">
+<!-- <div id='geocoder' class="inpline"> -->
+
+<form id='srch-form' class="hm" method="get" action="{% url 'renting:disp' %}">
 	<div class="columns">
 		<div class="navbar-item">
 			<!-- <form method='post'> -->
 				{% csrf_token %}
-				<div id='geocoder' class="inpline"></div>
+
+				</div>
 			<!-- </form> -->
 		</div>
-		<!-- <div class="navbar-item" id='srt'>
-			<button id='srtby' class="button"><span class="st">SortBy </span><span> <i class="fas fa-angle-down" aria-hidden="true"></i></span></button>
-		</div> -->
+		<div class="navbar-item" id='srt'>
+			<input type="text" name='q' class="form-control" placeholder="Enter address">
+			<button class="column" type="submit"><i class="icon-magnifying-glass t2"></i>Search</button>
+			<!-- <button id='srtby' class="button"><span class="st">SortBy </span><span> <i class="fas fa-angle-down" aria-hidden="true"></i></span></button> -->
+		</div>
 		<!-- <div class="navbar-item">
 			<div class="dropdown" id='bhk_mn'>
 				<div class="select" role="menu">

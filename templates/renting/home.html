@@ -49,7 +49,7 @@
 	<!-- <div> 
 		<h6 class="title"></h6>
 	 </div> -->
-	 <div id="carousel-demo" class="carousel">
+	 <!-- <div id="carousel-demo" class="carousel">
 		<div class="item-1">
 			<img class='hm-img' src="{%static 'img/pin2.jpg' %}">
 		</div>
@@ -59,7 +59,7 @@
 		<div class="item-3">
 			<img class='hm-img' src="{%static 'img/pin2.jpg' %}">
 		</div>
-	</div>
+	</div> -->
 	<div class="columns mt-1 is-centered" id='hm-h-t-div' >
 		{% if logged and ut == 'tenant'%}
 			<div class="column is-one-third">
@@ -88,7 +88,7 @@
 		{% endif %}
 	</div>
 	<div class="columns is-multiline" id='srch-bar'>
-		<div class="column pd-geo" style="text-align: center;">
+		<div class="column pd-geo" style="text-align: center; ">
 			<h6 class="subtitle is-5">Enter the city name where you are looking for the house rent... </h6>
 		</div> 
 		<div class="column">
@@ -96,7 +96,7 @@
 				<form class="" id="search-form_3" method="get" action="{% url 'renting:disp' %}">
 					{% csrf_token %}
 					<div class="columns is-centered">
-	  					<div id='geocoder' class="column is-two-fifth pd-geo"></div>
+	  					<!-- <div id='geocoder' class="column is-two-fifth pd-geo"></div> -->
 	  					<div class="column">
 	  						<div class="columns">
 								  <div class="column">

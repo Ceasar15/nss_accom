@@ -10,14 +10,15 @@
 
 	{% csrf_token %}
 	<div class="columns is-centered">
-		  <div id='geocoder' class="column is-two-fifth pd-geo"></div>
+		  <!-- <div id='geocoder' class="column is-two-fifth pd-geo"></div> -->
 		  <div class="column">
-			  <div class="columns">
+			  <div class="columns" style="position: relative; top: 40px; left: 200px;">
 				  <div class="column">
 					<i class="icon-location2"></i>
-					<input type="text" name='q' class="form-control" placeholder="Enter City">
-				  </div>
-				  <button class="column" type="submit"><i class="icon-magnifying-glass t2"></i> Search</button>
+				</div>
+					<input type="text" name='q' class="search_3" placeholder="Enter City...">
+					<button class="submit_3" type="submit"> Search</button>
+				</div>
 			  </div>
 		  </div>
 	  </div>
@@ -27,19 +28,18 @@
 {% endblock navbar %}
 {% block body %}
 <div class="container" id='rh-bdy'>
-	<div class="columns" id='sec-col'>
-		<div class="column is-half" id='rhd-col'>
+	<!-- <div class="columns" id='sec-col'>
+		<div class="column is-half" id='rhd-col'> -->
 			<div class="columns is-multiline" id="rhd-plc">
 				{% if house_list %}
 					{% for house in house_list %}
 					<div class="column is-half box hsrs" id="house-{{house.id}}">
 						<div class="level">
-							<div class="left"><p class="ncr title is-size-5"> {{house.rent}} Monthly</p></div>
+							<div class="left"><p class="ncr title is-size-5"> GHc{{house.rent}}.00 Monthly</p></div>
 							<div class="right"><p class="ncr title is-size-5">{{house.city}}</p></div>
 						</div>
 						<p class="ncr subtitle is-6">{{house.street_address}}, {{house.city}},
 						{{house.country}}</p>
-
 
 						<a href="{% url 'renting:house_details' house.id %}?next={{request.path}}">
 
@@ -63,11 +63,11 @@
 				{% endif %}
 			</div>
 			
-		</div>
-		<div class="column is-half" id='oth-map'>
+		<!-- </div> -->
+		<!-- <div class="column is-half" id='oth-map'>
 			<div id='map' class="mp-cls"></div>
-		</div>
-	</div>
+		</div> -->
+	<!-- </div> -->
 </div>
 <script>
 	var retHouse;
@@ -151,7 +151,7 @@
 		})
 		if ($('.mapboxgl-ctrl-geocoder--input').length === 0) {
 			geocoder.addTo('#geocoder');
-			$('.mapboxgl-ctrl-geocoder--input').attr('value', '{{place}}');
+			$('.mapboxgl-ctrl-geocoder--input').attr('value', 'LookUp Places');
 			$('.mapboxgl-ctrl-geocoder--input').attr('name', 'place');
 		}
 

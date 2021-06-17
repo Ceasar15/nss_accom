@@ -150,11 +150,11 @@
 			    {% elif user.ut.user_type == 'tenant' %}
 				<div class="navbar-end">
 				    <div id="dd-tt" class="navbar-item has-dropdown is-hoverable">
-				        <a class="navbar-link">
+				        <a style="color: white;" class="navbar-link">
 				        Student
 				        </a>
 				        <div class="navbar-dropdown">
-					        <a class="navbar-item" id='ll'>
+					        <a style="color: white;" class="navbar-item" id='ll'>
 					        LandLord
 					        </a>
 				        </div>
@@ -168,24 +168,24 @@
 		    	{% if user.is_authenticated %}	
 		    	<div class="navbar-item has-dropdown is-hoverable">
 			    		<!-- <span class='button is-primary'>{{user.username}}</span> -->
-			    		<a class="navbar-link" aria-haspopup="true" aria-controls="dropdown-menu">
+			    		<a style="color: white;" class="navbar-link" aria-haspopup="true" aria-controls="dropdown-menu">
 					      <span>{{user.username}}</span>
 					    </a>
 			      	<div class="navbar-dropdown">
-		          		<a class="navbar-item" href="{% url 'users:settings' %}">
+		          		<a style="color: white;" class="navbar-item" href="{% url 'users:settings' %}">
 		            	Settings
 		          		</a>
 		       		</div>
 		      	</div>
 		      	<div class="navbar-item">
 		    		<div class="buttons">
-						<a class="button is-light" href="{% url 'logout' %}" style="background-color: white;">Log Out</a>
+						<a style="color: white;" class="button is-light" href="{% url 'logout' %}" style="background-color: white;">Log Out</a>
 			      	</div>
 		      	</div>
 		      	{% else %}
 		      	<div class="navbar-item">
 		      		<div class="buttons" >
-			      		<a id='lgn' class="button is-primary" style="background-color: white;" >
+			      		<a style="color: white;" id='lgn' class="button is-primary" style="background-color: white;" >
 				            <strong style="color: #2E2A3B;"> Log in</strong>
 				        </a>
 			        </div>

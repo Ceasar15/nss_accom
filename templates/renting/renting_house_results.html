@@ -15,9 +15,11 @@
 			  <div class="columns">
 				  <div class="column">
 					<i class="icon-location2"></i>
-					<input type="text" name='q' class="form-control" placeholder="Enter City">
-				  </div>
-				  <button class="column" type="submit"><i class="icon-magnifying-glass t2"></i> Search</button>
+					<input type="text" name='q' class="search_3" placeholder="Enter City">
+				
+					</div>
+					<button class="submit_3" type="submit"> Search</button>
+				</div>
 			  </div>
 		  </div>
 	  </div>
@@ -34,7 +36,7 @@
 					{% for house in house_list %}
 					<div class="column is-half box hsrs" id="house-{{house.id}}">
 						<div class="level">
-							<div class="left"><p class="ncr title is-size-5"> {{house.rent}} Monthly</p></div>
+							<div class="left"><p class="ncr title is-size-5"> GHc{{house.rent}}.00 Monthly</p></div>
 							<div class="right"><p class="ncr title is-size-5">{{house.city}}</p></div>
 						</div>
 						<p class="ncr subtitle is-6">{{house.street_address}}, {{house.city}},

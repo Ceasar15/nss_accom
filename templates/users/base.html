@@ -113,7 +113,7 @@
 	    	</div>
 		</div>
 	</div>
-	<nav id='navbar-shadow' class="navbar is-fixed-top is-fullheight-with-navbar" role="navigation" aria-label="main navigation">
+	<nav id='navbar-shadow' class="navbar is-fixed-top is-fullheight-with-navbar" style="background-color: #2E2A3B;" role="navigation" aria-label="main navigation">
 		  <div class="navbar-brand nb-lg">
 		    <a class="navbar-item" href="{% url 'renting:home' %}">
 		      <img src="{% static '/img/house-logo.png' %}">
@@ -179,14 +179,14 @@
 		      	</div>
 		      	<div class="navbar-item">
 		    		<div class="buttons">
-						<a class="button is-light" href="{% url 'logout' %}">Log Out</a>
+						<a class="button is-light" href="{% url 'logout' %}" style="background-color: white;">Log Out</a>
 			      	</div>
 		      	</div>
 		      	{% else %}
 		      	<div class="navbar-item">
-		      		<div class="buttons">
-			      		<a id='lgn' class="button is-primary">
-				            <strong>Log in</strong>
+		      		<div class="buttons" >
+			      		<a id='lgn' class="button is-primary" >
+				            <strong style="background-color: #2E2A3B;"> Log in</strong>
 				        </a>
 			        </div>
 		      	</div>

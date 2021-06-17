@@ -10,13 +10,13 @@
 
 	{% csrf_token %}
 	<div class="columns is-centered">
-		  <div id='geocoder' class="column is-two-fifth pd-geo"></div>
+		  <!-- <div id='geocoder' class="column is-two-fifth pd-geo"></div> -->
 		  <div class="column">
-			  <div class="columns" style="position: relative; top: 40px">
+			  <div class="columns" style="position: relative; top: 40px; left: 200px;">
 				  <div class="column">
 					<i class="icon-location2"></i>
 				</div>
-					<input type="text" name='q' class="search_3" placeholder="Enter City">
+					<input type="text" name='q' class="search_3" placeholder="Enter City...">
 					<button class="submit_3" type="submit"> Search</button>
 				</div>
 			  </div>
@@ -28,8 +28,8 @@
 {% endblock navbar %}
 {% block body %}
 <div class="container" id='rh-bdy'>
-	<div class="columns" id='sec-col'>
-		<div class="column is-half" id='rhd-col'>
+	<!-- <div class="columns" id='sec-col'>
+		<div class="column is-half" id='rhd-col'> -->
 			<div class="columns is-multiline" id="rhd-plc">
 				{% if house_list %}
 					{% for house in house_list %}
@@ -40,7 +40,6 @@
 						</div>
 						<p class="ncr subtitle is-6">{{house.street_address}}, {{house.city}},
 						{{house.country}}</p>
-
 
 						<a href="{% url 'renting:house_details' house.id %}?next={{request.path}}">
 
@@ -64,11 +63,11 @@
 				{% endif %}
 			</div>
 			
-		</div>
-		<div class="column is-half" id='oth-map'>
+		<!-- </div> -->
+		<!-- <div class="column is-half" id='oth-map'>
 			<div id='map' class="mp-cls"></div>
-		</div>
-	</div>
+		</div> -->
+	<!-- </div> -->
 </div>
 <script>
 	var retHouse;

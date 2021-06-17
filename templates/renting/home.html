@@ -49,7 +49,7 @@
 	<!-- <div> -->
 		<!-- <h6 class="title">Welcome to the paradise..!!</h6> -->
 	<!-- </div> -->
-	<div id="carousel-demo" class="carousel">
+	<!-- <div id="carousel-demo" class="carousel">
 		<div class="item-1">
 			<img class='hm-img' src="{%static 'img/pin2.jpg' %}">
 		</div>
@@ -59,7 +59,7 @@
 		<div class="item-3">
 			<img class='hm-img' src="{%static 'img/pin2.jpg' %}">
 		</div>
-	</div>
+	</div> -->
 	<div class="columns mt-1 is-centered" id='hm-h-t-div'>
 		{% if logged and ut == 'tenant'%}
 			<div class="column is-one-third">
@@ -89,25 +89,21 @@
 	</div>
 	<div class="columns is-multiline" id='srch-bar'>
 		<div class="column pd-geo">
-			<h6 class="subtitle is-5">Enter the city name where you are looking for the houses and pick the dates for when you want to move </h6>
+			<h6 class="subtitle is-5">Enter the city name where you are looking for the houses... </h6>
 		</div> 
 		<div class="column">
 			<!-- <div class=""> -->
-				<form id='rental-search' class="" method="post" action="{% url 'renting:disp' %}">
+				<form class="" method="get" action="{% url 'renting:disp' %}">
 					{% csrf_token %}
 					<div class="columns is-centered">
-	  					<div id='geocoder' class="column is-two-fifth pd-geo"></div>
+	  					<!-- <div id='geocoder' class="column is-two-fifth pd-geo"></div> -->
 	  					<div class="column">
 	  						<div class="columns">
-			  					<div class="column">
-			  						<input type="date" id='datepickerDemoRange' class='input dd has-background-white-bis' name='in_date'>
-			  					</div>
-			  					<div class="column">
-			  						<input type="date" allowSameDayRange='false' class='dd has-background-white-bis' displayMode="inline" name='out_date'>
-			  					</div>
-			  					<div class="column">
-			  						<input id='rt-srch' class="button is-danger is-rounded" type="submit" name="Search" value="Search">
-			  					</div>
+								  <div class="column">
+									<i class="icon-location2"></i>
+									<input type="text" name='q' class="form-control" placeholder="Enter City...">
+								  </div>
+								  <button class="column" type="submit"><i class="icon-magnifying-glass t2"></i> Search</button>
 		  					</div>
 	  					</div>
   					</div>
@@ -115,8 +111,8 @@
   			<!-- </div> -->
 		</div>
 	</div>
-	<!-- <div id='map' style='width: 400px; height: 300px;'></div> -->
-	<!-- <div id="geocoder" class="geocoder"></div> -->
+	<!-- <div id='map' style='width: 400px; height: 300px;'></div>  -->
+	<!-- <div id="geocoder" class="geocoder"></div> --> 
 	<script>
 	mapboxgl.accessToken = 'pk.eyJ1IjoiY2Vhc2FyMTUiLCJhIjoiY2twZnhiZnYxMG50YjJwbzQyYTdrbzJhbCJ9.nsgEFT67yL9ApSnvihlSuA';
 	// var map = new mapboxgl.Map({
@@ -164,7 +160,7 @@
 
 
 	});
-</script>
+	</script>
 
 </div>
 {% endblock body %}

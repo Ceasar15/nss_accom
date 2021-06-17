@@ -3,32 +3,27 @@
 {% block footer %}
 {% endblock footer %}
 {% block navbar %}
-<form id='srch-form' class="hm">
-	<div class="columns">
-		<div class="navbar-item">
-			<!-- <form method='post'> -->
-				{% csrf_token %}
-				<div id='geocoder' class="inpline"></div>
-			<!-- </form> -->
-		</div>
-		<div class="navbar-item" id='srt'>
-			<button id='srtby' class="button"><span class="st">SortBy </span><span> <i class="fas fa-angle-down" aria-hidden="true"></i></span></button>
-		</div>
-		<div class="navbar-item">
-			<div class="dropdown" id='bhk_mn'>
-				<div class="select" role="menu">
-					<select id="bhk_id">
-						<option class="">Bedroom</option>
-						<option class="">1BHK</option>
-						<option class="">2BHK</option>
-						<option class="">3BHK</option>
-						<option class="">3+BHK</option>
-					</select>
-				</div>
-			</div>
-		</div>
-	</div>
-</form>
+
+
+
+<form class="" method="get" action="{% url 'renting:disp' %}">
+
+	{% csrf_token %}
+	<div class="columns is-centered">
+		  <div id='geocoder' class="column is-two-fifth pd-geo"></div>
+		  <div class="column">
+			  <div class="columns">
+				  <div class="column">
+					<i class="icon-location2"></i>
+					<input type="text" name='q' class="form-control" placeholder="Enter City">
+				  </div>
+				  <button class="column" type="submit"><i class="icon-magnifying-glass t2"></i> Search</button>
+			  </div>
+		  </div>
+	  </div>
+  </form>
+
+
 {% endblock navbar %}
 {% block body %}
 <div class="container" id='rh-bdy'>
@@ -36,18 +31,16 @@
 		<div class="column is-half" id='rhd-col'>
 			<div class="columns is-multiline" id="rhd-plc">
 				{% if house_list %}
-					{% for house,bed in houses_list.items %}
+					{% for house in house_list %}
 					<div class="column is-half box hsrs" id="house-{{house.id}}">
 						<div class="level">
 							<div class="left"><p class="ncr title is-size-5"> {{house.rent}} Monthly</p></div>
-							<div class="right"><p class="ncr title is-size-5">{{bed}}</p></div>
+							<div class="right"><p class="ncr title is-size-5">{{house.city}}</p></div>
 						</div>
 						<p class="ncr subtitle is-6">{{house.street_address}}, {{house.city}},
 						{{house.country}}</p>
 
-						<!-- <p class="subtitle is-6">{{house.street_address}},</p>
-						<p class="subtitle is-6">{{house.zipcode}}, {{house.city}}</p>
-						<p class="subtitle is-6">{{house.country}}</p> -->
+
 						<a href="{% url 'renting:house_details' house.id %}?next={{request.path}}">
 
 							{% if house.houseimages_set.all %}

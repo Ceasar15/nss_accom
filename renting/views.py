@@ -1,10 +1,15 @@
+from django import template
 from django.shortcuts import render, reverse
+from django.template import context
 from django.urls import reverse_lazy
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.core.serializers.json import DjangoJSONEncoder
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.template.loader import render_to_string
+from django.views.generic import ListView
+from django.db.models import Q
+from requests.api import request
 
 from .forms import SearchForm, RentalHouseForm, HouseHasForm, AmenitiesForm, RulesForm, PreferredTenantForm, HouseImagesForm, HouseImagesEditForm
 from .models import NewRentalHouse, HouseHas, Amenities, PreferredTenant, Rules, HouseImages
@@ -41,140 +46,35 @@ def user_signin_status(request):
 
 
 def renting_house_results(request):
-	PUB_KEY = settings.MAPBOX_PUBLIC_KEY
-	if request.method == 'POST':
-		place = (request.POST['place']).replace('#','')
-		url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'+place+'.json?access_token=pk.eyJ1IjoiY2Vhc2FyMTUiLCJhIjoiY2twZnhiZnYxMG50YjJwbzQyYTdrbzJhbCJ9.nsgEFT67yL9ApSnvihlSuA'
-		response = requests.get(url)
-		json_resp = response.json()
-	
-		try:
-			place_name = (json_resp['features'][0]['place_name']).split(',')[0]
-			cord = json_resp['features'][0]['center']
-			cord = str(cord[0])+','+str(cord[1])
-			request.session['cord'] = cord
-
-		except:
-			place_name = None
-
-		try:
-			sort_by = request.POST['sort_by']
-			# print(sort_by)
-		except:
-			sort_by = None
-
-		try:
-			bhk = request.POST['bhk']
-			# print(sort_by)
-		except:
-			bhk = 'bhk'
+	house_list = NewRentalHouse.objects.all()
+	city_query = request.GET.get('q')
+	if city_query:
+		print(city_query)
+		house_list = house_list.filter(
+			Q(city__icontains = city_query)).distinct()
 		
-		try:
-			in_date = request.POST['in_date']
-			out_date = request.POST['out_date']
-			in_d = datetime.strptime(in_date, '%m/%d/%Y')
-			ot_d = datetime.strptime(out_date, '%m/%d/%Y')
-
-		except:	
-			in_d = in_date = datetime.today()
-			ot_d = out_date = datetime.today()
-
-
-		if place_name and sort_by:
-			if sort_by == 'Ascending':
-				house_list = NewRentalHouse.objects.filter(city=place_name, in_date__lte=in_d, out_date__gte=ot_d).order_by('rent')
-				# print(house_list)
-			elif sort_by == 'Descending':
-				# print(sort_by)
-				house_list = NewRentalHouse.objects.filter(city=place_name, in_date__lte=in_d, out_date__gte=ot_d).order_by('-rent')				
-
-		elif in_date and out_date and place_name:	
-			house_list = NewRentalHouse.objects.filter(city=place_name, in_date__lte=in_d, out_date__gte=ot_d)
-
-		features = []
-		house_list = {}
-		bhks = {
-			'one':1,'two':2,'three':3,'three_plus':'3+','zero':0
+		context = {
+			'house_list': house_list,
 		}
-		bhkk = {
-			'0BHK':'zero','1BHK':'one','2BHK':'two','3BHK':'three','3+BHK':'three_plus'
-		}
-				
-
-		if house_list:
-			for hous_obj in house_list:
-				try:
-					rl = Rules.objects.get(nrh=hous_obj)
-					pt = PreferredTenant.objects.get(nrh=hous_obj)
-					am = Amenities.objects.get(nrh=hous_obj)
-					hh = HouseHas.objects.get(nrh=hous_obj)
-					proceed = True
-				except:
-					proceed = False
-
-				if proceed:
-					item = {
-					      "type": "Feature",
-					      "geometry": {
-					        "type": "Point",
-					        "coordinates": [
-					          hous_obj.longitude,
-					          hous_obj.latitude
-					        ]
-					      },
-					      "properties": {
-					      	'id':hous_obj.id,
-					      	'house_no':hous_obj.house_no,
-					        "street_address":hous_obj.street_address,
-					        "postalCode": hous_obj.zipcode,
-					        "city": hous_obj.city,
-					        "country": hous_obj.country,
-							"rent":hous_obj.rent,
-					      }
-					    }
-					bed = hous_obj.househas.bedroom
-					if bhk != 'bhk':
-						def verify(bed, bhk):
-							if bhkk[bhk] == bed:
-								houses_list.update({hous_obj:bhk})
-								features.append(item)
-						verify(bed, bhk)
-
-					else:				
-						houses_list.update({hous_obj:str(bhks[bed])+'BHK'})
-						features.append(item)
-
-
-					# features.append(item)
-					
-					# print(houses_list)
-					
-
-			house = {
-				"type": "FeatureCollection",
-				"features":features
-	  		}
-			house = json.dumps(house, cls=DjangoJSONEncoder)
-			print(house, houses_list)
-			# Handling Ajax Post Requests
-			if request.is_ajax():
-				return render(request, 'renting/house_results_temp.html', locals())
-
-
-		else:
-			# print('Else is executing')
-			house = {
-				"type": "FeatureCollection",
-				"features":None
-	  		}
-			house = json.dumps(house, cls=DjangoJSONEncoder)
-			
-
-	# Handling the Get Request for House Results disp view
+		return render(request,'renting/renting_house_results.html', context)
 	else:
-		cord = request.session.get('cord', '21.01,52.22')
+		return render(request, 'renting/renting_house_results.html')
 
-	return render(request,'renting/renting_house_results.html', locals())
+# def search_price_results(request):
+#     house_list = NewRentalHouse.objects.all()
+#     min_price = request.GET.get('min_price')
+#     max_price = request.GET.get('max_price')
+# 	if min_price and max_price:
+#         print(min_price, max_price)
+#         house_list = house_list.filter(
+# 			Q(rent__range=(min_price, max_price))).distinct()
+#         context = {
+# 			'house_list': house_list,
+# 		}
+#     	return render(request,'renting/renting_house_results.html', context)
+	
+# 	else:
+#         return render(request, 'renting/renting_house_results.html')	
 
 
 # Make it as only post

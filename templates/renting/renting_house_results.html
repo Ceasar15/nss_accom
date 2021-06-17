@@ -12,7 +12,7 @@
 	<div class="columns is-centered">
 		  <div id='geocoder' class="column is-two-fifth pd-geo"></div>
 		  <div class="column">
-			  <div class="columns">
+			  <div class="columns" style="position: relative; top: 40px">
 				  <div class="column">
 					<i class="icon-location2"></i>
 				</div>
@@ -152,7 +152,7 @@
 		})
 		if ($('.mapboxgl-ctrl-geocoder--input').length === 0) {
 			geocoder.addTo('#geocoder');
-			$('.mapboxgl-ctrl-geocoder--input').attr('value', '{{place}}');
+			$('.mapboxgl-ctrl-geocoder--input').attr('value', 'see');
 			$('.mapboxgl-ctrl-geocoder--input').attr('name', 'place');
 		}
 

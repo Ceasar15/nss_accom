@@ -4,20 +4,20 @@
 {% if logged %}
 	{% if ut == 'owner' %}
 	    <div class="navbar-start">
-		    <a style="color: white;" class="navbar-item" href="{% url 'renting:home' %}">
+		    <a class="navbar-item" style="color: blue;"  href="{% url 'renting:home' %}">
 		        Home
 		    </a>
-		    <a class="navbar-item" style="color: white;" href="{% url 'renting:rent_ad_list' %}">
+		    <a class="navbar-item" style="color: blue;" href="{% url 'renting:rent_ad_list' %}">
 		        My Rent Ads
 		    </a>
 	    </div>
  	    <div id="dd-ll" class="navbar-item has-dropdown is-hoverable">
-	        <a style="color: white;" class="navbar-link">
+	        <a style="color: blue;" class="navbar-link">
 	         LandLord
 	        </a>
 			
 	        <div class="navbar-dropdown">
-	          <a style="color:white;" class="navbar-item" id='tt'>
+	          <a style="color:blue;" class="navbar-item" id='tt'>
 	           Student
 	          </a>
 	        </div>
@@ -25,11 +25,11 @@
 	{% elif ut == 'tenant' %}
 	    <div class="navbar-end">
 		    <div id="dd-tt" class="navbar-item has-dropdown is-hoverable">
-		        <a style="color: white;" class="navbar-link">
+		        <a style="color: blue;" class="navbar-link">
 		        Student
 		        </a>
 		        <div class="navbar-dropdown">
-			        <a style="color: whitesmoke;" class="navbar-item" id='ll'>
+			        <a style="color: blue;" class="navbar-item" id='ll'>
 			         LandLord
 			        </a>
 		        </div>

@@ -44,7 +44,7 @@
 {% endblock navbar %}
 {% block body %}
 
-<div class="container">
+<div class="container" >
 
 	<!-- <div> -->
 		<!-- <h6 class="title">Welcome to the paradise..!!</h6> -->
@@ -60,7 +60,7 @@
 			<img class='hm-img' src="{%static 'img/pin2.jpg' %}">
 		</div>
 	</div> -->
-	<div class="columns mt-1 is-centered" id='hm-h-t-div' style="height: 700px; background-image: url({% static 'img/back1.jpg' %});  background-size:cover; background-position: center center;background-attachment:fixed;">
+	<div class="columns mt-1 is-centered" id='hm-h-t-div' >
 		{% if logged and ut == 'tenant'%}
 			<div class="column is-one-third">
 				<button id='tenet' class="button is-medium is-fullwidth is-warning" style="background-color: green; color: wheat;">I'm a Student</button>

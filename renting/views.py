@@ -44,18 +44,6 @@ def user_signin_status(request):
 	elif request.user.is_anonymous:
 		return JsonResponse({'user':'not_logged_in'})
 
-class SearchResults(ListView):
-	model = HouseHas
-	template_name = 'renting/house_results_temp.html'
-	context_object_name = 'househas'
-	
-	def get_queryset(self):
-
-		if request.method == 'POST':
-			query = self.request.GET.get('search')
-			search=HouseHas.objects.filter(Q(name__icontains=query))
-			return search
-
 
 def renting_house_results(request):
 	house_list = NewRentalHouse.objects.all()

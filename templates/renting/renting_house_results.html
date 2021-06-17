@@ -4,32 +4,7 @@
 {% endblock footer %}
 {% block navbar %}
 
-<!-- <form id='srch-form' class="hm" method="get" action="{% url 'renting:disp' %}">
-	<div class="columns">
-		<div class="navbar-item">
-				{% csrf_token %}
-				<div id='geocoder' class="inpline">
-				</div>
-		</div>
-		<div class="navbar-item" id='srt'>
-			<input type="text" name='q' class="form-control" placeholder="Enter address">
-			<button class="column" type="submit"><i class="icon-magnifying-glass t2"></i>Search</button>
-		</div> -->
-		<!-- <div class="navbar-item">
-			<div class="dropdown" id='bhk_mn'>
-				<div class="select" role="menu">
-					<select id="bhk_id">
-						<option class="">Bedroom</option>
-						<option class="">1BHK</option>
-						<option class="">2BHK</option>
-						<option class="">3BHK</option>
-						<option class="">3+BHK</option>
-					</select>
-				</div>
-			</div>
-		</div> -->
-	<!-- </div>
-</form> -->
+
 
 <form class="" method="get" action="{% url 'renting:disp' %}">
 
@@ -48,18 +23,6 @@
 	  </div>
   </form>
 
-<!-- <form action="{% url 'renting:disp' %}" method="get">
-	{% csrf_token %}
-	<div class="price-input">
-		<label for="amount">Max Price </label>
-		<input type="number" name="min_price"  value="{{min_price}}">
-	</div>
-	 <div class="price-input">
-		<label for="amount">Min Price</label>
-		<input type="number" name="max_price"  value="{{max_price}}">
-	</div>	
-	<button class="column" type="submit"><i class="icon-magnifying-glass t2"></i> Search</button>
-</form> -->
 
 {% endblock navbar %}
 {% block body %}
@@ -77,9 +40,7 @@
 						<p class="ncr subtitle is-6">{{house.street_address}}, {{house.city}},
 						{{house.country}}</p>
 
-						<!-- <p class="subtitle is-6">{{house.street_address}},</p>
-						<p class="subtitle is-6">{{house.zipcode}}, {{house.city}}</p>
-						<p class="subtitle is-6">{{house.country}}</p> -->
+
 						<a href="{% url 'renting:house_details' house.id %}?next={{request.path}}">
 
 							{% if house.houseimages_set.all %}

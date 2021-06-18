@@ -128,7 +128,7 @@
 		  <div id="navbarBasicExample" class="navbar-menu">
 		  	{% block navbar %}
 			  	{% if user.ut.user_type == 'owner' %}
-			    <div class="navbar-start">
+			    <div class="navbar-start " style=" background-color: #2E2A3B;">
 				    <a class="navbar-item" style="color: white;" href="{% url 'renting:home' %}">
 				        Home
 				    </a>
@@ -137,7 +137,7 @@
 				    </a>
 
 			    </div>
-		 	    <div id="dd-ll" class="navbar-item has-dropdown is-hoverable">
+		 	    <div id="dd-ll" class="navbar-item has-dropdown is-hoverable" style=" background-color: #2E2A3B;">
 			        <a class="navbar-link">
 			          LandLord
 			        </a>
@@ -150,11 +150,11 @@
 			    </div> 
 			    {% elif user.ut.user_type == 'tenant' %}
 				<div class="navbar-end">
-				    <div id="dd-tt" class="navbar-item has-dropdown is-hoverable">
+				    <div id="dd-tt" class="navbar-item has-dropdown is-hoverable" style=" background-color: #2E2A3B;">
 				        <a style="color: white;" class="navbar-link">
 				        Student
 				        </a>
-				        <div class="navbar-dropdown">
+				        <div class="navbar-dropdown" style=" background-color: #2E2A3B;">
 					        <a style="color: white;" class="navbar-item" id='ll'>
 					        LandLord
 					        </a>
@@ -167,25 +167,25 @@
 
 		    <div class="navbar-end nb-end">
 		    	{% if user.is_authenticated %}	
-		    	<div class="navbar-item has-dropdown is-hoverable">
+		    	<div class="navbar-item has-dropdown is-hoverable" style=" background-color: #2E2A3B;">
 			    		<!-- <span class='button is-primary'>{{user.username}}</span> -->
 			    		<a style="color: white;" class="navbar-link" aria-haspopup="true" aria-controls="dropdown-menu">
 					      <span>{{user.username}}</span>
 					    </a>
-			      	<div class="navbar-dropdown">
+			      	<div class="navbar-dropdown" style=" background-color: #2E2A3B;">
 		          		<a style="color: white;" class="navbar-item" href="{% url 'users:settings' %}">
 		            	Settings
 		          		</a>
 		       		</div>
 		      	</div>
 		      	<div class="navbar-item">
-		    		<div class="buttons">
+		    		<div class="buttons" style=" background-color: #2E2A3B;">
 						<a style="color: white;" class="button is-light" href="{% url 'logout' %}" style="background-color: white;">Log Out</a>
 			      	</div>
 		      	</div>
 		      	{% else %}
 		      	<div class="navbar-item">
-		      		<div class="buttons" >
+		      		<div class="buttons" style=" background-color: #2E2A3B;">
 			      		<a style="color: white;" id='lgn' class="button is-primary" style="background-color: white;" >
 				            <strong style="color: #2E2A3B;"> Log in</strong>
 				        </a>

@@ -48,11 +48,12 @@ def user_signin_status(request):
 def renting_house_results(request):
 	house_list = NewRentalHouse.objects.all()
 	city_query = request.GET.get('q')
-	if request.method == 'POST':
-		print(city_query)
+	min_price = request.GET.get('min_price')
+	max_price = request.GET.get('max_price')
+	if request.method == 'GET':
 		house_list = house_list.filter(
 			Q(city__icontains = city_query)).distinct()
-		
+		print(min_price, max_price)
 		context = {
 			'house_list': house_list,
 		}

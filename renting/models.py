@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import date
+import django_filters
 
 # Create your models here.
 
@@ -115,6 +116,15 @@ class Rules(models.Model):
 	# 	unique_together = ()
 
 
+class SearchFilter(django_filters.FilterSet):
+    rent = django_filters.NumberFilter()
+    rent__gt = django_filters.NumberFilter(field_name='rent', lookup_expr='gt')
+    rent__lt = django_filters.NumberFilter(field_name='rent', lookup_expr='lt')
+
+    name = django_filters.CharFilter(lookup_expr='iexact')
 
 
+    class Meta:
+        model = NewRentalHouse
+        fields = ['name', 'rent']
 

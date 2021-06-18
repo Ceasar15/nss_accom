@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'renting.apps.RentingConfig',
     'users.apps.UsersConfig',
     'social_django',
+    'django_filters',
 
 ]
 

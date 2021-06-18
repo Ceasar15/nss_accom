@@ -12,7 +12,7 @@ from django.db.models import Q
 from requests.api import request
 
 from .forms import SearchForm, RentalHouseForm, HouseHasForm, AmenitiesForm, RulesForm, PreferredTenantForm, HouseImagesForm, HouseImagesEditForm
-from .models import NewRentalHouse, HouseHas, Amenities, PreferredTenant, Rules, HouseImages
+from .models import SearchFilter, NewRentalHouse, HouseHas, Amenities, PreferredTenant, Rules, HouseImages
 from users.models import UserType
 from users.forms import UserTypeForm
 
@@ -44,26 +44,29 @@ def user_signin_status(request):
 	elif request.user.is_anonymous:
 		return JsonResponse({'user':'not_logged_in'})
 
+def search_list(request):
+    f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())
+    return render(request, 'renting/renting_house_results.html', {'filter': f})
 
-def renting_house_results(request):
-	house_list = NewRentalHouse.objects.all()
-	city_query = request.GET.get('q')
-	min_price = request.GET.get('min_price')
-	max_price = request.GET.get('max_price')
-	if request.method == 'GET':
-		house_list = house_list.filter(
-			Q(city__icontains = city_query)).distinct()
-		print(min_price, max_price)
-		context = {
-			'house_list': house_list,
-		}
-		return render(request,'renting/renting_house_results.html', context)
-	else:
-		house_list = NewRentalHouse.objects.all()
-		context = {
-			"house_list": house_list,
-		}
-		return render(request, 'renting/renting_house_results.html', context)
+# def renting_house_results(request):
+# 	house_list = NewRentalHouse.objects.all()
+# 	city_query = request.GET.get('q')
+# 	min_price = request.GET.get('min_price')
+# 	max_price = request.GET.get('max_price')
+# 	if request.method == 'GET':
+# 		house_list = house_list.filter(
+# 			Q(city__icontains = city_query)).distinct()
+# 		print(min_price, max_price)
+# 		context = {
+# 			'house_list': house_list,
+# 		}
+# 		return render(request,'renting/renting_house_results.html', context)
+# 	else:
+# 		house_list = NewRentalHouse.objects.all()
+# 		context = {
+# 			"house_list": house_list,
+# 		}
+# 		return render(request, 'renting/renting_house_results.html', context)
 
 # def search_price_results(request):
 #     house_list = NewRentalHouse.objects.all()

@@ -117,12 +117,9 @@ class Rules(models.Model):
 
 
 class SearchFilter(django_filters.FilterSet):
-    # rent = django_filters.NumberFilter()
-    # rent__gt = django_filters.NumberFilter(field_name='rent', lookup_expr='gt')
-    # rent__lt = django_filters.NumberFilter(field_name='rent', lookup_expr='lt')
-
-    # city = django_filters.CharFilter(lookup_expr='iexact')
-
+    rent = django_filters.NumberFilter()
+    rent__gt = django_filters.NumberFilter(field_name='rent', lookup_expr='gt')
+    rent__lt = django_filters.NumberFilter(field_name='rent', lookup_expr='lt')
 
     class Meta:
         model = NewRentalHouse

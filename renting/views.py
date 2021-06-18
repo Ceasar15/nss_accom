@@ -48,7 +48,7 @@ def user_signin_status(request):
 def renting_house_results(request):
 	house_list = NewRentalHouse.objects.all()
 	city_query = request.GET.get('q')
-	if city_query:
+	if request.method == 'POST':
 		print(city_query)
 		house_list = house_list.filter(
 			Q(city__icontains = city_query)).distinct()

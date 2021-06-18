@@ -58,7 +58,11 @@ def renting_house_results(request):
 		}
 		return render(request,'renting/renting_house_results.html', context)
 	else:
-		return render(request, 'renting/renting_house_results.html')
+		house_list = NewRentalHouse.objects.all()
+		context = {
+			"house_list": house_list,
+		}
+		return render(request, 'renting/renting_house_results.html', context)
 
 # def search_price_results(request):
 #     house_list = NewRentalHouse.objects.all()

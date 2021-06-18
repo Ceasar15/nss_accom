@@ -44,12 +44,6 @@
 {% endblock navbar %}
 {% block body %}
 
-<div style="height: 100%;
-width: 100%;
-background-image: linear-gradient(rgba(185, 188, 197, 0.185),rgba(0,0,0,0.4)),url({% static 'img/back1.jpg' %});
-background-position: center;
-background-size: cover;
-position: absolute;">
 
 <div class=" container" >
 
@@ -67,7 +61,7 @@ position: absolute;">
 			<img class='hm-img' src="{%static 'img/pin2.jpg' %}">
 		</div>
 	</div> -->
-	<div class="columns mt-1 is-centered " style="position: relative; top:30px;" id='hm-h-t-div' >
+	<div class="columns mt-1 is-centered " style="position: relative; top:20px;" id='hm-h-t-div' >
 		{% if logged and ut == 'tenant'%}
 			<div class="column is-one-third">
 				<button id='tenet' class="button is-medium is-fullwidth is-warning" style="background-color: green; color: wheat;">I'm a Student</button>
@@ -171,5 +165,5 @@ position: absolute;">
 	</script>
 
 </div>
-</div>
+
 {% endblock body %}

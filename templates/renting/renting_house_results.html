@@ -15,13 +15,13 @@
 				  <div class="column">
 					<i class="icon-location2"></i>
 				  </div>
-					<input type="text" id="id_city" name='city' value="" class="search_3" placeholder="Enter City...">
+					<input type="text" id="id_city" name='city__iexact' value="" class="search_3" placeholder="Enter City...">
 				</div>
 				<div class="columns" style="position: relative; top: 40px; left: 200px;">
 					<div class="column">
 					  <i class="icon-location2"></i>
 					</div>
-					  <input type="number" id="id_rent" name='rent' value="" step="any" class="search_3">
+					  <input type="text" id="id_rent__range" name='rent__range' value="" step="any" class="search_3">
 					  <button class="submit_3" type="submit"> Search</button>
 				</div>  
 			  </div>
@@ -36,13 +36,16 @@
   </form> -->
 
 
+
 {% endblock navbar %}
 {% block body %}
 <div class="container" id='rh-bdy'>
+	
 	<!-- <div class="columns" id='sec-col'>
 		<div class="column is-half" id='rhd-col'> -->
 
-	<!-- <div class="columns is-multiline" id="rhd-plc">
+	<div class="columns is-multiline" id="rhd-plc">
+		
 		
 		{% if filter %}			
 		{% for house in filter.qs %}
@@ -79,7 +82,7 @@
 		<p class="ncr subtitle is-6">{{house.street_address}}, {{house.city}},
 			{{house.country}}</p>
 
-	</div> -->
+	</div>
 
 
 			

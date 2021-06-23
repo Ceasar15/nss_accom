@@ -38,7 +38,7 @@
 	{% endif %}
 {% else %}
 <div class="navbar-item">
-	<h6 class="title wlc-title" style="color: #ffff;">Welcome...!! Pick your desired home or post the rent ad.</h6>
+	<h6 class="title wlc-title" style="color: #ffff;">Welcome...!! Post your rent ad.</h6>
 </div>
 {% endif %}
 {% endblock navbar %}
@@ -80,24 +80,19 @@
 			</div>
 		{% else %}
 			<div class="column is-one-third">
-				<button id='tenet' class="button is-medium is-fullwidth is-warning" style="background-color: green; color: wheat;">I'm a Student</button>
-			</div>
-			<div class="column is-one-third">
 				<a id='owner' class="button is-medium is-fullwidth is-warning" style="background-color: blue; color: wheat;" >I'm a 
 				Landlord</a>
 			</div>
 		{% endif %}
 	</div>
-	<div class="columns is-multiline" id='srch-bar'>
+	<!-- <div class="columns is-multiline" id='srch-bar'>
 		<div class="column pd-geo" style="position: relative; top:60px; text-align: center; ">
 			<h6 class="subtitle is-5">Enter the city name where you are looking for the house rent... </h6>
 		</div> 
 		<div class="column">
-			<!-- <div class=""> -->
 				<form class="" id="search-form_3" method="get" action="{% url 'renting:disp' %}">
 					{% csrf_token %}
 					<div class="columns is-centered">
-	  					<!-- <div id='geocoder' class="column is-two-fifth pd-geo"></div> -->
 	  					<div class="column">
 	  						<div class="columns">
 								  <div class="column">
@@ -110,9 +105,8 @@
 	  					</div>
   					</div>
   				</form>
-  			<!-- </div> -->
 		</div>
-	</div>
+	</div> -->
 	<!-- <div id='map' style='width: 400px; height: 300px;'></div>  -->
 	<!-- <div id="geocoder" class="geocoder"></div> --> 
 	<script>

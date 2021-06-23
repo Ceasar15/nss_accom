@@ -44,9 +44,14 @@ def user_signin_status(request):
 	elif request.user.is_anonymous:
 		return JsonResponse({'user':'not_logged_in'})
 
+# def search_list(request):
+#     f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())
+
+
 def search_list(request):
-    f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())
-    return render(request, 'renting/renting_house_results.html', {'filter': f})
+	f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())   
+	return render(request, 'renting/renting_house_results.html', {'filter': f})
+    
 
 # def renting_house_results(request):
 # 	house_list = NewRentalHouse.objects.all()

@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, Q
 from django.contrib.auth.models import User
 from datetime import date
 import django_filters
@@ -116,11 +116,19 @@ class Rules(models.Model):
 	# 	unique_together = ()
 
 
-class SearchFilter(django_filters.FilterSet):	
-	class Meta:    
+class SearchFilter(django_filters.FilterSet):
+    city = django_filters.CharFilter(method='custom_filter')
+	
+	class Meta:
+		
 		model = NewRentalHouse 
 		fields={
 			'rent': ['gt', 'lt'],
-			'city': ['iexact']
 		}
-
+	
+	def my_custom_filter(self, queryset, name, value):
+    		return NewRentalHouse.objects.filter(
+				Q(city__icontains=value) | 
+				Q(area__icontains=value) | 
+				Q(street_address__icontains=value)
+			)

@@ -4,32 +4,32 @@
 {% if logged %}
 	{% if ut == 'owner' %}
 	    <div class="navbar-start">
-		    <a style="color: white;" class="navbar-item" href="{% url 'renting:home' %}">
+		    <a class="navbar-item" style="color: blue;"  href="{% url 'renting:home' %}">
 		        Home
 		    </a>
-		    <a class="navbar-item" style="color: white;" href="{% url 'renting:rent_ad_list' %}">
+		    <a class="navbar-item" style="color: blue;" href="{% url 'renting:rent_ad_list' %}">
 		        My Rent Ads
 		    </a>
 	    </div>
- 	    <div id="dd-ll" class="navbar-item has-dropdown is-hoverable">
-	        <a style="color: #ffff;" class="navbar-link">
+ 	    <div id="dd-ll" class="navbar-item has-dropdown  is-hoverable" style=" background-color: #2E2A3B;">
+	        <a style="color: blue;" class="navbar-link">
 	         LandLord
 	        </a>
 			
-	        <div class="navbar-dropdown">
-	          <a style="color: #ffff;" class="navbar-item" id='tt'>
+	        <div class="navbar-dropdown" style=" background-color: #2E2A3B;">
+	          <a style="color:blue;" class="navbar-item" id='tt'>
 	           Student
 	          </a>
 	        </div>
 	    </div> 
 	{% elif ut == 'tenant' %}
 	    <div class="navbar-end">
-		    <div id="dd-tt" class="navbar-item has-dropdown is-hoverable">
-		        <a style="color: #ffff;" class="navbar-link">
+		    <div id="dd-tt" class="navbar-item has-dropdown is-hoverable" style=" background-color: #2E2A3B;">
+		        <a style="color: blue;" class="navbar-link">
 		        Student
 		        </a>
-		        <div class="navbar-dropdown">
-			        <a style="color: #ffff;" class="navbar-item" id='ll'>
+		        <div class="navbar-dropdown" style=" background-color: #2E2A3B;">
+			        <a style="color: blue;" class="navbar-item" id='ll'>
 			         LandLord
 			        </a>
 		        </div>
@@ -38,13 +38,14 @@
 	{% endif %}
 {% else %}
 <div class="navbar-item">
-	<h6 class="title wlc-title" style="color: #ffff;">Welcome to Nss_Accom...!! Hey Personnel, pick your desired home or post the rent ad.</h6>
+	<h6 class="title wlc-title" style="color: #ffff;">Welcome...!! Pick your desired home or post the rent ad.</h6>
 </div>
 {% endif %}
 {% endblock navbar %}
 {% block body %}
 
-<div class="container" >
+
+<div class=" container" >
 
 	<!-- <div> 
 		<h6 class="title"></h6>
@@ -60,7 +61,7 @@
 			<img class='hm-img' src="{%static 'img/pin2.jpg' %}">
 		</div>
 	</div> -->
-	<div class="columns mt-1 is-centered" style="position: relative; top:30px;" id='hm-h-t-div' >
+	<div class="columns mt-1 is-centered " style="position: relative; top:20px;" id='hm-h-t-div' >
 		{% if logged and ut == 'tenant'%}
 			<div class="column is-one-third">
 				<button id='tenet' class="button is-medium is-fullwidth is-warning" style="background-color: green; color: wheat;">I'm a Student</button>
@@ -164,4 +165,5 @@
 	</script>
 
 </div>
+
 {% endblock body %}

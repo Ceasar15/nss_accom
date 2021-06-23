@@ -521,4 +521,12 @@ select option{
 	background: -webkit-gradient( linear, left bottom, left top, color-stop(0, rgb(89,222,27)), color-stop(0.15, rgb(83,179,38)), color-stop(0.8, rgb(66,143,27)), color-stop(1, rgb(54,120,22)));
 	background: -moz-linear-gradient( center bottom, rgb(89,222,27) 0%, rgb(83,179,38) 15%, rgb(66,143,27) 80%, rgb(54,120,22) 100%);
 	}
-	
+
+	.full-page{
+		height: 100%;
+		width: 100%;
+		background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url("../images/Moving.png");
+		background-position: center;
+		background-size: cover;
+		position: absolute;
+	}

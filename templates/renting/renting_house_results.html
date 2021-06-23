@@ -10,58 +10,82 @@
 
 	{% csrf_token %}
 	<div class="columns is-centered">
-		  <!-- <div id='geocoder' class="column is-two-fifth pd-geo"></div> -->
 		  <div class="column">
-			  <div class="columns" style="position: relative; top: 40px; left: 200px;">
+			  <div class="columns" style="position: relative; top: 30px; left: 210px;">
 				  <div class="column">
 					<i class="icon-location2"></i>
+				  </div>
+					<input type="text" id="id_city" name='city' value="" class="search_3" placeholder="Search by City, Area or Region...">
 				</div>
-					<input type="text" name='q' class="search_3" placeholder="Enter City...">
-					<button class="submit_3" type="submit"> Search</button>
-				</div>
+				<div class="columns" style="position: relative; top: 35px; left: 270px;">
+					<div class="column">
+					  <i class="icon-location2"></i>
+					</div>
+					  <input style="width: 100px;" type="number" id="id_rent__gt" name='rent__gt' value="" step="any" class="search_3" placeholder="Rent Min">
+					  <input style="width: 100px;" type="number" id="id_rent__lt" name='rent__lt' value="" step="any" class="search_3" placeholder="Rent Max">
+					  <button class="submit_3" type="submit"> Search</button>
+					</div>
 			  </div>
 		  </div>
 	  </div>
   </form>
 
+  <!-- <form method="get" action="{% url 'renting:disp' %}">
+	  {{ filter.form.as_p }}
+	  <input type="submit" />
+	  1134 543
+  </form> -->
+
+
 
 {% endblock navbar %}
 {% block body %}
 <div class="container" id='rh-bdy'>
+	
 	<!-- <div class="columns" id='sec-col'>
 		<div class="column is-half" id='rhd-col'> -->
-			<div class="columns is-multiline" id="rhd-plc">
-				{% if house_list %}
-					{% for house in house_list %}
-					<div class="column is-half box hsrs" id="house-{{house.id}}">
-						<div class="level">
-							<div class="left"><p class="ncr title is-size-5"> GHc{{house.rent}}.00 Monthly</p></div>
-							<div class="right"><p class="ncr title is-size-5">{{house.city}}</p></div>
-						</div>
-						<p class="ncr subtitle is-6">{{house.street_address}}, {{house.city}},
-						{{house.country}}</p>
 
-						<a href="{% url 'renting:house_details' house.id %}?next={{request.path}}">
+	<div class="columns is-multiline" id="rhd-plc">
+		
+		
+		{% if filter %}			
+		{% for house in filter.qs %}
+			<div class="column is-half box hsrs" id="house-{{house.id}}">
+				<div class="level">
+					<div class="left"><p class="ncr title is-size-5"> GHc{{house.rent}}.00 Monthly</p></div>
+					<div class="right"><p class="ncr title is-size-5">{{house.city}}</p></div>
+				</div>
+				<p class="ncr subtitle is-6">{{house.street_address}}, {{house.city}},
+				{{house.country}}</p>
 
-							{% if house.houseimages_set.all %}
-							{% for img in house.houseimages_set.all %}
-								{% if forloop.counter == 1 %}
-									<img class="img-cls" src="{{img.images.url}}">
-								{% endif %}
-							{% empty %}
-							<div class="columns is-centered">
-									<i class="fa fa-picture-o fa-10x has-text-grey-light" aria-hidden="true"></i>
-							</div>
-							{% endfor %}
-							{% endif %}
-						</a>
-							
+				<a href="{% url 'renting:house_details' house.id %}?next={{request.path}}">
+
+					{% if house.houseimages_set.all %}
+					{% for img in house.houseimages_set.all %}
+						{% if forloop.counter == 1 %}
+							<img class="img-cls" src="{{img.images.url}}">
+						{% endif %}
+					{% empty %}
+					<div class="columns is-centered">
+							<i class="fa fa-picture-o fa-10x has-text-grey-light" aria-hidden="true"></i>
 					</div>
 					{% endfor %}
-				{% else %}
-				<div class="box column is-full resul-txt">Sorry..!! Results not found for the city you are looking for.. try for other city</div>
-				{% endif %}
+					{% endif %}
+				</a>
+					
 			</div>
+			{% endfor %}
+		{% else %}
+		<div class="box column is-full resul-txt">Sorry..!! Results not found for the city you are looking for.. try for other city</div>
+		{% endif %}
+	</div>
+	<div class="columns is-multiline" id="rhd-plc">
+		<p class="ncr subtitle is-6">{{house.street_address}}, {{house.city}},
+			{{house.country}}</p>
+
+	</div>
+
+
 			
 		<!-- </div> -->
 		<!-- <div class="column is-half" id='oth-map'>

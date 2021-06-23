@@ -116,13 +116,9 @@ class Rules(models.Model):
 	# 	unique_together = ()
 
 
-class SearchFilter(django_filters.FilterSet):
-    # rent = django_filters.NumberFilter()
-    # rent__gt = django_filters.NumberFilter(field_name='rent', lookup_expr='gt')
-    # rent__lt = django_filters.NumberFilter(field_name='rent', lookup_expr='lt')
-	#rent = django_filters.NumericRangeFilter(field_name='rent', lookup_expr=r)
-    class Meta:
-        model = NewRentalHouse
+class SearchFilter(django_filters.FilterSet):	
+	class Meta:    
+		model = NewRentalHouse
         fields = {
 				'rent': ['gt', 'lt'],
 				'city': ['iexact'],

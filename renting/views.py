@@ -53,25 +53,6 @@ def search_list(request):
 	return render(request, 'renting/renting_house_results.html', {'filter': f})
     
 
-# def renting_house_results(request):
-# 	house_list = NewRentalHouse.objects.all()
-# 	city_query = request.GET.get('q')
-# 	min_price = request.GET.get('min_price')
-# 	max_price = request.GET.get('max_price')
-# 	if request.method == 'GET':
-# 		house_list = house_list.filter(
-# 			Q(city__icontains = city_query)).distinct()
-# 		print(min_price, max_price)
-# 		context = {
-# 			'house_list': house_list,
-# 		}
-# 		return render(request,'renting/renting_house_results.html', context)
-# 	else:
-# 		house_list = NewRentalHouse.objects.all()
-# 		context = {
-# 			"house_list": house_list,
-# 		}
-# 		return render(request, 'renting/renting_house_results.html', context)
 
 # def search_price_results(request):
 #     house_list = NewRentalHouse.objects.all()

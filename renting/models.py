@@ -117,8 +117,9 @@ class Rules(models.Model):
 
 
 class SearchFilter(django_filters.FilterSet):
-    city = django_filters.CharFilter(method='custom_filter')
+    city = django_filters.CharFilter(method='custom_filter')		
 	
+
 	class Meta:
 		
 		model = NewRentalHouse 
@@ -126,7 +127,7 @@ class SearchFilter(django_filters.FilterSet):
 			'rent': ['gt', 'lt'],
 		}
 	
-	def my_custom_filter(self, queryset, name, value):
+	def custom_filter(self, queryset, name, value):
     		return NewRentalHouse.objects.filter(
 				Q(city__icontains=value) | 
 				Q(area__icontains=value) | 

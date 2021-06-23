@@ -124,7 +124,7 @@ class SearchFilter(django_filters.FilterSet):
     class Meta:
         model = NewRentalHouse
         fields = {
-				'rent': ['range'],
+				'rent': ['gt', 'lt'],
 				'city': ['iexact'],
 		}
 

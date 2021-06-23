@@ -118,9 +118,9 @@ class Rules(models.Model):
 
 class SearchFilter(django_filters.FilterSet):	
 	class Meta:    
-		model = NewRentalHouse
-        fields = {
-				'rent': ['gt', 'lt'],
-				'city': ['iexact'],
+		model = NewRentalHouse 
+		fields={
+			'rent': ['gt', 'lt'],
+			'city': ['iexact']
 		}
 

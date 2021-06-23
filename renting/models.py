@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
+<<<<<<< HEAD
 from django.db.models import Q
+=======
+from datetime import date
+>>>>>>> 9dc4ab7362e5aa9a6b92604dd289ce081fe875e1
 import django_filters
 
 # Create your models here.
@@ -112,7 +116,13 @@ class Rules(models.Model):
 
     nrh = models.OneToOneField(NewRentalHouse, on_delete=models.CASCADE)
 
-
+class SearchFilter(django_filters.FilterSet):	
+	class Meta:    
+		model = NewRentalHouse 
+		fields={
+			'rent': ['gt', 'lt'],
+			'city': ['iexact']
+		}
 
 class SearchFilter(django_filters.FilterSet):
     city = django_filters.CharFilter(method='custom_filter')

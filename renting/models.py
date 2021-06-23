@@ -1,10 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-<<<<<<< HEAD
 from django.db.models import Q
-=======
-from datetime import date
->>>>>>> 9dc4ab7362e5aa9a6b92604dd289ce081fe875e1
 import django_filters
 
 # Create your models here.
@@ -68,8 +64,6 @@ class NewRentalHouse(models.Model):
     area = models.CharField(max_length=150)
     # zipcode = models.CharField(max_length=12)
     country = models.CharField(max_length=100, default='Ghana')
-    #longitude = models.DecimalField(max_digits=4, decimal_places=2)
-    #latitude = models.DecimalField(max_digits=4, decimal_places=2)
     
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
@@ -117,12 +111,12 @@ class Rules(models.Model):
     nrh = models.OneToOneField(NewRentalHouse, on_delete=models.CASCADE)
 
 class SearchFilter(django_filters.FilterSet):	
-	class Meta:    
-		model = NewRentalHouse 
-		fields={
-			'rent': ['gt', 'lt'],
-			'city': ['iexact']
-		}
+    class Meta:    
+        model = NewRentalHouse 
+        fields={
+            'rent': ['gt', 'lt'],
+            'city': ['iexact']
+        }
 
 class SearchFilter(django_filters.FilterSet):
     city = django_filters.CharFilter(method='custom_filter')

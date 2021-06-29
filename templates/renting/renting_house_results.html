@@ -42,14 +42,13 @@
 {% block body %}
 <div class="container" id='rh-bdy'>
 	
-	<!-- <div class="columns" id='sec-col'>
-		<div class="column is-half" id='rhd-col'> -->
+	<div class="columns" id='sec-col'>
+	<!--	<div class="column is-half" id='rhd-col'> -->
 
 	<div class="columns is-multiline" id="rhd-plc">
 		
-		
 		{% if filter %}			
-		{% for house in filter.qs %}
+			{% for house in filter.qs %}
 			<div class="column is-half box hsrs" id="house-{{house.id}}">
 				<div class="level">
 					<div class="left"><p class="ncr title is-size-5"> GHc{{house.rent}}.00 Monthly</p></div>
@@ -79,20 +78,10 @@
 		<div class="box column is-full resul-txt">Sorry..!! Results not found for the city you are looking for.. try for other city</div>
 		{% endif %}
 	</div>
-	<div class="columns is-multiline" id="rhd-plc">
-		<p class="ncr subtitle is-6">{{house.street_address}}, {{house.city}},
-			{{house.country}}</p>
-
 	</div>
-
-
-			
-		<!-- </div> -->
-		<!-- <div class="column is-half" id='oth-map'>
-			<div id='map' class="mp-cls"></div>
-		</div> -->
-	<!-- </div> -->
 </div>
+
+
 <script>
 	var retHouse;
 	// Navbar filters Js

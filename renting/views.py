@@ -51,24 +51,6 @@ def user_signin_status(request):
 def search_list(request):
 	f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())   
 	return render(request, 'renting/renting_house_results.html', {'filter': f})
-    
-
-
-# def search_price_results(request):
-#     house_list = NewRentalHouse.objects.all()
-#     min_price = request.GET.get('min_price')
-#     max_price = request.GET.get('max_price')
-# 	if min_price and max_price:
-#         print(min_price, max_price)
-#         house_list = house_list.filter(
-# 			Q(rent__range=(min_price, max_price))).distinct()
-#         context = {
-# 			'house_list': house_list,
-# 		}
-#     	return render(request,'renting/renting_house_results.html', context)
-	
-# 	else:
-#         return render(request, 'renting/renting_house_results.html')	
 
 
 # Make it as only post

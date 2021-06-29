@@ -128,5 +128,5 @@ class SearchFilter(django_filters.FilterSet):
     
     def custom_filter(self, queryset, name, value):
         return NewRentalHouse.objects.filter(
-            Q(city__iexact=value) | Q(area__iexact=value) | Q(street_address__iexact=value)  
+            Q(area__iexact=value) | Q(street_address__iexact=value)  
         )

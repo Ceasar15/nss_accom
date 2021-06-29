@@ -34,7 +34,7 @@ def home_page(request):
 
 	form = SearchForm()
 	log = 'false'
-	return render(request, 'renting/home.html', locals())
+	return render(request, 'renting/ads_list.html', locals())
 
 
 def user_signin_status(request):

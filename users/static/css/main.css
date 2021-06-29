@@ -532,4 +532,7 @@ select option{
 	}
 
 
-/* LANDING PAGE LANDLORD */
+
+.noHover{
+    pointer-events: none;
+}

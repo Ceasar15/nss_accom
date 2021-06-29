@@ -63,17 +63,17 @@
 	</div> -->
 	<div class="columns mt-1 is-centered " style="position: relative; top:20px;" id='hm-h-t-div' >
 		{% if logged and ut == 'tenant'%}
-			<div class="column is-one-third">
+			<!-- <div class="column is-one-third">
 				<button id='tenet' class="button is-medium is-fullwidth is-warning" style="background-color: green; color: wheat;">I'm a Student</button>
-			</div>
+			</div> -->
 			<div class="column is-one-third">
 				<a id='otner' class="button is-medium is-fullwidth is-light" style="background-color: blue; color: wheat;" href="{% url 'renting:post_rent_ad' %}">I'm a 
 				Landlord</a>
 			</div>
 		{% elif logged and ut == 'owner'%}
-			<div class="column is-one-third">
+			<!-- <div class="column is-one-third">
 					<button id='tenet' class="button is-medium is-fullwidth is-light" style="background-color: green; color: wheat;">I'm a Student</button>
-			</div>
+			</div> -->
 			<div class="column is-one-third">
 				<a id='otner' class="button is-medium is-fullwidth is-warning " style="background-color: blue; color: wheat;" href="{% url 'renting:post_rent_ad' %}">I'm a 
 					Landlord</a>

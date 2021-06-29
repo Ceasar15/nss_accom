@@ -129,21 +129,21 @@
 		  	{% block navbar %}
 			  	{% if user.ut.user_type == 'owner' %}
 			    <div class="navbar-start " style=" background-color: #2E2A3B;">
-				    <a class="navbar-item" style="color: white;" href="{% url 'renting:home' %}">
+				    <a class="navbar-item" style="color: blue;" href="{% url 'renting:home' %}">
 				        Home
 				    </a>
-				    <a class="navbar-item" style="color: white;" href="{% url 'renting:rent_ad_list' %}">
+				    <a class="navbar-item" style="color: blue;" href="{% url 'renting:rent_ad_list' %}">
 				        My Rent Ads
 				    </a>
 
 			    </div>
 		 	    <div id="dd-ll" class="navbar-item has-dropdown is-hoverable" style=" background-color: #2E2A3B;">
-			        <a class="navbar-link">
+			        <a style="color: blue;" class="navbar-link">
 			          LandLord
 			        </a>
 					
 			        <div class="navbar-dropdown">
-			          <a class="navbar-item" id='tt' >
+			          <a style="color: blue;" class="navbar-item" id='tt' >
 			            Student
 			          </a>
 			        </div>
@@ -151,11 +151,11 @@
 			    {% elif user.ut.user_type == 'tenant' %}
 				<div class="navbar-end">
 				    <div id="dd-tt" class="navbar-item has-dropdown is-hoverable" style=" background-color: #2E2A3B;">
-				        <a style="color: white;" class="navbar-link">
+				        <a style="color: blue;" class="navbar-link">
 				        Student
 				        </a>
 				        <div class="navbar-dropdown" style=" background-color: #2E2A3B;">
-					        <a style="color: white;" class="navbar-item" id='ll'>
+					        <a style="color: blue;" class="navbar-item" id='ll'>
 					        LandLord
 					        </a>
 				        </div>
@@ -169,18 +169,18 @@
 		    	{% if user.is_authenticated %}	
 		    	<div class="navbar-item has-dropdown is-hoverable" style=" background-color: #2E2A3B;">
 			    		<!-- <span class='button is-primary'>{{user.username}}</span> -->
-			    		<a style="color: white;" class="navbar-link" aria-haspopup="true" aria-controls="dropdown-menu">
+			    		<a style="color: blue;" class="navbar-link" aria-haspopup="true" aria-controls="dropdown-menu">
 					      <span>{{user.username}}</span>
 					    </a>
 			      	<div class="navbar-dropdown" style=" background-color: #2E2A3B;">
-		          		<a style="color: white;" class="navbar-item" href="{% url 'users:settings' %}">
+		          		<a style="color: blue;" class="navbar-item" href="{% url 'users:settings' %}">
 		            	Settings
 		          		</a>
 		       		</div>
 		      	</div>
 		      	<div class="navbar-item">
 		    		<div class="buttons" style=" background-color: #2E2A3B;">
-						<a style="color: white;" class="button is-light" href="{% url 'logout' %}" style="background-color: white;">Log Out</a>
+						<a style="color: blue;" class="button is-light" href="{% url 'logout' %}" style="background-color: white;">Log Out</a>
 			      	</div>
 		      	</div>
 		      	{% else %}

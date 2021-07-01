@@ -33,4 +33,4 @@ Users can sign up using the popular methods and NSS_Accom saves only the minimal
     MapBOX
 
 ## Demo
-Want to take a look at this site.. ? Here is the link [NSS_Accom](https://nss_accom.herokuapp.com/), application is deployed on heroku.
+Want to take a look at this site.. ? Here is the link [NSS_Accom](https://nss_accom.herokuapp.com/disp), application is deployed on heroku.

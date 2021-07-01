@@ -8,11 +8,6 @@ CHOICES = (
 	('tenant','Student')
 )
 
-# class User(User):
-
-# 	def usertype(self):
-# 		usertype = UserType.objects.get(pk=self.id)
-# 		return usertype.user_type
 
 class UserType(models.Model):
 

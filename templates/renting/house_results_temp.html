@@ -8,10 +8,7 @@
             </div>
             <p class="ncr subtitle is-6">{{house.street_address}}, {{house.zipcode}}, {{house.city}},
             {{house.country}}</p>
-
-            <!-- <p class="subtitle is-6">{{house.street_address}},</p>
-            <p class="subtitle is-6">{{house.zipcode}}, {{house.city}}</p>
-            <p class="subtitle is-6">{{house.country}}</p> -->
+            
             <a href="{% url 'renting:house_details' house.id %}?next={{request.path}}">
 
                 {% if house.houseimages_set.all %}

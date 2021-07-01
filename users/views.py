@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 from users.forms import UserTypeForm, UserForm, UpdatePhoneNo
-from users.models import UserType, ContactDetails
+from users.models import UserType
 
 # Create your views here.
 

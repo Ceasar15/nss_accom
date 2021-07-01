@@ -12,7 +12,7 @@ from users.forms import UserTypeForm
 import requests, pgeocode, pandas, json
 from datetime import datetime
 
-# url = reverse_lazy('renting:house_amenities')
+
 
 def home_page(request):
 	# User logged in or not

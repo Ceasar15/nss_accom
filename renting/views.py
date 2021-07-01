@@ -12,7 +12,7 @@ from django.db.models import Q
 from requests.api import request
 
 from .forms import SearchForm, RentalHouseForm, HouseHasForm, AmenitiesForm, RulesForm, PreferredTenantForm, HouseImagesForm, HouseImagesEditForm
-from .models import SearchFilter, NewRentalHouse, HouseHas, Amenities, PreferredTenant, Rules, HouseImages
+from .models import NewRentalHouse, HouseHas, Amenities, PreferredTenant, Rules, HouseImages
 from users.models import UserType
 from users.forms import UserTypeForm
 
@@ -34,7 +34,7 @@ def home_page(request):
 
 	form = SearchForm()
 	log = 'false'
-	return render(request, 'renting/ads_list.html', locals())
+	return render(request, 'renting/home.html', locals())
 
 
 def user_signin_status(request):
@@ -44,13 +44,22 @@ def user_signin_status(request):
 	elif request.user.is_anonymous:
 		return JsonResponse({'user':'not_logged_in'})
 
-# def search_list(request):
-#     f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())
 
+def renting_house_results(request):
+	house_list = NewRentalHouse.objects.all()
+	city_query = request.GET.get('q')
+	if city_query:
+		print(city_query)
+		house_list = house_list.filter(
+			Q(city__icontains = city_query)).distinct()
+		
+		context = {
+			'house_list': house_list,
+		}
+		return render(request,'renting/renting_house_results.html', context)
+	else:
+		return render(request, 'renting/renting_house_results.html')
 
-def search_list(request):
-	f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())   
-	return render(request, 'renting/renting_house_results.html', {'filter': f})
 
 
 # Make it as only post

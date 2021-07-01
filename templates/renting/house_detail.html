@@ -52,13 +52,6 @@
 	  
 	</div> 		
 
-
-	<!-- <div style="position: relative; left: 350px;">
-		{% for img in imgs %}
-		<img src="{{img.images.url}}" style="height:400px; width: 500px; align-items:center;" alt="Ad Pictures">
-		{% endfor %}
-	</div>	 -->
-
 	<h3 class="subtitle" style="text-align: center;"><span class="til">House Has</span></h3>
 	<div class="columns is-multiline box">
 
@@ -74,60 +67,17 @@
 			<div class="column is-one-quarter">
 				<span>Balcony: {% if r_hh.balcony == 'Pr' %}<span class="sub-txt">Private</span>{%elif r_hh.balcony == 'Sh'%}<span class="sub-txt">Public</span>{%else%}<span>Not Available</span>{%endif%}</span>
 			</div>
-			<!-- <div class="column is-one-quarter">
-				<span>{% if r_hh.terrace == 'Y' %}Terrace <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Terrace</span>{%endif%}</span>
-			</div> -->
-			<!-- <div class="column is-one-quarter">
-				<span>{% if r_hh.garden == 'Y' %}Garden <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Garden</span>{%endif%}</span>
-			</div> -->
-			<!-- <div class="column is-one-quarter">
-				<span>{% if r_hh.basement == 'Y' %}Basement <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Basement</span>{%endif%}</span>
-			</div> -->
 			<div class="column is-one-quarter">
 				<span>{% if r_hh.parking == 'Y' %}Parking <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Parking</span>{%endif%}</span>
 			</div>
 			<div class="column is-one-quarter">
 				<span>{% if r_hh.wheelchair_accessible == 'Y' %}WheelChair Access <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">WheelChair Access</span>{%endif%}</span>
 			</div>
-				<!-- <h6>{{hh_itm}}</h6> -->
-				
-			<!-- </div> -->
 
 	</div>
 	<h6 class="subtitle" style="text-align: center;"><span class="til">Amenities</span></h6>
 	<div class="columns is-multiline box">
-		<!-- <div class="column is-one-quarter">
-			<span>{% if am.desk == 'Y' %}Desk <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Desk</span>{%endif%}</span>
-		</div>
-		<div class="column is-one-quarter">
-			<span>{% if am.closet == 'Y' %}Closet <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Closet</span>{%endif%}</span>
-		</div>
-		<div class="column is-one-quarter">
-			<span>{% if am.tv == 'Y' %}Tv <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Tv</span>{%endif%}</span>
-		</div>
-		<div class="column is-one-quarter">
-			<span>{% if am.washing_machine == 'Y' %}Waching Machine <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Washing Machine</span>{%endif%}</span>
-		</div>
-		<div class="column is-one-quarter">
-			<span>{% if am.dryer == 'Y' %}Dryer <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Dryer</span>{%endif%}</span>
-		</div>
-		<div class="column is-one-quarter">
-			<span>{% if am.dishwasher == 'Y' %}Dishwasher <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Dishwasher</span>{%endif%}</span>
-		</div>
-
-		<div class="column is-one-quarter">
-			<span>{% if am.kitchenware == 'Y' %}Kitchenware <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Kitchenware</span>{%endif%}</span>
-		</div>
-		<div class="column is-one-quarter">
-			<span>{% if am.wifi == 'Y' %}WiFi <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">WiFi</span>{%endif%}</span>
-		</div>
-		<div class="column is-one-quarter">
-			<span>{% if am.heating == 'Y' %}Heating <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Heating</span>{%endif%}</span>
-		</div> -->
-		<!-- <div class="column is-one-quarter">
-			<span>{% if am.air_conditioning == 'Y' %}Air Conditioning <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Air Conditioning</span>{%endif%}</span>
-			
-		</div> -->
+		
 		<div class="column is-one-quarter">
 			<span>{% if am.bed == 'Y' %}Bed <i class="fa fa-check" aria-hidden="true"></i>{%else%}<span class="lt">Bed</span>{%endif%}</span>
 		</div>

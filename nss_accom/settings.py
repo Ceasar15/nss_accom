@@ -25,7 +25,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = ')!_3y6m$p)p=knh_7292_m@=_8irw07y&jq@wk0w#ho80nqr*o'
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 
@@ -163,12 +162,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 #Default storage setting for the media fo nss_accom on GCP bucket 
 import sys
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 from nss_accom import gcloud
+
 #Media file storage
 # DEFAULT_FILE_STORAGE = 'gcloud.GoogleCloudMediaFileStorage'
 

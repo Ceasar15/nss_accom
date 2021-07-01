@@ -16,12 +16,7 @@ class RentalHouseForm(forms.ModelForm):
 	area = forms.CharField(widget=forms.TextInput(attrs={'class':'input', 'placeholder':'Area'}))
 	city = forms.CharField(widget=forms.TextInput(attrs={'class':'input', 'placeholder':'City'}))
 	region = forms.ChoiceField(label='REGION', choices=STATE_CHOICES, widget=forms.Select(attrs={'class':'multiple'}))
-	# zipcode = forms.CharField(widget=forms.TextInput(attrs={'class':'input', 'placeholder':'ZipCode'}))
 	country = forms.CharField(widget=forms.TextInput(attrs={'class':'input', 'placeholder':'Ghana'}), disabled=True, required=False)
-
-	#longitude = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'input has-background-grey-lighter', 'placeholder':'Longitude'}))
-	#latitude = forms.DecimalField(widget=forms.NumberInput(attrs={'class':'input has-background-grey-lighter', 'placeholder':'Latitude'}))
-
 	in_date = forms.DateField(label='From', widget=forms.DateInput(attrs={'class':'ip-date'}))
 	out_date = forms.DateField(label='To', widget=forms.DateInput(attrs={'class':'ip-date'}))
 	rent = forms.IntegerField(widget=forms.NumberInput())
@@ -34,14 +29,8 @@ class RentalHouseForm(forms.ModelForm):
 
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args,**kwargs)
-		# print(self.visible_fields())
 		for visible in self.visible_fields():
 			visible.field.widget.attrs['class'] = 'input is-small'
-			# print(visible)
-
-		# self.fields['state'].widget.attrs['class'] = 'multiple'
-		#self.fields['longitude'].widget.attrs['class'] = 'input is-small has-background-grey-lighter'
-		#self.fields['latitude'].widget.attrs['class'] = 'input is-small has-background-grey-lighter'
 		self.fields['in_date'].widget.attrs['class'] = 'ip-date'
 		self.fields['out_date'].widget.attrs['class'] = 'ip-date'
 
@@ -71,11 +60,7 @@ class HouseHasForm(forms.ModelForm):
 	living_room = forms.ChoiceField(choices=HH_FIELD_CHOICES,widget=forms.Select(attrs={'class':'multiple'}))
 	toilet = forms.ChoiceField(choices=HH_FIELD_CHOICES,widget=forms.Select(attrs={'class':'multiple'}))
 	balcony = forms.ChoiceField(choices=HH_FIELD_CHOICES,widget=forms.Select(attrs={'class':'multiple'}))
-	# terrace = forms.ChoiceField(choices=FIELD_CHOICES,widget=forms.Select(attrs={'class':'multiple'}))
-	# garden = forms.ChoiceField(choices=FIELD_CHOICES,widget=forms.Select(attrs={'class':'multiple'}))
-	# basement = forms.ChoiceField(choices=FIELD_CHOICES,widget=forms.Select(attrs={'class':'multiple'}))
 	parking = forms.ChoiceField(choices=FIELD_CHOICES,widget=forms.Select(attrs={'class':'multiple'}))
-	# wheelchair_accessible = forms.ChoiceField(choices=FIELD_CHOICES,widget=forms.Select(attrs={'class':'multiple'}))
 
 	class Meta:
 		model = HouseHas
@@ -96,9 +81,7 @@ class AmenitiesForm(forms.ModelForm):
 		for visible in self.visible_fields():
 			visible.field.widget.attrs['class'] = 'multiple'
 			visible.field.choices = FIELD_CHOICES
-			# print(visible.field.__dict__)
 			visible.field.label_classes = ('field-label','is-small',)
-			# print(visible.field.label_classes)
 
 	class Meta:
 		model = Amenities
@@ -116,7 +99,6 @@ class RulesForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args,**kwargs)
 		for visible in self.visible_fields():
-			# visible.field['gender'].choices = GENDER_PREF
 			visible.field.choices = FIELD_CHOICES 
 
 
@@ -127,8 +109,6 @@ class PreferredTenantForm(forms.ModelForm):
 		for visible in self.visible_fields():
 			visible.field.choices = FIELD_CHOICES
 		self.fields['gender'].choices = GENDER_PREF
-
-	# gender = forms.ChoiceField(choices=GENDER_PREF)
 	
 	class Meta:
 		model = PreferredTenant

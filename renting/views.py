@@ -1,18 +1,11 @@
-from django import template
 from django.shortcuts import render, reverse
-from django.template import context
 from django.urls import reverse_lazy
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from django.core.serializers.json import DjangoJSONEncoder
-from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect, JsonResponse
 from django.conf import settings
-from django.template.loader import render_to_string
-from django.views.generic import ListView
 from django.db.models import Q
-from requests.api import request
 
 from .forms import SearchForm, RentalHouseForm, HouseHasForm, AmenitiesForm, RulesForm, PreferredTenantForm, HouseImagesForm, HouseImagesEditForm
-from .models import NewRentalHouse, HouseHas, Amenities, PreferredTenant, Rules, HouseImages
+from .models import NewRentalHouse, HouseHas, Amenities, PreferredTenant, Rules, HouseImages, SearchFilter
 from users.models import UserType
 from users.forms import UserTypeForm
 
@@ -43,6 +36,10 @@ def user_signin_status(request):
 
 	elif request.user.is_anonymous:
 		return JsonResponse({'user':'not_logged_in'})
+
+def search_list(request):
+	f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())
+	return render(request, 'renting/renting_house_results.html', {'filter': f})
 
 
 def renting_house_results(request):

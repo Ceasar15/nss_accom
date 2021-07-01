@@ -113,6 +113,7 @@
 	    	</div>
 		</div>
 	</div>
+	
 	<nav id='navbar-shadow' class="navbar is-fixed-top is-fullheight-with-navbar" style="background-color: #2E2A3B;" role="navigation" aria-label="main navigation">
 		<div class="navbar-brand nb-lg">
 		    <a class="navbar-item" href="{% url 'renting:home' %}">
@@ -156,11 +157,11 @@
 		    <div class="navbar-end nb-end">
 		    	{% if user.is_authenticated and ut == 'owner' %}	
 		    	<div class="navbar-item has-dropdown is-hoverable" style=" background-color: #2E2A3B;">
-			    		<!-- <span class='button is-primary'>{{user.username}}</span> -->
+			    		
 			    		<a style="color: white;" class="navbar-link" aria-haspopup="true" aria-controls="dropdown-menu">
 					      <span>{{user.username}}</span>
 					    </a>
-			    <div class="navbar-dropdown" style=" background-color: #2E2A3B;">
+			    	<div class="navbar-dropdown" style=" background-color: #2E2A3B;">
 		          		<a style="color: white;" class="navbar-item" href="{% url 'users:settings' %}">
 		            	Settings
 		          		</a>
@@ -174,13 +175,13 @@
 				{% elif user.is_authenticated and ut == 'tenant' %}	
 				<div class="navbar-item has-dropdown is-hoverable" style=" background-color: #2E2A3B;">
 						<a style="color: white;" class="navbar-link" aria-haspopup="true" aria-controls="dropdown-menu">
-						<span>{{user.username}}</span>
+							<span>{{user.username}}</span>
 						</a>
 					<div class="navbar-dropdown" style=" background-color: #2E2A3B;">
 						<a style="color: white;" class="navbar-item" href="{% url 'users:settings' %}">
 						Settings
 						</a>
-						</div>
+					</div>
 				</div>
 				<div class="navbar-item">
 					<div class="buttons" style=" background-color: #2E2A3B;">
@@ -199,6 +200,10 @@
 		    </div>
 		  </div>
 		</nav>
+
+
+
+
 	<section id='sec-id'  class="hero is-fullheight has-carousel">
 			{% block carousel %}
 			{% endblock carousel %}

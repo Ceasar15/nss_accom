@@ -4,15 +4,15 @@
 {% if logged %}
 	{% if ut == 'owner' %}
 	    <div class="navbar-start">
-		    <a class="navbar-item"  href="{% url 'renting:home' %}">
+		    <a class="navbar-item" style="color: white;"  href="{% url 'renting:home' %}">
 		        Home
 		    </a>
-		    <a class="navbar-item" href="{% url 'renting:rent_ad_list' %}">
+		    <a class="navbar-item" style="color: white;" href="{% url 'renting:rent_ad_list' %}">
 		        My Rent Ads
 		    </a>
 	    </div>
  	    <div id="dd-ll" class="navbar-item  is-hoverable" style=" background-color: #2E2A3B;">
-	        <a >
+	        <a style="color: white;">
 	         LandLord
 	        </a>
 			
@@ -25,7 +25,7 @@
 	{% elif ut == 'tenant' %}
 	    <div class="navbar-end">
 		    <div id="dd-tt" class="navbar-item is-hoverable" style=" background-color: #2E2A3B;">
-		        <a style="color: blue;">
+		        <a style="color: white;">
 		        Student
 		        </a>
 		        <!-- <div class="navbar-dropdown" style=" background-color: #2E2A3B;">
@@ -50,19 +50,19 @@
 	<div class="columns mt-1 is-centered " style="position: relative; top:20px;" id='hm-h-t-div' >
 		{% if logged and ut == 'tenant'%}
 			<div class="column is-one-third">
-				<a id='otner' class="button is-medium is-fullwidth is-light" style="background-color: blue; color: wheat;" href="{% url 'renting:post_rent_ad' %}">
+				<a id='otner' class="button is-medium is-fullwidth is-light" style="background-color: blue; color: white;" href="{% url 'renting:post_rent_ad' %}">
 					I'm a 
 				</a>
 			</div>
 		{% elif logged and ut == 'owner'%}
 			<div class="column is-one-third">
-				<a id='otner' class="button is-medium is-fullwidth is-warning " style="background-color: blue; color: wheat;" href="{% url 'renting:post_rent_ad' %}">
+				<a id='otner' class="button is-medium is-fullwidth is-warning " style="background-color: blue; color: white;" href="{% url 'renting:post_rent_ad' %}">
 					Post Rent Ad
 				</a>
 			</div>
 		{% else %}
 			<div class="column is-one-third">
-				<a id='owner' class="button is-medium is-fullwidth is-warning" style="background-color: blue; color: wheat;" href="{% url 'renting:post_rent_ad' %}">
+				<a id='owner' class="button is-medium is-fullwidth is-warning" style="background-color: blue; color: white;" href="{% url 'renting:post_rent_ad' %}">
 					Post Rent Ad
 				</a>
 			</div>

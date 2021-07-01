@@ -129,31 +129,26 @@
 		  	{% block navbar %}
 			  	{% if user.ut.user_type == 'owner' %}
 			    <div class="navbar-start " style=" background-color: #2E2A3B;">
-				    <a class="navbar-item" style="color: blue;" href="{% url 'renting:home' %}">
+				    <a class="navbar-item" style="color: white;" href="{% url 'renting:home' %}">
 				        Home
 				    </a>
-				    <a class="navbar-item" style="color: blue;" href="{% url 'renting:rent_ad_list' %}">
+				    <a class="navbar-item" style="color: white;" href="{% url 'renting:rent_ad_list' %}">
 				        My Rent Ads
 				    </a>
 			    </div>
 		 	    <div id="dd-ll" class="navbar-item has-dropdown is-hoverable" style=" background-color: #2E2A3B;">
-			        <a style="color: blue;" class="navbar-link">
+			        <a style="color: white;" class="navbar-link">
 			          LandLord
 			        </a>
-			        <div class="navbar-dropdown">
-			          <a style="color: blue;" class="navbar-item" id='tt' >
-			            Student
-			          </a>
-			        </div>
 			    </div> 
 			    {% elif user.ut.user_type == 'tenant' %}
 				<div class="navbar-end">
 				    <div id="dd-tt" class="navbar-item has-dropdown is-hoverable" style=" background-color: #2E2A3B;">
-				        <a style="color: blue;" class="navbar-link">
+				        <a style="color: white;" class="navbar-link">
 				        Student
 				        </a>
 				        <div class="navbar-dropdown" style=" background-color: #2E2A3B;">
-					        <a style="color: blue;" class="navbar-item" id='ll'>
+					        <a style="color: white;" class="navbar-item" id='ll'>
 					        LandLord
 					        </a>
 				        </div>

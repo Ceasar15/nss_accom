@@ -11,28 +11,28 @@
 		        My Rent Ads
 		    </a>
 	    </div>
- 	    <div id="dd-ll" class="navbar-item has-dropdown  is-hoverable" style=" background-color: #2E2A3B;">
-	        <a style="color: blue;" class="navbar-link">
+ 	    <div id="dd-ll" class="navbar-item  is-hoverable" style=" background-color: #2E2A3B;">
+	        <a style="color: blue;">
 	         LandLord
 	        </a>
 			
-	        <div class="navbar-dropdown" style=" background-color: #2E2A3B;">
+	        <!-- <div class="navbar-dropdown" style=" background-color: #2E2A3B;">
 	          <a style="color:blue;" class="navbar-item" id='tt'>
 	           Student
 	          </a>
-	        </div>
+	        </div> -->
 	    </div> 
 	{% elif ut == 'tenant' %}
 	    <div class="navbar-end">
-		    <div id="dd-tt" class="navbar-item has-dropdown is-hoverable" style=" background-color: #2E2A3B;">
-		        <a style="color: blue;" class="navbar-link">
+		    <div id="dd-tt" class="navbar-item is-hoverable" style=" background-color: #2E2A3B;">
+		        <a style="color: blue;">
 		        Student
 		        </a>
-		        <div class="navbar-dropdown" style=" background-color: #2E2A3B;">
+		        <!-- <div class="navbar-dropdown" style=" background-color: #2E2A3B;">
 			        <a style="color: blue;" class="navbar-item" id='ll'>
 			         LandLord
 			        </a>
-		        </div>
+		        </div> -->
 		    </div> 
 	    </div>
 	{% endif %}
@@ -50,18 +50,21 @@
 	<div class="columns mt-1 is-centered " style="position: relative; top:20px;" id='hm-h-t-div' >
 		{% if logged and ut == 'tenant'%}
 			<div class="column is-one-third">
-				<a id='otner' class="button is-medium is-fullwidth is-light" style="background-color: blue; color: wheat;" href="{% url 'renting:post_rent_ad' %}">I'm a 
-				Landlord</a>
+				<a id='otner' class="button is-medium is-fullwidth is-light" style="background-color: blue; color: wheat;" href="{% url 'renting:post_rent_ad' %}">
+					I'm a 
+				</a>
 			</div>
 		{% elif logged and ut == 'owner'%}
 			<div class="column is-one-third">
-				<a id='otner' class="button is-medium is-fullwidth is-warning " style="background-color: blue; color: wheat;" href="{% url 'renting:post_rent_ad' %}">I'm a 
-					Landlord</a>
+				<a id='otner' class="button is-medium is-fullwidth is-warning " style="background-color: blue; color: wheat;" href="{% url 'renting:post_rent_ad' %}">
+					Post Rent Ad
+				</a>
 			</div>
 		{% else %}
 			<div class="column is-one-third">
-				<a id='owner' class="button is-medium is-fullwidth is-warning" style="background-color: blue; color: wheat;" href="{% url 'renting:post_rent_ad' %}">I'm a 
-				Landlord</a>
+				<a id='owner' class="button is-medium is-fullwidth is-warning" style="background-color: blue; color: wheat;" href="{% url 'renting:post_rent_ad' %}">
+					Post Rent Ad
+				</a>
 			</div>
 		{% endif %}
 	</div>

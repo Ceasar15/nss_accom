@@ -19,7 +19,7 @@ class RentalHouseForm(forms.ModelForm):
 	country = forms.CharField(widget=forms.TextInput(attrs={'class':'input', 'placeholder':'Ghana'}), disabled=True, required=False)
 	in_date = forms.DateField(label='From', widget=forms.DateInput(attrs={'class':'ip-date'}))
 	out_date = forms.DateField(label='To', widget=forms.DateInput(attrs={'class':'ip-date'}))
-	rent_price = forms.IntegerField(widget=forms.NumberInput())
+	rent = forms.IntegerField(widget=forms.NumberInput())
 
 	class Meta:
 		model = NewRentalHouse

@@ -125,7 +125,7 @@
 		    </a>
 		  </div>
 
-		  <div id="navbarBasicExample" class="navbar-menu">
+		  <div id="navbarBasicExample" class="navbar-menu" style="width: 100px; height: 95px;">
 		  	{% block navbar %}
 			  	{% if user.ut.user_type == 'owner' %}
 			    <div class="navbar-start " style=" background-color: #2E2A3B;">
@@ -154,7 +154,7 @@
 		    </div>
 
 		    <div class="navbar-end nb-end">
-		    	{% if user.is_authenticated %}	
+		    	{% if user.is_authenticated and ut == 'owner' %}	
 		    	<div class="navbar-item has-dropdown is-hoverable" style=" background-color: #2E2A3B;">
 			    		<!-- <span class='button is-primary'>{{user.username}}</span> -->
 			    		<a style="color: white;" class="navbar-link" aria-haspopup="true" aria-controls="dropdown-menu">
@@ -171,11 +171,27 @@
 						<a style="color: black;" class="button is-light" href="{% url 'logout' %}" style="background-color: #00d1b2;">Log Out</a>
 			      	</div>
 		      	</div>
+				{% elif user.is_authenticated and ut == 'tenant' %}	
+				<div class="navbar-item has-dropdown is-hoverable" style=" background-color: #2E2A3B;">
+						<a style="color: white;" class="navbar-link" aria-haspopup="true" aria-controls="dropdown-menu">
+						<span>{{user.username}}</span>
+						</a>
+					<div class="navbar-dropdown" style=" background-color: #2E2A3B;">
+						<a style="color: white;" class="navbar-item" href="{% url 'users:settings' %}">
+						Settings
+						</a>
+						</div>
+				</div>
+				<div class="navbar-item">
+					<div class="buttons" style=" background-color: #2E2A3B;">
+						<a style="color: black;" class="button is-light" href="{% url 'logout' %}" style="background-color: #00d1b2;">Log Out</a>
+					</div>
+				</div>
 		      	{% else %}
 		      	<div class="navbar-item">
 		      		<div class="buttons" style="width:5.5em; background-color: #2E2A3B;">
 			      		<a style="color: black;" id='lgn' class="button is-primary" style="background-color: #00d1b2;" >
-				            <strong style="color: #2E2A3B;"> Log in</strong>
+				            <strong style="color: #2E2A3B;">Student</strong>
 				        </a>
 			        </div>
 		      	</div>

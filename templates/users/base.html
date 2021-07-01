@@ -136,22 +136,17 @@
 				        My Rent Ads
 				    </a>
 			    </div>
-		 	    <div id="dd-ll" class="navbar-item has-dropdown is-hoverable" style=" background-color: #2E2A3B;">
-			        <a style="color: white;" class="navbar-link">
+		 	    <div id="dd-ll" class="navbar-item is-hoverable" style=" background-color: #2E2A3B;">
+			        <a style="color: white;">
 			          LandLord
 			        </a>
 			    </div> 
 			    {% elif user.ut.user_type == 'tenant' %}
 				<div class="navbar-end">
-				    <div id="dd-tt" class="navbar-item has-dropdown is-hoverable" style=" background-color: #2E2A3B;">
+				    <div id="dd-tt" class="navbar-item is-hoverable" style=" background-color: #2E2A3B;">
 				        <a style="color: white;" class="navbar-link">
 				        Student
 				        </a>
-				        <div class="navbar-dropdown" style=" background-color: #2E2A3B;">
-					        <a style="color: white;" class="navbar-item" id='ll'>
-					        LandLord
-					        </a>
-				        </div>
 				    </div> 
 			    </div>
 			    {% endif %}
@@ -162,11 +157,11 @@
 		    	{% if user.is_authenticated %}	
 		    	<div class="navbar-item has-dropdown is-hoverable" style=" background-color: #2E2A3B;">
 			    		<!-- <span class='button is-primary'>{{user.username}}</span> -->
-			    		<a style="color: blue;" class="navbar-link" aria-haspopup="true" aria-controls="dropdown-menu">
+			    		<a style="color: white;" class="navbar-link" aria-haspopup="true" aria-controls="dropdown-menu">
 					      <span>{{user.username}}</span>
 					    </a>
 			      	<div class="navbar-dropdown" style=" background-color: #2E2A3B;">
-		          		<a style="color: blue;" class="navbar-item" href="{% url 'users:settings' %}">
+		          		<a style="color: white;" class="navbar-item" href="{% url 'users:settings' %}">
 		            	Settings
 		          		</a>
 		       		</div>
@@ -178,7 +173,7 @@
 		      	</div>
 		      	{% else %}
 		      	<div class="navbar-item">
-		      		<div class="buttons" style=" width:5.5em background-color: #2E2A3B;">
+		      		<div class="buttons" style="width:5.5em; background-color:#2E2A3B;">
 			      		<a style="color: black;" id='lgn' class="button is-primary" style="background-color: #00d1b2;" >
 				            <strong style="color: #2E2A3B;"> Log in</strong>
 				        </a>

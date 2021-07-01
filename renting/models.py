@@ -62,7 +62,6 @@ class NewRentalHouse(models.Model):
     street_address = models.TextField()
     city = models.CharField(max_length=150)
     area = models.CharField(max_length=150)
-    # zipcode = models.CharField(max_length=12)
     country = models.CharField(max_length=100, default='Ghana')
     
     user = models.ForeignKey(User, on_delete=models.CASCADE)

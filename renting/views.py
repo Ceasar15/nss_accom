@@ -465,15 +465,7 @@ def house_details(request, id):
 
 
 def rent_ads(request):
-    	# User logged in or not
-	if request.user.is_authenticated:
-		logged = True
-
-		#Getting the logged on user type 
-		try:
-			ut = request.user.ut.user_type	
-		except:
-			ut = None
+    	
 	if request.user.is_authenticated:
 		house_list = NewRentalHouse.objects.filter(user=request.user)
 		houses_list = []

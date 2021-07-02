@@ -10,8 +10,8 @@
 
 	{% csrf_token %}
 	<div class="columns is-centered">
-		  <div class="column">
-			  <div class="columns" style="position: relative; top: 30px; left: 210px;">
+		<div class="column">
+				<div class="columns" style="position: relative; top: 30px; left: 210px;">
 				  <div class="column">
 					<i class="icon-location2"></i>
 				  </div>
@@ -24,11 +24,10 @@
 					  <input style="width: 100px;" type="number" id="id_rent__gt" name='rent__gt' value="" step="any" class="search_3" placeholder="Price Min">
 					  <input style="width: 100px;" type="number" id="id_rent__lt" name='rent__lt' value="" step="any" class="search_3" placeholder="Price Max">
 					  <button class="submit_3" type="submit"> Search</button>
-					</div>
-			  </div>
-		  </div>
-	  </div>
-  </form>
+				</div>
+		</div>
+	</div>
+</form>
 
   <!-- <form method="get" action="{% url 'renting:disp' %}">
 	  {{ filter.form.as_p }}
@@ -44,7 +43,7 @@
 	
 	<div class="columns" id='sec-col'>
 	<div class="columns is-multiline" id="rhd-plc">
-		
+	
 		{% if filter %}			
 			{% for house in filter.qs %}
 			<div class="column is-half box hsrs" id="house-{{house.id}}">

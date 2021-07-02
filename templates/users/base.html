@@ -126,7 +126,7 @@
 		    </a>
 		</div>
 
-		  	<div id="navbarBasicExample" class="navbar-menu" style="width: 100px; height: 95px;">
+		<div id="navbarBasicExample" class="navbar-menu" style="width: 100px; height: 95px;">
 		  	{% block navbar %}
 			  	{% if user.ut.user_type == 'owner' %}
 			    <div class="navbar-start " style=" background-color: #2E2A3B;">
@@ -151,10 +151,10 @@
 				    </div> 
 			    </div>
 			    {% endif %}
-		      {% endblock navbar%}
-		    </div>
+		    {% endblock navbar%}
+		</div>
 
-		    <div class="navbar-end nb-end">
+		<div class="navbar-end nb-end">
 		    	{% if user.is_authenticated and ut == 'owner' %}	
 		    	<div class="navbar-item has-dropdown is-hoverable" style=" background-color: #2E2A3B;">
 			    		
@@ -197,11 +197,9 @@
 			        </div>
 		      	</div>
 		      	{% endif %}
-		    </div>
-		  </div>
-		</nav>
-
-
+			</div>
+		</div>
+	</nav>
 
 
 	<section id='sec-id'  class="hero is-fullheight has-carousel">

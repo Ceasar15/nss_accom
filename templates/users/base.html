@@ -207,27 +207,7 @@
 		</div>
 	</section>
 			<script type="text/javascript">
-			// Initialize all input of date type.
-// 			const calendars = bulmaCalendar.attach('[type="date"]', {dateFormat:'YYYY/MM/DD'});
-// // startDate: new Date('10/24/2021')
-// 			// Loop on each calendar initialized
-// 			calendars.forEach(calendar => {
-// 				// Add listener to date:selected event
-// 				calendar.on('date:selected', date => {
-// 					console.log(date);
-// 				});
-// 			});
 
-// 			// To access to bulmaCalendar instance of an element
-// 			const element = document.querySelector('#dd');
-// 			if (element) {
-// 				// bulmaCalendar instance is available as element.bulmaCalendar
-// 				element.bulmaCalendar.on('select', datepicker => {
-// 					// console.log(datepicker.data.value());
-// 					element.value = datepicker.data.value();
-// 				});
-// 			}
-			// Initialize all input of date type.
 			const calendars = bulmaCalendar.attach('[type="date"]', {
 				'minDate': new Date(new Date().getFullYear(), new Date().getMonth(),1),
 				'maxDate':new Date(new Date().getFullYear(),11,31),
@@ -254,27 +234,6 @@
 				'allowSameDayRange':false
 
 			});
-
-			// Loop on each calendar initialized
-			// calendars.forEach(calendar => {
-			// 	// Add listener to date:selected event
-			// 	calendar.on('date:selected', date => {
-			// 		// console.log(date);
-			// 	});
-			// });
-
-			// // To access to bulmaCalendar instance of an element
-			// const element = document.querySelector('.dd');
-			// // console.log(element, 'noelement');
-			// if (element) {
-			// 	// bulmaCalendar instance is available as element.bulmaCalendar
-			// 	// console.log(element.);
-
-			// 	element.bulmaCalendar.on('select', datepicker => {
-			// 		// console.log(datepicker.isStartDate);
-			// 		// console.log(datepicker.data.value());
-			// 	});
-			// }
 
 			$(function(){
 			$(".datetimepicker-dummy-input").click(function() {

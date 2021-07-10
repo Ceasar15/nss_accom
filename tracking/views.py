@@ -5,6 +5,11 @@ from django.contrib import messages
 # Create your views here.
 
 def index(request):
+    return render(request, 'tracking/indexxxx.html')
+
+
+def loginStudent(request):
+
     if request.method == 'POST':
         username = request.POST.get('username')
         password =request.POST.get('password')
@@ -14,21 +19,17 @@ def index(request):
         if user is not None:	
             login(request, user)	
 
-            if request.user.is_client:
+            if request.user.is_student:
                 return redirect('tracking/student_submit.html')
             else:
                 return redirect('tracking/student_submit.html')
 
         else:
             messages.info(request, 'ID OR Password is incorrect')		
-    
-    
+
     context = {}
-    return render(request, 'tracking/indexxxx.html', context)
 
-
-def loginStudent(request):
-    return render(request, 'tracking/login.html')
+    return render(request, 'tracking/login.html', context)
 
 
 def loginStaff(request):

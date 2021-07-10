@@ -19,7 +19,7 @@ def loginStudent(request):
         if user is not None:	
             login(request, user)	
 
-            if request.user.is_student:
+            if request.user.student:
                 return redirect('tracking/student_submit.html')
             else:
                 return redirect('tracking/student_submit.html')

@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Place favicon.png in the root directory -->
-    <link rel="shortcut icon" href="{ % static 'img/favicon.png' %}" type="image/x-icon" />
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon" />
     <!-- Font Icons css -->
     <link rel="stylesheet" href="{% static 'css/font-icons.css' %}">
     <!-- plugins css -->
@@ -121,14 +121,14 @@
                                             <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p> -->
                                         </div>
                                         <div class="btn-wrapper animated">
-                                            <a href="login.html" class="theme-btn-1 btn btn-effect-1">STUDENT</a>
-                                             <a href="login_staff.html" class="theme-btn-1 btn btn-effect-1">STAFF</a>
+                                            <a href="{% url 'tracking:loginStudent' %}" class="theme-btn-1 btn btn-effect-1">STUDENT</a>
+                                             <a href="{% url 'tracking:loginStaff' %}" class="theme-btn-1 btn btn-effect-1">STAFF</a>
                                             <a href="service.html" class="theme-btn-1 btn btn-effect-1">ACCESS ACCOMMODATION</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="slide-item-img slide-img-left">
-                                    <img style="position: relative; top: -100px; left: -100px; width: 100vw;" src="{ % static 'img/may.png' %}" alt="landing page">
+                                    <img style="position: relative; top: -100px; left: -100px; width: 100vw;" src="{% static 'img/may.png' %}" alt="landing page">
                                 </div>
                             </div>
                         </div>
@@ -209,8 +209,8 @@
                             <h4 class="footer-title">Services</h4>
                             <div class="footer-menu">
                                 <ul>
-                                    <li><a href="login.html">Login as a Student</a></li>
-                                    <li><a href="login_staff.html">Login as a Staff</a></li>
+                                    <li><a href="{% url 'tracking:loginStudent' %}">Login as a Student</a></li>
+                                    <li><a href="{% url 'tracking:loginStaff' %}">Login as a Staff</a></li>
                                     <li><a href="login.html">Access NSS accommodation</a></li>
                                 </ul>
                             </div>

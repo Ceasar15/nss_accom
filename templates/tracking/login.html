@@ -548,7 +548,9 @@
             <div style="position: relative; margin-left: 230px;" class="row">
                 <div class="col-lg-9">
                     <div class="account-login-inner">
-                        <form action="#" class="ltn__form-box contact-form-box">
+                        <form action="#" method="POST" class="ltn__form-box contact-form-box">
+                            {% csrf_token %}
+                            {{ form }}
                             <input type="text" name="email" placeholder="student's Id">
                             <input type="password" name="password" placeholder="Pincode">
                             <div class="btn-wrapper mt-0">

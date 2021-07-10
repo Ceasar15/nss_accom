@@ -1,7 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
 from users.models import UserType, CHOICES, ContactDetails
-
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.models import User
 
 class UserTypeForm(forms.ModelForm):
 	user_type = forms.ChoiceField(choices=CHOICES, widget=forms.Select(attrs={'class':''}))
@@ -29,3 +30,33 @@ class UpdatePhoneNo(forms.ModelForm):
 	class Meta:
 		model = ContactDetails
 		fields = ['phone_no']
+
+
+
+
+
+class RegisterForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+
+    class Meta:
+        model = User
+        fields = (
+            'first_name',
+            'last_name',
+            'username',
+            'email',
+            'password1',
+            'password2',
+        )
+
+
+class EditProfileForm(UserChangeForm):
+    class Meta:
+        model = User
+        fields = [
+            'first_name',
+            'last_name',
+            'username',
+            'email',
+            'password'
+        ]

@@ -125,21 +125,18 @@
             <div style="position: relative; bottom:70px; margin-left: 230px;" class="row">
                 <div class="col-lg-9">
                     <div class="account-login-inner">
-                        <form action="#" method="POST" class="ltn__form-box contact-form-box">
+                        <form method="post" class="ltn__form-box contact-form-box">
                             {% csrf_token %}
-                            {{ form }}
-                            <input type="text" name="email" placeholder="student's Id">
-                            <input type="password" name="password" placeholder="Pincode">
-                        <form action="#" class="ltn__form-box contact-form-box">
-                            <input type="text" name="email" placeholder="Student ID" required style="border-color: grey; border-width: 1px;" >
-                            <input type="password" name="password" placeholder="Student PIN" required >
-                            <div class="btn-wrapper mt-0">
-                                <button href="student_submit.html" class="theme-btn-1 btn btn-block" type="submit">SIGN IN</button>
-                            </div>
-                            <div class="go-to-btn mt-20">
-                                <a href="#"><small>FORGOTTEN YOUR PASSWORD?</small></a>
-                            </div>
-                        </form>
+                            <label for="id_username">Student ID: </label>
+                            <input id="id_username" type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" placeholder="Enter Student Id">
+                            <label for="id_password">Password: </label>
+                            <input id="id_password" type="password" name="password" autocomplete="current-username" placeholder="Enter Password" required="">
+                        <div class="btn-wrapper mt-0">
+                            <button class="theme-btn-1 btn btn-block" type="submit">SIGN IN</button>
+                        </div>
+                        <div class="go-to-btn mt-20">
+                            <a href="{% url 'users:password_change' %}"><small>FORGOTTEN YOUR PASSWORD?</small></a>
+                        </div>
                     </div>
                 </div>
               
@@ -254,9 +251,9 @@
 <!-- Body main wrapper end -->
 
     <!-- All JS Plugins -->
-    <script src="js/plugins.js"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
     <!-- Main JS -->
-    <script src="js/main.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
   
 </body>
 

@@ -78,9 +78,8 @@ class StaffRegisterForm(UserCreationForm):
         user = super().save(commit=False)
         user.is_admin = True 
         user.save()
-    
+        
         return user
-
 
 class EditProfileForm(UserChangeForm):
     class Meta:

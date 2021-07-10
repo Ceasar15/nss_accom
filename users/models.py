@@ -6,25 +6,21 @@ from django.db.models.fields import related
 from users.managers import UT
 
 
-class UserType(AbstractUser):
-    is_student = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
-
-
 CHOICES = (
-	('owner','Owner'),
-	('tenant','Student')
+	('student','Student'),
+	('staff','Staff'),
+	('landlord', 'Landlord'),
 )
 
 
 class UserType(models.Model):
 
 	user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='ut')
-	user_tye = models.CharField(max_length=6, choices=CHOICES, default='owner')
+	user_type = models.CharField(max_length=8, choices=CHOICES, default='owner')
 
 
 	class Meta:
-		unique_together = ('user', 'user_tye')
+		unique_together = ('user', 'user_type')
 
 
 class ContactDetails(models.Model):

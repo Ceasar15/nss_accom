@@ -42,7 +42,6 @@ def Studentregister(request):
 
 
 
-
 def Staffregister(request):
     
     def get_context_data(self, **kwargs):
@@ -57,6 +56,22 @@ def Staffregister(request):
             return redirect('tracking:index')
 
     context = {'form': StaffRegisterForm()}
+    return render(request, 'tracking/register.html', context)
+
+
+def Landlordregister(request):
+    
+    def get_context_data(self, **kwargs):
+        kwargs['user_type'] = 'landlord'
+        return super().get_context_data(**kwargs)
+
+    if request.method == 'POST':
+        form = StudentRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('tracking:index')
+
+    context = {'form': StudentRegisterForm()}
     return render(request, 'tracking/register.html', context)
 
 

@@ -1,6 +1,13 @@
+
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from users.managers import UT
+
+
+class UserType(AbstractUser):
+    is_student = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
 
 
 CHOICES = (

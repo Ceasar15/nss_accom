@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from users.models import UserType, CHOICES, ContactDetails
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
+from django.db import transaction
 
 class UserTypeForm(forms.ModelForm):
 	user_type = forms.ChoiceField(choices=CHOICES, widget=forms.Select(attrs={'class':''}))
@@ -35,7 +36,7 @@ class UpdatePhoneNo(forms.ModelForm):
 
 
 
-class RegisterForm(UserCreationForm):
+class StudentRegisterForm(UserCreationForm):
     email = forms.EmailField(required=True)
 
     class Meta:
@@ -48,6 +49,37 @@ class RegisterForm(UserCreationForm):
             'password1',
             'password2',
         )
+    
+    @transaction.atomic                 
+    def save(self):
+        user = super().save(commit=False) 
+        user.is_client = True            
+        user.is_admin = False
+        user.save()       
+        
+        return user
+    
+class StaffRegisterForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+
+    class Meta:
+        model = User
+        fields = (
+            'first_name',
+            'last_name',
+            'username',
+            'email',
+            'password1',
+            'password2',
+        )
+
+    @transaction.atomic  
+    def save(self):
+        user = super().save(commit=False)
+        user.is_admin = True 
+        user.save()
+    
+        return user
 
 
 class EditProfileForm(UserChangeForm):

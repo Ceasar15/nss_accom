@@ -30,7 +30,7 @@ def register(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('auth:welcome')
+            return redirect('tracking:index')
 
     context = {'form': RegisterForm()}
     return render(request, 'authapp/register.html', context)

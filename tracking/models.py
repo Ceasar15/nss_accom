@@ -16,6 +16,12 @@ LEVEL_CHOICES = (
     ('O','OTHERS')
 )
 
+VISITOR_STATUS = (
+    ('STUDENT','STUDENT'),
+    ('NON-STUDENT','NON-STUDENT'),
+    ('O','OTHERS')
+)
+
 class NewStudent(models.Model):
     index_number = models.CharField(primary_key=True)
     first_name = models.CharField(max_length=50)
@@ -25,7 +31,7 @@ class NewStudent(models.Model):
     course = models.CharField(max_length=50)
     level = models.CharField(max_length=50, choices=LEVEL_CHOICES)
     mobile_number = models.CharField(max_length=50)
-    date_added = models.DateTimeField()
+    date_added_registered = models.DateTimeField()
     check_in = models.BooleanField()
 
 
@@ -42,3 +48,12 @@ class PostAnnouncement(models.Model):
     time_submitted = models.TimeField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+class NewVisitor(models.Model):
+    vistor_id = models.AutoField(primary_key=True)
+    visiting_status = models.CharField(max_length=100, choices=VISITOR_STATUS)
+    visitor_fullName = models.CharField(max_length=150)
+    visiting_room = models.CharField(max_length=20)
+    room_member_getting_visited = models.CharField(max_length=150)
+    visiting_mobile_number = models.CharField(max_length=30)
+    visiting_date_time = models.DateTimeField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)

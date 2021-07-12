@@ -12,7 +12,7 @@ urlpatterns = [
 	path('studentDashboard/', tr.studentDashboard, name='studentDashboard'),
 	path('studentSubmitComplaint/', tr.studentSubmitComplaint, name='studentSubmitComplaint'),
 	path('studentViewAllComplaints/', tr.studentViewAllComplaints, name='studentViewAllComplaints'),
-	path('studentViewAnnouncements/', tr.studentViewAnnouncements, name='studentViewAnnouncements'),
-	path('studentSubmitComplaint/', tr.studentSubmitComplaint, name='studentSubmitComplaint')
+	path('studentViewAnnouncements/', tr.studentViewAnnouncements, name='studentViewAnnouncements')
+	
 ]
 

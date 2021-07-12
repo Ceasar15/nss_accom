@@ -15,10 +15,6 @@ def loginStaff(request):
     return render(request, 'tracking/login_staff.html')
 
 
-def studentSubmitComplaint(request):
-    return render(request, 'tracking/student_submit.html')
-
-
 def studentSignUp(request):
     return render(request, 'tracking/student_signup.html')
 

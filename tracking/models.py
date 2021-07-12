@@ -16,7 +16,7 @@ LEVEL_CHOICES = (
     ('O','OTHERS')
 )
 
-class NewStudentData(models.Model):
+class NewStudent(models.Model):
     index_number = models.CharField(primary_key=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -30,8 +30,8 @@ class NewStudentData(models.Model):
 
 
 class StudentImages(models.Model):
-    images = models.ImageField(upload_to=house_images, blank=True)
-    nrh = models.ForeignKey(NewStudentData, on_delete=models.CASCADE)
+    images = models.ImageField(upload_to='media/StudentImages/%Y/%m/%d/', blank=True)
+    new_student= models.ForeignKey(NewStudent, on_delete=models.CASCADE)
 
 
 class PostAnnouncement(models.Model):
@@ -41,3 +41,4 @@ class PostAnnouncement(models.Model):
     date_submitted = models.DateField()
     time_submitted = models.TimeField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+

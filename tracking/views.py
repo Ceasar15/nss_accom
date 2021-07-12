@@ -20,7 +20,7 @@ def loginStudent(request):
             login(request, user)	
 
             if request.user:
-                return redirect('tracking:studentSubmitComplaint')
+                return redirect('tracking:studentDashboard')
             else:
                 return redirect('tracking:studentSubmitComplaint')
 
@@ -31,10 +31,17 @@ def loginStudent(request):
 
     return render(request, 'tracking/login.html', context)
 
-
 def loginStaff(request):
     return render(request, 'tracking/login_staff.html')
 
+def studentDashboard(request):
+    return render(request, 'tracking/student_dashboard.html')
 
 def studentSubmitComplaint(request):
     return render(request, 'tracking/student_submit.html')
+
+def studentViewAllComplaints(request):
+    return render(request, 'tracking/student_view_all_complaints.html')
+
+def studentViewAnnouncements(request):
+    return render(request, 'tracking/student_view_announcements.html')

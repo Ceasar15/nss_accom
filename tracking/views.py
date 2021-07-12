@@ -46,13 +46,13 @@ def studentDashboard(request):
 def studentSubmitComplaint(request):
     if request.method == 'POST':
         print(request.POST)
-        if request.POST.get('fullname') and request.POST.get('email') and request.POST.get('phone') and request.POST.get('subject'):
+        if request.POST.get('student_full_name') and request.POST.get('student_room_number') and request.POST.get('complaint_type') and request.POST.get('complaint_description') and request.POST.get('mobile_number'):
             complaint = NewComplaint()
-            complaint. = request.POST.get('fullname')
-            complaint.fullname = request.POST.get('fullname')
-            complaint.email = request.POST.get('email')
-            complaint.phone = request.POST.get('phone')
-            complaint.subject = request.POST.get('subject')
+            complaint.student_full_name = request.POST.get('student_full_name')
+            complaint.student_room_number = request.POST.get('student_room_number')
+            complaint.complaint_type = request.POST.get('complaint_type')
+            complaint.complaint_description = request.POST.get('complaint_description')
+            complaint.mobile_number = request.POST.get('mobile_number')
             complaint.save()
 
             messages.success(request, "Thank you.")

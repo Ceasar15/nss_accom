@@ -60,7 +60,12 @@ class PostAnnouncement(models.Model):
     date_submitted = models.DateField(default=timezone.now)
     time_submitted = models.TimeField(default=timezone.now)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    class Meta:
+        ordering = ['-date_submitted']
 
+    def __str__(self):
+        return self.announcement_title
+        
 class NewVisitor(models.Model):
     vistor_id = models.AutoField(primary_key=True)
     visiting_status = models.CharField(max_length=100, choices=VISITOR_STATUS)
@@ -75,7 +80,8 @@ class NewVisitor(models.Model):
         ordering = ['-visiting_date_time']
 
     def __str__(self):
-        return self.first_name
+        return self.visitor_fullName
+
 class NewComplaint(models.Model):
     complaint_id = models.AutoField(primary_key=True)
     student_index_number = models.CharField(User, on_delete=models.CASCADE)

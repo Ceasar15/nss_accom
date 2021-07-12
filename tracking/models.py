@@ -71,7 +71,11 @@ class NewVisitor(models.Model):
     visiting_date_time = models.DateTimeField(default=timezone.now)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    class Meta:
+        ordering = ['-visiting_date_time']
 
+    def __str__(self):
+        return self.first_name
 class NewComplaint(models.Model):
     complaint_id = models.AutoField(primary_key=True)
     student_index_number = models.CharField(User, on_delete=models.CASCADE)
@@ -92,3 +96,6 @@ class ComplaintStatus(models.Model):
     complaint_status_id = models.AutoField(primary_key=True)
     complaint_status = models.CharField(max_length=20, choices=COMPLAINT_STATUS)
     submitted_by = models.ForeignKey(NewComplaint.student_full_name, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.submitted_by

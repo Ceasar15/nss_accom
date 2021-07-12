@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect  	
 from django.contrib.auth import authenticate, login, logout		
 from django.contrib import messages		
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -34,14 +36,18 @@ def loginStudent(request):
 def loginStaff(request):
     return render(request, 'tracking/login_staff.html')
 
+@login_required(login_url='/usr/login')
 def studentDashboard(request):
     return render(request, 'tracking/student_dashboard.html')
 
+@login_required(login_url='/usr/login')
 def studentSubmitComplaint(request):
     return render(request, 'tracking/student_submit.html')
 
+@login_required(login_url='/usr/login')
 def studentViewAllComplaints(request):
     return render(request, 'tracking/student_view_all_complaints.html')
 
+@login_required(login_url='/usr/login')
 def studentViewAnnouncements(request):
     return render(request, 'tracking/student_view_announcements.html')

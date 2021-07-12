@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 
+from .models import NewComplaint
+
 # Create your views here.
 
 def index(request):
@@ -42,7 +44,23 @@ def studentDashboard(request):
 
 @login_required(login_url='/usr/login')
 def studentSubmitComplaint(request):
-    return render(request, 'tracking/student_submit.html')
+    if request.method == 'POST':
+        print(request.POST)
+        if request.POST.get('fullname') and request.POST.get('email') and request.POST.get('phone') and request.POST.get('subject'):
+            complaint = NewComplaint()
+            complaint. = request.POST.get('fullname')
+            complaint.fullname = request.POST.get('fullname')
+            complaint.email = request.POST.get('email')
+            complaint.phone = request.POST.get('phone')
+            complaint.subject = request.POST.get('subject')
+            complaint.save()
+
+            messages.success(request, "Thank you.")
+
+            return render(request, "tracking:studentViewAllComplaints")
+            
+    else:
+        return render(request, "tracking/student_submit.html")
 
 @login_required(login_url='/usr/login')
 def studentViewAllComplaints(request):
@@ -51,3 +69,4 @@ def studentViewAllComplaints(request):
 @login_required(login_url='/usr/login')
 def studentViewAnnouncements(request):
     return render(request, 'tracking/student_view_announcements.html')
+

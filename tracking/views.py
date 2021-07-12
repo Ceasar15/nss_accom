@@ -19,10 +19,10 @@ def loginStudent(request):
         if user is not None:	
             login(request, user)	
 
-            if request.user.student:
-                return redirect('tracking/student_submit.html')
+            if request.user:
+                return redirect('tracking:studentSubmitComplaint')
             else:
-                return redirect('tracking/student_submit.html')
+                return redirect('tracking:studentSubmitComplaint')
 
         else:
             messages.info(request, 'ID OR Password is incorrect')		

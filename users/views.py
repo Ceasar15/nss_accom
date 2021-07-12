@@ -27,9 +27,9 @@ def welcome(request):
 
 def Studentregister(request):
 
-    def get_context_data(self, **kwargs):
-        kwargs['user_type'] = 'student'
-        return super().get_context_data(**kwargs)
+    # def get_context_data(self, **kwargs):
+    #     kwargs['user_type'] = 'student'
+    #     return super().get_context_data(**kwargs)
 
     if request.method == 'POST':
         form = StudentRegisterForm(request.POST)

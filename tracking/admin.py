@@ -8,4 +8,4 @@ from .models import *
 
 
 # Register your models here.
-admin.site.register(UserType, UserAdmin)
+# admin.site.register(UserType, UserAdmin)

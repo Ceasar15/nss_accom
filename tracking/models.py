@@ -30,7 +30,7 @@ COMPLAINT_STATUS = (
 )
 
 class NewStudent(models.Model):
-    index_number = models.CharField(primary_key=True)
+    index_number = models.CharField(primary_key=True, max_length=11)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     gender = models.CharField(max_length=10, choices=GENDER_PREF)
@@ -54,18 +54,18 @@ class StudentImages(models.Model):
 
 
 class PostAnnouncement(models.Model):
-    announcement_id = models.AutoField()
+#    announcement_id = models.AutoField()
     announcement_title = models.CharField(max_length=100)
     announcement_body = models.TextField()
     date_submitted = models.DateField(default=timezone.now)
     time_submitted = models.TimeField(default=timezone.now)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    annou_user = models.ForeignKey(User, on_delete=models.CASCADE)
     class Meta:
         ordering = ['-date_submitted']
 
     def __str__(self):
         return self.announcement_title
-        
+
 class NewVisitor(models.Model):
     vistor_id = models.AutoField(primary_key=True)
     visiting_status = models.CharField(max_length=100, choices=VISITOR_STATUS)
@@ -84,7 +84,7 @@ class NewVisitor(models.Model):
 
 class NewComplaint(models.Model):
     complaint_id = models.AutoField(primary_key=True)
-    student_index_number = models.CharField(User, on_delete=models.CASCADE)
+    student_index_number = models.ForeignKey(User, on_delete=models.CASCADE)
     student_full_name = models.CharField(max_length=150)
     student_room_number = models.CharField(max_length=10)
     complaint_type = models.CharField(max_length=50)
@@ -101,7 +101,7 @@ class NewComplaint(models.Model):
 class ComplaintStatus(models.Model):
     complaint_status_id = models.AutoField(primary_key=True)
     complaint_status = models.CharField(max_length=20, choices=COMPLAINT_STATUS)
-    submitted_by = models.ForeignKey(NewComplaint.student_full_name, on_delete=models.CASCADE)
+    submitted_by = models.ForeignKey(NewComplaint, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.submitted_by

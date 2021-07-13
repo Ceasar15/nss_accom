@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'renting.apps.RentingConfig',
     'users.apps.UsersConfig',
+    'tracking.apps.TrackingConfig',
     'social_django',
     'django_filters',
 

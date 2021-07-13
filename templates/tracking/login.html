@@ -125,7 +125,7 @@
             <div style="position: relative; bottom:70px; margin-left: 230px;" class="row">
                 <div class="col-lg-9">
                     <div class="account-login-inner">
-                        <form method="post" class="ltn__form-box contact-form-box">
+                        <form method="post">
                             {% csrf_token %}
                             <label for="id_username">sssssssStudent ID: </label>
                             <input id="id_username" type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" placeholder="Enter Student Id">
@@ -137,20 +137,7 @@
                         <div class="go-to-btn mt-20">
                             <a href="{% url 'users:password_change' %}"><small>FORGOTTEN YOUR PASSWORD?</small></a>
                         </div>
-                    </div>
-                </div>
-              
-            </div>
-        </div>
-    
-    
-
-    <!-- FOOTER AREA START -->
-    <footer class="ltn__footer-area  ">
-        <div class="footer-top-area  section-bg-2 plr--5">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-3 col-md-6 col-sm-6 col-12">
+                    </form>
                         <div class="footer-widget footer-about-widget">
                             <div class="footer-logo">
                                 <div class="site-logo">
@@ -259,4 +246,3 @@
 
 <!-- Mirrored from maelectrics.com/tf/html/quarter-preview/quarter/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Jul 2021 16:54:40 GMT -->
 </html>
-

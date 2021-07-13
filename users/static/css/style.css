@@ -14223,3 +14223,11 @@ input.cart-plus-minus-box {
 ---------------------------------------------------- */
 
 /*# sourceMappingURL=style.css.map */
+
+
+/* my custom css here */
+.total-complaints-div {
+  background-color: red;
+  width: 40px;
+  height: 60px;
+}

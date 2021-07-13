@@ -84,7 +84,7 @@ class NewVisitor(models.Model):
 
 class NewComplaint(models.Model):
     complaint_id = models.AutoField(primary_key=True)
-    student_index_number = models.ForeignKey(User, on_delete=models.CASCADE)
+    student_index_number = models.CharField(max_length=20)
     student_full_name = models.CharField(max_length=150)
     student_room_number = models.CharField(max_length=10)
     complaint_type = models.CharField(max_length=50)

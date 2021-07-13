@@ -47,7 +47,7 @@ def studentDashboard(request):
 def studentSubmitComplaint(request):
     if request.method == 'POST':
         print(request.POST)
-        if request.POST.get('student_full_name') and request.POST.get('student_index_number') and request.POST.get('student_room_number') and request.POST.get('complaint_type') and request.POST.get('complaint_description') and request.POST.get('mobile_number'):
+        if request.POST.get('student_full_name') and request.POST.get('student_room_number') and request.POST.get('complaint_type') and request.POST.get('complaint_description') and request.POST.get('mobile_number'):
             complaint = NewComplaint()
             complaint.student_index_number = request.user.username
             # complaint.student_index_number = request.POST.get('student_index_number')
@@ -61,7 +61,8 @@ def studentSubmitComplaint(request):
             messages.success(request, "Thank you.")
 
             return redirect("tracking:studentViewAllComplaints")
-            
+        else:
+            return render(request, "tracking/student_submit_complaint.html")    
     else:
         return render(request, "tracking/student_submit_complaint.html")
 

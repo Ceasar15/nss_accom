@@ -41,10 +41,12 @@ def loginStaff(request):
 
 @login_required(login_url='/usr/login')
 def studentDashboard(request):
-    pending_complaints = NewComplaint.objects.all().filter(complaint_status='PENDING').count()
-    
+    queryset = NewComplaint.objects.all().filter(complaint_status='PENDING')
+
     context ={
-        pending_complaints : 'pending_complaints'
+
+        'pending_complaints': queryset
+        
     }
     
     return render(request, 'tracking/student_dashboard.html', context)

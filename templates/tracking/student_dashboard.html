@@ -143,9 +143,12 @@
                 <div style="display: flex; margin-top: 70px; ">
 
                     <div style="background-color: white; color:black; height: 200px; width: 340px; position: relative;  right: 240px; box-shadow: 2px 2px 8px #888888; cursor: pointer">
-                        {% for pen in pending_complaints %}
-                        <h4>Total Complaints: {{ pen }}</h4>
-                        {% endfor %}
+                        <!-- {% if pending_complaints %} -->
+                            <!-- {% for gee in pending_complaints %}
+                                <h4>Total Complaints: {{ gee.complaint_type }}</h4>
+                                <p>{{ gee.student_room_number }}</p>                             
+                            {% endfor %} -->
+                        <!-- {% endif %} -->
                     </div>
     
                     <div style="background-color: white; color:black; height: 200px; width: 340px; position: relative;  right:180px; box-shadow: 2px 2px 8px #888888; cursor: pointer">

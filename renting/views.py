@@ -13,7 +13,6 @@ import requests, pgeocode, pandas, json
 from datetime import datetime
 
 
-
 def home_page(request):
 	# User logged in or not
 	if request.user.is_authenticated:

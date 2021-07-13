@@ -126,16 +126,26 @@
                 <div class="col-lg-9">
                     <div class="account-login-inner">
                         <form action="#" class="ltn__form-box contact-form-box">
-                            <input type="text" name="firstName" placeholder="FIRST NAME" required style="border-color: grey; border-width: 1px;" >
-                            <input type="text" name="lastName" placeholder="LAST NAME" required style="border-color: grey; border-width: 1px;">
-                            <input type="text" name="email" placeholder="EMAIL" required style="border-color: grey; border-width: 1px;">
-                            <input type="text" name="username" placeholder="USERNAME(STUDENT ID)" required style="border-color: grey; border-width: 1px;">
-                            <input type="password" name="password" placeholder="PASSWORD" required style="border-color: grey; border-width: 1px;">
+
+                            <div style="display: flex;">
+                                <input type="text" name="firstName" placeholder="FIRST NAME" required style="border-color: grey;  border-width: 1px; " >
+                                <input type="text" name="lastName" placeholder="LAST NAME" required style="border-color: grey; border-width: 1px;">
+                            </div>
+                            
+                            <div style="display: flex;">
+                                <input type="email" name="email" placeholder="EMAIL" required style="border-color: grey; border-width: 1px; ">
+                                <input type="text" name="username" placeholder="USERNAME(STUDENT ID)" required style="border-color: grey; border-width: 1px;">
+                            </div>
+                            
+                            <div>
+                                <input type="password" name="password" placeholder="PASSWORD" required style="border-color: grey; border-width: 1px;">
+                            </div>
+                            
                             <div class="btn-wrapper mt-0">
                                 <button href="student_submit.html" class="theme-btn-1 btn btn-block" type="submit">SIGN UP</button>
                             </div>
                             <div class="go-to-btn mt-20">
-                                <a href="{% url 'tracking:loginStudent' %}" style="margin-left: 360px;" ><small>Already have an account? Log in here</small></a>
+                                <a href="{% url 'tracking:loginStudent' %}" style="margin-left: 360px; position: relative; bottom: 15px;" ><small>Already have an account? Log in here</small></a>
                             </div>
                         </form>
                     </div>

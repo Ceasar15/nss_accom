@@ -12,16 +12,16 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Place favicon.png in the root directory -->
-    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon" />
-    <!-- Font Icons css -->
-    <link rel="stylesheet" href="{% static 'css/font-icons.css' %}">
-    <!-- plugins css -->
-    <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <!-- Responsive css -->
-    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+   <!-- Place favicon.png in the root directory -->
+   <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon" />
+   <!-- Font Icons css -->
+   <link rel="stylesheet" href="{% static 'css/font-icons.css' %}">
+   <!-- plugins css -->
+   <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+   <!-- Main Stylesheet -->
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   <!-- Responsive css -->
+   <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
 </head>
 
 <body>
@@ -46,13 +46,13 @@
                             <div class="ltn__top-bar-menu">
                                 <ul>
                                     <li class="d-none">
-                                        
- -->                                    </li>
-                                    <li>
-                                   
+                                       
                                     </li>
                                     <li>
                                       
+                                    </li>
+                                    <li>
+                                     
                                     </li>
                                 </ul>
                             </div>
@@ -72,7 +72,7 @@
                             <div class="site-logo">
                                 <a href="index.html"><img src="img/logo.png" alt="Logo"></a>
                             </div>
-                          
+                         
                         </div>
                     </div>
                     <div class="col header-menu-column">
@@ -80,16 +80,29 @@
                             <nav>
                                 <div class="ltn__main-menu">
                                     <ul style="float: right;">
-                                        <li><a href="index.html">Home</a>
-                                            
-                                        </li>
-                                        <li><a href="#">About</a>
-                                            <li><a href="contact.html">Contact</a></li>
-                                            <ul>
-                                               
-
-                                        </li>
                                        
+                                        <li>
+                                            <a href="{% url 'tracking:addNewStudent' %}">Add new student</a></li>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'tracking:studentViewAllComplaints' %}">View all students</a></li>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'tracking:addNewVisitor' %}">Add new visitor</a></li>
+                                        </li>
+
+                                        <li>
+                                            <a href="{% url 'tracking:studentViewAnnouncements' %}">Manage visitors</a></li>
+                                        </li>
+
+                                        <li>
+                                            <a href="{% url 'tracking:postAnnouncement' %}">Post announcement</a></li>
+                                        </li>
+
+                                        <li>
+                                            <a href="#">Current user</a></li>
+                                        </li>
+                                     
                                     </ul>
                                 </div>
                             </nav>
@@ -103,49 +116,92 @@
     </header>
     <!-- HEADER AREA END -->
 
-    
+   
 
     <div class="ltn__utilize-overlay"></div>
 
-    
+   
     </div>
     <!-- BREADCRUMB AREA END -->
 
     <!-- LOGIN AREA START -->
-    <div class="ltn__breadcrumb-area text-left bg-overlay-white-30 bg-image "  data-bg="img/bg/14.jpg">
+    <div class="ltn__breadcrumb-area text-left bg-overlay-white-15 bg-image "  data-bg="img/bg/14.jpg">
         <div style="position: relative; top: -80px;" class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title-area text-center">
-                        <h1 class="section-title">STAFF SIGN IN</h1>
-                        <p>You are welcome staff!<br>Sign in to access your account</p>
+                        <h1 class="section-title">ADD A NEW VISITOR</h1>
                     </div>
                 </div>
-            </div>
-            <div style="position: relative; bottom:70px; margin-left: 230px;" class="row">
-                <div class="col-lg-9">
-                   <div class="account-login-inner">
-                        <form action="{% url 'tracking:staffDashboard' %}" class="ltn__form-box contact-form-box">
-                            <input type="text" name="email" placeholder="USERNAME(Staff ID)" required style="border-color: grey; border-width: 1px;" >
-                            <input type="password" name="password" placeholder="PASSWORD" required style="border-color: grey; border-width: 1px;">
-                            <div class="btn-wrapper mt-0">
-                                <button class="theme-btn-1 btn btn-block" type="submit">SIGN IN</button>
-                            </div>
-                            <div class="go-to-btn mt-20">
-                                <a href="#"><small>FORGOTTEN YOUR PASSWORD?</small></a>
-                                <a href="#" style="margin-left: 170px;" ><small>Don't have an account? Register here</small></a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-              
-            </div>
-        </div>
-    
-  
 
-    <!-- FOOTER AREA START -->
-    <footer class="ltn__footer-area  ">
+                <div class="submit-complaint-form-div">
+                    <form action='#'>
+
+                        <div style=" display: flex;">
+                            <input type='text' placeholder='Visitor full name' required style="width: 600px; border-color: grey; border-width: 1px; margin-right: 30px;" />
+                            <input type='text' placeholder='Visitor index number' required style="width: 600px; border-color: grey; border-width: 1px;" />
+                        </div>
+
+                        <div style=" display: flex; ">
+                            <input type='text' placeholder='Room of visit' required style="width: 600px; border-color: grey; border-width: 1px; margin-right: 30px;" />
+                            <input type='text' placeholder='Person being visited' required style="width: 600px; border-color: grey; border-width: 1px;" />
+                        </div>
+
+                        <div style=" display: flex;">
+                            <input type='text' placeholder='Visitor Mobile Number' required style="width: 600px; border-color: grey; border-width: 1px;" />
+                            
+                            <select style="width: 600px; height: 64px; border-color: grey; border-width: 1px; margin-right: 30px; margin-left: 30px;">
+                                <option>Is the visitor a UG student?</option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                            
+
+                        </div>
+
+
+                        <div class="btn-wrapper mt-0" style="display: flex;">
+                            <button class="theme-btn-1 btn btn-block" type="submit">Add Visitor</button>
+                            <button class="theme-btn-1 btn btn-block" type="button">Cancel</button>
+
+                        </div>
+
+                        
+                        
+                       
+
+                    </form>
+
+                </div>
+
+            </div>
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- FOOTER AREA START 
+    <footer class="ltn__footer-area" >
         <div class="footer-top-area  section-bg-2 plr--5">
             <div class="container-fluid">
                 <div class="row">
@@ -200,7 +256,7 @@
                             <h4 class="footer-title">Institution</h4>
                             <div class="footer-menu">
                                 <ul>
-                                    <li><a href="#">About</a></li>
+                                    <li><a href="about.html">About</a></li>
                                     <li><a href="contact.html">Contact us</a></li>
                                 </ul>
                             </div>
@@ -227,7 +283,7 @@
                 <div class="row">
                     <div class="col-md-6 col-12">
                         <div class="ltn__copyright-design clearfix">
-                            <p>All Rights Reserved @ Group Two <span class="current-year"></span></p>
+                            <p>All Rights Reserved @ Company <span class="current-year"></span></p>
                         </div>
                     </div>
                     <div class="col-md-6 col-12 align-self-center">
@@ -242,7 +298,7 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> -->
     </div>
     <!-- FOOTER AREA END -->
 

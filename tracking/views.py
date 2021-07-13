@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages		
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 from .models import NewComplaint
 
@@ -48,7 +49,8 @@ def studentSubmitComplaint(request):
         print(request.POST)
         if request.POST.get('student_full_name') and request.POST.get('student_index_number') and request.POST.get('student_room_number') and request.POST.get('complaint_type') and request.POST.get('complaint_description') and request.POST.get('mobile_number'):
             complaint = NewComplaint()
-            complaint.student_index_number = request.POST.get('student_index_number')
+            complaint.student_index_number = request.user.username
+            # complaint.student_index_number = request.POST.get('student_index_number')
             complaint.student_full_name = request.POST.get('student_full_name')
             complaint.student_room_number = request.POST.get('student_room_number')
             complaint.complaint_type = request.POST.get('complaint_type')

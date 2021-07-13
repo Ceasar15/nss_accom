@@ -143,7 +143,9 @@
                 <div style="display: flex; margin-top: 70px; ">
 
                     <div style="background-color: white; color:black; height: 200px; width: 340px; position: relative;  right: 240px; box-shadow: 2px 2px 8px #888888; cursor: pointer">
-                        <h4>Total Complaints: .....</h4>
+                        {% for pen in pending_complaints %}
+                        <h4>Total Complaints: {{ pen }}</h4>
+                        {% endfor %}
                     </div>
     
                     <div style="background-color: white; color:black; height: 200px; width: 340px; position: relative;  right:180px; box-shadow: 2px 2px 8px #888888; cursor: pointer">

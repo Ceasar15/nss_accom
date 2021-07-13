@@ -41,7 +41,13 @@ def loginStaff(request):
 
 @login_required(login_url='/usr/login')
 def studentDashboard(request):
-    return render(request, 'tracking/student_dashboard.html')
+    pending_complaints = NewComplaint.objects.all().filter(complaint_status='PENDING').count()
+    
+    context ={
+        pending_complaints : 'pending_complaints'
+    }
+    
+    return render(request, 'tracking/student_dashboard.html', context)
 
 @login_required(login_url='/usr/login')
 def studentSubmitComplaint(request):
@@ -59,7 +65,6 @@ def studentSubmitComplaint(request):
             complaint.complaint_description = request.POST.get('complaint_description')
             complaint.mobile_number = request.POST.get('mobile_number')
 
-            
             complaint.save()
 
             messages.success(request, "Thank you.")

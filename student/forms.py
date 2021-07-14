@@ -29,6 +29,8 @@ class StudentRegisterForm(UserCreationForm):
         return user
 
 class EditProfileForm(UserChangeForm):
+    phone_no = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'input'}))
+
     class Meta:
         model = User
         fields = [

@@ -5,6 +5,6 @@ app_name = 'staff'
 
 urlpatterns = [
     
-    path('loginStudent/', sf.loginStudent, name='loginStudent'),    
+    path('loginStaff/', sf.loginSaff, name='loginStaff'),    
     #path('studentDashboard/', sf.studentDashboard, name='studentDashboard'),
 ]

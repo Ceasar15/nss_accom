@@ -28,7 +28,7 @@ def loginStaff(request):
 
     context = {}
 
-    return render(request, 'student/login_staff.html', context)
+    return render(request, 'staff/login_staff.html', context)
 
 
 

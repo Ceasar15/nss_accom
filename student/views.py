@@ -31,7 +31,9 @@ def loginStudent(request):
 
     context = {}
 
-    return render(request, 'tracking/login.html', context)
+    return render(request, 'student/login_student.html', context)
+    
+
     
 @login_required(login_url='/usr/login')
 def studentDashboard(request):
@@ -43,7 +45,7 @@ def studentDashboard(request):
         
     }
     
-    return render(request, 'tracking/student_dashboard.html', context)
+    return render(request, 'student/student_dashboard.html', context)
 
 @login_required(login_url='/usr/login')
 def studentSubmitComplaint(request):
@@ -65,18 +67,18 @@ def studentSubmitComplaint(request):
 
             messages.success(request, "Thank you.")
 
-            return redirect("tracking:studentViewAllComplaints")
+            return redirect("student:studentViewAllComplaints")
         else:
-            return render(request, "tracking/student_submit_complaint.html")    
+            return render(request, "student/student_submit_complaint.html")    
     else:
-        return render(request, "tracking/student_submit_complaint.html")
+        return render(request, "student/student_submit_complaint.html")
 
 
 @login_required(login_url='/usr/login')
 def studentViewAllComplaints(request):
-    return render(request, 'tracking/student_view_all_complaints.html')
+    return render(request, 'student/student_view_all_complaints.html')
 
 
 @login_required(login_url='/usr/login')
 def studentViewAnnouncements(request):
-    return render(request, 'tracking/student_view_announcements.html')
+    return render(request, 'student/student_view_announcements.html')

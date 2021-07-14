@@ -9,15 +9,11 @@ from users.models import UserType
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from users.forms import StaffRegisterForm, StudentRegisterForm, EditProfileForm
+from student.forms import StudentRegisterForm, EditProfileForm
+from users.forms import StaffRegisterForm, EditProfileForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-# Create your views here.
-
-
-
-
 # Create your views here.
 
 

@@ -10,6 +10,12 @@ COMPLAINT_STATUS = (
     ('DECLINED','DECLINED')
 )
 
+CHOICES = (
+	('student','Student'),
+	('staff','Staff'),
+	('landlord', 'Landlord'),
+)
+
 class NewComplaint(models.Model):
     complaint_id = models.AutoField(primary_key=True)
     student_index_number = models.CharField(max_length=20)

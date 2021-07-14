@@ -125,20 +125,7 @@
             <div style="position: relative; bottom:70px; margin-left: 230px;" class="row">
                 <div class="col-lg-9">
                     <div class="account-login-inner">
-<<<<<<< HEAD
-                        <form action="{% url 'tracking:studentDashboard' %}" class="ltn__form-box contact-form-box">
-                            <input type="text" name="username" placeholder="USERNAME(STUDENT ID)" required style="border-color: grey; border-width: 1px;" >
-                            <input type="password" name="password" placeholder="PASSWORD" required style="border-color: grey; border-width: 1px;">
-                            <div class="btn-wrapper mt-0">
-                                <button class="theme-btn-1 btn btn-block" type="submit">SIGN IN</button>
-                            </div>
-                            <div class="go-to-btn mt-20">
-                                <a href="#"><small>FORGOTTEN YOUR PASSWORD?</small></a>
-                                <a href="{% url 'tracking:studentSignUp' %}" style="margin-left: 170px;" ><small>Don't have an account? Register here</small></a>
-                            </div>
-                        </form>
-=======
-                        <form method="post" class="ltn__form-box contact-form-box">
+                        <form method="post">
                             {% csrf_token %}
                             <label for="id_username">Student ID: </label>
                             <input id="id_username" type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" placeholder="Enter Student Id">
@@ -150,21 +137,7 @@
                         <div class="go-to-btn mt-20">
                             <a href="{% url 'users:password_change' %}"><small>FORGOTTEN YOUR PASSWORD?</small></a>
                         </div>
->>>>>>> 960ce923f0f4d6a39e15d1e3dc180a0f78e68a28
-                    </div>
-                </div>
-              
-            </div>
-        </div>
-    
-    
-
-    <!-- FOOTER AREA START -->
-    <footer class="ltn__footer-area  ">
-        <div class="footer-top-area  section-bg-2 plr--5">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-3 col-md-6 col-sm-6 col-12">
+                    </form>
                         <div class="footer-widget footer-about-widget">
                             <div class="footer-logo">
                                 <div class="site-logo">

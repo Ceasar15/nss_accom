@@ -1,7 +1,15 @@
-from django.shortcuts import render
-def loginStudent(request):
+from django.shortcuts import render, redirect  	
+from django.contrib.auth import authenticate, login, logout		
+from django.contrib import messages		
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+
+
+
+def loginStaff(request):
     
     if request.method == 'POST':
+
         username = request.POST.get('username')
         password =request.POST.get('password')
 
@@ -11,14 +19,16 @@ def loginStudent(request):
             login(request, user)	
 
             if request.user:
-                return redirect('tracking:studentDashboard')
+                return redirect('tracking:staffDashboard')
             else:
-                return redirect('tracking:studentSubmitComplaint')
+                return redirect('tracking:staffSubmitComplaint')
 
         else:
             messages.info(request, 'ID OR Password is incorrect')		
 
     context = {}
 
-    return render(request, 'tracking/login.html', context)
+    return render(request, 'student/login_staff.html', context)
+
+
 

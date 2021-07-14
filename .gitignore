@@ -148,11 +148,12 @@ vscode
 /.vscode
 /.vscode
 
-.vs
-.vs
+
+vs
 /.vs
 /vs
 
 
 # Google Credentials 
 nss-accom-2a99f1221647.json
+.vs

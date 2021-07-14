@@ -3,8 +3,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout		
 from django.contrib import messages		
 from django.contrib.auth import logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
+
+
 
 from .models import NewComplaint
 
@@ -20,7 +22,6 @@ def loginStudent(request):
 
         if user is not None:	
             login(request, user)	
-
             if request.user:
                 return redirect('student:studentDashboard')
         else:
@@ -31,8 +32,12 @@ def loginStudent(request):
     return render(request, 'student/login_student.html', context)
     
 
+def check_group(user):
+    return user.user_group.startswith('Staff')
+
     
-@login_required(login_url='/loginStudent')
+#@login_required(login_url='/loginStudent')
+@user_passes_test(check_group, login_url='/loginStudent')
 def studentDashboard(request):
     # queryset = NewComplaint.objects.all().filter(complaint_status='PENDING')
 

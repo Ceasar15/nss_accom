@@ -36,10 +36,16 @@ class UpdatePhoneNo(forms.ModelForm):
 
 
 
-
+CHOICES = (
+	('student','Student'),
+	('staff','Staff'),
+	('landlord', 'Landlord'),
+)
     
 class StaffRegisterForm(UserCreationForm):
     email = forms.EmailField(required=True)
+    user_group = forms.CharField(max_length=30)
+
 
     class Meta:
         model = User
@@ -50,6 +56,7 @@ class StaffRegisterForm(UserCreationForm):
             'email',
             'password1',
             'password2',
+            'user_group',
         )
 
     @transaction.atomic  

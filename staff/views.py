@@ -5,7 +5,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
 
-
 def loginStaff(request):
     
     if request.method == 'POST':
@@ -43,6 +42,7 @@ def staff_addNewStudent(request):
 @login_required(login_url='/loginStaff')
 def staff_addNewVisitor(request):
     return render(request, 'staff/add_new_visitor.html')
+
 
 @login_required(login_url='/loginStaff')
 def staff_postAnnouncement(request):

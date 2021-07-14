@@ -6,5 +6,8 @@ app_name = 'staff'
 urlpatterns = [
     
     path('loginStaff/', sf.loginStaff, name='loginStaff'),    
+    path('addNewStudent/', sf.staff_addNewStudent, name='addNewStudent'),
+    path('addNewVisitor/', sf.staff_addNewVisitor, name='addNewVisitor'),
+    path('staffDashboard/', sf.staffDashboard, name='staffDashboard'),
     path('staffDashboard/', sf.staffDashboard, name='staffDashboard'),
 ]

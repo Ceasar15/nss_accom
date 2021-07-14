@@ -39,3 +39,5 @@ def staff_addNewStudent(request):
 def staff_addNewVisitor(request):
     return render(request, 'staff/add_new_visitor.html')
 
+def staff_postAnnouncement(request):
+    return render(request, 'staff/post_announcement.html')

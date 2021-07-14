@@ -89,13 +89,13 @@
                                             <a href="#">Contact</a></li>
                                         </li>
                                         <li>
-                                            <a href="{% url 'tracking:studentSubmitComplaint' %}">Submit complaint</a></li>
+                                            <a href="{% url 'student:StudentSubmitComplaint' %}">Submit complaint</a></li>
                                         </li>
                                         <li>
-                                            <a href="{% url 'tracking:studentViewAllComplaints' %}">View all complaints</a></li>
+                                            <a href="{% url 'student:StudentViewAllComplaints' %}">View all complaints</a></li>
                                         </li>
                                         <li>
-                                            <a href="{% url 'tracking:studentViewAnnouncements' %}">View all announcements</a></li>
+                                            <a href="{% url 'student:StudentViewAnnouncements' %}">View all announcements</a></li>
                                         </li>
                                         {% if user.is_authenticated %}	
                                         <li>
@@ -103,7 +103,7 @@
                                             {% else %}
                                         </li>
                                         <li>
-                                            <a href="{% url 'tracking:loginStudent' %}">Login</a></li>
+                                            <a href="{% url 'student:loginStudent' %}">Login</a></li>
                                         {% endif %}
                                      
                                     </ul>

@@ -31,7 +31,7 @@ def Studentregister(request):
         form = StudentRegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('tracking:studentDashboard')
+            return redirect('student:studentDashboard')
 
     context = {'form': StudentRegisterForm()}
     return render(request, 'tracking/sign_up.html', context)

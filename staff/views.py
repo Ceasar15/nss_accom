@@ -31,4 +31,6 @@ def loginStaff(request):
     return render(request, 'staff/login_staff.html', context)
 
 
+def staffDashboard(request):
+    return render(request, 'staff/staff_dashboard.html')
 

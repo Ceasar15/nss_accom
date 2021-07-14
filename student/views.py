@@ -22,9 +22,9 @@ def loginStudent(request):
             login(request, user)	
 
             if request.user:
-                return redirect('tracking:studentDashboard')
+                return redirect('student:studentDashboard')
             else:
-                return redirect('tracking:studentSubmitComplaint')
+                return redirect('student:studentSubmitComplaint')
 
         else:
             messages.info(request, 'ID OR Password is incorrect')		
@@ -37,15 +37,15 @@ def loginStudent(request):
     
 @login_required(login_url='/usr/login')
 def studentDashboard(request):
-    queryset = NewComplaint.objects.all().filter(complaint_status='PENDING')
+    # queryset = NewComplaint.objects.all().filter(complaint_status='PENDING')
 
-    context ={
+    # context ={
 
-        'pending_complaints': queryset
+    #     'pending_complaints': queryset
         
-    }
+    # }
     
-    return render(request, 'student/student_dashboard.html', context)
+    return render(request, 'student/student_dashboard.html')
 
 @login_required(login_url='/usr/login')
 def studentSubmitComplaint(request):

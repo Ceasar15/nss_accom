@@ -23,9 +23,6 @@ def loginStudent(request):
 
             if request.user:
                 return redirect('student:studentDashboard')
-            else:
-                return redirect('student:studentSubmitComplaint')
-
         else:
             messages.info(request, 'ID OR Password is incorrect')		
 
@@ -35,7 +32,7 @@ def loginStudent(request):
     
 
     
-@login_required(login_url='/usr/login')
+@login_required(login_url='/loginStudent')
 def studentDashboard(request):
     # queryset = NewComplaint.objects.all().filter(complaint_status='PENDING')
 
@@ -47,7 +44,7 @@ def studentDashboard(request):
     
     return render(request, 'student/student_dashboard.html')
 
-@login_required(login_url='/usr/login')
+@login_required(login_url='/loginStudent')
 def studentSubmitComplaint(request):
     if request.method == 'POST':
         first_name = request.user.first_name
@@ -74,11 +71,11 @@ def studentSubmitComplaint(request):
         return render(request, "student/student_submit_complaint.html")
 
 
-@login_required(login_url='/usr/login')
+@login_required(login_url='/loginStudent')
 def studentViewAllComplaints(request):
     return render(request, 'student/student_view_all_complaints.html')
 
 
-@login_required(login_url='/usr/login')
+@login_required(login_url='/loginStudent')
 def studentViewAnnouncements(request):
     return render(request, 'student/student_view_announcements.html')

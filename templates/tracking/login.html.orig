@@ -1,0 +1,276 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+
+<!-- Mirrored from maelectrics.com/tf/html/quarter-preview/quarter/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Jul 2021 16:54:40 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Login page</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <!-- Place favicon.png in the root directory -->
+   <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon" />
+   <!-- Font Icons css -->
+   <link rel="stylesheet" href="{% static 'css/font-icons.css' %}">
+   <!-- plugins css -->
+   <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+   <!-- Main Stylesheet -->
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   <!-- Responsive css -->
+   <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+
+<!-- Body main wrapper start -->
+<div class="body-wrapper">
+
+    <!-- HEADER AREA START (header-5) -->
+    <header class="ltn__header-area ltn__header-5 ltn__header-transparent--- gradient-color-4---">
+        <!-- ltn__header-top-area start -->
+        <div class="ltn__header-top-area section-bg-6 top-area-color-white---">
+            <div class="container">
+                <div class="row">
+                   
+                    <div class="col-md-5">
+                        <div class="top-bar-right text-right">
+                            <div class="ltn__top-bar-menu">
+                                <ul>
+                                    <li class="d-none">
+                                       
+                                    </li>
+                                    <li>
+                                      
+                                    </li>
+                                    <li>
+                                     
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ltn__header-top-area end -->
+        
+        <!-- ltn__header-middle-area start -->
+        <div class="ltn__header-middle-area ltn__header-sticky ltn__sticky-bg-white">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="site-logo-wrap">
+                            <div class="site-logo">
+                                <a href="index.html"><img src="img/logo.png" alt="Logo"></a>
+                            </div>
+                         
+                        </div>
+                    </div>
+                    <div class="col header-menu-column">
+                        <div class="header-menu d-none d-xl-block">
+                            <nav>
+                                <div class="ltn__main-menu">
+                                    <ul style="float: right;">
+                                        <li><a href="index.html">Home</a>
+                                         
+                                        </li>
+                                        <li><a href="#">About</a>
+                                            <li><a href="contact.html">Contact</a></li>
+                                            <ul>
+                                               
+
+                                        </li>
+                                     
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <!-- ltn__header-middle-area end -->
+    </header>
+    <!-- HEADER AREA END -->
+
+   
+
+    <div class="ltn__utilize-overlay"></div>
+
+   
+    </div>
+    <!-- BREADCRUMB AREA END -->
+
+    <!-- LOGIN AREA START -->
+    <div class="ltn__breadcrumb-area text-left bg-overlay-white-15 bg-image "  data-bg="img/bg/14.jpg">
+        <div style="position: relative; top: -80px;" class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title-area text-center">
+                        <h1 class="section-title">STUDENT SIGN IN </h1>
+                        <p>You are welcome dear resident!<br>Sign in to access your account</p>
+                    </div>
+                </div>
+            </div>
+            <div style="position: relative; bottom:70px; margin-left: 230px;" class="row">
+                <div class="col-lg-9">
+                    <div class="account-login-inner">
+<<<<<<< HEAD
+                        <form action="{% url 'tracking:studentDashboard' %}" class="ltn__form-box contact-form-box">
+                            <input type="text" name="username" placeholder="USERNAME(STUDENT ID)" required style="border-color: grey; border-width: 1px;" >
+                            <input type="password" name="password" placeholder="PASSWORD" required style="border-color: grey; border-width: 1px;">
+                            <div class="btn-wrapper mt-0">
+                                <button class="theme-btn-1 btn btn-block" type="submit">SIGN IN</button>
+                            </div>
+                            <div class="go-to-btn mt-20">
+                                <a href="#"><small>FORGOTTEN YOUR PASSWORD?</small></a>
+                                <a href="{% url 'tracking:studentSignUp' %}" style="margin-left: 170px;" ><small>Don't have an account? Register here</small></a>
+                            </div>
+                        </form>
+=======
+                        <form method="post" class="ltn__form-box contact-form-box">
+                            {% csrf_token %}
+                            <label for="id_username">Student ID: </label>
+                            <input id="id_username" type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" placeholder="Enter Student Id">
+                            <label for="id_password">Password: </label>
+                            <input id="id_password" type="password" name="password" autocomplete="current-username" placeholder="Enter Password" required="">
+                        <div class="btn-wrapper mt-0">
+                            <button class="theme-btn-1 btn btn-block" type="submit">SIGN IN</button>
+                        </div>
+                        <div class="go-to-btn mt-20">
+                            <a href="{% url 'users:password_change' %}"><small>FORGOTTEN YOUR PASSWORD?</small></a>
+                        </div>
+>>>>>>> 960ce923f0f4d6a39e15d1e3dc180a0f78e68a28
+                    </div>
+                </div>
+              
+            </div>
+        </div>
+    
+    
+
+    <!-- FOOTER AREA START -->
+    <footer class="ltn__footer-area  ">
+        <div class="footer-top-area  section-bg-2 plr--5">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-3 col-md-6 col-sm-6 col-12">
+                        <div class="footer-widget footer-about-widget">
+                            <div class="footer-logo">
+                                <div class="site-logo">
+                                    <img src="img/logo-2.png" alt="Logo">
+                                </div>
+                            </div>
+                            <p>This is a system that helps hall assistants to keep track of students in the hall, also enable students submit complain and help NSS Personnels find accommodation with ease.</p>
+                            <div class="footer-address">
+                                <ul>
+                                    <li>
+                                        <div class="footer-address-icon">
+                                            <i class="icon-placeholder"></i>
+                                        </div>
+                                        <div class="footer-address-info">
+                                            <p>University of Ghana, Legon, Accra.</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="footer-address-icon">
+                                            <i class="icon-call"></i>
+                                        </div>
+                                        <div class="footer-address-info">
+                                            <p><a href="tel:+233 240 090 168">+233 240 090 168</a></p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="footer-address-icon">
+                                            <i class="icon-mail"></i>
+                                        </div>
+                                        <div class="footer-address-info">
+                                            <p><a href="mailto:marianboyeamoah@gmail.com">marianboyeamoah@gmail.com</a></p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="ltn__social-media mt-20">
+                                <ul>
+                                    <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="#" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
+                                    <li><a href="#" title="Youtube"><i class="fab fa-youtube"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-6 col-sm-6 col-12">
+                        <div class="footer-widget footer-menu-widget clearfix">
+                            <h4 class="footer-title">Institution</h4>
+                            <div class="footer-menu">
+                                <ul>
+                                    <li><a href="about.html">About</a></li>
+                                    <li><a href="contact.html">Contact us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-6 col-sm-6 col-12">
+                        <div class="footer-widget footer-menu-widget clearfix">
+                            <h4 class="footer-title">Services</h4>
+                            <div class="footer-menu">
+                                <ul>
+                                   <li><a href="login.html">Login as a Student</a></li>
+                                   <li><a href="login_staff.html">Login as a Staff</a></li>
+                                   <li><a href="login.html">Access NSS accommodation</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
+        <div class="ltn__copyright-area ltn__copyright-2 section-bg-7  plr--5">
+            <div class="container-fluid ltn__border-top-2">
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <div class="ltn__copyright-design clearfix">
+                            <p>All Rights Reserved @ Company <span class="current-year"></span></p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12 align-self-center">
+                        <div class="ltn__copyright-menu text-right">
+                            <ul>
+                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Claim</a></li>
+                                <li><a href="#">Privacy & Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div>
+    <!-- FOOTER AREA END -->
+
+</div>
+<!-- Body main wrapper end -->
+
+    <!-- All JS Plugins -->
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <!-- Main JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+  
+</body>
+
+<!-- Mirrored from maelectrics.com/tf/html/quarter-preview/quarter/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Jul 2021 16:54:40 GMT -->
+</html>
+

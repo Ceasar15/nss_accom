@@ -78,14 +78,3 @@ class NewVisitor(models.Model):
 
     def __str__(self):
         return self.visitor_fullName
-
-
-
-# class ComplaintStatus(models.Model):
-#     complaint_status_id = models.AutoField(primary_key=True)
-#     # who = models.OneToOneField(NewComplaint, on_delete=models.CASCADE)
-#     complaint_status = models.CharField(max_length=20, choices=COMPLAINT_STATUS, default='PENDING')
-#     submitted_by = models.ForeignKey(NewComplaint, on_delete=models.CASCADE)
-
-#     def __str__(self):
-#         return self.submitted_by

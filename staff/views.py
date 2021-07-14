@@ -30,14 +30,20 @@ def loginStaff(request):
 
     return render(request, 'staff/login_staff.html', context)
 
+@login_required(login_url='/loginStaff')
 def staffDashboard(request):
     return render(request, 'staff/staff_dashboard.html')
 
+
+@login_required(login_url='/loginStaff')
 def staff_addNewStudent(request):
     return render(request, 'staff/add_new_student.html')
 
+
+@login_required(login_url='/loginStaff')
 def staff_addNewVisitor(request):
     return render(request, 'staff/add_new_visitor.html')
 
+@login_required(login_url='/loginStaff')
 def staff_postAnnouncement(request):
     return render(request, 'staff/post_announcement.html')

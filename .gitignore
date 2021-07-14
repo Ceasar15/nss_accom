@@ -142,13 +142,15 @@ ENV/
 idea
 /idea
 /.idea
+
 .vscode
 vscode
 /.vscode
 /.vscode
 
-/.vs
 .vs
+.vs
+/.vs
 /vs
 
 

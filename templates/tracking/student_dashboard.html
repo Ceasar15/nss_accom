@@ -80,7 +80,10 @@
                             <nav>
                                 <div class="ltn__main-menu">
                                     <ul style="float: right;">
+<<<<<<< HEAD
                                         <!--
+=======
+>>>>>>> 960ce923f0f4d6a39e15d1e3dc180a0f78e68a28
                                         <li>
                                             <a href="{% url 'tracking:index' %}">Home</a>
                                         </li>
@@ -89,8 +92,11 @@
                                         <li>
                                             <a href="#">Contact</a></li>
                                         </li>
+<<<<<<< HEAD
                                         -->
                                         
+=======
+>>>>>>> 960ce923f0f4d6a39e15d1e3dc180a0f78e68a28
                                         <li>
                                             <a href="{% url 'tracking:studentSubmitComplaint' %}">Submit complaint</a></li>
                                         </li>
@@ -100,9 +106,20 @@
                                         <li>
                                             <a href="{% url 'tracking:studentViewAnnouncements' %}">View all announcements</a></li>
                                         </li>
+<<<<<<< HEAD
                                         <li>
                                             <a href="#">Current user</a></li>
                                         </li>
+=======
+                                        {% if user.is_authenticated %}	
+                                        <li>
+                                            <a href="#">{{ user.first_name }}</a></li>
+                                            {% else %}
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'tracking:loginStudent' %}">Login</a></li>
+                                        {% endif %}
+>>>>>>> 960ce923f0f4d6a39e15d1e3dc180a0f78e68a28
                                      
                                     </ul>
                                 </div>
@@ -131,12 +148,18 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title-area text-center">
+<<<<<<< HEAD
                         <h1 class="section-title">STUDENT DASHBOARD</h1>
                         
+=======
+                        <h1 class="section-title">STUDENT DASHBOARD </h1>
+                        <!-- <p>You are welcome dear resident!<br>Sign in to access your account</p> </br> -->
+>>>>>>> 960ce923f0f4d6a39e15d1e3dc180a0f78e68a28
                     </div>
                 </div>
             </div>
             
+<<<<<<< HEAD
             <div style="position: relative; bottom:70px; margin-left: 230px; " class="row">
 
                 <div style="display: flex; margin-top: 70px; ">
@@ -157,10 +180,34 @@
                 
 
                 
+=======
+            <div style="position: relative; bottom:70px; margin-left: 230px;" class="row">
+                <div style="display: flex; margin-top: 70px; ">
+
+                    <div style="background-color: white; color:black; height: 200px; width: 340px; position: relative;  right: 240px; box-shadow: 2px 2px 8px #888888; cursor: pointer">
+                        <!-- {% if pending_complaints %} -->
+                            <!-- {% for gee in pending_complaints %}
+                                <h4>Total Complaints: {{ gee.complaint_type }}</h4>
+                                <p>{{ gee.student_room_number }}</p>                             
+                            {% endfor %} -->
+                        <!-- {% endif %} -->
+                    </div>
+    
+                    <div style="background-color: white; color:black; height: 200px; width: 340px; position: relative;  right:180px; box-shadow: 2px 2px 8px #888888; cursor: pointer">
+                        <h4>Resolved: .....</h4>
+                    </div>
+    
+                    <div style="background-color: white; color:black; height: 200px; width: 340px; position: relative; right:130px; box-shadow: 2px 2px 8px #888888; cursor: pointer">
+                        <h4>Pending: .....</h4>
+                    </div>
+    
+                </div>
+>>>>>>> 960ce923f0f4d6a39e15d1e3dc180a0f78e68a28
              </div>
     
     
 
+<<<<<<< HEAD
 
 
 
@@ -177,6 +224,9 @@
 
 
     <!-- FOOTER AREA START 
+=======
+    <!-- FOOTER AREA START -->
+>>>>>>> 960ce923f0f4d6a39e15d1e3dc180a0f78e68a28
     <footer class="ltn__footer-area" >
         <div class="footer-top-area  section-bg-2 plr--5">
             <div class="container-fluid">
@@ -274,7 +324,11 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
     </footer> -->
+=======
+    </footer>
+>>>>>>> 960ce923f0f4d6a39e15d1e3dc180a0f78e68a28
     </div>
     <!-- FOOTER AREA END -->
 
@@ -289,5 +343,9 @@
 </body>
 
 <!-- Mirrored from maelectrics.com/tf/html/quarter-preview/quarter/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Jul 2021 16:54:40 GMT -->
+<<<<<<< HEAD
 </html>
 
+=======
+</html
+>>>>>>> 960ce923f0f4d6a39e15d1e3dc180a0f78e68a28

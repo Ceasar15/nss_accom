@@ -125,6 +125,7 @@
             <div style="position: relative; bottom:70px; margin-left: 230px;" class="row">
                 <div class="col-lg-9">
                     <div class="account-login-inner">
+<<<<<<< HEAD
                         <form action="{% url 'tracking:studentDashboard' %}" class="ltn__form-box contact-form-box">
                             <input type="text" name="username" placeholder="USERNAME(STUDENT ID)" required style="border-color: grey; border-width: 1px;" >
                             <input type="password" name="password" placeholder="PASSWORD" required style="border-color: grey; border-width: 1px;">
@@ -136,6 +137,20 @@
                                 <a href="{% url 'tracking:studentSignUp' %}" style="margin-left: 170px;" ><small>Don't have an account? Register here</small></a>
                             </div>
                         </form>
+=======
+                        <form method="post" class="ltn__form-box contact-form-box">
+                            {% csrf_token %}
+                            <label for="id_username">Student ID: </label>
+                            <input id="id_username" type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" placeholder="Enter Student Id">
+                            <label for="id_password">Password: </label>
+                            <input id="id_password" type="password" name="password" autocomplete="current-username" placeholder="Enter Password" required="">
+                        <div class="btn-wrapper mt-0">
+                            <button class="theme-btn-1 btn btn-block" type="submit">SIGN IN</button>
+                        </div>
+                        <div class="go-to-btn mt-20">
+                            <a href="{% url 'users:password_change' %}"><small>FORGOTTEN YOUR PASSWORD?</small></a>
+                        </div>
+>>>>>>> 960ce923f0f4d6a39e15d1e3dc180a0f78e68a28
                     </div>
                 </div>
               
@@ -250,12 +265,11 @@
 <!-- Body main wrapper end -->
 
     <!-- All JS Plugins -->
-    <script src="js/plugins.js"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
     <!-- Main JS -->
-    <script src="js/main.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
   
 </body>
 
 <!-- Mirrored from maelectrics.com/tf/html/quarter-preview/quarter/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Jul 2021 16:54:40 GMT -->
 </html>
-

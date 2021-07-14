@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'renting.apps.RentingConfig',
     'users.apps.UsersConfig',
+    'tracking.apps.TrackingConfig',
     'social_django',
     'django_filters',
 
@@ -145,7 +146,7 @@ USE_TZ = True
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = 'https://finalyearprojectdatabase-53948.web.app/'
+LOGOUT_REDIRECT_URL = '/'
 
 # For password reset
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

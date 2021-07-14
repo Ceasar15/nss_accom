@@ -133,6 +133,7 @@
                 </div>
 
                 <div class="submit-complaint-form-div">
+<<<<<<< HEAD
                     <form action='#'>
 
                         <div style=" display: flex;">
@@ -147,6 +148,21 @@
 
                         <div style=" display: flex;">
                             <select  required style="width: 600px; height: 64px; border-color: grey; border-width: 1px; margin-right: 30px;">
+=======
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div style=" display: flex;">
+                            <!-- <input type='text' name="student_full_name" placeholder='Student full name' style="width: 600px; border-color: grey; border-width: 1px; margin-right: 30px;" />
+                            <input type='text' name="student_index_number" placeholder='Student index number' style="width: 600px; border-color: grey; border-width: 1px;" /> -->
+                        </div>
+                        <div style=" display: flex;">
+                            <input type='text' name="student_room_number" placeholder='Room number' required style="width: 600px; border-color: grey; border-width: 1px; margin-right: 30px;" />
+                            <input type='text' name="mobile_number" placeholder='Mobile number' required style="width: 600px; border-color: grey; border-width: 1px;" />
+                        </div>
+
+                        <div style=" display: flex;">
+                            <select name="complaint_type" required style="width: 600px; height: 64px; border-color: grey; border-width: 1px; margin-right: 30px;">
+>>>>>>> 960ce923f0f4d6a39e15d1e3dc180a0f78e68a28
                                     <option>Select Complaint type</option>
                                     <option>Electrical</option>
                                     <option>Carpentry</option>
@@ -154,6 +170,7 @@
                                     <option>Masonry</option>
                                     <option>Plumbing</option>
                             </select>
+<<<<<<< HEAD
                             <input type='text' placeholder='Brief Complaint description eg. Blown socket' required style="width: 600px; border-color: grey; border-width: 1px;" />
                         </div>
 
@@ -167,6 +184,16 @@
                         
                        
 
+=======
+                            <input type='text' name="complaint_description" placeholder='Brief Complaint description eg. Blown socket' required style="width: 600px; border-color: grey; border-width: 1px;" />
+                        </div>
+                        <div class="btn-wrapper mt-0" style="display: flex;">
+                            <button class="theme-btn-1 btn btn-block" type="submit">Submit Complaint</button>
+                            <!-- <button class="theme-btn-1 btn btn-block" type="button">Cancel</button> -->
+
+                        </div>
+
+>>>>>>> 960ce923f0f4d6a39e15d1e3dc180a0f78e68a28
                     </form>
 
                 </div>
@@ -310,5 +337,9 @@
 </body>
 
 <!-- Mirrored from maelectrics.com/tf/html/quarter-preview/quarter/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Jul 2021 16:54:40 GMT -->
+<<<<<<< HEAD
 </html>
 
+=======
+</html>
+>>>>>>> 960ce923f0f4d6a39e15d1e3dc180a0f78e68a28

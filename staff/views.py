@@ -30,8 +30,12 @@ def loginStaff(request):
 
     return render(request, 'staff/login_staff.html', context)
 
-
 def staffDashboard(request):
     return render(request, 'staff/staff_dashboard.html')
-    
+
+def staff_addNewStudent(request):
+    return render(request, 'staff/add_new_student.html')
+
+def staff_addNewVisitor(request):
+    return render(request, 'staff/add_new_visitor.html')
 

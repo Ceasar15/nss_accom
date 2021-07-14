@@ -6,7 +6,7 @@ from student.models import CHOICES
 
 class StudentRegisterForm(UserCreationForm):
     email = forms.EmailField(required=True)
-    user_type = forms.ChoiceField(choices=CHOICES, widget=forms.Select(attrs={'class':''}))
+    phone_no = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'input'}))
     
     class Meta:
         model = User
@@ -17,7 +17,7 @@ class StudentRegisterForm(UserCreationForm):
             'email',
             'password1',
             'password2',
-            'user_type',
+            'phone_no',
         )
     
     @transaction.atomic                 
@@ -27,3 +27,15 @@ class StudentRegisterForm(UserCreationForm):
         user.save()       
         
         return user
+
+class EditProfileForm(UserChangeForm):
+    class Meta:
+        model = User
+        fields = [
+            'first_name',
+            'last_name',
+            'username',
+            'email',
+            'password'
+            'phone_no',
+        ]

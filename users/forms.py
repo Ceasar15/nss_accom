@@ -36,29 +36,7 @@ class UpdatePhoneNo(forms.ModelForm):
 
 
 
-class StudentRegisterForm(UserCreationForm):
-    email = forms.EmailField(required=True)
-    user_type = forms.ChoiceField(choices=CHOICES, widget=forms.Select(attrs={'class':''}))
-    
-    class Meta:
-        model = User
-        fields = (
-            'first_name',
-            'last_name',
-            'username',
-            'email',
-            'password1',
-            'password2',
-            'user_type',
-        )
-    
-    @transaction.atomic                 
-    def save(self):
-        user = super().save(commit=False) 
-        user.student = True            
-        user.save()       
-        
-        return user
+
     
 class StaffRegisterForm(UserCreationForm):
     email = forms.EmailField(required=True)

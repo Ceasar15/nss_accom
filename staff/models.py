@@ -54,9 +54,9 @@ class PostAnnouncement(models.Model):
 #    announcement_id = models.AutoField()
     announcement_title = models.CharField(max_length=100)
     announcement_body = models.TextField()
-    date_submitted = models.DateField(default=timezone.now)
-    time_submitted = models.TimeField(default=timezone.now)
-    annou_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date_submitted = models.DateField(auto_created=True, default=timezone.now)
+    time_submitted = models.TimeField(auto_created=True, default=timezone.now)
+    annou_user = models.ForeignKey(User, on_delete=models.CASCADE, default='1')
     class Meta:
         ordering = ['-date_submitted']
 

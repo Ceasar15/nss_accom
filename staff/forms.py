@@ -10,9 +10,16 @@ class PostAnnoumcementForm(forms.ModelForm):
     
     class Meta:
         model = PostAnnouncement
+        # fields = '__all__'
         fields = (
+
             'announcement_title',
-            'announcement_body'
+            'announcement_body',
+        
+        )
+        exclude = (
+            'date_submitted',
+            'time_submitted',
         )
 
 class StudentImagesForm(forms.ModelForm):

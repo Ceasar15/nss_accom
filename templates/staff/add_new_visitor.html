@@ -80,7 +80,7 @@
                             <nav>
                                 <div class="ltn__main-menu">
                                     <ul style="float: right;">
-                                        <li><a href="index.html">Home</a>
+                                        <li><a href="{% url 'tracking:index' %}">Home</a>
                                            
                                         </li>
                                         <li><a href="#">About</a>
@@ -122,37 +122,47 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-item input-item-name ltn__custom-icon">
-                                        <input type="text" name="name" placeholder="Enter your name">
+                                        <input type="text" name="visitor_full_name" placeholder="Visitor Full Name">
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <div class="input-item input-item-email ltn__custom-icon">
-                                        <input type="email" name="email" placeholder="Enter email address">
+                                        <input type="text" name="index_number" placeholder="Index Number">
                                     </div>
                                 </div>
+
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-email ltn__custom-icon">
+                                        <input type="text" name="visiting_room" placeholder="Room of visit">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-email ltn__custom-icon">
+                                        <input type="text" name="person_visited" placeholder="Person being visited">
+                                    </div>
+                                </div>
+
                                 <div class="col-md-6">
                                     <div class="input-item">
                                         <select class="nice-select">
-                                            <option>Select Complaint Type</option>
-                                            <option>Plumbing </option>
-                                            <option>Door knobs </option>
-                                            <option>Electrical gadgets</option>
-                                            <option>Leakages</option>
-                                            <option>Theft Issue</option>
-                                            <option>water issue</option>
+                                            <option>Is the visitor a UG student?</option>
+                                            <option>Yes</option>
+                                            <option>No</option>
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <div class="input-item input-item-phone ltn__custom-icon">
-                                        <input type="text" name="phone" placeholder="Enter phone number">
+                                        <input type="text" name="visitor_phone_number" placeholder="Visitor phone number">
                                     </div>
                                 </div>
+
                             </div>
-                            <div class="input-item input-item-textarea ltn__custom-icon">
-                                <textarea name="message" placeholder="Enter message"></textarea>
-                            </div>
-                            <p><label class="input-info-save mb-0"><input type="checkbox" name="agree"> Save my name, email, and website in this browser for the next time I comment.</label></p>
+
+                          
                             <div class="btn-wrapper mt-0">
                                 <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Add visitor</button>
                             </div>

@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -6,21 +7,21 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Accommodation Finder Site</title>
+    <title>NSS accommodation finder</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Place favicon.png in the root directory -->
-    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
-    <!-- Font Icons css -->
-    <link rel="stylesheet" href="css/font-icons.css">
-    <!-- plugins css -->
-    <link rel="stylesheet" href="css/plugins.css">
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Responsive css -->
-    <link rel="stylesheet" href="css/responsive.css">
+   <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon" />
+   <!-- Font Icons css -->
+   <link rel="stylesheet" href="{% static 'css/font-icons.css' %}">
+   <!-- plugins css -->
+   <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+   <!-- Main Stylesheet -->
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   <!-- Responsive css -->
+   <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
 </head>
 
 <body>
@@ -70,6 +71,7 @@
             </div>
         </div>
         <!-- ltn__header-top-area end -->
+
         
         <!-- ltn__header-middle-area start -->
         <div class="ltn__header-middle-area ltn__header-sticky ltn__sticky-bg-white">
@@ -78,8 +80,8 @@
                     <div class="col">
                         <div class="site-logo-wrap">
                             <div class="site-logo">
-                                <li><a href="index.html">LOGO</a></li>
-                                <!-- <a href="index.html"><img src="img/logo.png" alt="Logo"></a> -->
+                                
+                                <a href="index.html"><img src="{% static 'img/logo.png' %}" alt="Logo"></a> 
                             </div>
                        
                         </div>
@@ -123,17 +125,17 @@
                                 <div class="slide-item-info">
                                     <div class="slide-item-info-inner ltn__slide-animation">
                                         <h6 class="slide-sub-title white-color--- animated"><span><i class="fas fa-home"></i></span>Group Two Accommodation Finder</h6>
-                                        <h1 class="slide-title animated ">Find An Apartmment <br> closest to You</h1>
+                                        <h1 class="slide-title animated ">Find An Apartmment<br> closest to You</h1>
                                         <div class="slide-brief animated">
                                             <p>Here at accommodation finder site, we help individuals to locate accommodation closer to their workplace with low price rates</p>
                                         </div>
                                         <div class="btn-wrapper animated">
-                                            <a href="register.html" class="theme-btn-1 btn btn-effect-1">Click to Sign Up</a>
+                                            <a href="{% url 'renting:registerAccount' %}" class="theme-btn-1 btn btn-effect-1">Click to Sign Up</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div style="top: 200px;" class="slide-item-img">
-                                    <img src="img/slider/21.png" alt="#">
+                                    <img src="{% static 'img/21.png' %}" alt="#">
                                 </div>
                             </div>
                         </div>
@@ -559,9 +561,9 @@
     <!-- preloader area end -->
 
     <!-- All JS Plugins -->
-    <script src="js/plugins.js"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
     <!-- Main JS -->
-    <script src="js/main.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
   
 </body>
 

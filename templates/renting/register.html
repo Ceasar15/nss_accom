@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
@@ -8,16 +9,16 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Place favicon.png in the root directory -->
-    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
-    <!-- Font Icons css -->
-    <link rel="stylesheet" href="css/font-icons.css">
-    <!-- plugins css -->
-    <link rel="stylesheet" href="css/plugins.css">
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Responsive css -->
-    <link rel="stylesheet" href="css/responsive.css">
+   <!-- Place favicon.png in the root directory -->
+   <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon" />
+   <!-- Font Icons css -->
+   <link rel="stylesheet" href="{% static 'css/font-icons.css' %}">
+   <!-- plugins css -->
+   <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+   <!-- Main Stylesheet -->
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   <!-- Responsive css -->
+   <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
 </head>
 
 <body>
@@ -57,8 +58,8 @@
                     <div class="col">
                         <div class="site-logo-wrap">
                             <div class="site-logo">
-                                <li><a href="index.html">LOGO</a></li>
-                                <!-- <a href="index.html"><img alt="logo"></a> -->
+                             
+                                <a href="index.html"><img src="{% static 'img/logo.png' %}" alt="Logo"></a> 
                             </div>
                         </div>
                     </div>
@@ -113,7 +114,7 @@
                                <!-- <a href=""><button class="theme-btn-1 btn btn-block" type="submit">SIGN UP</button></a> -->
                             </div>
                             <div class="go-to-btn mt-20">
-                <a href="#"><small>Already have an account? <a href="login_NSS.html"><i>sign in</i></a></small></a>
+                                <a href="{% url 'renting:signInLandlord' %}"><small>Already have an account? <i>sign in</i></small></a>
                             </div>
                         </form>
                     </div>
@@ -122,6 +123,9 @@
         </div>
     
     <!-- LOGIN AREA END -->
+
+
+
 
     <!-- FOOTER AREA START -->
     <footer class="ltn__footer-area  ">
@@ -229,9 +233,9 @@
 <!-- Body main wrapper end -->
 
     <!-- All JS Plugins -->
-    <script src="js/plugins.js"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
     <!-- Main JS -->
-    <script src="js/main.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
   
 </body>
 </html>

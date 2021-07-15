@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
@@ -8,16 +9,17 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+
     <!-- Place favicon.png in the root directory -->
-    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon" />
     <!-- Font Icons css -->
-    <link rel="stylesheet" href="css/font-icons.css">
+    <link rel="stylesheet" href="{% static 'css/font-icons.css' %}">
     <!-- plugins css -->
-    <link rel="stylesheet" href="css/plugins.css">
+    <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
     <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <!-- Responsive css -->
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
 </head>
 
 <body>
@@ -58,7 +60,7 @@
                         <div class="site-logo-wrap">
                             <div class="site-logo">
                                 <li><a href="index.html">LOGO</a></li>
-                                <!-- <a href="index.html"><img alt="logo"></a> -->
+                                <a href="index.html"><img src="{% static 'img/logo.png' %}" alt="Logo"></a> 
                             </div>
                         </div>
                     </div>
@@ -107,7 +109,7 @@
                             <input type="text" name="email" placeholder="Email">
                             <input type="password" name="password" placeholder="Password">
                             <div class="btn-wrapper mt-0">
-                                <a href="shop-grid.html" class="theme-btn-1 btn btn-effect-1">SIGN IN</a>
+                                <a href="{% url 'renting:viewRentAdds' %}" class="theme-btn-1 btn btn-effect-1">SIGN IN</a>
                                 <!-- <button href="student_submit.html" class="theme-btn-1 btn btn-block" type="submit">SIGN IN</button> -->
                             </div>
                             <div class="go-to-btn mt-20">

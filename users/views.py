@@ -173,3 +173,9 @@ def account_delete(request):
     usr_obj.delete()
 
     return HttpResponseRedirect(reverse('renting:home'))
+
+
+
+#nss homepage.
+def nss_index(request):
+    return render(request, '')

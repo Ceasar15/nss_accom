@@ -36,6 +36,7 @@ def user_signin_status(request):
 	elif request.user.is_anonymous:
 		return JsonResponse({'user':'not_logged_in'})
 
+
 def search_list(request):
 	f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())
 	return render(request, 'renting/renting_house_results.html', {'filter': f})
@@ -301,6 +302,7 @@ def save_rules(request, id):
 			print(r_form.errors)
 
 
+
 def save_pt(request, id):
 	
 	try:
@@ -507,6 +509,34 @@ def del_house_image(request,id):
 
 			else:
 				return JsonResponse({'object':'not_found'},status=404)
+
+
+
+# the view for the first page of the nss accomodation.
+def nssAccomFirstPage(request):
+	return render(request, 'renting/index_NSS.html')
+
+
+
+# the page for the landlord to register.
+def registerAccount(request):
+	return render (request, 'renting/register.html')
+
+
+
+# the sign in page for the landlord.
+def signInLandlord(request):
+	return render(request, 'renting/login_NSS.html')
+
+
+# the page where a landlord can view his rent adds.
+def viewRentAdds(request):
+	return render(request, 'renting/view_rent_adds.html')
+
+
+
+
+
 
 
 

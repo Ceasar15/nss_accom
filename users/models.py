@@ -12,7 +12,7 @@ CHOICES = (
 
 
 class Typed(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE,null=True, blank=True, related_name='ut')
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE,null=True, blank=True, related_name='ut')
     user_group = models.CharField(max_length=20, choices=CHOICES)
     phone_no = models.IntegerField(null=True)
 

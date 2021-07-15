@@ -32,10 +32,11 @@ def Studentregister(request):
         user_contact_form = UserContactFrom(request.POST)
         if all((form.is_valid(), user_contact_form.is_valid())):
 
+            form.save(commit=False)
             user_contact_form.save(commit=False)
-            user_contact_form.user = form 
+            user_contact_form.user_id = form 
             user_contact_form.save()
-            form = form.save()
+            form.save()
             
             # user_contact_form.user_group = request.POST.get('user_group')
             # user_contact_form.phone_no = request.POST.get('phone_no')

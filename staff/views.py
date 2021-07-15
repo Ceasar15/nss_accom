@@ -43,7 +43,9 @@ def staff_postAnnouncement(request):
     if request.method == 'POST':
         p_form = PostAnnoumcementForm(request.POST)
         if p_form.is_valid():
-            p_form.save()
+            obj = p_form.save(commit=False)
+            obj.annou_user = request.user
+            obj.save()
             messages.success(request, f'Your Announcement has been Updated Successfully')
             
             return redirect('staff:staffDashboard')

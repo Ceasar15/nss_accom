@@ -28,8 +28,8 @@ def Studentregister(request):
     #     return super().get_context_data(**kwargs)
 
     if request.method == 'POST':
-        form = StudentRegisterForm(request.POST, instance=request.user)
-        user_contact_form = UserContactFrom(request.POST, instance=request.user.usertype)
+        form = StudentRegisterForm(request.POST)
+        user_contact_form = UserContactFrom(request.POST)
         if form.is_valid() and user_contact_form.is_valid():
             form.save()
             user_contact_form.save()

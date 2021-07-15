@@ -11,12 +11,12 @@ CHOICES = (
 )
 
 
-class UserType(models.Model):
+class Typed(models.Model):
 
 	user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='ut')
 	# user_type = models.CharField(max_length=8, choices=CHOICES, default='owner')
 	user_group = models.CharField(max_length=20, choices=CHOICES, default='student')
-	phone_no = models.IntegerField()
+	phone_no = models.IntegerField(default='0000000000')
 
 	class Meta:
 		unique_together = ('user', 'user_group')
@@ -30,8 +30,8 @@ class ContactDetails(models.Model):
 @receiver(post_save, sender=User)
 def create_user_type(sender, instance, created, **kwargs):
     if created:
-        UserType.objects.create(user=instance)
+        Typed.objects.create(user=instance)
 
 @receiver(post_save, sender=User)
 def save_user_type(sender, instance, **kwargs):
-    instance.usertype.save()
+    instance.typed.save()

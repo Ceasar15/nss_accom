@@ -23,12 +23,6 @@ class Typed(models.Model):
     # class Meta:
     #     unique_together = ('user', 'user_group')
 
-
-class ContactDetails(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone_no = models.IntegerField()
-            
-
 @receiver(post_save, sender=User)
 def create_user_type(sender, instance, created, **kwargs):
     if created:
@@ -36,4 +30,11 @@ def create_user_type(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=User)
 def save_user_type(sender, instance, **kwargs):
-    instance.typed.save()
+    instance.ut.save()
+
+
+
+class ContactDetails(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone_no = models.IntegerField()
+            

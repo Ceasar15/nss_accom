@@ -31,8 +31,9 @@ def Studentregister(request):
         form = StudentRegisterForm(request.POST)
         user_contact_form = UserContactFrom(request.POST)
         if form.is_valid() and user_contact_form.is_valid():
-            user_contact_form.save()
             form.save()
+            # new_contact = user_contact_form.save(commit=False)
+            # new_contact.save()
             return redirect('student:studentDashboard')
 
     context = {

@@ -68,7 +68,7 @@
                     <div class="col">
                         <div class="site-logo-wrap">
                             <div class="site-logo">
-                                <a href="index.html"><img src="img/logo.png" alt="Logo"></a>
+                                <a href="index.html"><img src="{% static 'img/logo.png' %}" alt="Logo"></a>
                             </div>
                          
                         </div>
@@ -123,7 +123,7 @@
                                         <div class="btn-wrapper animated">
                                             <a href="{% url 'student:loginStudent' %}" class="theme-btn-1 btn btn-effect-1">STUDENT</a>
                                              <a href="{% url 'staff:loginStaff' %}" class="theme-btn-1 btn btn-effect-1">STAFF</a>
-                                            <a href="service.html" class="theme-btn-1 btn btn-effect-1">ACCESS ACCOMMODATION</a>
+                                            <a href="{% url 'renting:nssAccomFirstPage' %}" class="theme-btn-1 btn btn-effect-1">ACCESS ACCOMMODATION</a>
                                         </div>
                                     </div>
                                 </div>

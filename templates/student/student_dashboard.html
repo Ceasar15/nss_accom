@@ -70,7 +70,7 @@
                     <div class="col">
                         <div class="site-logo-wrap">
                             <div class="site-logo">
-                                <a href="index.html"><img src="img/logo.png" alt="Logo"></a>
+                                <a href="index.html"><img src="{% static 'img/logo.png' %}" alt="Logo"></a> 
                             </div>
                          
                         </div>
@@ -149,6 +149,7 @@
                                 <p>{{ gee.student_room_number }}</p>                             
                             {% endfor %} -->
                         <!-- {% endif %} -->
+                        <h4>Total complaints: ..... </h4>
                     </div>
     
                     <div style="background-color: white; color:black; height: 200px; width: 340px; position: relative;  right:180px; box-shadow: 2px 2px 8px #888888; cursor: pointer">

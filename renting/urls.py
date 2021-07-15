@@ -1,6 +1,7 @@
 from django.urls import path
 from renting import views as rt
 
+
 app_name='renting'
 urlpatterns = [
 	path('', rt.home_page, name='home'),
@@ -21,4 +22,9 @@ urlpatterns = [
 	path('hd/<int:id>/', rt.house_details, name='house_details'),
 	path('adlist/', rt.rent_ads, name='rent_ad_list'),
 	path('del_img/<int:id>/',rt.del_house_image, name='del_img'),
+	path('nssAccomFirstPage/', rt.nssAccomFirstPage, name='nssAccomFirstPage'),
+	path('registerAccount/', rt.registerAccount, name='registerAccount'),
+	path('signInLandlord/', rt.signInLandlord, name='signInLandlord'),
+	path('viewRentAdds/', rt.viewRentAdds, name='viewRentAdds'),
+	path('postRentAdds/', rt.postRentAdds, name='postRentAdds'),
 ]

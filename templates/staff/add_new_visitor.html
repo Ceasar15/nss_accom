@@ -3,16 +3,16 @@
 <html class="no-js" lang="zxx">
 
 
-<!-- Mirrored from maelectrics.com/tf/html/quarter-preview/quarter/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Jul 2021 16:54:40 GMT -->
+<!-- Mirrored from maelectrics.com/tf/html/quarter-preview/quarter/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Jul 2021 16:55:02 GMT -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Login page</title>
+    <title>post_submit complain</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-   <!-- Place favicon.png in the root directory -->
+    <!-- Place favicon.png in the root directory -->
    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon" />
    <!-- Font Icons css -->
    <link rel="stylesheet" href="{% static 'css/font-icons.css' %}">
@@ -49,10 +49,10 @@
                                        
                                     </li>
                                     <li>
-                                      
+                                       
                                     </li>
                                     <li>
-                                     
+                                        
                                     </li>
                                 </ul>
                             </div>
@@ -70,9 +70,9 @@
                     <div class="col">
                         <div class="site-logo-wrap">
                             <div class="site-logo">
-                                <a href="index.html"><img src="img/logo.png" alt="Logo"></a>
+                                <a href="index.html"><img src="{% static 'img/logo.png' %}" alt="Logo"></a> 
                             </div>
-                         
+                           
                         </div>
                     </div>
                     <div class="col header-menu-column">
@@ -80,35 +80,20 @@
                             <nav>
                                 <div class="ltn__main-menu">
                                     <ul style="float: right;">
-                                       
-                                        <li>
-                                            <a href="{% url 'staff:addNewStudent' %}">Add new student</a></li>
+                                        <li><a href="index.html">Home</a>
+                                           
                                         </li>
-                                        <li>
-                                            <a href="{% url 'student:studentViewAllComplaints' %}">View all students</a></li>
+                                        <li><a href="#">About</a>
+                                           
                                         </li>
-                                        <li>
-                                            <a href="{% url 'staff:addNewVisitor' %}">Add new visitor</a></li>
-                                        </li>
-
-                                        <li>
-                                            <a href="{% url 'student:studentViewAnnouncements' %}">Manage visitors</a></li>
-                                        </li>
-
-                                        <li>
-                                            <a href="{% url 'staff:postAnnouncement' %}">Post announcement</a></li>
-                                        </li>
-
-                                        <li>
-                                            <a href="#">Current user</a></li>
-                                        </li>
-                                     
+                                      
+                                        <li><a href="contact.html">Contact</a></li>
                                     </ul>
                                 </div>
                             </nav>
                         </div>
                     </div>
-                   
+                  
                 </div>
             </div>
         </div>
@@ -118,90 +103,72 @@
 
    
 
-    <div class="ltn__utilize-overlay"></div>
-
-   
-    </div>
+    <!-- BREADCRUMB AREA START -->
+    <div class="ltn__breadcrumb-area text-left bg-overlay-white-30 bg-image "  data-bg="img/bg/14.jpg">
+     
+    
     <!-- BREADCRUMB AREA END -->
 
-    <!-- LOGIN AREA START -->
-    <div class="ltn__breadcrumb-area text-left bg-overlay-white-15 bg-image "  data-bg="img/bg/14.jpg">
-        <div style="position: relative; top: -80px;" class="container">
+    
+    
+    <!-- CONTACT MESSAGE AREA START -->
+    <div class="ltn__contact-message-area mb-120 mb--100">
+        <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="section-title-area text-center">
-                        <h1 class="section-title">ADD A NEW VISITOR</h1>
+                    <div class="ltn__form-box contact-form-box box-shadow white-bg">
+                        <h4 class="title-2">Add a new visitor !</h4>
+                        <form id="contact-form" action="https://maelectrics.com/tf/html/quarter-preview/quarter/mail.php" method="post">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-name ltn__custom-icon">
+                                        <input type="text" name="name" placeholder="Enter your name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-email ltn__custom-icon">
+                                        <input type="email" name="email" placeholder="Enter email address">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-item">
+                                        <select class="nice-select">
+                                            <option>Select Complaint Type</option>
+                                            <option>Plumbing </option>
+                                            <option>Door knobs </option>
+                                            <option>Electrical gadgets</option>
+                                            <option>Leakages</option>
+                                            <option>Theft Issue</option>
+                                            <option>water issue</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-phone ltn__custom-icon">
+                                        <input type="text" name="phone" placeholder="Enter phone number">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-item input-item-textarea ltn__custom-icon">
+                                <textarea name="message" placeholder="Enter message"></textarea>
+                            </div>
+                            <p><label class="input-info-save mb-0"><input type="checkbox" name="agree"> Save my name, email, and website in this browser for the next time I comment.</label></p>
+                            <div class="btn-wrapper mt-0">
+                                <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Add visitor</button>
+                            </div>
+                            <p class="form-messege mb-0 mt-20"></p>
+                        </form>
                     </div>
                 </div>
-
-                <div class="submit-complaint-form-div">
-                    <form action='#'>
-
-                        <div style=" display: flex;">
-                            <input type='text' placeholder='Visitor full name' required style="width: 600px; border-color: grey; border-width: 1px; margin-right: 30px;" />
-                            <input type='text' placeholder='Visitor index number' required style="width: 600px; border-color: grey; border-width: 1px;" />
-                        </div>
-
-                        <div style=" display: flex; ">
-                            <input type='text' placeholder='Room of visit' required style="width: 600px; border-color: grey; border-width: 1px; margin-right: 30px;" />
-                            <input type='text' placeholder='Person being visited' required style="width: 600px; border-color: grey; border-width: 1px;" />
-                        </div>
-
-                        <div style=" display: flex;">
-                            <input type='text' placeholder='Visitor Mobile Number' required style="width: 600px; border-color: grey; border-width: 1px;" />
-                            
-                            <select style="width: 600px; height: 64px; border-color: grey; border-width: 1px; margin-right: 30px; margin-left: 30px;">
-                                <option>Is the visitor a UG student?</option>
-                                <option>Yes</option>
-                                <option>No</option>
-                            </select>
-                            
-
-                        </div>
-
-
-                        <div class="btn-wrapper mt-0" style="display: flex;">
-                            <button class="theme-btn-1 btn btn-block" type="submit">Add Visitor</button>
-                            <button class="theme-btn-1 btn btn-block" type="button">Cancel</button>
-
-                        </div>
-
-                        
-                        
-                       
-
-                    </form>
-
-                </div>
-
             </div>
-            
-            
+        </div>
+    </div>
+    <!-- CONTACT MESSAGE AREA END -->
 
+   
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- FOOTER AREA START 
-    <footer class="ltn__footer-area" >
+   <!-- FOOTER AREA START -->
+    <footer style="position: relative; bottom: -120px;" class="ltn__footer-area  ">
         <div class="footer-top-area  section-bg-2 plr--5">
             <div class="container-fluid">
                 <div class="row">
@@ -256,7 +223,7 @@
                             <h4 class="footer-title">Institution</h4>
                             <div class="footer-menu">
                                 <ul>
-                                    <li><a href="about.html">About</a></li>
+                                    <li><a href="#">About</a></li>
                                     <li><a href="contact.html">Contact us</a></li>
                                 </ul>
                             </div>
@@ -274,7 +241,7 @@
                             </div>
                         </div>
                     </div>
-                  
+                   
                 </div>
             </div>
         </div>
@@ -298,20 +265,19 @@
                 </div>
             </div>
         </div>
-    </footer> -->
+    </footer>
     </div>
     <!-- FOOTER AREA END -->
 
-</div>
 <!-- Body main wrapper end -->
 
     <!-- All JS Plugins -->
-    <script src="js/plugins.js"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
     <!-- Main JS -->
-    <script src="js/main.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
   
 </body>
 
-<!-- Mirrored from maelectrics.com/tf/html/quarter-preview/quarter/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Jul 2021 16:54:40 GMT -->
+<!-- Mirrored from maelectrics.com/tf/html/quarter-preview/quarter/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Jul 2021 16:55:05 GMT -->
 </html>
 

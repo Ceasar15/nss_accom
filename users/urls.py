@@ -1,8 +1,10 @@
 from django.urls import path, include
 
+
 from users.views import user_type, settings, account_delete
 from users import views 
 from django.contrib.auth.views import LoginView
+
 
 
 app_name = 'users'

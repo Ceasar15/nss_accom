@@ -18,9 +18,7 @@ def loginStaff(request):
             login(request, user)	
 
             if request.user:
-                return redirect('tracking:staffDashboard')
-            else:
-                return redirect('tracking:staffSubmitComplaint')
+                return redirect('staff:staffDashboard')
 
         else:
             messages.info(request, 'ID OR Password is incorrect')		

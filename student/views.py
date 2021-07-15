@@ -32,12 +32,11 @@ def loginStudent(request):
     return render(request, 'student/login_student.html', context)
     
 
-def check_group(user):
-    return user.user_group.startswith('Staff')
-
+# def check_group(user):
+#     return user.user_group.startswith('Staff')
+# @user_passes_test(check_group, login_url='/loginStudent')
     
-#@login_required(login_url='/loginStudent')
-@user_passes_test(check_group, login_url='/loginStudent')
+@login_required(login_url='/loginStudent')
 def studentDashboard(request):
     # queryset = NewComplaint.objects.all().filter(complaint_status='PENDING')
 

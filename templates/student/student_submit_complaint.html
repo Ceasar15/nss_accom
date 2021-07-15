@@ -70,7 +70,7 @@
                     <div class="col">
                         <div class="site-logo-wrap">
                             <div class="site-logo">
-                                <a href="index.html"><img src="{% static 'img/logo.png' %}" alt="Logo"></a> 
+                                <a href="{% url 'tracking:index' %}"><img src="{% static 'img/logo.png' %}" alt="Logo"></a> 
                             </div>
                            
                         </div>
@@ -122,7 +122,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-item input-item-name ltn__custom-icon">
-                                        <input type="text" name="name" placeholder="Enter your name">
+                                        <input type="text" name="name" placeholder="Room number">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -139,22 +139,31 @@
                                             <option>Electrical gadgets</option>
                                             <option>Leakages</option>
                                             <option>Theft Issue</option>
-                                            <option>water issue</option>
+                                            <option>Water issue</option>
+                                            <option>Other</option>
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <div class="input-item input-item-phone ltn__custom-icon">
                                         <input type="text" name="phone" placeholder="Enter phone number">
                                     </div>
                                 </div>
+
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-phone ltn__custom-icon">
+                                        <input type="text" name="phone" placeholder="Specify the complaint type here if it is not included in above dropdown" style="width: 1070px">
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="input-item input-item-textarea ltn__custom-icon">
-                                <textarea name="message" placeholder="Enter message"></textarea>
+                                <textarea name="message" placeholder="Complaint Description"></textarea>
                             </div>
-                            <p><label class="input-info-save mb-0"><input type="checkbox" name="agree"> Save my name, email, and website in this browser for the next time I comment.</label></p>
+
                             <div class="btn-wrapper mt-0">
-                                <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Submit Complain</button>
+                                <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Submit Complaint</button>
                             </div>
                             <p class="form-messege mb-0 mt-20"></p>
                         </form>

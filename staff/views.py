@@ -39,6 +39,7 @@ def staff_addNewStudent(request):
 def staff_addNewVisitor(request):
     return render(request, 'staff/add_new_visitor.html')
 
+<<<<<<< HEAD
 def staff_postAnnouncement(request):
 
     if request.method == 'POST':
@@ -58,3 +59,12 @@ def staff_postAnnouncement(request):
             }
         
     return render(request, 'staff/post_announcement.html', context)
+||||||| 267ab62
+
+def staff_postAnnouncement(request):
+    return render(request, 'staff/post_announcement.html')
+=======
+
+def staffPostAnnouncement(request):
+    return render(request, 'staff/post_announcement.html')
+>>>>>>> 7e0be6d48572a06651656d28fb7f2dbf1d7982b6

@@ -44,8 +44,7 @@ CHOICES = (
     
 class StaffRegisterForm(UserCreationForm):
     email = forms.EmailField(required=True)
-    user_group = forms.CharField(max_length=30)
-
+    user_group  = forms.CharField(max_length=30, widget=forms.Select(choices= CHOICES))
 
     class Meta:
         model = User

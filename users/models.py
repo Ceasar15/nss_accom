@@ -14,12 +14,12 @@ CHOICES = (
 class UserType(models.Model):
 
 	user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='ut')
-	user_type = models.CharField(max_length=8, choices=CHOICES, default='owner')
-	# user_group = models.CharField(max_length=20, choices=CHOICES, default='student')
-
+	# user_type = models.CharField(max_length=8, choices=CHOICES, default='owner')
+	user_group = models.CharField(max_length=20, choices=CHOICES, default='student')
+	phone_no = models.IntegerField()
 
 	class Meta:
-		unique_together = ('user', 'user_type')
+		unique_together = ('user', 'user_group')
 
 
 class ContactDetails(models.Model):
@@ -28,10 +28,10 @@ class ContactDetails(models.Model):
 
 
 @receiver(post_save, sender=User)
-def create_profile(sender, instance, created, **kwargs):
+def create_user_type(sender, instance, created, **kwargs):
     if created:
-        Profile.objects.create(user=instance)
+        UserType.objects.create(user=instance)
 
 @receiver(post_save, sender=User)
-def save_profile(sender, instance, **kwargs):
-    instance.profile.save()
+def save_user_type(sender, instance, **kwargs):
+    instance.usertype.save()

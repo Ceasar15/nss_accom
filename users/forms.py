@@ -32,10 +32,6 @@ class UpdatePhoneNo(forms.ModelForm):
         model = ContactDetails
         fields = ['phone_no']
 
-
-
-
-
 CHOICES = (
 	('Student','Student'),
 	('Staff','Staff'),

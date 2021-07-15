@@ -9,10 +9,10 @@ from users.models import UserType
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from student.forms import StudentRegisterForm, EditProfileForm
+from student.forms import StudentRegisterForm, EditProfileForm, UserContactFrom
 from users.forms import StaffRegisterForm, EditProfileForm
 from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.auth import logout
+from django.contrib.auth import logoutContactDetails
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
@@ -28,12 +28,18 @@ def Studentregister(request):
     #     return super().get_context_data(**kwargs)
 
     if request.method == 'POST':
-        form = StudentRegisterForm(request.POST)
-        if form.is_valid():
+        form = StudentRegisterForm(request.POST, instance=request.user)
+        user_contact_form = UserContactFrom(request.POST, instance=request.user.usertype)
+        if form.is_valid() and user_contact_form.is_valid():
             form.save()
+            user_contact_form.save()
             return redirect('student:studentDashboard')
 
-    context = {'form': StudentRegisterForm()}
+    context = {
+        'form': StudentRegisterForm(),
+        'user_contact_form': UserContactFrom()
+        }
+        
     return render(request, 'tracking/register.html', context)
 
 

@@ -14,7 +14,7 @@ CHOICES = (
 class Typed(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,null=True, blank=True, related_name='ut')
     user_group = models.CharField(max_length=20, choices=CHOICES, null=True, default='student')
-    phone_no = models.IntegerField(default='0000000000', null=True)
+    phone_no = models.IntegerField(max_length=50 ,default='9000000008', null=True)
 
 
     def __str__(self):

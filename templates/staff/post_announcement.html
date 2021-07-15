@@ -95,7 +95,7 @@
                                         </li>
 
                                         <li>
-                                            <a href="{% url 'staff:postAnnouncement' %}">Post announcement</a></li>
+                                            <a href="{% url 'staff:staff_postAnnouncement' %}">Post announcement</a></li>
                                         </li>
 
                                         <li>
@@ -134,14 +134,14 @@
                 </div>
 
                 <div class="submit-complaint-form-div">
-                    <form action='#'>
-
-                        <div style="margin-left: 250px; position: relative; bottom: 20px;">
+                    <form method="post">
+                        {% csrf_token %}
+                        <!-- <div style="margin-left: 250px; position: relative; bottom: 20px;">
                             <input type='text' placeholder='Announcement title' required style="width: 800px; border-color: grey; border-width: 1px; margin-right: 30px;" />
 
                             <textarea name='announcement-body' placeholder="Announcement Body" style="height:200px; width: 800px; border-color: grey; border-width: 1px; resize: none;"  ></textarea>
-                        </div>
-
+                        </div> -->
+                        {{ p_form }}
                        
 
 

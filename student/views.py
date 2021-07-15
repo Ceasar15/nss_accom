@@ -20,10 +20,11 @@ def loginStudent(request):
 
         user = authenticate(request, username=username, password=password)
 
-        if user is not None:	
-            login(request, user)	
-            if request.user:
-                return redirect('student:studentDashboard')
+        if user is not None:
+            if user
+                login(request, user)	
+                if request.user:
+                    return redirect('student:studentDashboard')
         else:
             messages.info(request, 'ID OR Password is incorrect')		
 

@@ -1,3 +1,4 @@
+
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
@@ -39,7 +40,15 @@ class UserContactFrom(forms.ModelForm):
         fields = (
             'phone_no',
             'user_group'
-        ) 
+        )
+    
+    def clean_phone_no(self):
+        phone_no = self.cleaned_data['phone_no']
+        return phone_no
+
+    def clean_user_group(self):
+        user_group = self.cleaned_data['user_group']
+        return user_group
 
 
 class EditProfileForm(UserChangeForm):

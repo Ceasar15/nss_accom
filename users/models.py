@@ -17,20 +17,19 @@ class Typed(models.Model):
     phone_no = models.IntegerField(null=True)
 
 
-    def __str__(self):
-        return self.phone_no
 
-    # class Meta:
-    #     unique_together = ('user', 'user_group')
 
-@receiver(post_save, sender=User)
-def create_user_type(sender, instance, created, **kwargs):
-    if created:
-        Typed.objects.create(user=instance)
+    class Meta:
+        unique_together = ('user_id', 'user_group')
 
-@receiver(post_save, sender=User)
-def save_user_type(sender, instance, **kwargs):
-    instance.ut.save()
+# @receiver(post_save, sender=User)
+# def create_user_type(sender, instance, created, **kwargs):
+#     if created:
+#         Typed.objects.create(user_id=instance)
+
+# @receiver(post_save, sender=User)
+# def save_user_type(sender, instance, **kwargs):
+#     instance.ut.save()
 
 
 

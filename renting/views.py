@@ -534,6 +534,12 @@ def viewRentAdds(request):
 	return render(request, 'renting/view_rent_adds.html')
 
 
+# the page where a landlord can post his rent adds.
+def postRentAdds(request):
+	return render(request, 'renting/post_rent_adds.html')
+
+
+
 
 
 

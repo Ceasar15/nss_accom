@@ -25,5 +25,6 @@ urlpatterns = [
 	path('nssAccomFirstPage/', rt.nssAccomFirstPage, name='nssAccomFirstPage'),
 	path('registerAccount/', rt.registerAccount, name='registerAccount'),
 	path('signInLandlord/', rt.signInLandlord, name='signInLandlord'),
-	path('viewRentAdds/', rt.viewRentAdds, name='viewRentAdds')
+	path('viewRentAdds/', rt.viewRentAdds, name='viewRentAdds'),
+	path('postRentAdds/', rt.postRentAdds, name='postRentAdds'),
 ]

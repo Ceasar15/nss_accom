@@ -4,8 +4,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
-from .models import PostAnnouncement
 from .forms import PostAnnoumcementForm
+from users.models import Typed
+
 
 def loginStaff(request):
     
@@ -16,12 +17,12 @@ def loginStaff(request):
 
         user = authenticate(request, username=username, password=password)
 
-        if user is not None:	
-            login(request, user)	
-
-            if request.user:
-                return redirect('staff:staffDashboard')
-
+        if user is not None:
+            typed = Typed.objects.filter(user_id=user).first();
+            if typed.user_group == 'staff':
+                login(request, user)	
+                if request.user:
+                    return redirect('staff:staffDashboard')
         else:
             messages.info(request, 'ID OR Password is incorrect')		
 

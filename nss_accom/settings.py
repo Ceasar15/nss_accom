@@ -43,9 +43,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Third Party Apps
     'renting.apps.RentingConfig',
     'users.apps.UsersConfig',
     'tracking.apps.TrackingConfig',
+    'student.apps.StudentConfig',
+    'staff.apps.StaffConfig',
     'social_django',
     'django_filters',
 

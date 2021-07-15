@@ -8,6 +8,8 @@ urlpatterns = [
 
 	path('admin/doc/',include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),
+    path('', include('student.urls')),
+    path('', include('staff.urls')),
     path('', include('tracking.urls')),
     path('', include('renting.urls')),
     path('',include('social_django.urls', namespace='social')),

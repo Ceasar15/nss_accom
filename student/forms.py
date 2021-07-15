@@ -7,6 +7,7 @@ from student.models import CHOICES
 class StudentRegisterForm(UserCreationForm):
     email = forms.EmailField(required=True)
     phone_no = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'input'}))
+    user_group  = forms.CharField(max_length=30, widget=forms.Select(choices= CHOICES))
     
     class Meta:
         model = User
@@ -18,6 +19,7 @@ class StudentRegisterForm(UserCreationForm):
             'password1',
             'password2',
             'phone_no',
+            'user_group',
         )
     
     @transaction.atomic                 

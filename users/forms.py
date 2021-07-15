@@ -37,9 +37,9 @@ class UpdatePhoneNo(forms.ModelForm):
 
 
 CHOICES = (
-	('student','Student'),
-	('staff','Staff'),
-	('landlord', 'Landlord'),
+	('Student','Student'),
+	('Staff','Staff'),
+	('Landlord', 'Landlord'),
 )
     
 class StaffRegisterForm(UserCreationForm):

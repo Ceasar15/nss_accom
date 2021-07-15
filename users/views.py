@@ -34,7 +34,7 @@ def Studentregister(request):
             return redirect('student:studentDashboard')
 
     context = {'form': StudentRegisterForm()}
-    return render(request, 'tracking/sign_up.html', context)
+    return render(request, 'tracking/register.html', context)
 
 
 

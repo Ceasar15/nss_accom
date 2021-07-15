@@ -6,7 +6,7 @@ from django.db.models import Q
 
 from .forms import SearchForm, RentalHouseForm, HouseHasForm, AmenitiesForm, RulesForm, PreferredTenantForm, HouseImagesForm, HouseImagesEditForm
 from .models import NewRentalHouse, HouseHas, Amenities, PreferredTenant, Rules, HouseImages, SearchFilter
-from users.models import UserType
+from users.models import Typed
 from users.forms import UserTypeForm
 
 import requests, pgeocode, pandas, json
@@ -103,7 +103,7 @@ def post_rent_ad(request):
 	elif request.user.is_authenticated:
 		# Saving the User_type
 		try:
-			ut = UserType.objects.get(user=request.user)
+			ut = Typed.objects.get(user=request.user)
 			ut_form = UserTypeForm(data={'user_type':'owner'},instance=ut)
 		except:
 			ut = None

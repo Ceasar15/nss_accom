@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.db import transaction
 from django.forms import fields
 from student.models import CHOICES
-from users.forms import UserType
+from users.forms import Typed
 
 class StudentRegisterForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -35,7 +35,7 @@ class UserContactFrom(forms.ModelForm):
     user_group  = forms.CharField(max_length=30, widget=forms.Select(choices= CHOICES))
 
     class Meta:
-        model = UserType
+        model = Typed
         fields = (
             'phone_no',
             'user_group'

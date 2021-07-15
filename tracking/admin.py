@@ -1,6 +1,4 @@
-from users.models import UserType
-from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
+
 from django.contrib import admin
 
 from .models import *

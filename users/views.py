@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 from users.forms import UserTypeForm, UserForm, UpdatePhoneNo
-from users.models import UserType
+from users.models import Typed
 
 
 from django.http import HttpResponse
@@ -31,8 +31,8 @@ def Studentregister(request):
         form = StudentRegisterForm(request.POST)
         user_contact_form = UserContactFrom(request.POST)
         if form.is_valid() and user_contact_form.is_valid():
-            form.save()
             user_contact_form.save()
+            form.save()
             return redirect('student:studentDashboard')
 
     context = {
@@ -115,7 +115,7 @@ def logout_view(request):
 def user_type(request):
     if request.user.is_authenticated:
         try:
-            ut = UserType.objects.get(user=request.user)
+            ut = Typed.objects.get(user=request.user)
         except:
             ut = None
 

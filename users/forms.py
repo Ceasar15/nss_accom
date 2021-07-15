@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from users.models import UserType, CHOICES, ContactDetails
+from users.models import Typed, CHOICES, ContactDetails
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from django.db import transaction
@@ -8,7 +8,7 @@ from django.db import transaction
 class UserTypeForm(forms.ModelForm):
     user_type = forms.ChoiceField(choices=CHOICES, widget=forms.Select(attrs={'class':''}))
     class Meta:
-        model = UserType
+        model = Typed
         fields = ['user_type']
 
 

@@ -12,7 +12,7 @@ from django.shortcuts import render, redirect
 from student.forms import StudentRegisterForm, EditProfileForm, UserContactFrom
 from users.forms import StaffRegisterForm, EditProfileForm
 from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.auth import logoutContactDetails
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
@@ -39,7 +39,7 @@ def Studentregister(request):
         'form': StudentRegisterForm(),
         'user_contact_form': UserContactFrom()
         }
-        
+
     return render(request, 'tracking/register.html', context)
 
 

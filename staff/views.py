@@ -37,16 +37,25 @@ def staffDashboard(request):
 def staff_addNewStudent(request):
     if request.method == 'POST':
         s_form = NewStudentForm(request.POST)
+        # s_image = StudentImagesForm(request.POST, request.FILES)
         if s_form.is_valid():
-            sos = s_form.save(commit=False)
-            sos.save()
+            
+            sform = s_form.save(commit=False)
+            sform.save()
+
+            # simage = s_image.save(commit=False)
+            # print(simage)
+            # simage.new_student = request.newstudent
+            # simage.save()
+
             messages.success(request, f'New Student Added')
 
             return redirect('staff:staffDashboard')
         
-        context = {
-            's_form': NewStudentForm()
-        }
+    context = {
+        's_form': NewStudentForm(),
+        's_image': StudentImagesForm()
+    }
 
     return render(request, 'staff/add_new_student.html', context)
 

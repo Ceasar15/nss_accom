@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import fields
-from .models import GENDER_PREF, LEVEL_CHOICES, VISITOR_STATUS, NewStudent, NewVisitor, PostAnnouncement, StudentImages
+from .models import GENDER_PREF, LEVEL_CHOICES, VISITOR_STATUS, NewStudent, NewVisitor, PostAnnouncement
 
 
 class PostAnnoumcementForm(forms.ModelForm):
@@ -30,6 +30,7 @@ class NewStudentForm(forms.ModelForm):
     course = forms.CharField(max_length=50)
     level = forms.ChoiceField(choices=LEVEL_CHOICES)
     mobile_number = forms.CharField(max_length=50)
+    images = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class':'file-input','multiple':True}), required=False)
     
 
     class Meta:
@@ -44,6 +45,7 @@ class NewStudentForm(forms.ModelForm):
         'course',
         'level',
         'mobile_number',
+        'images',
         'check_in',
         
         )
@@ -52,9 +54,9 @@ class NewStudentForm(forms.ModelForm):
             'date_registered',
         )
 
-class StudentImagesForm(forms.ModelForm):
-    images = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class':'file-input','multiple':True}), required=False)
+# class StudentImagesForm(forms.ModelForm):
 
-    class Meta:
-        model = StudentImages
-        fields = ['images']
+
+#     class Meta:
+#         model = StudentImages
+#         fields = ['images']

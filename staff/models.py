@@ -13,9 +13,11 @@ GENDER_PREF = (
 )
 
 LEVEL_CHOICES = (
-    ('M','MALE'),
-    ('F','FEMALE'),
-    ('O','OTHERS')
+    ('100','100'),
+    ('200','200'),
+    ('300','300'),
+    ('400', '400'),
+    ('Graduate', 'Graduate')
 )
 
 VISITOR_STATUS = (
@@ -35,6 +37,7 @@ class NewStudent(models.Model):
     course = models.CharField(max_length=50)
     level = models.CharField(max_length=50, choices=LEVEL_CHOICES)
     mobile_number = models.CharField(max_length=50)
+    images = models.ImageField(upload_to='media/StudentImages/%Y/%m/%d/', blank=True)
     date_registered = models.DateTimeField(auto_now=True)
     check_in = models.BooleanField(default=False)
 
@@ -45,9 +48,8 @@ class NewStudent(models.Model):
         return self.first_name
     
 
-class StudentImages(models.Model):
-    images = models.ImageField(upload_to='media/StudentImages/%Y/%m/%d/', blank=True)
-    new_student= models.ForeignKey(NewStudent, on_delete=models.CASCADE)
+# class StudentImages(models.Model):
+#     new_student= models.ForeignKey(NewStudent, on_delete=models.CASCADE)
 
 
 class PostAnnouncement(models.Model):

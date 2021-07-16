@@ -35,8 +35,8 @@ class NewStudent(models.Model):
     course = models.CharField(max_length=50)
     level = models.CharField(max_length=50, choices=LEVEL_CHOICES)
     mobile_number = models.CharField(max_length=50)
-    date_registered = models.DateTimeField()
-    check_in = models.BooleanField()
+    date_registered = models.DateTimeField(auto_now=True)
+    check_in = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-date_registered']

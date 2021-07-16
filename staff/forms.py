@@ -6,7 +6,6 @@ from .models import GENDER_PREF, LEVEL_CHOICES, VISITOR_STATUS, NewStudent, NewV
 class PostAnnoumcementForm(forms.ModelForm):
     announcement_title = forms.CharField(max_length=100)
     announcement_body = forms.Textarea()
-    # user_group  = forms.CharField(max_length=30, widget=forms.Select(choices= CHOICES))
     
     class Meta:
         model = PostAnnouncement
@@ -20,6 +19,37 @@ class PostAnnoumcementForm(forms.ModelForm):
         exclude = (
             'date_submitted',
             'time_submitted',
+        )
+
+class NewStudentForm(forms.ModelsForm):
+    index_number = forms.CharField(max_length=15)
+    first_name = forms.CharField(max_length=50)
+    last_name = forms.CharField(max_length=50)
+    gender = forms.ChoiceField(choices=GENDER_PREF)
+    room_number = forms.CharField(max_length=10)
+    course = forms.CharField(max_length=50)
+    level = forms.ChoiceField(choice=LEVEL_CHOICES ,max_length=20)
+    mobile_number = forms.CharField(max_length=50)
+    
+
+    class Meta:
+        model = NewStudent
+        fields = (
+
+        'index_number',
+        'first_name',
+        'last_name',
+        'gender',
+        'room_number',
+        'course',
+        'level',
+        'mobile_number',
+        'check_in',
+        
+        )
+    
+        exclude = (
+            'date_registered',
         )
 
 class StudentImagesForm(forms.ModelForm):

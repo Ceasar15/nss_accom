@@ -36,7 +36,7 @@ def staffDashboard(request):
 
 def staff_addNewStudent(request):
     if request.method == 'POST':
-        s_form = NewStudentForm(request.POST)
+        s_form = NewStudentForm(request.POST, files=request.FILES)
         # s_image = StudentImagesForm(request.POST, request.FILES)
         if s_form.is_valid():
             

@@ -10,6 +10,7 @@ from .forms import SearchForm, RentalHouseForm, HouseHasForm, AmenitiesForm, Rul
 from .models import NewRentalHouse, HouseHas, Amenities, PreferredTenant, Rules, HouseImages, SearchFilter
 from users.models import Typed
 from users.forms import UserTypeForm
+from student.forms import StudentRegisterForm, UserContactFrom
 
 import requests, pgeocode, pandas, json
 from datetime import datetime
@@ -522,26 +523,26 @@ def nssAccomFirstPage(request):
 
 # the page for the landlord to register.
 def registerAccount(request):
-    # form = StudentRegisterForm()
-    # user_contact_form =  UserContactFrom()
-    # if request.method == 'POST':
-    #     form = StudentRegisterForm(request.POST)
-    #     user_contact_form = UserContactFrom(request.POST)
-    #     if all((form.is_valid(), user_contact_form.is_valid() )):
+    form = StudentRegisterForm()
+    user_contact_form =  UserContactFrom()
+    if request.method == 'POST':
+        form = StudentRegisterForm(request.POST)
+        user_contact_form = UserContactFrom(request.POST)
+        if all((form.is_valid(), user_contact_form.is_valid() )):
 
-    #         tt = form.save()
-    #         print(tt.id)
-    #         obs = user_contact_form.save(commit=False)
-    #         obs.user_id_id = tt.id
-    #         obs.save()
+            tt = form.save()
+            print(tt.id)
+            obs = user_contact_form.save(commit=False)
+            obs.user_id_id = tt.id
+            obs.save()
 
-    #         return redirect('student:studentDashboard')
+            return redirect('renting:signInLandlord')
 
-    # context = {
-    #     'form': StudentRegisterForm(),
-    #     'user_contact_form': UserContactFrom()
-    #     }
-    return render (request, 'renting/register.html')
+    context = {
+        'form': StudentRegisterForm(),
+        'user_contact_form': UserContactFrom()
+        }
+    return render (request, 'renting/register.html', context)
 
 
 

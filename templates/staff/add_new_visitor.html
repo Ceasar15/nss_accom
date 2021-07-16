@@ -108,7 +108,6 @@
      
     
     <!-- BREADCRUMB AREA END -->
-
     
     
     <!-- CONTACT MESSAGE AREA START -->
@@ -118,7 +117,12 @@
                 <div class="col-lg-12">
                     <div class="ltn__form-box contact-form-box box-shadow white-bg">
                         <h4 class="title-2">Add a new visitor !</h4>
-                        <form id="contact-form" action="https://maelectrics.com/tf/html/quarter-preview/quarter/mail.php" method="post">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ s_form }}
+                            <input type="submit" value="Add">
+                        </form>
+                        <!-- <form id="contact-form" action="https://maelectrics.com/tf/html/quarter-preview/quarter/mail.php" method="post">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-item input-item-name ltn__custom-icon">
@@ -167,7 +171,7 @@
                                 <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Add visitor</button>
                             </div>
                             <p class="form-messege mb-0 mt-20"></p>
-                        </form>
+                        </form> -->
                     </div>
                 </div>
             </div>

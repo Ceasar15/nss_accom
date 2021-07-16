@@ -68,7 +68,21 @@ def staff_addNewStudent(request):
 
 
 def staff_addNewVisitor(request):
-    return render(request, 'staff/add_new_visitor.html')
+    if request.method == 'POST':
+        s_form = NewStudentForm(request.POST)
+        if s_form.is_valid():
+        
+            sform = s_form.save(commit=False)
+            sform.save()
+
+            messages.success(request, f'New Student Added')
+
+            return redirect('staff:staffDashboard')
+        
+    context = {
+        's_form': NewStudentForm(),
+    }
+    return render(request, 'staff/add_new_visitor.html', context)
 
 
 def staffPostAnnouncement(request):

@@ -54,9 +54,4 @@ class NewStudentForm(forms.ModelForm):
             'date_registered',
         )
 
-# class StudentImagesForm(forms.ModelForm):
-
-
-#     class Meta:
-#         model = StudentImages
-#         fields = ['images']
+class NewVisitorForm(forms.ModelForm)

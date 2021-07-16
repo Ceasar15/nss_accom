@@ -37,16 +37,10 @@ def staffDashboard(request):
 def staff_addNewStudent(request):
     if request.method == 'POST':
         s_form = NewStudentForm(request.POST, files=request.FILES)
-        # s_image = StudentImagesForm(request.POST, request.FILES)
         if s_form.is_valid():
             
             sform = s_form.save(commit=False)
             sform.save()
-
-            # simage = s_image.save(commit=False)
-            # print(simage)
-            # simage.new_student = request.newstudent
-            # simage.save()
 
             messages.success(request, f'New Student Added')
 

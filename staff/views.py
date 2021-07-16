@@ -54,7 +54,6 @@ def staff_addNewStudent(request):
         
     context = {
         's_form': NewStudentForm(),
-        's_image': StudentImagesForm()
     }
 
     return render(request, 'staff/add_new_student.html', context)

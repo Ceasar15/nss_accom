@@ -119,11 +119,10 @@
                     <div class="ltn__form-box contact-form-box box-shadow white-bg">
                         <h4 class="title-2">Add a new student !</h4>
 
-                        <form method="post">
+                        <form method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             {{ s_form }}
-                            {{ s_image }}
-                            <input type="submit" value="Submit">
+                            <input type="submit" value="Add Student">
                         </form>
                         <!-- <form id="contact-form" action="https://maelectrics.com/tf/html/quarter-preview/quarter/mail.php" method="post">
                             <div class="row">

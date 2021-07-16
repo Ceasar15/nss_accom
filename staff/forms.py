@@ -30,7 +30,7 @@ class NewStudentForm(forms.ModelForm):
     course = forms.CharField(max_length=50)
     level = forms.ChoiceField(choices=LEVEL_CHOICES)
     mobile_number = forms.CharField(max_length=50)
-    images = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class':'file-input','multiple':True}), required=False)
+    # images = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class':'file-input','multiple':True}), required=False)
     
 
     class Meta:

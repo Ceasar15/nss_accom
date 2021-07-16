@@ -30,8 +30,6 @@ class NewStudentForm(forms.ModelForm):
     course = forms.CharField(max_length=50)
     level = forms.ChoiceField(choices=LEVEL_CHOICES)
     mobile_number = forms.CharField(max_length=50)
-    # images = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class':'file-input','multiple':True}), required=False)
-    
 
     class Meta:
         model = NewStudent
@@ -54,4 +52,18 @@ class NewStudentForm(forms.ModelForm):
             'date_registered',
         )
 
-class NewVisitorForm(forms.ModelForm)
+class NewVisitorForm(forms.ModelForm):
+
+    class Meta:
+        model = NewVisitor
+        fields = (
+            'visiting_id',
+            'visiting_status',
+            'visiting_fullName',
+            'visiting_room',
+            'room_member_getting_visited',
+            'visiting_mobile_number',
+        )
+        exclude = (
+            'visiting_date_time',
+        )

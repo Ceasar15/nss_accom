@@ -72,7 +72,7 @@ class NewVisitor(models.Model):
     room_member_getting_visited = models.CharField(max_length=150)
     visiting_mobile_number = models.CharField(max_length=30)
     visiting_date_time = models.DateTimeField(default=timezone.now)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['-visiting_date_time']

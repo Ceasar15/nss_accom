@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
 from .forms import NewStudentForm, PostAnnoumcementForm
+from .models import NewStudent, NewVisitor, PostAnnouncement
+from student.models import NewComplaint
 from users.models import Typed
 
 
@@ -31,7 +33,19 @@ def loginStaff(request):
     return render(request, 'staff/login_staff.html', context)
 
 def staffDashboard(request):
-    return render(request, 'staff/staff_dashboard.html')
+    total_student = NewStudent.objects.all().count()
+    total_visitors = NewVisitor.objects.all().count()
+    total_complains = NewComplaint.objects.all().count()
+
+    context = {
+        
+        'total_student' : total_student,
+        'total_visitors': total_visitors,
+        'total_complains': total_complains,
+
+    }
+
+    return render(request, 'staff/staff_dashboard.html', context)
 
 
 def staff_addNewStudent(request):

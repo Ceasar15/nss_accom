@@ -57,9 +57,8 @@ class NewVisitorForm(forms.ModelForm):
     class Meta:
         model = NewVisitor
         fields = (
-            'visiting_id',
             'visiting_status',
-            'visiting_fullName',
+            'visitor_fullName',
             'visiting_room',
             'room_member_getting_visited',
             'visiting_mobile_number',

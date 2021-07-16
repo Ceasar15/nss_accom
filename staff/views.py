@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
-from .forms import NewStudentForm, PostAnnoumcementForm
+from .forms import NewStudentForm, PostAnnoumcementForm, NewVisitorForm
 from .models import NewStudent, NewVisitor, PostAnnouncement
 from student.models import NewComplaint
 from users.models import Typed
@@ -69,18 +69,18 @@ def staff_addNewStudent(request):
 
 def staff_addNewVisitor(request):
     if request.method == 'POST':
-        s_form = NewStudentForm(request.POST)
+        s_form = NewVisitorForm(request.POST)
         if s_form.is_valid():
         
             sform = s_form.save(commit=False)
             sform.save()
 
-            messages.success(request, f'New Student Added')
+            messages.success(request, f'Visitor Recorded')
 
             return redirect('staff:staffDashboard')
         
     context = {
-        's_form': NewStudentForm(),
+        's_form': NewVisitorForm(),
     }
     return render(request, 'staff/add_new_visitor.html', context)
 

@@ -21,14 +21,14 @@ class PostAnnoumcementForm(forms.ModelForm):
             'time_submitted',
         )
 
-class NewStudentForm(forms.ModelsForm):
+class NewStudentForm(forms.ModelForm):
     index_number = forms.CharField(max_length=15)
     first_name = forms.CharField(max_length=50)
     last_name = forms.CharField(max_length=50)
     gender = forms.ChoiceField(choices=GENDER_PREF)
     room_number = forms.CharField(max_length=10)
     course = forms.CharField(max_length=50)
-    level = forms.ChoiceField(choice=LEVEL_CHOICES ,max_length=20)
+    level = forms.ChoiceField(choices=LEVEL_CHOICES)
     mobile_number = forms.CharField(max_length=50)
     
 

@@ -51,7 +51,6 @@ class StudentImages(models.Model):
 
 
 class PostAnnouncement(models.Model):
-#    announcement_id = models.AutoField()
     announcement_title = models.CharField(max_length=100)
     announcement_body = models.TextField()
     date_submitted = models.DateField(auto_created=True, default=timezone.now)

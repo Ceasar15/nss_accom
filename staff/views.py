@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
-from .forms import PostAnnoumcementForm
+from .forms import NewStudentForm, PostAnnoumcementForm
 from users.models import Typed
 
 
@@ -33,9 +33,23 @@ def loginStaff(request):
 def staffDashboard(request):
     return render(request, 'staff/staff_dashboard.html')
 
-def staff_addNewStudent(request):
 
-    return render(request, 'staff/add_new_student.html')
+def staff_addNewStudent(request):
+    if request.method == 'POST':
+        s_form = NewStudentForm(request.POST)
+        if s_form.is_valid():
+            sos = s_form.save(commit=False)
+            sos.save()
+            messages.success(request, f'New Student Added')
+
+            return redirect('staff:staffDashboard')
+        
+        context = {
+            's_form': NewStudentForm()
+        }
+
+    return render(request, 'staff/add_new_student.html', context)
+
 
 def staff_addNewVisitor(request):
     return render(request, 'staff/add_new_visitor.html')

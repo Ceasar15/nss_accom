@@ -522,25 +522,25 @@ def nssAccomFirstPage(request):
 
 # the page for the landlord to register.
 def registerAccount(request):
-    form = StudentRegisterForm()
-    user_contact_form =  UserContactFrom()
-    if request.method == 'POST':
-        form = StudentRegisterForm(request.POST)
-        user_contact_form = UserContactFrom(request.POST)
-        if all((form.is_valid(), user_contact_form.is_valid() )):
+    # form = StudentRegisterForm()
+    # user_contact_form =  UserContactFrom()
+    # if request.method == 'POST':
+    #     form = StudentRegisterForm(request.POST)
+    #     user_contact_form = UserContactFrom(request.POST)
+    #     if all((form.is_valid(), user_contact_form.is_valid() )):
 
-            tt = form.save()
-            print(tt.id)
-            obs = user_contact_form.save(commit=False)
-            obs.user_id_id = tt.id
-            obs.save()
+    #         tt = form.save()
+    #         print(tt.id)
+    #         obs = user_contact_form.save(commit=False)
+    #         obs.user_id_id = tt.id
+    #         obs.save()
 
-            return redirect('student:studentDashboard')
+    #         return redirect('student:studentDashboard')
 
-    context = {
-        'form': StudentRegisterForm(),
-        'user_contact_form': UserContactFrom()
-        }
+    # context = {
+    #     'form': StudentRegisterForm(),
+    #     'user_contact_form': UserContactFrom()
+    #     }
     return render (request, 'renting/register.html')
 
 
@@ -554,18 +554,18 @@ def signInLandlord(request):
 
         user = authenticate(request, username=username, password=password)
         if user is not None:
+
             typed = Typed.objects.filter(user_id=user).first();
-            if typed.user_group == 'student':
+            if typed.user_group == 'landlord':
                 login(request, user)	
                 if request.user:
-                    return redirect('student:studentDashboard')
+                    return redirect('renting:postRentAdds')
         else:
             messages.info(request, 'ID OR Password is incorrect')		
 
     context = {}
 
-    return render(request, 'student/login_student.html', context)
-    return render(request, 'renting/login_NSS.html')
+    return render(request, 'renting/login_NSS.html', context)
 
 
 # the page where a landlord can view his rent adds.

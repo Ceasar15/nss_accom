@@ -104,12 +104,13 @@
             <div style="position: relative; margin-left: 230px; top: -70px;" class="row">
                 <div class="col-lg-9">
                     <div class="account-login-inner">
-                        <form action="#" class="ltn__form-box contact-form-box">
-                            <input type="text" name="email" placeholder="Email">
-                            <input type="password" name="password" placeholder="Password">
+                        <form method="post" class="ltn__form-box contact-form-box">
+                            {% csrf_token %}
+                            <input type="text" id="id_username" name="username" placeholder="Username">
+                            <input type="password" id="id_password" name="password" placeholder="Password">
                             <div class="btn-wrapper mt-0">
-                                <a href="{% url 'renting:viewRentAdds' %}" class="theme-btn-1 btn btn-effect-1">SIGN IN</a>
-                                <!-- <button href="student_submit.html" class="theme-btn-1 btn btn-block" type="submit">SIGN IN</button> -->
+                                <!-- <a href="" class="theme-btn-1 btn btn-effect-1">SIGN IN</a> -->
+                                <input type="submit" value="Sign In">
                             </div>
                             <div class="go-to-btn mt-20">
                                 <a href="#"><small>FORGOTTEN YOUR PASSWORD?</small></a>

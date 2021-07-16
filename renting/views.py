@@ -522,14 +522,32 @@ def nssAccomFirstPage(request):
 
 # the page for the landlord to register.
 def registerAccount(request):
+    form = StudentRegisterForm()
+    user_contact_form =  UserContactFrom()
+    if request.method == 'POST':
+        form = StudentRegisterForm(request.POST)
+        user_contact_form = UserContactFrom(request.POST)
+        if all((form.is_valid(), user_contact_form.is_valid() )):
+
+            tt = form.save()
+            print(tt.id)
+            obs = user_contact_form.save(commit=False)
+            obs.user_id_id = tt.id
+            obs.save()
+
+            return redirect('student:studentDashboard')
+
+    context = {
+        'form': StudentRegisterForm(),
+        'user_contact_form': UserContactFrom()
+        }
     return render (request, 'renting/register.html')
 
 
 
 # the sign in page for the landlord.
 def signInLandlord(request):
-    def loginStudent(request):
-        
+
     if request.method == 'POST':
         username = request.POST.get('username')
         password =request.POST.get('password')

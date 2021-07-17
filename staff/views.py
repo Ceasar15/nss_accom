@@ -39,6 +39,7 @@ def loginStaff(request):
     return render(request, 'staff/login_staff.html', context)
 
 
+@user_passes_test(check_user, login_url='/loginStaff')
 def staffDashboard(request):
     total_student = NewStudent.objects.all().count()
     total_visitors = NewVisitor.objects.all().count()
@@ -54,7 +55,7 @@ def staffDashboard(request):
 
     return render(request, 'staff/staff_dashboard.html', context)
 
-
+@user_passes_test(check_user, login_url='/loginStaff')
 def staff_addNewStudent(request):
     if request.method == 'POST':
         s_form = NewStudentForm(request.POST, files=request.FILES)
@@ -74,6 +75,7 @@ def staff_addNewStudent(request):
     return render(request, 'staff/add_new_student.html', context)
 
 
+@user_passes_test(check_user, login_url='/loginStaff')
 def staff_addNewVisitor(request):
     if request.method == 'POST':
         s_form = NewVisitorForm(request.POST)
@@ -92,6 +94,7 @@ def staff_addNewVisitor(request):
     return render(request, 'staff/add_new_visitor.html', context)
 
 
+@user_passes_test(check_user, login_url='/loginStaff')
 def staffPostAnnouncement(request):
     if request.method == 'POST':
         p_form = PostAnnoumcementForm(request.POST)

@@ -44,6 +44,7 @@ def loginStudent(request):
 #@login_required(login_url='/loginStudent')
 @user_passes_test(check_user, login_url='/loginStudent')
 def studentDashboard(request):
+    
     # queryset = NewComplaint.objects.all().filter(complaint_status='PENDING')
 
     # context ={

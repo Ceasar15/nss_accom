@@ -1,13 +1,19 @@
 from django.shortcuts import render, redirect  	
 from django.contrib.auth import authenticate, login, logout		
 from django.contrib import messages		
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 
 from .forms import NewStudentForm, PostAnnoumcementForm, NewVisitorForm
 from .models import NewStudent, NewVisitor, PostAnnouncement
 from student.models import NewComplaint
 from users.models import Typed
+
+
+def check_user(user):
+    typed = Typed.objects.filter(user_id=user).first()
+    if typed.user_group == 'staff':
+        return user.first_name
 
 
 def loginStaff(request):
@@ -31,6 +37,7 @@ def loginStaff(request):
     context = {}
 
     return render(request, 'staff/login_staff.html', context)
+
 
 def staffDashboard(request):
     total_student = NewStudent.objects.all().count()

@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Student sign in</title>
+    <title>Staff sign up</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -118,9 +118,10 @@
                 <div class="col-lg-12">
                     <div class="section-title-area text-center">
                         <div style="display: flex; margin-left:400px;">
-                            <i class="fas fa-user-graduate fa-3x"></i>
-                            <h1 class="section-title" style="margin-left: 20px;"> STUDENT SIGN UP </h1>
+                            <i class="fas fa-user-tie fa-3x"></i>
+                            <h1 class="section-title" style="margin-left: 20px;"> STAFF SIGN UP </h1>
                         </div>
+
                         <p>Sign up to create your account now</p>
                     </div>
                 </div>
@@ -151,8 +152,8 @@
                                 <input type="text" id="phone_no" name="phone_no" placeholder="PHONE NUMBER" required style="border-color: grey; border-width: 1px; width:300px;">
                                 <select id="user_group" name="user_group" style="width: 300px; height: 65px;">
                                     
-                                    <option value="student">Student</option>
-                                    <option value="staff">Staff</option>
+                                    <option value="student">Staff</option>
+                                    <option value="staff">Student</option>
                                     <option value="landlord">Landlord</option>
 
                                 </select>
@@ -166,7 +167,7 @@
                             </div>
 
                             <div class="go-to-btn mt-20">
-                                <a href="{% url 'student:loginStudent' %}" style="margin-left: 360px; position: relative; bottom: 15px;" ><small>Already have an account? Log in here</small></a>
+                                <a href="{% url 'staff:loginStaff' %}" style="margin-left: 360px; position: relative; bottom: 15px;" ><small>Already have an account? Log in here</small></a>
                             </div>
 
                             

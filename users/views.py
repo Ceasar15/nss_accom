@@ -36,7 +36,7 @@ def Studentregister(request):
             obs.user_id_id = tt.id
             obs.save()
 
-            return redirect('student:studentDashboard')
+            return redirect('student:loginStudent')
 
     context = {
         'form': StudentRegisterForm(),

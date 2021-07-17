@@ -55,6 +55,7 @@ def staffDashboard(request):
 
     return render(request, 'staff/staff_dashboard.html', context)
 
+
 @user_passes_test(check_user, login_url='/loginStaff')
 def staff_addNewStudent(request):
     if request.method == 'POST':

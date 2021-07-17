@@ -90,9 +90,3 @@ def studentViewAllComplaints(request):
 @user_passes_test(check_user, login_url='/loginStudent')
 def studentViewAnnouncements(request):
     return render(request, 'student/student_view_announcements.html')
-
-
-
-#student sign up page.
-def studentSignUp(request):
-    return render(request, 'student/student_signup.html')

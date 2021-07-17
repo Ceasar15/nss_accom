@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from users.models import UserType, CHOICES, ContactDetails
+from users.models import Typed, CHOICES, ContactDetails
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from django.db import transaction
@@ -8,7 +8,7 @@ from django.db import transaction
 class UserTypeForm(forms.ModelForm):
     user_type = forms.ChoiceField(choices=CHOICES, widget=forms.Select(attrs={'class':''}))
     class Meta:
-        model = UserType
+        model = Typed
         fields = ['user_type']
 
 
@@ -32,14 +32,15 @@ class UpdatePhoneNo(forms.ModelForm):
         model = ContactDetails
         fields = ['phone_no']
 
-
-
-
-
-
+CHOICES = (
+	('Student','Student'),
+	('Staff','Staff'),
+	('Landlord', 'Landlord'),
+)
     
 class StaffRegisterForm(UserCreationForm):
     email = forms.EmailField(required=True)
+    user_group  = forms.CharField(max_length=30, widget=forms.Select(choices= CHOICES))
 
     class Meta:
         model = User
@@ -50,6 +51,7 @@ class StaffRegisterForm(UserCreationForm):
             'email',
             'password1',
             'password2',
+            'user_group',
         )
 
     @transaction.atomic  

@@ -127,7 +127,7 @@
                     <div class="account-login-inner">
                         <form method="post" class="ltn__form-box contact-form-box">
                             {% csrf_token %}
-                            <input type="text" id="id_first_name" name="first_name" placeholder="FIRST NAME" required style="border-color: grey; border-width: 1px;" >
+                            <!-- <input type="text" id="id_first_name" name="first_name" placeholder="FIRST NAME" required style="border-color: grey; border-width: 1px;" >
                             <input type="text" id="id_last_name" name="last_name" placeholder="LAST NAME" required style="border-color: grey; border-width: 1px;">
                             <input type="text" id="id_email" name="email" placeholder="EMAIL" required style="border-color: grey; border-width: 1px;">
                             <input type="text" id="id_username" name="username" placeholder="USERNAME(STUDENT ID)" required style="border-color: grey; border-width: 1px;">
@@ -138,16 +138,17 @@
                                 <option value="staff">Staff</option>
                                 <option value="landlord">Landlord</option>
                             </select>
-                            <div class="btn-wrapper mt-0">                                <!-- <button class="theme-btn-1 btn btn-block" type="submit" >SIGN UP</button> -->
+                            <div class="btn-wrapper mt-0">                             
                             </div>
                             <div class="go-to-btn mt-20">
                                 <input type="submit" value="Sign Up" class="theme-btn-1 btn btn-block">    
                                 <a href="{% url 'student:loginStudent' %}" style="margin-left: 360px;" ><small>Already have an account? Log in here</small></a>
-                            </div>
+                            </div> -->
 
-                            <!-- {{ form }}
+                            {{ form }}
+                            {{ user_contact_form }}
                             <input type="submit" value="Login" class="btn btn-primary">
-                             -->
+                            
                         </form>
                     </div>
                 </div>

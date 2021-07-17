@@ -1,10 +1,13 @@
+from users.models import Typed
 from django.shortcuts import render
 from django.shortcuts import render, redirect  	
 from django.contrib.auth import authenticate, login, logout		
 from django.contrib import messages		
 from django.contrib.auth import logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
+
+
 
 from .models import NewComplaint
 
@@ -17,15 +20,12 @@ def loginStudent(request):
         password =request.POST.get('password')
 
         user = authenticate(request, username=username, password=password)
-
-        if user is not None:	
-            login(request, user)	
-
-            if request.user:
-                return redirect('student:studentDashboard')
-            else:
-                return redirect('student:studentSubmitComplaint')
-
+        if user is not None:
+            typed = Typed.objects.filter(user_id=user).first();
+            if typed.user_group == 'student':
+                login(request, user)	
+                if request.user:
+                    return redirect('student:studentDashboard')
         else:
             messages.info(request, 'ID OR Password is incorrect')		
 
@@ -34,8 +34,11 @@ def loginStudent(request):
     return render(request, 'student/login_student.html', context)
     
 
+# def check_group(user):
+#     return user.user_group.startswith('Staff')
+# @user_passes_test(check_group, login_url='/loginStudent')
     
-@login_required(login_url='/usr/login')
+@login_required(login_url='/loginStudent')
 def studentDashboard(request):
     # queryset = NewComplaint.objects.all().filter(complaint_status='PENDING')
 
@@ -47,7 +50,7 @@ def studentDashboard(request):
     
     return render(request, 'student/student_dashboard.html')
 
-@login_required(login_url='/usr/login')
+@login_required(login_url='/loginStudent')
 def studentSubmitComplaint(request):
     if request.method == 'POST':
         first_name = request.user.first_name
@@ -74,11 +77,11 @@ def studentSubmitComplaint(request):
         return render(request, "student/student_submit_complaint.html")
 
 
-@login_required(login_url='/usr/login')
+@login_required(login_url='/loginStudent')
 def studentViewAllComplaints(request):
     return render(request, 'student/student_view_all_complaints.html')
 
 
-@login_required(login_url='/usr/login')
+@login_required(login_url='/loginStudent')
 def studentViewAnnouncements(request):
     return render(request, 'student/student_view_announcements.html')

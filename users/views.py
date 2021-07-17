@@ -4,12 +4,12 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 from users.forms import UserTypeForm, UserForm, UpdatePhoneNo
-from users.models import UserType
+from users.models import Typed
 
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from student.forms import StudentRegisterForm, EditProfileForm
+from student.forms import StudentRegisterForm, EditProfileForm, UserContactFrom
 from users.forms import StaffRegisterForm, EditProfileForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import logout
@@ -23,17 +23,26 @@ def welcome(request):
 
 def Studentregister(request):
 
-    # def get_context_data(self, **kwargs):
-    #     kwargs['user_type'] = 'student'
-    #     return super().get_context_data(**kwargs)
-
+    form = StudentRegisterForm()
+    user_contact_form =  UserContactFrom()
     if request.method == 'POST':
         form = StudentRegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
+        user_contact_form = UserContactFrom(request.POST)
+        if all((form.is_valid(), user_contact_form.is_valid() )):
+
+            tt = form.save()
+            print(tt.id)
+            obs = user_contact_form.save(commit=False)
+            obs.user_id_id = tt.id
+            obs.save()
+
             return redirect('student:studentDashboard')
 
-    context = {'form': StudentRegisterForm()}
+    context = {
+        'form': StudentRegisterForm(),
+        'user_contact_form': UserContactFrom()
+        }
+
     return render(request, 'tracking/sign_up.html', context)
 
 
@@ -109,7 +118,7 @@ def logout_view(request):
 def user_type(request):
     if request.user.is_authenticated:
         try:
-            ut = UserType.objects.get(user=request.user)
+            ut = Typed.objects.get(user=request.user)
         except:
             ut = None
 

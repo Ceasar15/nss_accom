@@ -13,9 +13,11 @@ GENDER_PREF = (
 )
 
 LEVEL_CHOICES = (
-    ('M','MALE'),
-    ('F','FEMALE'),
-    ('O','OTHERS')
+    ('100','100'),
+    ('200','200'),
+    ('300','300'),
+    ('400', '400'),
+    ('Graduate', 'Graduate')
 )
 
 VISITOR_STATUS = (
@@ -35,8 +37,9 @@ class NewStudent(models.Model):
     course = models.CharField(max_length=50)
     level = models.CharField(max_length=50, choices=LEVEL_CHOICES)
     mobile_number = models.CharField(max_length=50)
-    date_registered = models.DateTimeField()
-    check_in = models.BooleanField()
+    images = models.ImageField(upload_to='media/StudentImages/%Y/%m/%d/', blank=True)
+    date_registered = models.DateTimeField(auto_now=True)
+    check_in = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-date_registered']
@@ -45,18 +48,16 @@ class NewStudent(models.Model):
         return self.first_name
     
 
-class StudentImages(models.Model):
-    images = models.ImageField(upload_to='media/StudentImages/%Y/%m/%d/', blank=True)
-    new_student= models.ForeignKey(NewStudent, on_delete=models.CASCADE)
+# class StudentImages(models.Model):
+#     new_student= models.ForeignKey(NewStudent, on_delete=models.CASCADE)
 
 
 class PostAnnouncement(models.Model):
-#    announcement_id = models.AutoField()
     announcement_title = models.CharField(max_length=100)
     announcement_body = models.TextField()
-    date_submitted = models.DateField(default=timezone.now)
-    time_submitted = models.TimeField(default=timezone.now)
-    annou_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date_submitted = models.DateField(auto_created=True, default=timezone.now)
+    time_submitted = models.TimeField(auto_created=True, default=timezone.now)
+    annou_user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     class Meta:
         ordering = ['-date_submitted']
 
@@ -71,7 +72,7 @@ class NewVisitor(models.Model):
     room_member_getting_visited = models.CharField(max_length=150)
     visiting_mobile_number = models.CharField(max_length=30)
     visiting_date_time = models.DateTimeField(default=timezone.now)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['-visiting_date_time']

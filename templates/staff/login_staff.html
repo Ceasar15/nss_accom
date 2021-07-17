@@ -125,12 +125,18 @@
             <div style="position: relative; bottom:70px; margin-left: 230px;" class="row">
                 <div class="col-lg-9">
                    <div class="account-login-inner">
-                        <form action="{% url 'staff:staffDashboard' %}" class="ltn__form-box contact-form-box">
-                            <input type="text" name="email" placeholder="USERNAME(Staff ID)" required style="border-color: grey; border-width: 1px;" >
-                            <input type="password" name="password" placeholder="PASSWORD" required style="border-color: grey; border-width: 1px;">
+                        <form method="post" class="ltn__form-box contact-form-box">
+                            {% csrf_token %}
+                            <!-- {{ form }} -->
+                            <label for="id_username">Username: </label>
+                            <input id="id_username" type="text" name="username" placeholder="USERNAME(Staff ID)" required style="border-color: grey; border-width: 1px;" >
+                            <label for="id_password">Password: </label>
+                            <input id="id_password" type="password" name="password" placeholder="Enter PassWord" required style="border-color: grey; border-width: 1px;">
+                           
                             <div class="btn-wrapper mt-0">
-                                <button class="theme-btn-1 btn btn-block" type="submit">SIGN IN</button>
-                            </div>
+                                <button class="theme-btn-1 btn btn-block" type="submit">SIGN ffIN</button>
+                            </div> 
+                            
                             <div class="go-to-btn mt-20">
                                 <a href="#"><small>FORGOTTEN YOUR PASSWORD?</small></a>
                                 <a href="#" style="margin-left: 170px;" ><small>Don't have an account? Register here</small></a>

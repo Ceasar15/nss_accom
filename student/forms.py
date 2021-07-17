@@ -30,7 +30,8 @@ class UserContactFrom(forms.ModelForm):
         model = Typed
         fields = (
             'phone_no',
-            'user_group'
+            'user_group',
+            'student_hall',
         )
     
     def clean_phone_no(self):

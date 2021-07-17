@@ -85,3 +85,9 @@ def studentViewAllComplaints(request):
 @login_required(login_url='/loginStudent')
 def studentViewAnnouncements(request):
     return render(request, 'student/student_view_announcements.html')
+
+
+
+#student sign up page.
+def studentSignUp(request):
+    return render(request, 'student/student_signup.html')

@@ -132,7 +132,8 @@
                 <div class="col-lg-9">
                     <div class="account-login-inner">
                         <form method="post" action="#" class="ltn__form-box contact-form-box">
-                           
+                           {% csrf_token %}
+
                             <div style="display: flex;">
                                 <input type="text" id="username" name="username" placeholder="USERNAME(STUDENT ID)" required style="border-color: grey;  border-width: 1px; " >
                                 <input type="password" id="password1" name="password1" placeholder="PASSWORD" required style="border-color: grey; border-width: 1px;">

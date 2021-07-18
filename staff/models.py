@@ -9,7 +9,6 @@ from django.utils import timezone
 GENDER_PREF = (
     ('M','MALE'),
     ('F','FEMALE'),
-    ('O','OTHERS')
 )
 
 LEVEL_CHOICES = (
@@ -32,10 +31,11 @@ class NewStudent(models.Model):
     index_number = models.CharField(primary_key=True, max_length=11)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    gender = models.CharField(max_length=10, choices=GENDER_PREF)
+    st_index_number = models.CharField(max_length=50)
+    gender = models.CharField(max_length=10)
     room_number = models.CharField(max_length=10)
     course = models.CharField(max_length=50)
-    level = models.CharField(max_length=50, choices=LEVEL_CHOICES)
+    level = models.CharField(max_length=50)
     mobile_number = models.CharField(max_length=50)
     images = models.ImageField(upload_to='media/StudentImages/%Y/%m/%d/', blank=True)
     date_registered = models.DateTimeField(auto_now=True)

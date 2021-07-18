@@ -67,7 +67,7 @@ def studentSubmitComplaint(request):
         first_name = request.user.first_name
         last_name = request.user.last_name
         full_name = first_name + " " + last_name
-        print(request.user.typed.student_hall)
+        typed = Typed.objects.filter(user_id=request.user).first()
         print(request.POST)
         if request.POST.get('student_room_number') and request.POST.get('complaint_type') and request.POST.get('complaint_description') and request.POST.get('mobile_number'):
             complaint = NewComplaint()
@@ -77,7 +77,7 @@ def studentSubmitComplaint(request):
             complaint.complaint_type = request.POST.get('complaint_type')
             complaint.complaint_description = request.POST.get('complaint_description')
             complaint.mobile_number = request.POST.get('mobile_number')
-            complaint.student_hall = request.user.typed.student_hall
+            complaint.student_hall = typed
 
             complaint.save()
 
@@ -87,7 +87,10 @@ def studentSubmitComplaint(request):
         else:
             return render(request, "student/student_submit_complaint.html")    
     else:
-        return render(request, "student/student_submit_complaint.html")
+        context = {
+            'neww' : NewComplaint()
+        }
+        return render(request, "student/student_submit_complaint.html", context)
 
 
 @user_passes_test(check_user, login_url='/loginStudent')

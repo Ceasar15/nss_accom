@@ -81,7 +81,7 @@
                             <nav>
                                 <div class="ltn__main-menu">
                                     <ul style="float: right;">
-                                        <li><a href="index.html">Home</a>
+                                        <a href="{% url 'tracking:index' %}">Home</a>
                                            
                                         </li>
                                         <li>
@@ -104,7 +104,7 @@
                                         {% endif %}
 
                                         <li class="btn-wrapper animated">
-                                            <a href="#" class="theme-btn-1 btn btn-effect-1" style="height:60px; width:100px;"  >Sign Out</a>
+                                            <a href="{% url 'logout' %}" class="theme-btn-1 btn btn-effect-1" style="height:60px; width:100px;" >Sign Out</a>
                                         </li>
 
                                     </ul>
@@ -137,7 +137,7 @@
                 <div class="col-lg-12">
                     <div class="ltn__form-box contact-form-box box-shadow white-bg">
                         <h4 class="title-2">Submit your complaint !</h4>
-                        <form id="contact-form" method="post">
+                        <form id="contact-form"  method="post">
                             <div class="row">
 
                                 <div class="col-md-6">
@@ -170,7 +170,7 @@
 
 
                                 <div class="col-md-6">
-                                    <div class="input-item input-item-phone ltn__custom-icon">
+                                    <div class="input-item input-item-textarea ltn__custom-icon">
                                         <input type="text" id="id_other_complaint_type" name="complaint_type" disabled placeholder="Specify the other complaint type here." required>
                                     </div>
                                 </div>

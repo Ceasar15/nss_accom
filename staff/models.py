@@ -31,7 +31,7 @@ class NewStudent(models.Model):
     index_number = models.CharField(primary_key=True, max_length=11)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    st_index_number = models.CharField(max_length=50)
+    st_index_number = models.CharField(max_length=50, default='10203040')
     gender = models.CharField(max_length=10)
     room_number = models.CharField(max_length=10)
     course = models.CharField(max_length=50)
@@ -66,7 +66,7 @@ class PostAnnouncement(models.Model):
 
 class NewVisitor(models.Model):
     vistor_id = models.AutoField(primary_key=True)
-    visiting_status = models.CharField(max_length=100, choices=VISITOR_STATUS)
+    visiting_status = models.CharField(max_length=100)
     visitor_fullName = models.CharField(max_length=150)
     visiting_room = models.CharField(max_length=20)
     room_member_getting_visited = models.CharField(max_length=150)

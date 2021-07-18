@@ -22,7 +22,7 @@ class PostAnnoumcementForm(forms.ModelForm):
         )
 
 class NewStudentForm(forms.ModelForm):
-    index_number = forms.CharField(max_length=15)
+    st_index_number = forms.CharField(max_length=15)
     first_name = forms.CharField(max_length=50)
     last_name = forms.CharField(max_length=50)
     gender = forms.ChoiceField(choices=GENDER_PREF)
@@ -35,7 +35,7 @@ class NewStudentForm(forms.ModelForm):
         model = NewStudent
         fields = (
 
-        'index_number',
+        'st_index_number',
         'first_name',
         'last_name',
         'gender',
@@ -44,12 +44,11 @@ class NewStudentForm(forms.ModelForm):
         'level',
         'mobile_number',
         'images',
-        'check_in',
-        
         )
     
         exclude = (
             'date_registered',
+            'check_in',
         )
 
 class NewVisitorForm(forms.ModelForm):

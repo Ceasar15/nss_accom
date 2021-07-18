@@ -128,11 +128,11 @@
             <div style="position: relative; bottom:70px; margin-left: 230px;" class="row">
                 <div class="col-lg-9">
                     <div class="account-login-inner">
-                        <form method="post" action="#" class="ltn__form-box contact-form-box">
-                            
+                        <form method="post" class="ltn__form-box contact-form-box">
+                            {% csrf_token %}
                             <div style="display: flex;">
-                                <input type="text" id="username" name="username" placeholder="USERNAME(STUDENT ID)" required style="border-color: grey;  border-width: 1px; " >
-                                <input type="password" id="password1" name="password1" placeholder="PASSWORD" required style="border-color: grey; border-width: 1px;">
+                                <input type="text" id="id_username" name="username" placeholder="USERNAME(STUDENT ID)" required style="border-color: grey;  border-width: 1px; " >
+                                <input type="password" id="id_password" name="password" placeholder="PASSWORD" required style="border-color: grey; border-width: 1px;">
                             </div>
                             
                             
@@ -141,7 +141,7 @@
                             </div>
 
                             <div class="go-to-btn mt-20">
-                                <a href="{% url 'staff:staffSignUp' %}" style="margin-left: 360px; position: relative; bottom: 15px;" ><small>Don't have an account? Sign up here</small></a>
+                                <a href="{% url 'users:student_register' %}" style="margin-left: 360px; position: relative; bottom: 15px;" ><small>Don't have an account? Sign up here</small></a>
                             </div>
 
 

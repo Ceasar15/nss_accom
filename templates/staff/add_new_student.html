@@ -119,36 +119,37 @@
                     <div class="ltn__form-box contact-form-box box-shadow white-bg">
                         <h4 class="title-2">Add a new student !</h4>
                         
-                        <form id="contact-form" method="post" enctype="multipart/form-data" > {% csrf_token %}
+                        <form id="contact-form" method="post" enctype="multipart/form-data" >
+                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-item input-item-name ltn__custom-icon">
-                                        <input type="text" name="first_name" placeholder="Student First Name" required>
+                                        <input type="text" id="id_first_name" name="first_name" placeholder="Student First Name" required>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="input-item input-item-email ltn__custom-icon">
-                                        <input type="text" name="last_name" placeholder="Student Last Name" required>
+                                        <input type="text" id="id_last_name" name="last_name" placeholder="Student Last Name" required>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="input-item input-item-email ltn__custom-icon">
-                                        <input type="text" name="st_index_number" placeholder="Student Index Number" required>
+                                        <input type="text" id="id_index_number" name="st_index_number" placeholder="Student Index Number" required>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="input-item input-item-email ltn__custom-icon">
-                                        <input type="text" name="room_number" placeholder="Student Room Number" required>
+                                        <input type="text" id="id_room_number" name="room_number" placeholder="Student Room Number" required>
                                     </div>
                                 </div>
 
 
                                 <div class="col-md-6">
                                     <div class="input-item">
-                                        <select class="nice-select" name="gender" required>
+                                        <select class="nice-select" id="id_gender" name="gender" required>
                                             <option>Select Gender</option>
                                             <option>Male</option>
                                             <option>Female</option>
@@ -158,31 +159,32 @@
 
                                 <div class="col-md-6">
                                     <div class="input-item">
-                                        <select class="nice-select" name="level" required>
+                                        <select class="nice-select" id="id_level" name="level" required>
                                             <option>Select Level</option>
                                             <option>100</option>
                                             <option>200</option>
                                             <option>300</option>
                                             <option>400</option>
+                                            <option>Graduate</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="input-item input-item-email ltn__custom-icon">
-                                        <input type="text" name="course" placeholder="Student Course" required>
+                                        <input type="text" id="id_course" name="course" placeholder="Student Course" required>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="input-item input-item-phone ltn__custom-icon">
-                                        <input type="text" name="mobile_number" placeholder="Student Phone Number" required>
+                                        <input type="text" id="id_mobile_number" name="mobile_number" placeholder="Student Phone Number" required>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="input-item input-item-phone">
-                                        <input type="file" name="images" placeholder="Student Phone Number" required>
+                                        <input type="file" id="id_images" name="images" placeholder="Student Phone Number" required>
                                     </div>
                                 </div>
 

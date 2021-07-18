@@ -39,7 +39,7 @@ class NewStudent(models.Model):
     mobile_number = models.CharField(max_length=50)
     images = models.ImageField(upload_to='media/StudentImages/%Y/%m/%d/', blank=True)
     date_registered = models.DateTimeField(auto_now=True)
-    check_in = models.BooleanField(default=False)
+    check_in = models.BooleanField(default=False, auto_created=True)
 
     class Meta:
         ordering = ['-date_registered']

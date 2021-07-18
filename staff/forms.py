@@ -35,13 +35,13 @@ class NewStudentForm(forms.ModelForm):
         model = NewStudent
         fields = (
 
-        'st_index_number',
         'first_name',
         'last_name',
-        'gender',
+        'st_index_number',
         'room_number',
-        'course',
+        'gender',
         'level',
+        'course',
         'mobile_number',
         'images',
         )

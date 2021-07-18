@@ -112,42 +112,60 @@
     <!-- BREADCRUMB AREA END -->
 
     <!-- LOGIN AREA START -->
-    <div class="ltn__breadcrumb-area text-left bg-overlay-white-15 bg-image "  data-bg="img/bg/14.jpg">
-        <div style="position: relative; top: -80px;" class="container">
+    <div class="ltn__slider-area ltn__slider-3  section-bg-1"  data-bg="img/bg/14.jpg">
+        <div style="position: relative; top: 50px;" class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title-area text-center">
-                        <h1 class="section-title">STUDENT SIGN UP </h1>
-                        <p>You are welcome dear resident!<br>Sign up to create your account now</p>
+                        <h1 class="section-title">SIGN UP </h1>
+                        <p>Sign up to create your account now</p>
                     </div>
                 </div>
             </div>
+
             <div style="position: relative; bottom:70px; margin-left: 230px;" class="row">
                 <div class="col-lg-9">
                     <div class="account-login-inner">
                         <form method="post" class="ltn__form-box contact-form-box">
                             {% csrf_token %}
-                            <!-- <input type="text" id="id_first_name" name="first_name" placeholder="FIRST NAME" required style="border-color: grey; border-width: 1px;" >
+
+                            <div style="display: flex;">
+                            <input type="text" id="id_first_name" name="first_name" placeholder="FIRST NAME" required style="border-color: grey; border-width: 1px;" >
                             <input type="text" id="id_last_name" name="last_name" placeholder="LAST NAME" required style="border-color: grey; border-width: 1px;">
+                            </div>
+
+                            <div style="display: flex;">
+                            <input type="text" id="id_username" name="username" placeholder="USERNAME(STUDENT ID)" required autofocus="" style="border-color: grey; border-width: 1px;">
                             <input type="text" id="id_email" name="email" placeholder="EMAIL" required style="border-color: grey; border-width: 1px;">
-                            <input type="text" id="id_username" name="username" placeholder="USERNAME(STUDENT ID)" required style="border-color: grey; border-width: 1px;">
-                            <input type="password" id="id_password1" name="password1" placeholder="PASSWORD" required style="border-color: grey; border-width: 1px;">
-                            <input type="password" id="id_password2" name="password2" placeholder="Confirm PASSWORD" required style="border-color: grey; border-width: 1px;">
-                            <select name="user_type" id="id_user_type" style="border-color: grey; border-width: 1px;">
+                            
+                            </div>
+
+                            <div style="display: flex;">
+                            <input type="password" id="id_password1" name="password1" autocomplete="new-password" placeholder="PASSWORD" required style="border-color: grey; border-width: 1px;">
+                            <input type="password" id="id_password2" name="password2" autocomplete="new-password" placeholder="Confirm PASSWORD" required style="border-color: grey; border-width: 1px;">
+                            </div>
+
+                            <div style="display: flex;">
+                            <input type="text" id="id_phone_no" name="phone_no" placeholder="PHONE NUMBER" required style="border-color: grey; border-width: 1px; width:300px;">
+                            <select name="user_group" id="id_user_group" style="width: 300px; height: 65px;">
                                 <option value="student">Student</option>
                                 <option value="staff">Staff</option>
                                 <option value="landlord">Landlord</option>
                             </select>
-                            <div class="btn-wrapper mt-0">                             
                             </div>
+
+
+                            <div class="btn-wrapper mt-0">  
+
+                            </div>
+
                             <div class="go-to-btn mt-20">
                                 <input type="submit" value="Sign Up" class="theme-btn-1 btn btn-block">    
                                 <a href="{% url 'student:loginStudent' %}" style="margin-left: 360px;" ><small>Already have an account? Log in here</small></a>
-                            </div> -->
+                            </div> 
 
-                            {{ form }}
-                            {{ user_contact_form }}
-                            <input type="submit" value="Submit" class="btn btn-primary">
+                           
+                           
                             
                         </form>
                     </div>

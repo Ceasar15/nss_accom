@@ -45,15 +45,17 @@ def Studentregister(request):
 
     return render(request, 'tracking/sign_up.html', context)
 
-def Studentregister(request):
+
+def StaffRegister(request):
     
     form = StudentRegisterForm()
     user_contact_form =  UserContactFrom()
     if request.method == 'POST':
         form = StudentRegisterForm(request.POST)
         user_contact_form = UserContactFrom(request.POST)
+        print(form.first_name)
+        print(user_contact_form.student_hall)
         if all((form.is_valid(), user_contact_form.is_valid() )):
-
             tt = form.save()
             print(tt.id)
             obs = user_contact_form.save(commit=False)

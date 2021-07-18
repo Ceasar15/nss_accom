@@ -77,7 +77,7 @@ def studentSubmitComplaint(request):
             complaint.complaint_type = request.POST.get('complaint_type')
             complaint.complaint_description = request.POST.get('complaint_description')
             complaint.mobile_number = request.POST.get('mobile_number')
-            complaint.student_hall = typed
+            complaint.student_hall = typed.student_hall
 
             complaint.save()
 

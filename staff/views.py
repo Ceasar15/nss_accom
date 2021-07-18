@@ -1,3 +1,4 @@
+from django.http import request
 from django.shortcuts import render, redirect  	
 from django.contrib.auth import authenticate, login, logout		
 from django.contrib import messages		
@@ -11,9 +12,14 @@ from users.models import Typed
 
 
 def check_user(user):
-    typed = Typed.objects.filter(user_id=user).first()
-    if typed.user_group == 'staff':
-        return user.first_name
+    if user.is_authenticated:
+        typed = Typed.objects.filter(user_id=user).first()
+        if typed.user_group == 'staff':
+            return user.first_name
+    else:
+        requesst = request
+        return render(requesst,'staff/login_staff.html')
+
 
 
 def loginStaff(request):
@@ -41,8 +47,8 @@ def loginStaff(request):
 
 @user_passes_test(check_user, login_url='/loginStaff')
 def staffDashboard(request):
-    total_student = NewStudent.objects.filter()
-    # total_student = NewStudent.objects.all().count()
+    # total_student = NewStudent.objects.filter()
+    total_student = NewStudent.objects.all().count()
     # total_student= NewStudent.objects.filter(student_hall=)
     total_visitors = NewVisitor.objects.all().count()
     total_complains = NewComplaint.objects.all().count()

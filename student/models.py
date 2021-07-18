@@ -28,6 +28,7 @@ class NewComplaint(models.Model):
     mobile_number = models.CharField(max_length=11)
     date_submitted = models.DateTimeField(default=timezone.now)
     complaint_status = models.CharField(max_length=20, choices=COMPLAINT_STATUS, default='PENDING')
+
     
     class Meta:
         ordering = ['-date_submitted']

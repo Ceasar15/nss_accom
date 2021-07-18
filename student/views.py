@@ -12,6 +12,12 @@ from django.contrib.auth.models import User
 from .models import NewComplaint
 
 # Create your views here.
+def check_user(user):
+    typed = Typed.objects.filter(user_id=user).first()
+    if typed.user_group == 'student':
+        return user.first_name
+
+
 
 def loginStudent(request):
     
@@ -34,11 +40,9 @@ def loginStudent(request):
     return render(request, 'student/login_student.html', context)
     
 
-# def check_group(user):
-#     return user.user_group.startswith('Staff')
-# @user_passes_test(check_group, login_url='/loginStudent')
     
-@login_required(login_url='/loginStudent')
+#@login_required(login_url='/loginStudent')
+@user_passes_test(check_user, login_url='/loginStudent')
 def studentDashboard(request):
     # queryset = NewComplaint.objects.all().filter(complaint_status='PENDING')
 
@@ -50,7 +54,8 @@ def studentDashboard(request):
     
     return render(request, 'student/student_dashboard.html')
 
-@login_required(login_url='/loginStudent')
+
+@user_passes_test(check_user, login_url='/loginStudent')
 def studentSubmitComplaint(request):
     if request.method == 'POST':
         first_name = request.user.first_name
@@ -77,12 +82,12 @@ def studentSubmitComplaint(request):
         return render(request, "student/student_submit_complaint.html")
 
 
-@login_required(login_url='/loginStudent')
+@user_passes_test(check_user, login_url='/loginStudent')
 def studentViewAllComplaints(request):
     return render(request, 'student/student_view_all_complaints.html')
 
 
-@login_required(login_url='/loginStudent')
+@user_passes_test(check_user, login_url='/loginStudent')
 def studentViewAnnouncements(request):
     return render(request, 'student/student_view_announcements.html')
 

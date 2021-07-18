@@ -115,9 +115,3 @@ def staffPostAnnouncement(request):
         
     return render(request, 'staff/post_announcement.html', context)
 
-
-
-
-# the staff sign up page.
-def staffSignUp(request):
-    return render(request, 'staff/staff_sign_up.html')

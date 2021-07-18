@@ -19,17 +19,8 @@ class StudentRegisterForm(UserCreationForm):
             'email',
             'password1',
             'password2',
-            # 'phone_no',
-            # 'user_group',
+
         )
-    
-    # @transaction.atomic                 
-    # def save(self):
-    #     user = super().save(commit=False) 
-    #     user.student = True            
-    #     user.save()       
-        
-    #     return user
 
 class UserContactFrom(forms.ModelForm):
     phone_no = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'input'}))
@@ -39,7 +30,8 @@ class UserContactFrom(forms.ModelForm):
         model = Typed
         fields = (
             'phone_no',
-            'user_group'
+            'user_group',
+            'student_hall',
         )
     
     def clean_phone_no(self):

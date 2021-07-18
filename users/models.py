@@ -15,6 +15,7 @@ class Typed(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE,null=True, blank=True)
     user_group = models.CharField(max_length=20, choices=CHOICES)
     phone_no = models.IntegerField(null=True)
+    student_hall = models.CharField(max_length=100, default='No Hall')
 
 
 

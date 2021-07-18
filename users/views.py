@@ -53,8 +53,6 @@ def StaffRegister(request):
     if request.method == 'POST':
         form = StudentRegisterForm(request.POST)
         user_contact_form = UserContactFrom(request.POST)
-        print(form.first_name)
-        print(user_contact_form.student_hall)
         if all((form.is_valid(), user_contact_form.is_valid() )):
             tt = form.save()
             print(tt.id)
@@ -71,6 +69,29 @@ def StaffRegister(request):
 
     return render(request, 'tracking/sign_up_staff.html', context)
 
+
+def LandlordRegister(request):
+    
+    form = StudentRegisterForm()
+    user_contact_form =  UserContactFrom()
+    if request.method == 'POST':
+        form = StudentRegisterForm(request.POST)
+        user_contact_form = UserContactFrom(request.POST)
+        if all((form.is_valid(), user_contact_form.is_valid() )):
+            tt = form.save()
+            print(tt.id)
+            obs = user_contact_form.save(commit=False)
+            obs.user_id_id = tt.id
+            obs.save()
+
+            return redirect('renting:signInLandlord')
+
+    context = {
+        'form': StudentRegisterForm(),
+        'user_contact_form': UserContactFrom()
+        }
+
+    return render(request, 'tracking/sign_up_landlord.html', context)
 
 
 def Staffregister(request):

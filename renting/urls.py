@@ -1,6 +1,6 @@
 from django.urls import path
 from renting import views as rt
-
+from users import views as us
 
 app_name='renting'
 urlpatterns = [
@@ -27,4 +27,5 @@ urlpatterns = [
 	path('signInLandlord/', rt.signInLandlord, name='signInLandlord'),
 	path('viewRentAdds/', rt.viewRentAdds, name='viewRentAdds'),
 	path('postRentAdds/', rt.postRentAdds, name='postRentAdds'),
+	path('landlord_register/', us.LandlordRegister, name='loginLandlord')
 ]

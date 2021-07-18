@@ -65,4 +65,5 @@ class NewVisitorForm(forms.ModelForm):
         )
         exclude = (
             'visiting_date_time',
+            'visitor_in_out',
         )

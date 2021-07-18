@@ -1,6 +1,7 @@
 from django.shortcuts import render, reverse, redirect
 from django.urls import reverse_lazy
-from django.contrib.auth import authenticate, login		
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
 from django.http import HttpResponseRedirect, JsonResponse
 from django.conf import settings
@@ -15,6 +16,11 @@ from student.forms import StudentRegisterForm, UserContactFrom
 import requests, pgeocode, pandas, json
 from datetime import datetime
 
+
+def check_user(user):
+    typed = Typed.objects.filter(user_id=user).first()
+    if typed.user_group == 'landlord':
+        return user.first_name
 
 def home_page(request):
     # User logged in or not
@@ -570,11 +576,13 @@ def signInLandlord(request):
 
 
 # the page where a landlord can view his rent adds.
+@user_passes_test(check_user, login_url='/signInLandlord')
 def viewRentAdds(request):
     return render(request, 'renting/view_rent_adds.html')
 
 
 # the page where a landlord can post his rent adds.
+@user_passes_test(check_user, login_url='/signInLandlord')
 def postRentAdds(request):
     return render(request, 'renting/post_rent_adds.html')
 

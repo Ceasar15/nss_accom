@@ -1,3 +1,4 @@
+from django.http import request
 from django.shortcuts import render, reverse, redirect
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login
@@ -18,9 +19,13 @@ from datetime import datetime
 
 
 def check_user(user):
-    typed = Typed.objects.filter(user_id=user).first()
-    if typed.user_group == 'landlord':
-        return user.first_name
+    if user.is_authenticated:
+        typed = Typed.objects.filter(user_id=user).first()
+        if typed.user_group == 'landlord':
+            return user.first_name
+    else:
+        requesst = request
+        return render(requesst, 'renting/login_NSS.html')
 
 def home_page(request):
     # User logged in or not

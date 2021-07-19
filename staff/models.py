@@ -67,6 +67,7 @@ class PostAnnouncement(models.Model):
 class NewVisitor(models.Model):
     vistor_id = models.AutoField(primary_key=True)
     visiting_status = models.CharField(max_length=100)
+    visitor_index = models.CharField(max_length=20, blank=True, null=True)
     visitor_fullName = models.CharField(max_length=150)
     visiting_room = models.CharField(max_length=20)
     room_member_getting_visited = models.CharField(max_length=150)

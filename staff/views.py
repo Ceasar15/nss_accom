@@ -90,7 +90,7 @@ def staff_addNewVisitor(request):
     if request.method == 'POST':
         s_form = NewVisitorForm(request.POST)
         # print(request.first_name)
-        print(s_form)
+        #print(s_form)
         if s_form.is_valid():
         
             sform = s_form.save(commit=False)

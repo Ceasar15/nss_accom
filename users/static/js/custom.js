@@ -28,7 +28,7 @@ document.getElementById('id_visiting_status').onchange = function() {
 
 
 function checkOption(obj) {
-    var input = document.getElementById("id_visitor_id");
+    var input = document.getElementById("id_visitor_index");
     input.disabled = obj.value == "No" || obj.value == "Is the visitor a UG student?";
 }
 

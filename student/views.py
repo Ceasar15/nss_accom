@@ -1,3 +1,4 @@
+from django.http import request
 from users.models import Typed
 from django.shortcuts import render
 from django.shortcuts import render, redirect  	
@@ -13,9 +14,13 @@ from .models import NewComplaint
 
 # Create your views here.
 def check_user(user):
-    typed = Typed.objects.filter(user_id=user).first()
-    if typed.user_group == 'student':
-        return user.first_name
+    if user.is_authenticated:
+        typed = Typed.objects.filter(user_id=user).first()
+        if typed.user_group == 'student':
+            return user.first_name
+    else:
+        requesst = request
+        return render(requesst,'student/login_student.html')
 
 
 
@@ -62,6 +67,7 @@ def studentSubmitComplaint(request):
         first_name = request.user.first_name
         last_name = request.user.last_name
         full_name = first_name + " " + last_name
+        typed = Typed.objects.filter(user_id=request.user).first()
         print(request.POST)
         if request.POST.get('student_room_number') and request.POST.get('complaint_type') and request.POST.get('complaint_description') and request.POST.get('mobile_number'):
             complaint = NewComplaint()
@@ -71,6 +77,7 @@ def studentSubmitComplaint(request):
             complaint.complaint_type = request.POST.get('complaint_type')
             complaint.complaint_description = request.POST.get('complaint_description')
             complaint.mobile_number = request.POST.get('mobile_number')
+            complaint.student_hall = typed.student_hall
 
             complaint.save()
 
@@ -80,7 +87,10 @@ def studentSubmitComplaint(request):
         else:
             return render(request, "student/student_submit_complaint.html")    
     else:
-        return render(request, "student/student_submit_complaint.html")
+        context = {
+            'neww' : NewComplaint()
+        }
+        return render(request, "student/student_submit_complaint.html", context)
 
 
 @user_passes_test(check_user, login_url='/loginStudent')

@@ -121,7 +121,9 @@ def list_viewVisitor(request):
 
 @user_passes_test(check_user, login_url='/loginStaff')
 def detail_viewVisitor(request, vistor_id):
-    data = NewVisitor.objects.get(vistor_id=vistor_id)
+
+    data = NewVisitor.objects.all()
+    print(data)
     
     context = {
         'data': data
@@ -132,15 +134,15 @@ def detail_viewVisitor(request, vistor_id):
 
 
 @user_passes_test(check_user, login_url='/loginStaff')
-def update_viewVisitor(request, vistor_id):
+def update_viewVisitor(request, vistoor_id):
     
-    obj = get_object_or_404(NewVisitor, vistor_id=vistor_id)
+    obj = get_object_or_404(NewVisitor, vistor_id=vistoor_id)
 
     form = NewVisitor(request.POST or None, instance= obj )
 
     if form.is_valid():
         form.save()
-        return redirect('staff:list_viewVisitor')
+        return HttpResponseRedirect("/"+vistoor_id)
 
     context = {
 

@@ -111,8 +111,8 @@
                             <input type="text" id="id_username" name="username" placeholder="Username">
                             <input type="password" id="id_password" name="password" placeholder="Password">
                             <div class="btn-wrapper mt-0">
-                                 <a href="shop-grid.html" class="theme-btn-1 btn btn-effect-1" style="width:590px;">SIGN IN</a>
-                               <!-- <a href=""><button class="theme-btn-1 btn btn-block" type="submit">SIGN UP</button></a> -->
+                                 <!-- <a href="{% url 'renting:viewRentAdds' %}" class="theme-btn-1 btn btn-effect-1" >SIGN IN</a> -->
+                               <a href="{% url 'renting:viewRentAdds' %}"><button class="theme-btn-1 btn btn-block" type="submit">SIGN IN</button></a>
                             </div>
                             <div class="go-to-btn mt-20">
                                 <a href="#"><small>FORGOTTEN YOUR PASSWORD?</small></a>

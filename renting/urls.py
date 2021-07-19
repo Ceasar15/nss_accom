@@ -2,6 +2,7 @@ from django.urls import path
 from renting import views as rt
 from users import views as us
 
+
 app_name='renting'
 urlpatterns = [
 	path('', rt.home_page, name='home'),

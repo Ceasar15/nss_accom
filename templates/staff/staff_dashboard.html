@@ -71,6 +71,16 @@
                                         <li><a href="#">Manage visitors</a></li>
                                         <li><a href="{% url 'staff:staffPostAnnouncement' %}">Post an announcement</a></li>
                                         <!-- <li><a href="contact.html">Manage announcements</a></li> -->
+                                        {% if user.is_authenticated %}	
+                                        <li>
+                                            <a href="#">{{ user.first_name }}</a></li>
+                                            {% else %}
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'student:loginStudent' %}">Login</a></li>
+                                        {% endif %}
+
+                                        
                                     </ul>
                                 </div>
                             </nav>

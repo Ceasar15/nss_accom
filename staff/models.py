@@ -85,7 +85,7 @@ class NewVisitor(models.Model):
 
 
 class UpdateVisitor(models.Model):
-    visitor = models.OneToOneField(NewVisitor, on_delete=models.CASCADE)
+    visitor_one = models.OneToOneField(NewVisitor, on_delete=models.CASCADE)
     visitor_update = models.CharField(max_length=20)
 
     def __str__(self):

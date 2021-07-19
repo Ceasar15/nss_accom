@@ -85,21 +85,27 @@
                                             <a href="{% url 'tracking:index' %}">Home</a>
                                         </li>
                                         <li>
-                                            <a href="#">About</a>
-                                        <li>
-                                            <a href="#">Contact</a></li>
+                                            <a href="{% url 'student:studentSubmitComplaint' %}">Submit complaint</a></li>
                                         </li>
                                         <li>
-                                            <a href="#">Submit complaint</a></li>
+                                            <a href="{% url 'student:studentViewAllComplaints' %}">View all complaints</a></li>
                                         </li>
                                         <li>
-                                            <a href="#">View all complaints</a></li>
+                                            <a href="{% url 'student:studentViewAnnouncements' %}">View all announcements</a></li>
+                                        </li>
+                                       
+
+                                        {% if user.is_authenticated %}	
+                                        <li>
+                                            <a href="#">{{ user.first_name }}</a></li>
+                                            {% else %}
                                         </li>
                                         <li>
-                                            <a href="#">View all announcements</a></li>
-                                        </li>
-                                        <li>
-                                            <a href="#">Current user</a></li>
+                                            <a href="{% url 'student:loginStudent' %}">Login</a></li>
+                                        {% endif %}
+
+                                        <li class="btn-wrapper animated">
+                                            <a href="#" class="theme-btn-1 btn btn-effect-1" style="height:60px; width:100px;"  >Sign Out</a>
                                         </li>
                                      
                                     </ul>
@@ -247,16 +253,11 @@
 <!-- Body main wrapper end -->
 
     <!-- All JS Plugins -->
-    <script src="js/plugins.js"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
     <!-- Main JS -->
-    <script src="js/main.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
   
 </body>
 
 <!-- Mirrored from maelectrics.com/tf/html/quarter-preview/quarter/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Jul 2021 16:54:40 GMT -->
-<<<<<<< HEAD
-</html>
-
-=======
 </html
->>>>>>> 960ce923f0f4d6a39e15d1e3dc180a0f78e68a28

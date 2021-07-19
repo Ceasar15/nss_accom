@@ -102,6 +102,7 @@
                     </div>
                 </div>
             </div>
+
             <div style="position: relative; margin-left: 230px; top: -70px;" class="row">
                 <div class="col-lg-9">
                     <div class="account-login-inner">
@@ -110,8 +111,8 @@
                             <input type="text" id="id_username" name="username" placeholder="Username">
                             <input type="password" id="id_password" name="password" placeholder="Password">
                             <div class="btn-wrapper mt-0">
-                                <!-- <a href="" class="theme-btn-1 btn btn-effect-1">SIGN IN</a> -->
-                                <input type="submit" value="Sign In">
+                                 <a href="shop-grid.html" class="theme-btn-1 btn btn-effect-1" style="width:590px;">SIGN IN</a>
+                               <!-- <a href=""><button class="theme-btn-1 btn btn-block" type="submit">SIGN UP</button></a> -->
                             </div>
                             <div class="go-to-btn mt-20">
                                 <a href="#"><small>FORGOTTEN YOUR PASSWORD?</small></a>
@@ -123,6 +124,10 @@
         </div>
     
     <!-- LOGIN AREA END -->
+
+
+
+
 
     <!-- FOOTER AREA START -->
     <footer class="ltn__footer-area  ">
@@ -230,9 +235,10 @@
 <!-- Body main wrapper end -->
 
     <!-- All JS Plugins -->
-    <script src="js/plugins.js"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
     <!-- Main JS -->
-    <script src="js/main.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+  
   
 </body>
 </html>

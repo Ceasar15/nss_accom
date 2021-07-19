@@ -46,6 +46,7 @@ def Studentregister(request):
     return render(request, 'tracking/sign_up.html', context)
 
 
+
 def StaffRegister(request):
     
     form = StudentRegisterForm()
@@ -94,8 +95,8 @@ def LandlordRegister(request):
     return render(request, 'tracking/sign_up_landlord.html', context)
 
 
+
 def Staffregister(request):
-    
     # def get_context_data(self, **kwargs):
     #     kwargs['user_type'] = 'staff'
     #     return super().get_context_data(**kwargs)
@@ -109,6 +110,7 @@ def Staffregister(request):
 
     context = {'form': StaffRegisterForm()}
     return render(request, 'tracking/sign_up.html', context)
+
 
 
 def Landlordregister(request):

@@ -79,6 +79,7 @@ def post_rent_ad(request):
 
     form = RentalHouseForm(initial={'country':'Ghana'}, data=request.POST or None)
     img_form = HouseImagesForm(files=request.FILES)
+    # files = request.FILES.getlist('images')
     PUB_KEY = settings.MAPBOX_PUBLIC_KEY
     if request.method == 'POST' and request.user.is_authenticated:
         if form.is_valid():
@@ -583,7 +584,19 @@ def signInLandlord(request):
 # the page where a landlord can view his rent adds.
 @user_passes_test(check_user, login_url='/signInLandlord')
 def viewRentAdds(request):
-    return render(request, 'renting/view_rent_adds.html')
+    house_list = NewRentalHouse.objects.all()
+    city_query = request.GET.get('q')
+    if city_query:
+        print(city_query)
+        house_list = house_list.filter(
+            Q(city__icontains = city_query)).distinct()
+        
+        context = {
+            'house_list': house_list,
+        }
+        return render(request,'renting/view_rent_adds.html', context)
+    else:
+        return render(request, 'renting/view_rent_adds.html')
 
 
 # the page where a landlord can post his rent adds.

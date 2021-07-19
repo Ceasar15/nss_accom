@@ -17,8 +17,8 @@ class RentalHouseForm(forms.ModelForm):
 	city = forms.CharField(widget=forms.TextInput(attrs={'class':'input', 'placeholder':'City'}))
 	region = forms.ChoiceField(label='REGION', choices=STATE_CHOICES, widget=forms.Select(attrs={'class':'multiple'}))
 	country = forms.CharField(widget=forms.TextInput(attrs={'class':'input', 'placeholder':'Ghana'}), disabled=True, required=False)
-	in_date = forms.DateField(label='From', widget=forms.DateInput(attrs={'class':'ip-date'}))
-	out_date = forms.DateField(label='To', widget=forms.DateInput(attrs={'class':'ip-date'}))
+	# in_date = forms.DateField(label='From', widget=forms.DateInput(attrs={'class':'ip-date'}))
+	# out_date = forms.DateField(label='To', widget=forms.DateInput(attrs={'class':'ip-date'}))
 	rent = forms.IntegerField(widget=forms.NumberInput())
 
 	class Meta:
@@ -35,8 +35,8 @@ class RentalHouseForm(forms.ModelForm):
 		self.fields['out_date'].widget.attrs['class'] = 'ip-date'
 
 class HouseImagesForm(forms.ModelForm):
-	images = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class':'file-input','multiple':True}), required=False)
-
+	images = forms.FileField(widget=forms.ClearableFileInput(attrs={'class':'file-input','multiple':True}), required=False)
+	
 	class Meta:
 		model = HouseImages
 		fields = ['images']

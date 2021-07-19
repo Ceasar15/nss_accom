@@ -1,11 +1,13 @@
 from django.http import request
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect  	
 from django.contrib.auth import authenticate, login, logout		
 from django.contrib import messages		
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
+from django.urls.base import reverse
 
-from .forms import NewStudentForm, PostAnnoumcementForm, NewVisitorForm
+from .forms import NewStudentForm, PostAnnoumcementForm, NewVisitorForm, UpdateVisitorForm
 from .models import NewStudent, NewVisitor, PostAnnouncement
 from student.models import NewComplaint
 from users.models import Typed
@@ -126,3 +128,23 @@ def staffPostAnnouncement(request):
         
     return render(request, 'staff/post_announcement.html', context)
 
+
+
+@user_passes_test(check_user, login_url='/loginStaff')
+def updateVisitorStatus(request):
+    user = request.user
+    form = UpdateVisitorForm(request.POST or None, instance=user.updatevisitor)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            print("Update Fine")
+            return redirect('staff:staffDashboard')
+        else:
+            print("error")
+    else:
+        print("GET profile.html")
+    context = {
+
+        "update_visitor" : form,
+    }
+    return render(request, 'staff/update_visitor.html', context)

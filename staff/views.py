@@ -68,7 +68,7 @@ def staffDashboard(request):
 def staff_addNewStudent(request):
     if request.method == 'POST':
         s_form = NewStudentForm(request.POST, files=request.FILES)
-        # print(s_form.last_name)
+        #print(s_form.last_name)
         if s_form.is_valid():
             
             sform = s_form.save(commit=False)

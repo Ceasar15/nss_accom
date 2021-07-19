@@ -88,6 +88,20 @@
                                         </li>
                                       
                                         <li><a href="contact.html">Contact</a></li>
+
+                                        {% if user.is_authenticated %}	
+                                        <li>
+                                            <a href="#">{{ user.first_name }}</a></li>
+                                            {% else %}
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'student:loginStudent' %}">Login</a></li>
+                                        {% endif %}
+
+                                        <li class="btn-wrapper animated">
+                                            <a href="{% url 'logout' %}" class="theme-btn-1 btn btn-effect-1" style="height:60px; width:100px;"  >Sign Out</a>
+                                        </li>
+                                     
                                     </ul>
                                 </div>
                             </nav>
@@ -151,8 +165,8 @@
                                     <div class="input-item">
                                         <select class="nice-select" id="id_gender" name="gender" required>
                                             <option>Select Gender</option>
-                                            <option>Male</option>
-                                            <option>Female</option>
+                                            <option value="M">Male</option>
+                                            <option value="F">Female</option>
                                         </select>
                                     </div>
                                 </div>
@@ -161,11 +175,11 @@
                                     <div class="input-item">
                                         <select class="nice-select" id="id_level" name="level" required>
                                             <option>Select Level</option>
-                                            <option>100</option>
-                                            <option>200</option>
-                                            <option>300</option>
-                                            <option>400</option>
-                                            <option>Graduate</option>
+                                            <option value="100">100</option>
+                                            <option value="200">200</option>
+                                            <option value="300">300</option>
+                                            <option value="400">400</option>
+                                            <option value="Graduate">Graduate</option>
                                         </select>
                                     </div>
                                 </div>

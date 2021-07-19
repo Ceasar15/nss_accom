@@ -120,8 +120,8 @@ def list_viewVisitor(request):
 
 
 @user_passes_test(check_user, login_url='/loginStaff')
-def detail_viewVisitor(request, visitor_id):
-    data = NewVisitor.objects.get(visitor_id=visitor_id)
+def detail_viewVisitor(request, vistor_id):
+    data = NewVisitor.objects.get(vistor_id=vistor_id)
     
     context = {
         'data': data
@@ -130,10 +130,11 @@ def detail_viewVisitor(request, visitor_id):
     return render(request, 'staff/detail_visitor.html', context)
 
 
+
 @user_passes_test(check_user, login_url='/loginStaff')
-def update_viewVisitor(request, id):
+def update_viewVisitor(request, vistor_id):
     
-    obj = get_object_or_404(NewVisitor, id=id)
+    obj = get_object_or_404(NewVisitor, vistor_id=vistor_id)
 
     form = NewVisitor(request.POST or None, instance= obj )
 
@@ -147,6 +148,8 @@ def update_viewVisitor(request, id):
    
     }
     return render(request, 'staff/list_visitor.html', context)
+
+
 
 @user_passes_test(check_user, login_url='/loginStaff')
 def staffPostAnnouncement(request):

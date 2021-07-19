@@ -149,7 +149,7 @@ def update_viewVisitor(request, vistoor_id):
         'form': form
    
     }
-    return render(request, 'staff/list_visitor.html', context)
+    return render(request, 'staff/update_visitor.html', context)
 
 
 

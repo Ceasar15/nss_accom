@@ -76,6 +76,8 @@ class NewVisitor(models.Model):
     visiting_mobile_number = models.CharField(max_length=30)
     visiting_date_time = models.DateTimeField(default=timezone.now)
     visitor_in_out = models.CharField(max_length=10, default='in')
+    
+
 
     class Meta:
         ordering = ['-visiting_date_time']
@@ -85,7 +87,7 @@ class NewVisitor(models.Model):
 
 
 class UpdateVisitor(models.Model):
-    visitor_one = models.OneToOneField(NewVisitor, on_delete=models.CASCADE)
+    visitor_one = models.OneToOneField(NewVisitor, on_delete=models.CASCADE, default=2, null=True, blank=True)
     visitor_update = models.CharField(max_length=20)
 
     def __str__(self):

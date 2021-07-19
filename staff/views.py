@@ -1,6 +1,6 @@
 from django.http import request
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import render, redirect  	
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect	
 from django.contrib.auth import authenticate, login, logout		
 from django.contrib import messages		
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -108,6 +108,46 @@ def staff_addNewVisitor(request):
     return render(request, 'staff/add_new_visitor.html', context)
 
 
+
+@user_passes_test(check_user, login_url='/loginStaff')
+def list_viewVisitor(request):
+    dataset = NewVisitor.objects.all()
+    context = {
+        'dataset': dataset
+    }
+    return render(request, 'staff/list_visitor.html', context)
+
+
+
+@user_passes_test(check_user, login_url='/loginStaff')
+def detail_viewVisitor(request, visitor_id):
+    data = NewVisitor.objects.get(visitor_id=visitor_id)
+    
+    context = {
+        'data': data
+    }
+
+    return render(request, 'staff/detail_visitor.html', context)
+
+
+@user_passes_test(check_user, login_url='/loginStaff')
+def update_viewVisitor(request, id):
+    
+    obj = get_object_or_404(NewVisitor, id=id)
+
+    form = NewVisitor(request.POST or None, instance= obj )
+
+    if form.is_valid():
+        form.save()
+        return redirect('staff:list_viewVisitor')
+
+    context = {
+
+        'form': form
+   
+    }
+    return render(request, 'staff/list_visitor.html', context)
+
 @user_passes_test(check_user, login_url='/loginStaff')
 def staffPostAnnouncement(request):
     if request.method == 'POST':
@@ -127,7 +167,6 @@ def staffPostAnnouncement(request):
             }
         
     return render(request, 'staff/post_announcement.html', context)
-
 
 
 @user_passes_test(check_user, login_url='/loginStaff')

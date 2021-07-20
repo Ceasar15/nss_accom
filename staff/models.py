@@ -73,7 +73,7 @@ class NewVisitor(models.Model):
     visiting_date_time = models.DateTimeField(default=timezone.now)
     visitor_in_out = models.CharField(max_length=10, default='in')
     departed_at = models.DateTimeField(default=None, null=True)
-    hall = models.CharField(max_length=100, default=None, null=True, blank=True)
+    hall = models.CharField(max_length=100, default="No Hall", null=True, blank=True)
 
 
     class Meta:

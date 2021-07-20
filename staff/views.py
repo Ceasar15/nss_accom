@@ -86,11 +86,10 @@ def staff_addNewStudent(request):
 
 
 @user_passes_test(check_user, login_url='/loginStaff')
-def staff_addNewVisitor(request, user):
+def staff_addNewVisitor(request):
     if request.method == 'POST':
-        s_form = NewVisitorForm(request.POST)
-        typed = Typed.objects.filter(user_id=user).first();
-        print(typed.phone_no)
+        typed = Typed.objects.filter(user_id=request.user).first()
+        s_form = NewVisitorForm(request.POST, initial={'hall': typed.student_hall})
         if s_form.is_valid():
         
             sform = s_form.save(commit=False)
@@ -193,14 +192,16 @@ def updateVisitorStatus(request):
     return render(request, 'staff/update_visitor.html', context)
 
 
-
 # staff view all students.
+@user_passes_test(check_user, login_url='/loginStaff')
 def staffViewAllStudents(request):
-    dataset = NewStudent.objects.all()
+    typed = Typed.objects.filter(user_id=request.user).first()
+    dataset = NewStudent.objects.filter(hall=typed.student_hall)
     context = {
         'dataset': dataset,
     }
     return render(request, 'staff/staff_view_all_students.html', context)
+
 
 @user_passes_test(check_user, login_url='/loginStaff')
 def check_in(request, index_number):
@@ -213,7 +214,8 @@ def check_in(request, index_number):
 # staff view all visitors.
 @user_passes_test(check_user, login_url='/loginStaff')
 def staffManageVisitors(request):
-    dataset = NewVisitor.objects.all()
+    typed = Typed.objects.filter(user_id=request.user).first()
+    dataset = NewVisitor.objects.filter(hall=typed.student_hall)
     context = {
         'dataset': dataset,
     }

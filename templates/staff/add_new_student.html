@@ -133,7 +133,8 @@
                     <div class="ltn__form-box contact-form-box box-shadow white-bg">
                         <h4 class="title-2">Add a new student !</h4>
                         
-                        <form id="contact-form" method="post">
+                        <form id="contact-form" method="post" enctype="multipart/form-data" >
+                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-item input-item-name ltn__custom-icon">
@@ -149,7 +150,7 @@
 
                                 <div class="col-md-6">
                                     <div class="input-item input-item-email ltn__custom-icon">
-                                        <input type="text" id="id_index_number" name="index_number" placeholder="Student Index Number" required>
+                                        <input type="text" id="id_index_number" name="st_index_number" placeholder="Student Index Number" required>
                                     </div>
                                 </div>
 
@@ -197,7 +198,7 @@
 
                                 <div class="col-md-6">
                                     <div class="input-item input-item-phone">
-                                        <input type="file" id="id_images" name="images" placeholder="Student Phone Number" required>
+                                        <input type="file" id="id_images" name="images" accept="image/*" placeholder="Student Phone Number" required>
                                     </div>
                                 </div>
 

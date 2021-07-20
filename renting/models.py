@@ -76,7 +76,6 @@ class HouseImages(models.Model):
     nrh = models.ForeignKey(NewRentalHouse, on_delete=models.CASCADE)
 
 
-
 class HouseHas(models.Model):
 
     bedroom = models.CharField(max_length=11, choices=ROOMS)

@@ -117,11 +117,11 @@
                 <div class="col-lg-12">
                     <div class="ltn__form-box contact-form-box box-shadow white-bg">
                         <h4 class="title-2">Add a new visitor !</h4>
-                        <form id="contact-form" method="post">
+                        <form id="contact-form" method="post"> {% csrf_token %}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-item input-item-name ltn__custom-icon">
-                                        <input type="text" id="id_visitor_full_name" name="visitor_full_name" placeholder="Visitor Full Name">
+                                        <input type="text" id="id_visitor_full_name" name="visitor_fullName" placeholder="Visitor Full Name">
                                     </div>
                                 </div>
 
@@ -129,8 +129,8 @@
                                     <div class="input-item">
                                         <select class="nice-select" id="id_visiting_status" name="visiting_status" onChange="checkOption(this)" >
                                             <option>Is the visitor a UG student?</option>
-                                            <option>Yes</option>
-                                            <option>No</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
                                         </select>
                                     </div>
                                 </div>
@@ -138,7 +138,7 @@
 
                                 <div class="col-md-6">
                                     <div class="input-item input-item-email ltn__custom-icon">
-                                        <input type="text" id="id_visitor_id" name="visitor_id" placeholder="Index Number" disabled>
+                                        <input type="text" id="id_visitor_index" name="visitor_index" placeholder="Index Number" disabled>
                                     </div>
                                 </div>
 

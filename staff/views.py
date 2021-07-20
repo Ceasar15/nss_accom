@@ -1,11 +1,13 @@
 from django.http import request
-from django.shortcuts import render, redirect  	
+from django.http.response import HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect	
 from django.contrib.auth import authenticate, login, logout		
 from django.contrib import messages		
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
+from django.urls.base import reverse
 
-from .forms import NewStudentForm, PostAnnoumcementForm, NewVisitorForm
+from .forms import NewStudentForm, PostAnnoumcementForm, NewVisitorForm, UpdateVisitorForm
 from .models import NewStudent, NewVisitor, PostAnnouncement
 from student.models import NewComplaint
 from users.models import Typed
@@ -68,6 +70,7 @@ def staffDashboard(request):
 def staff_addNewStudent(request):
     if request.method == 'POST':
         s_form = NewStudentForm(request.POST, files=request.FILES)
+        #print(s_form.last_name)
         if s_form.is_valid():
             
             sform = s_form.save(commit=False)
@@ -88,8 +91,8 @@ def staff_addNewStudent(request):
 def staff_addNewVisitor(request):
     if request.method == 'POST':
         s_form = NewVisitorForm(request.POST)
-        print(request.first_name)
-        print(s_form.visitor_in_out)
+        # print(request.first_name)
+        #print(s_form)
         if s_form.is_valid():
         
             sform = s_form.save(commit=False)
@@ -103,6 +106,51 @@ def staff_addNewVisitor(request):
         's_form': NewVisitorForm(),
     }
     return render(request, 'staff/add_new_visitor.html', context)
+
+
+
+@user_passes_test(check_user, login_url='/loginStaff')
+def list_viewVisitor(request):
+    dataset = NewVisitor.objects.all()
+    context = {
+        'dataset': dataset
+    }
+    return render(request, 'staff/list_visitor.html', context)
+
+
+
+@user_passes_test(check_user, login_url='/loginStaff')
+def detail_viewVisitor(request, vistor_id):
+
+    data = NewVisitor.objects.all()
+    print(data)
+    
+    context = {
+        'data': data
+    }
+
+    return render(request, 'staff/detail_visitor.html', context)
+
+
+
+@user_passes_test(check_user, login_url='/loginStaff')
+def update_viewVisitor(request, vistoor_id):
+    
+    obj = get_object_or_404(NewVisitor, vistor_id=vistoor_id)
+
+    form = NewVisitor(request.POST or None, instance= obj )
+
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect("/"+vistoor_id)
+
+    context = {
+
+        'form': form
+   
+    }
+    return render(request, 'staff/update_visitor.html', context)
+
 
 
 @user_passes_test(check_user, login_url='/loginStaff')
@@ -126,15 +174,21 @@ def staffPostAnnouncement(request):
     return render(request, 'staff/post_announcement.html', context)
 
 
+@user_passes_test(check_user, login_url='/loginStaff')
+def updateVisitorStatus(request):
+    # user = request.newvisitor
+    form = UpdateVisitorForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            print("Update Fine")
+            return redirect('staff:staffDashboard')
+        else:
+            print("error")
+    else:
+        print("GET profile.html")
+    context = {
 
-
-# staff view all students.
-def staffViewAllStudents(request):
-    return render(request, 'staff/staff_view_all_students.html')
-
-
-
-# staff manage visitors.
-def staffManageVisitors(request):
-    return render(request, 'staff/staff_manage_visitors.html')
-
+        "update_visitor" : form,
+    }
+    return render(request, 'staff/update_visitor.html', context)

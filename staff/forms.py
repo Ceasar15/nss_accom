@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import fields
-from .models import GENDER_PREF, LEVEL_CHOICES, VISITOR_STATUS, NewStudent, NewVisitor, PostAnnouncement
+from .models import GENDER_PREF, LEVEL_CHOICES, VISITOR_STATUS, NewStudent, NewVisitor, PostAnnouncement, UpdateVisitor
 
 
 class PostAnnoumcementForm(forms.ModelForm):
@@ -22,7 +22,7 @@ class PostAnnoumcementForm(forms.ModelForm):
         )
 
 class NewStudentForm(forms.ModelForm):
-    index_number = forms.CharField(max_length=15)
+    st_index_number = forms.CharField(max_length=15)
     first_name = forms.CharField(max_length=50)
     last_name = forms.CharField(max_length=50)
     gender = forms.ChoiceField(choices=GENDER_PREF)
@@ -35,21 +35,20 @@ class NewStudentForm(forms.ModelForm):
         model = NewStudent
         fields = (
 
-        'index_number',
         'first_name',
         'last_name',
-        'gender',
+        'st_index_number',
         'room_number',
-        'course',
+        'gender',
         'level',
+        'course',
         'mobile_number',
         'images',
-        'check_in',
-        
         )
     
         exclude = (
             'date_registered',
+            'check_in',
         )
 
 class NewVisitorForm(forms.ModelForm):
@@ -67,3 +66,17 @@ class NewVisitorForm(forms.ModelForm):
             'visiting_date_time',
             'visitor_in_out',
         )
+
+    def visiting_status(self):
+        visiting_status = self.cleaned_data['visiting_status']
+        return visiting_status
+
+
+class UpdateVisitorForm(forms.ModelForm):
+
+    class Meta():
+        model = UpdateVisitor
+        fields = (
+            'visitor_update',
+        )
+    

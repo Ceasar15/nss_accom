@@ -16,6 +16,6 @@ urlpatterns = [
     path('staffUpdateVisitor/', sf.updateVisitorStatus, name='updateVisitor'),
     path('staffPostAnnouncement/', sf.staffPostAnnouncement, name='staffPostAnnouncement'),
     path('staffViewAllStudents/', sf.staffViewAllStudents, name='staffViewAllStudents'),
-    path('staffManageVisitors/', sf.staffManageVisitors, name='staffManageVisitors')
-
+    path('staffManageVisitors/', sf.staffManageVisitors, name='staffManageVisitors'),
+    path('leave/<visitor_id>', sf.staffManageVisitors, name='leave')
 ]

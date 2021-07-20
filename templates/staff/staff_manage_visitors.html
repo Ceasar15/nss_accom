@@ -142,35 +142,28 @@
                     </thead>
 
                     <tbody>
+                        {% if dataset %}
+                            {% for data in dataset %}
                         <tr style="cursor: pointer;">
                             
-                            <td>10678766</td>
-                            <td>Dwamena Joseph</td>
-                            <td>215</td>
-                            <td>Richmond Ghanney</td>
-                            <td>0275431234</td>
-                            <td>19/07/2021</td>
-                            <td>10:34 am</td>
-                            <td>12:45 pm</td>
-                            <td>Yes</td>
-                            <td>Icons here</td>
+                            <td>{{ data.visitor_index }}</td>
+                            <td> {{ data.room_member_getting_visited }} </td>
+                            <td>{{ data.visiting_room }}</td>
+                            <td>{{ data.visitor_fullName }}</td>
+                            <td>{{ data.visiting_mobile_number }} </td>
+                            <td>{{ data.visiting_date_time.date }} </td>
+                            <td>{{ data.visiting_date_time.time }}</td>
+                            {% if data.departed_at is None %}
+                            <td>N/A</td>
+                            {% else %}
+                            <td>{{ data.departed_at }}</td>
+                            {% endif %}
+                            <td>{{ data.visiting_status }}</td>
+                            <td><a href="#" class="btn btn-danger">Leave</a></td>
                              
                         </tr>
-
-                        <tr style="cursor: pointer;">
-                            
-                            <td>1087876</td>
-                            <td>Andy Kyle</td>
-                            <td>402</td>
-                            <td>Miriam Amoah</td>
-                            <td>024234567</td>
-                            <td>19/07/2021</td>
-                            <td>1:23 pm</td>
-                            <td>4:45 pm</td>
-                            <td>Yes</td>
-                            <td>Icons here</td>
-                             
-                        </tr>
+                            {% endfor %}
+                        {% endif %}
 
 
                     </tbody>

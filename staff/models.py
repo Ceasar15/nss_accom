@@ -76,7 +76,7 @@ class NewVisitor(models.Model):
     visiting_mobile_number = models.CharField(max_length=30)
     visiting_date_time = models.DateTimeField(default=timezone.now)
     visitor_in_out = models.CharField(max_length=10, default='in')
-    
+    departed_at = models.DateTimeField(default=None, null=True)
 
 
     class Meta:

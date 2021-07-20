@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 from django.urls.base import reverse
+from django.utils import timezone
 
 from .forms import NewStudentForm, PostAnnoumcementForm, NewVisitorForm, UpdateVisitorForm
 from .models import NewStudent, NewVisitor, PostAnnouncement
@@ -202,5 +203,20 @@ def staffViewAllStudents(request):
 
 
 # staff view all visitors.
+@user_passes_test(check_user, login_url='/loginStaff')
 def staffManageVisitors(request):
-    return render(request, 'staff/staff_manage_visitors.html')
+    dataset = NewVisitor.objects.all()
+
+    context = {
+        'dataset': dataset,
+    }
+    return render(request, 'staff/staff_manage_visitors.html', context)
+
+
+@user_passes_test(check_user, login_url='/loginStaff')
+def leave(request, visitor_id):
+    visitor = get_object_or_404(NewVisitor, vistor_id=visitor_id)
+    visitor.departed_at = timezone.now()
+    visitor.save()
+    return redirect('staff:staffManageVisitors')
+    

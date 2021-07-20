@@ -139,27 +139,19 @@
                     </thead>
 
                     <tbody>
+                        {% if dataset %}
+                            {% for data in dataset %}
                         <tr style="cursor: pointer;">
-                            <td>312</td>
-                            <td>032143464527</td>
-                            <td>Carpentry</td>
-                            <td>Broken door knob</td>
-                            <td>19/07/2021</td>
-                            <td>Pending</td>
-                            <td>Icons here</td>                            
-                            
-                        </tr>
-
-
-                        <tr style="cursor: pointer;">
-                            <td>111</td>
-                            <td>233243464527</td>
-                            <td>Plumbing</td>
-                            <td>Overflowing sink</td>
-                            <td>19/07/2021</td>
-                            <td>Pending</td>
+                            <td>{{ data.student_room_number}}</td>
+                            <td>{{ data.mobile_number}}</td>
+                            <td>{{ data.complaint_type}}</td>
+                            <td>{{ data.complaint_description}}</td>
+                            <td>{{ data.date_submitted.date}}</td>
+                            <td>{{ data.complaint_status}}</td>
                             <td>Icons here</td>                            
                         </tr>
+                            {% endfor %}
+                        {% endif %}
 
                     </tbody>
 

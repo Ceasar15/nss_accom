@@ -225,6 +225,5 @@ def leave(request, vistor_id):
     visitor = get_object_or_404(NewVisitor, vistor_id=vistor_id)
     visitor.departed_at = timezone.now()
     visitor.save()
-    print(visitor)
     return redirect('staff:staffManageVisitors')
     

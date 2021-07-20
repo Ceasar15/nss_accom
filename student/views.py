@@ -95,6 +95,10 @@ def studentSubmitComplaint(request):
 
 @user_passes_test(check_user, login_url='/loginStudent')
 def studentViewAllComplaints(request):
+    dataset = NewComplaint.objects.all()
+    context = {
+        'dataset': dataset,
+    }
     return render(request, 'student/student_view_all_complaints.html')
 
 

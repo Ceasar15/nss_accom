@@ -206,7 +206,6 @@ def staffViewAllStudents(request):
 @user_passes_test(check_user, login_url='/loginStaff')
 def staffManageVisitors(request):
     dataset = NewVisitor.objects.all()
-
     context = {
         'dataset': dataset,
     }
@@ -214,9 +213,10 @@ def staffManageVisitors(request):
 
 
 @user_passes_test(check_user, login_url='/loginStaff')
-def leave(request, visitor_id):
-    visitor = get_object_or_404(NewVisitor, vistor_id=visitor_id)
+def leave(request, vistor_id):
+    visitor = get_object_or_404(NewVisitor, vistor_id=vistor_id)
     visitor.departed_at = timezone.now()
     visitor.save()
+    print(visitor)
     return redirect('staff:staffManageVisitors')
     

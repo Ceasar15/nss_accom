@@ -9,5 +9,7 @@ urlpatterns = [
     path('addNewStudent/', sf.staff_addNewStudent, name='addNewStudent'),
     path('addNewVisitor/', sf.staff_addNewVisitor, name='addNewVisitor'),
     path('staffDashboard/', sf.staffDashboard, name='staffDashboard'),
-    path('staffPostAnnouncement/', sf.staffPostAnnouncement, name='staffPostAnnouncement')
+    path('staffPostAnnouncement/', sf.staffPostAnnouncement, name='staffPostAnnouncement'),
+    path('staffViewAllStudents/', sf.staffViewAllStudents, name='staffViewAllStudents'),
+    path('staffManageVisitors/', sf.staffManageVisitors, name='staffManageVisitors')
 ]

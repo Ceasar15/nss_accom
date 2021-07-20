@@ -66,10 +66,15 @@
                                 <div class="ltn__main-menu">
                                     <ul style="float: right;">
                                         <li><a href="{% url 'staff:addNewStudent' %}">Add new student</a></li>
-                                        <li><a href="#">View all students</a></li>
+
+                                        <li><a href="{% url 'staff:staffViewAllStudents' %}">View all students</a></li>
+
                                         <li><a href="{% url 'staff:addNewVisitor' %}">Add new visitor</a></li>
-                                        <li><a href="#">Manage visitors</a></li>
+
+                                        <li><a href="{% url 'staff:staffManageVisitors' %}">Manage visitors</a></li>
+
                                         <li><a href="{% url 'staff:staffPostAnnouncement' %}">Post an announcement</a></li>
+
                                         <!-- <li><a href="contact.html">Manage announcements</a></li> -->
                                         {% if user.is_authenticated %}	
                                         <li>

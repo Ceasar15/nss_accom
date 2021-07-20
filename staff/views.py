@@ -125,3 +125,16 @@ def staffPostAnnouncement(request):
         
     return render(request, 'staff/post_announcement.html', context)
 
+
+
+
+# staff view all students.
+def staffViewAllStudents(request):
+    return render(request, 'staff/staff_view_all_students.html')
+
+
+
+# staff manage visitors.
+def staffManageVisitors(request):
+    return render(request, 'staff/staff_manage_visitors.html')
+

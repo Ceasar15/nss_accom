@@ -90,11 +90,13 @@ def staff_addNewStudent(request):
 def staff_addNewVisitor(request):
     if request.method == 'POST':
         s_form = NewVisitorForm(request.POST)
-        # print(request.first_name)
-        #print(s_form)
+        typed = Typed.objects.filter(user_id=request.user).first();
+        print(typed)
         if s_form.is_valid():
         
             sform = s_form.save(commit=False)
+            # print(s_form)
+            s_form.user = typed.student_hall
             sform.save()
 
             messages.success(request, f'Visitor Recorded')

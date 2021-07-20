@@ -95,8 +95,6 @@ def studentSubmitComplaint(request):
 @user_passes_test(check_user, login_url='/loginStudent')
 def studentViewAllComplaints(request):
     typed = Typed.objects.filter(user_id=request.user).first()
-    complaint_status = NewComplaint.objects.filter(complaint_status='PENDING').count()
-    print(complaint_status)
     dataset = NewComplaint.objects.filter(student_hall=typed.student_hall)
     pending = NewComplaint.objects.filter(complaint_status='PENDING').count()
 

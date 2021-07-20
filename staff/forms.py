@@ -44,6 +44,7 @@ class NewStudentForm(forms.ModelForm):
         'course',
         'mobile_number',
         'images',
+        'hall',
         )
     
         exclude = (

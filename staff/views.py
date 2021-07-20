@@ -67,11 +67,12 @@ def staffDashboard(request):
 @user_passes_test(check_user, login_url='/loginStaff')
 def staff_addNewStudent(request):
     if request.method == 'POST':
+        typed = Typed.objects.filter(user_id=request.user).first()
         s_form = NewStudentForm(request.POST, files=request.FILES)
-        #print(s_form.last_name)
         if s_form.is_valid():
             
             sform = s_form.save(commit=False)
+            sform.hall = typed.student_hall
             sform.save()
 
             messages.success(request, f'New Student Added')

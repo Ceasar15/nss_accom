@@ -159,8 +159,9 @@
                             {% else %}
                             <td>{{ data.departed_at }}</td>
                             {% endif %}
+
                             {% if data.departed_at is None %}
-                            <td><a href="#" class="btn btn-danger">Leave</a></td>
+                            <td><a href="{% url 'staff:leave' data.vistor_id %}" class="btn btn-danger">Leave</a></td>
                             {% else %}
                             <td>>Departed</td>
                             {% endif %}

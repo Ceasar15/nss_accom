@@ -5,7 +5,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages		
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
-from django.urls.base import reverse
 from django.utils import timezone
 
 from .forms import NewStudentForm, PostAnnoumcementForm, NewVisitorForm, UpdateVisitorForm
@@ -87,16 +86,15 @@ def staff_addNewStudent(request):
 
 
 @user_passes_test(check_user, login_url='/loginStaff')
-def staff_addNewVisitor(request):
+def staff_addNewVisitor(request, user):
     if request.method == 'POST':
         s_form = NewVisitorForm(request.POST)
-        typed = Typed.objects.filter(user_id=request.user).first();
+        typed = Typed.objects.filter(user_id=user).first();
         print(typed.phone_no)
         if s_form.is_valid():
         
             sform = s_form.save(commit=False)
-            # print(s_form)
-            s_form.hall = typed.student_hall
+            sform.hall = typed.student_hall
             sform.save()
 
             messages.success(request, f'Visitor Recorded')

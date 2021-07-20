@@ -30,7 +30,7 @@ VISITOR_STATUS = (
 
 
 class NewStudent(models.Model):
-    index_number = models.CharField(primary_key=True, max_length=11)
+    index_number = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     st_index_number = models.CharField(max_length=50, default='10203040')
@@ -48,10 +48,6 @@ class NewStudent(models.Model):
 
     def __str__(self):
         return self.first_name
-    
-
-# class StudentImages(models.Model):
-#     new_student= models.ForeignKey(NewStudent, on_delete=models.CASCADE)
 
 
 class PostAnnouncement(models.Model):

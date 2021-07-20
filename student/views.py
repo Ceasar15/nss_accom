@@ -45,20 +45,19 @@ def loginStudent(request):
     return render(request, 'student/login_student.html', context)
     
 
-    
-#@login_required(login_url='/loginStudent')
+
 @user_passes_test(check_user, login_url='/loginStudent')
 def studentDashboard(request):
-    
-    # queryset = NewComplaint.objects.all().filter(complaint_status='PENDING')
+    typed = Typed.objects.filter(user_id=request.user).first()
+    total_complains = NewComplaint.objects.filter(student_hall=typed.student_hall).count()
 
-    # context ={
+    context = {
 
-    #     'pending_complaints': queryset
-        
-    # }
+        'total_complains': total_complains,
+
+    }
     
-    return render(request, 'student/student_dashboard.html')
+    return render(request, 'student/student_dashboard.html', context)
 
 
 @user_passes_test(check_user, login_url='/loginStudent')
@@ -95,10 +94,17 @@ def studentSubmitComplaint(request):
 
 @user_passes_test(check_user, login_url='/loginStudent')
 def studentViewAllComplaints(request):
-    dataset = NewComplaint.objects.all()
+    typed = Typed.objects.filter(user_id=request.user).first()
+    complaint_status = NewComplaint.objects.filter(complaint_status='PENDING').count()
+    print(complaint_status)
+    dataset = NewComplaint.objects.filter(student_hall=typed.student_hall)
+    pending = NewComplaint.objects.filter(complaint_status='PENDING').count()
+
     context = {
         'dataset': dataset,
+        'pending': pending,
     }
+
     return render(request, 'student/student_view_all_complaints.html', context)
 
 

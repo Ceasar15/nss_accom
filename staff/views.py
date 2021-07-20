@@ -49,9 +49,10 @@ def loginStaff(request):
 
 @user_passes_test(check_user, login_url='/loginStaff')
 def staffDashboard(request):
-    total_student = NewStudent.objects.all().count()
-    total_visitors = NewVisitor.objects.all().count()
-    total_complains = NewComplaint.objects.all().count()
+    typed = Typed.objects.filter(user_id=request.user).first()
+    total_student = NewStudent.objects.filter(hall=typed.student_hall).count()
+    total_visitors = NewVisitor.objects.filter(hall=typed.student_hall).count()
+    total_complains = NewComplaint.objects.filter(student_hall=typed.student_hall).count()
 
     context = {
         

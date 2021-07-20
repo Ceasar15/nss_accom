@@ -127,6 +127,7 @@
                     <thead>
                         <tr style="background-color: #FF5A3C; ">
                             
+                            <th scope='col'>Is Visitor A UG Student?</th>
                             <th scope='col'>Index Number</th>
                             <th scope='col'>Visitor Full Name</th>
                             <th scope='col'>Room Of Visit</th>
@@ -135,7 +136,6 @@
                             <th scope='col'>Date Of Visit</th>
                             <th scope='col'>Time Of Visit</th>
                             <th scope='col'>Departure Time</th>
-                            <th scope='col'>Is Visitor A UG Student?</th>
                             <th scope='col'>Actions</th>
 
                         </tr>
@@ -146,6 +146,7 @@
                             {% for data in dataset %}
                         <tr style="cursor: pointer;">
                             
+                            <td>{{ data.visiting_status }}</td>
                             <td>{{ data.visitor_index }}</td>
                             <td> {{ data.room_member_getting_visited }} </td>
                             <td>{{ data.visiting_room }}</td>
@@ -154,11 +155,11 @@
                             <td>{{ data.visiting_date_time.date }} </td>
                             <td>{{ data.visiting_date_time.time }}</td>
                             {% if data.departed_at is None %}
-                            <td>N/A</td>
+                            <td>   N/A</td>
                             {% else %}
                             <td>{{ data.departed_at }}</td>
                             {% endif %}
-                            <td>{{ data.visiting_status }}</td>
+                            
                             <td><a href="#" class="btn btn-danger">Leave</a></td>
                              
                         </tr>

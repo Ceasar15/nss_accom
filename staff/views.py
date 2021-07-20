@@ -192,3 +192,15 @@ def updateVisitorStatus(request):
         "update_visitor" : form,
     }
     return render(request, 'staff/update_visitor.html', context)
+
+
+
+# staff view all students.
+def staffViewAllStudents(request):
+    return render(request, 'staff/staff_view_all_students.html')
+
+
+
+# staff view all visitors.
+def staffManageVisitors(request):
+    return render(request, 'staff/staff_manage_visitors.html')

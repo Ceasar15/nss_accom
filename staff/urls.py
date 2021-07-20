@@ -3,6 +3,7 @@ from staff import views as sf
 
 app_name = 'staff'
 
+
 urlpatterns = [
     
     path('loginStaff/', sf.loginStaff, name='loginStaff'),   
@@ -13,5 +14,8 @@ urlpatterns = [
     path('v/<vistor_id>/', sf.detail_viewVisitor, name='detail_viewVisitor'),
     path('staffDashboard/', sf.staffDashboard, name='staffDashboard'),
     path('staffUpdateVisitor/', sf.updateVisitorStatus, name='updateVisitor'),
-    path('staffPostAnnouncement/', sf.staffPostAnnouncement, name='staffPostAnnouncement')
+    path('staffPostAnnouncement/', sf.staffPostAnnouncement, name='staffPostAnnouncement'),
+    path('staffViewAllStudents/', sf.staffViewAllStudents, name='staffViewAllStudents'),
+    path('staffManageVisitors/', sf.staffManageVisitors, name='staffManageVisitors')
+
 ]

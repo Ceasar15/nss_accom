@@ -198,8 +198,18 @@ def updateVisitorStatus(request):
 
 # staff view all students.
 def staffViewAllStudents(request):
-    return render(request, 'staff/staff_view_all_students.html')
+    dataset = NewStudent.objects.all()
+    context = {
+        'dataset': dataset,
+    }
+    return render(request, 'staff/staff_view_all_students.html', context)
 
+@user_passes_test(check_user, login_url='/loginStaff')
+def check_in(request, index_number):
+    student = get_object_or_404(NewStudent, index_number=index_number)
+    student.check_in = False
+    student.save()
+    return redirect('staff:staffManageVisitors')
 
 
 # staff view all visitors.

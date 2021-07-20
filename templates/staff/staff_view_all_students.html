@@ -143,19 +143,24 @@
                     </thead>
 
                     <tbody>
+
                         <tr style="cursor: pointer;">
+                            {% if dataset %}
+                                {% for data in dataset %}
                             <th scope='row'> <img style="border-radius: 40px;" src='https://static8.depositphotos.com/1008303/880/i/600/depositphotos_8803246-stock-photo-asian-college-student.jpg'> </th>
-                            <td>10678766</td>
-                            <td>Amanda</td>
-                            <td>Owusu</td>
-                            <td>Female</td>
-                            <td>312</td>
-                            <td>Computer Science</td>
-                            <td>300</td>
-                            <td>032143464527</td>
-                            <td>19/07/2021</td>
+                            <td>{{ data.st_index_number }}</td>
+                            <td>{{ data.first_name }}</td>
+                            <td>{{ data.last_name }} </td>
+                            <td>{{ data.gender }}</td>
+                            <td>{{ data.room_number }}</td>
+                            <td>{{ data.course }}</td>
+                            <td>{{ data.level }}</td>
+                            <td>{{ data.mobile_number }}</td>
+                            <td>{{ data.date_registered }}</td>
                             <td>Checked In</td>
                             <td>Icons here</td>
+                                {% endfor %}
+                            {% endif %}
                             
                         </tr>
 

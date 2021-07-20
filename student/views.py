@@ -107,7 +107,6 @@ def studentViewAllComplaints(request):
 
     return render(request, 'student/student_view_all_complaints.html', context)
 
-
 @user_passes_test(check_user, login_url='/loginStudent')
 def studentViewAnnouncements(request):
     return render(request, 'student/student_view_announcements.html')

@@ -76,7 +76,6 @@ def LandlordRegister(request):
     form = StudentRegisterForm()
     user_contact_form =  UserContactFrom()
     if request.method == 'POST':
-        # print(request.username)
         form = StudentRegisterForm(request.POST)
         user_contact_form = UserContactFrom(request.POST)
         if all((form.is_valid(), user_contact_form.is_valid() )):

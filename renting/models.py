@@ -84,7 +84,7 @@ class HouseHas(models.Model):
     parking = models.CharField(max_length=2, choices=FIELD_CHOICES)
     nrh = models.OneToOneField(NewRentalHouse, on_delete=models.CASCADE) 
 
-region = models.CharField(max_length=100, choices=STATE_CHOICES)
+    region = models.CharField(max_length=100, choices=STATE_CHOICES)
 
 class Amenities(models.Model):
 

@@ -5,7 +5,7 @@ from users import views as us
 
 app_name='renting'
 urlpatterns = [
-	path('', rt.home_page, name='home'),
+	# path('', rt.home_page, name='home'),
 	# path('sign/',rt.user_signin_status, name='sgn_status'),
 	#path('disp/', rt.renting_house_results, name='disp'),
 	path('disp/', rt.search_list, name='disp'),

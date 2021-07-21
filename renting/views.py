@@ -43,12 +43,12 @@ def home_page(request):
     return render(request, 'renting/home.html', locals())
 
 
-def user_signin_status(request):
-    if request.user.is_authenticated:
-        return JsonResponse({'user':'logged_in'})
+# def user_signin_status(request):
+#     if request.user.is_authenticated:
+#         return JsonResponse({'user':'logged_in'})
 
-    elif request.user.is_anonymous:
-        return JsonResponse({'user':'not_logged_in'})
+#     elif request.user.is_anonymous:
+#         return JsonResponse({'user':'not_logged_in'})
 
 
 def search_list(request):
@@ -79,7 +79,6 @@ def post_rent_ad(request):
 
     form = RentalHouseForm(initial={'country':'Ghana'}, data=request.POST or None)
     img_form = HouseImagesForm(files=request.FILES)
-    # files = request.FILES.getlist('images')
     PUB_KEY = settings.MAPBOX_PUBLIC_KEY
     if request.method == 'POST' and request.user.is_authenticated:
         if form.is_valid():

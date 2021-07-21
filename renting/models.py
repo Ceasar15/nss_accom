@@ -66,9 +66,6 @@ class NewRentalHouse(models.Model):
     
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
-    # in_date = models.DateField()
-    # out_date = models.DateField()
-    
     rent = models.PositiveIntegerField(default=100)
 
 class HouseImages(models.Model):

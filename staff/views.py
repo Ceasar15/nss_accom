@@ -66,6 +66,14 @@ def staffDashboard(request):
 
 
 @user_passes_test(check_user, login_url='/loginStaff')
+def solved(request, complaint_id):
+    typed = Typed.objects.filter(user_id=request.user).first()
+    complaint = get_object_or_404(NewComplaint, complaint_id=complaint_id, student_hall=typed.student_hall)
+    complaint.complaint_status = 'RESOLVED'
+    complaint.save()
+    return redirect('staff:staffDashboard')
+
+@user_passes_test(check_user, login_url='/loginStaff')
 def staff_addNewStudent(request):
     if request.method == 'POST':
         typed = Typed.objects.filter(user_id=request.user).first()

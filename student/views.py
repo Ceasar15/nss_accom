@@ -50,10 +50,14 @@ def loginStudent(request):
 def studentDashboard(request):
     typed = Typed.objects.filter(user_id=request.user).first()
     total_complains = NewComplaint.objects.filter(student_hall=typed.student_hall).count()
+    pending = NewComplaint.objects.filter(complaint_status='PENDING', student_hall=typed.student_hall).count()
+    resolved = NewComplaint.objects.filter(complaint_status='RESOLVED', student_hall=typed.student_hall).count()
 
     context = {
 
         'total_complains': total_complains,
+        'pending': pending,
+        'resolved': resolved,
 
     }
     
@@ -96,11 +100,10 @@ def studentSubmitComplaint(request):
 def studentViewAllComplaints(request):
     typed = Typed.objects.filter(user_id=request.user).first()
     dataset = NewComplaint.objects.filter(student_hall=typed.student_hall)
-    pending = NewComplaint.objects.filter(complaint_status='PENDING').count()
+
 
     context = {
         'dataset': dataset,
-        'pending': pending,
     }
 
     return render(request, 'student/student_view_all_complaints.html', context)

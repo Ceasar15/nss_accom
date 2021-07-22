@@ -17,6 +17,7 @@ urlpatterns = [
     path('staffPostAnnouncement/', sf.staffPostAnnouncement, name='staffPostAnnouncement'),
     path('staffViewAllStudents/', sf.staffViewAllStudents, name='staffViewAllStudents'),
     path('staffManageVisitors/', sf.staffManageVisitors, name='staffManageVisitors'),
+    path('staffViewAllComplaints/', sf.staffViewAllComplaints, name='staffViewAllComplaints'),
     path('leave/<vistor_id>', sf.leave, name='leave'),
     path('solved/<complaint_id>', sf.solved, name='solved'),
 ]

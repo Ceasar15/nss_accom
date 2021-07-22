@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Staff sign in</title>
+    <title>View all complaints</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -85,16 +85,46 @@
                             <nav>
                                 <div class="ltn__main-menu">
                                     <ul style="float: right;">
-                                        <li><a href="index.html">Home</a>
-                                         
-                                        </li>
-                                        <li><a href="#">About</a>
-                                            <li><a href="contact.html">Contact</a></li>
-                                            <ul>
-                                               
 
+                                        <li class="menu-icon"><a href="#">Complaints</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'student:studentSubmitComplaint' %}">Submit complaint</a></li>
+                                                </li>
+
+                                                <li>
+                                                    <a href="{% url 'student:studentViewAllComplaints' %}">View all complaints</a></li>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+
+
+                                        <li class="menu-icon"><a href="#">Announcements</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'student:studentViewAnnouncements' %}">View all announcements</a></li>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+
+
+
+                                        {% if user.is_authenticated %}	
+                                        <li>
+                                            <a href="#">{{ user.first_name }}</a></li>
+                                            {% else %}
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'student:loginStudent' %}">Login</a></li>
+                                        {% endif %}
+
+                                        <li class="btn-wrapper animated">
+                                            <a href="{% url 'logout' %}" class="theme-btn-1 btn btn-effect-1" style="height:60px; width:100px;"  >Sign Out</a>
                                         </li>
                                      
+
                                     </ul>
                                 </div>
                             </nav>
@@ -133,7 +163,7 @@
                             <th scope='col'>Complaint Description</th>
                             <th scope='col'>Date Submitted</th>
                             <th scope='col'>Complaint Status</th>
-                            <th scope='col'>Actions</th>
+                           <!--  <th scope='col'>Actions</th> -->
 
                         </tr>
                     </thead>
@@ -148,7 +178,7 @@
                             <td>{{ data.complaint_description}}</td>
                             <td>{{ data.date_submitted.date}}</td>
                             <td>{{ data.complaint_status}}</td>
-                            <td>Icons here</td>                            
+                                                      
                         </tr>
                             {% endfor %}
                         {% endif %}

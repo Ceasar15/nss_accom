@@ -242,4 +242,10 @@ def leave(request, vistor_id):
     visitor.departed_at = timezone.now()
     visitor.save()
     return redirect('staff:staffManageVisitors')
+
+
+
+# staff view all complaints.
+def staffViewAllComplaints(request):
+    return render(request, 'staff/staff_view_all_complaints.html')
     

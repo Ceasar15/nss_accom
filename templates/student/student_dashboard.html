@@ -65,19 +65,32 @@
                             <nav>
                                 <div class="ltn__main-menu">
                                     <ul style="float: right;">
-                                        <li>
-                                            <a href="{% url 'tracking:index' %}">Home</a>
+
+                                        <li class="menu-icon"><a href="#">Complaints</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'student:studentSubmitComplaint' %}">Submit complaint</a></li>
+                                                </li>
+
+                                                <li>
+                                                    <a href="{% url 'student:studentViewAllComplaints' %}">View all complaints</a></li>
+                                                </li>
+
+                                            </ul>
                                         </li>
-                                        
-                                        <li>
-                                            <a href="{% url 'student:studentSubmitComplaint' %}">Submit complaint</a></li>
+
+
+                                        <li class="menu-icon"><a href="#">Announcements</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'student:studentViewAnnouncements' %}">View all announcements</a></li>
+                                                </li>
+
+                                            </ul>
                                         </li>
-                                        <li>
-                                            <a href="{% url 'student:studentViewAllComplaints' %}">View all complaints</a></li>
-                                        </li>
-                                        <li>
-                                            <a href="{% url 'student:studentViewAnnouncements' %}">View all announcements</a></li>
-                                        </li>
+
+
+
                                         {% if user.is_authenticated %}	
                                         <li>
                                             <a href="#">{{ user.first_name }}</a></li>

@@ -1,4 +1,3 @@
-
 {% load static %}
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -8,10 +7,15 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Login page</title>
+    <title>View all complaints</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+
 
    <!-- Place favicon.png in the root directory -->
    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon" />
@@ -71,7 +75,7 @@
                     <div class="col">
                         <div class="site-logo-wrap">
                             <div class="site-logo">
-                                <a href="{% url 'tracking:index' %}"><img src="{% static 'img/logo.png' %}" alt="Logo"></a>
+                                <a href="index.html"><img src="{% static 'img/logo.png' %}" alt="Logo"></a>
                             </div>
                          
                         </div>
@@ -82,16 +86,39 @@
                                 <div class="ltn__main-menu">
                                     <ul style="float: right;">
 
+                                        <li class="menu-icon"><a href="#">Students</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'staff:addNewStudent' %}">Add new student</a>
+                                                </li>
+        
+                                                <li>
+                                                    <a href="{% url 'staff:staffViewAllStudents' %}">View all students</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+
+                                        <li class="menu-icon"><a href="#">Visitors</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'staff:addNewVisitor' %}">Add new visitor</a>
+                                                </li>
+        
+                                                <li>
+                                                    <a href="{% url 'staff:staffManageVisitors' %}">Manage visitors</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+
                                         <li class="menu-icon"><a href="#">Complaints</a>
                                             <ul>
                                                 <li>
-                                                    <a href="{% url 'student:studentSubmitComplaint' %}">Submit complaint</a></li>
+                                                    <a href="{% url 'staff:addNewVisitor' %}">View all complaints</a>
                                                 </li>
-
-                                                <li>
-                                                    <a href="{% url 'student:studentViewAllComplaints' %}">View all complaints</a></li>
-                                                </li>
-
+        
+                                                
                                             </ul>
                                         </li>
 
@@ -99,13 +126,17 @@
                                         <li class="menu-icon"><a href="#">Announcements</a>
                                             <ul>
                                                 <li>
-                                                    <a href="{% url 'student:studentViewAnnouncements' %}">View all announcements</a></li>
+                                                    <a href="{% url 'staff:staffPostAnnouncement' %}">Post an announcement</a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="{% url 'staff:staffPostAnnouncement' %}">Manage announcements</a>
                                                 </li>
 
                                             </ul>
                                         </li>
 
-
+            
 
                                         {% if user.is_authenticated %}	
                                         <li>
@@ -116,10 +147,13 @@
                                             <a href="{% url 'student:loginStudent' %}">Login</a></li>
                                         {% endif %}
 
+
                                         <li class="btn-wrapper animated">
                                             <a href="{% url 'logout' %}" class="theme-btn-1 btn btn-effect-1" style="height:60px; width:100px;"  >Sign Out</a>
                                         </li>
+
                                      
+
                                     </ul>
                                 </div>
                             </nav>
@@ -142,25 +176,65 @@
     <!-- BREADCRUMB AREA END -->
 
     <!-- LOGIN AREA START -->
-    <div class="ltn__breadcrumb-area text-left bg-overlay-white-15 bg-image "  data-bg="img/bg/14.jpg">
-        <div style="position: relative; top: -80px;" class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title-area text-center">
-                        <h1 class="section-title">STUDENT ANNOUNCEMENTS HERE </h1>
+    <div class="ltn__slider-area ltn__slider-3  section-bg-1"  data-bg="img/bg/14.jpg">
+        <div style="position: relative; top: 50px;" class="container">
+
+            <h2 style="margin-left: 420px; margin-bottom: 30px;">All Submitted complaints</h2>
+
+            <div class="container mb-3 mt-3">
+                <table class="table table-stripped table-bothered table-hover mydatatable" style="width: 100%">
+                    <thead>
+                        <tr style="background-color: #FF5A3C; ">
+                            
+                            <th scope='col'>Room Number</th>
+                            <th scope='col'>Mobile Number</th>
+                            <th scope='col'>Complaint Type</th>
+                            <th scope='col'>Complaint Description</th>
+                            <th scope='col'>Date Submitted</th>
+                            <th scope='col'>Complaint Status</th>
+                            <th scope='col'>Actions</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
                         
-                    </div>
-                </div>
+                        <tr style="cursor: pointer;">
+                            {% if dataset %}
+                                {% for data in dataset %}
+
+                            <td>{{ data.student_room_number}}</td>
+                            <td>{{ data.mobile_number}}</td>
+                            <td>{{ data.complaint_type}}</td>
+                            <td>{{ data.complaint_description}}</td>
+                            <td>{{ data.date_submitted.date}}</td>
+                            <td>{{ data.complaint_status}}</td>
+                            <td> <i class="fas fa-check-double"></i> </i> <i class="fas fa-trash-alt"></i> </td>
+                                                     
+                            {% endfor %}
+                                {% endif %}
+                        </tr>
+                        
+
+                    </tbody>
+
+                </table>
+
             </div>
-            
-            <div style="position: relative; bottom:70px; margin-left: 230px;" class="row">
-                <p>CONTENTS HERE </p> 
-             </div>
+
+           
+        </div>
     
     
 
+
+        
+
+
+
+
     <!-- FOOTER AREA START -->
-    <footer class="ltn__footer-area" >
+    <footer class="ltn__footer-area" style="position: relative; top: 300px;">
         <div class="footer-top-area  section-bg-2 plr--5">
             <div class="container-fluid">
                 <div class="row">
@@ -259,6 +333,8 @@
         </div>
     </footer>
     </div>
+
+
     <!-- FOOTER AREA END -->
 
 </div>
@@ -268,8 +344,25 @@
     <script src="{% static 'js/plugins.js' %}"></script>
     <!-- Main JS -->
     <script src="{% static 'js/main.js' %}"></script>
-  
+
+
+
+    <!-- Datatables -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+
+    <script>
+        $('.mydatatable').DataTable({
+            pagingType: 'full_numbers',
+            
+        });
+
+    </script>
+
+
 </body>
 
-<!-- Mirrored from maelectrics.com/tf/html/quarter-preview/quarter/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Jul 2021 16:54:40 GMT -->
 </html>
+

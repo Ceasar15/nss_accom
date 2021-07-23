@@ -214,9 +214,14 @@
                             <td>{{ data.mobile_number }}</td>
                             <td>{{ data.date_registered.date }}</td>
                             <td> Checked In </td>
-                            
-                            <td><i class="fas fa-edit"></i> <i class="fas fa-trash-alt"></i></td>
-                            
+                            <!-- <td><i class="fas fa-edit"></i> <i class="fas fa-trash-alt"></i></td> -->
+                            {% if data.check_in == "FALSE" %}
+                            <td><a href="{% url 'staff:solved' data.complaint_id %}">RESLOVED</a></td>
+                            {% else %}
+                            <td>Solved</td>
+                            {% endif %}
+
+
                         </tr>
                             {% endfor %}
                         {% endif %}

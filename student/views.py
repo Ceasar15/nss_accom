@@ -114,6 +114,9 @@ def studentViewAllComplaints(request):
 def studentViewAnnouncements(request):
 
     typed = Typed.objects.filter(user_id=request.user).first()
-    dataset = PostAnnouncement()
+    dataset = PostAnnouncement.objects.filter(hall=typed.student_hall)
 
-    return render(request, 'student/student_view_announcements.html')
+    context = {
+        'dataset': dataset,
+    }
+    return render(request, 'student/student_view_announcements.html', context)

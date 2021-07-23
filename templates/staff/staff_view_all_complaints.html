@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>View all complaints</title>
+    <title>Staff view all complaints</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -112,16 +112,17 @@
                                         </li>
 
 
+
                                         <li class="menu-icon"><a href="#">Complaints</a>
                                             <ul>
                                                 <li>
-                                                    <a href="{% url 'staff:addNewVisitor' %}">View all complaints</a>
+                                                    <a href="{% url 'staff:staffViewAllComplaints' %}">View all complaints</a>
                                                 </li>
         
-                                                
                                             </ul>
                                         </li>
 
+                                        
 
                                         <li class="menu-icon"><a href="#">Announcements</a>
                                             <ul>
@@ -151,8 +152,6 @@
                                         <li class="btn-wrapper animated">
                                             <a href="{% url 'logout' %}" class="theme-btn-1 btn btn-effect-1" style="height:60px; width:100px;"  >Sign Out</a>
                                         </li>
-
-                                     
 
                                     </ul>
                                 </div>
@@ -192,29 +191,26 @@
                             <th scope='col'>Complaint Description</th>
                             <th scope='col'>Date Submitted</th>
                             <th scope='col'>Complaint Status</th>
-                            <th scope='col'>Actions</th>
+                           <th scope='col'>Actions</th>
 
                         </tr>
                     </thead>
 
                     <tbody>
-                        
+                        {% if dataset %}
+                            {% for data in dataset %}
                         <tr style="cursor: pointer;">
-                            {% if dataset %}
-                                {% for data in dataset %}
-
                             <td>{{ data.student_room_number}}</td>
                             <td>{{ data.mobile_number}}</td>
                             <td>{{ data.complaint_type}}</td>
                             <td>{{ data.complaint_description}}</td>
                             <td>{{ data.date_submitted.date}}</td>
                             <td>{{ data.complaint_status}}</td>
-                            <td> <i class="fas fa-check-double"></i> </i> <i class="fas fa-trash-alt"></i> </td>
-                                                     
-                            {% endfor %}
-                                {% endif %}
+                            <td><i class="fas fa-trash-alt"></i></td>
+                                                      
                         </tr>
-                        
+                            {% endfor %}
+                        {% endif %}
 
                     </tbody>
 

@@ -57,7 +57,7 @@ class PostAnnouncement(models.Model):
     date_submitted = models.DateField(auto_created=True, default=timezone.now)
     time_submitted = models.TimeField(auto_created=True, default=timezone.now)
     annou_user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
-    hall = models.CharField(max_length=100, default="No Hall", null=True, blank=True)
+    hall = models.CharField(max_length=100, default="akuafo_main", null=True, blank=True)
 
     class Meta:
         ordering = ['-date_submitted']

@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>View all students</title>
+    <title>Staff view all students</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -75,7 +75,7 @@
                     <div class="col">
                         <div class="site-logo-wrap">
                             <div class="site-logo">
-                                <a href="index.html"><img src="{% static 'img/logo.png' %}" alt="Logo"></a>
+                                <a href="{% url 'tracking:index' %}"><img src="{% static 'img/logo.png' %}" alt="Logo"></a>
                             </div>
                          
                         </div>
@@ -85,6 +85,7 @@
                             <nav>
                                 <div class="ltn__main-menu">
                                     <ul style="float: right;">
+
                                         <li class="menu-icon"><a href="#">Students</a>
                                             <ul>
                                                 <li>
@@ -111,6 +112,7 @@
                                         </li>
 
 
+
                                         <li class="menu-icon"><a href="#">Complaints</a>
                                             <ul>
                                                 <li>
@@ -120,7 +122,7 @@
                                             </ul>
                                         </li>
 
-
+                                        
 
                                         <li class="menu-icon"><a href="#">Announcements</a>
                                             <ul>
@@ -151,7 +153,6 @@
                                             <a href="{% url 'logout' %}" class="theme-btn-1 btn btn-effect-1" style="height:60px; width:100px;"  >Sign Out</a>
                                         </li>
 
-
                                     </ul>
                                 </div>
                             </nav>
@@ -174,10 +175,10 @@
     <!-- BREADCRUMB AREA END -->
 
     <!-- LOGIN AREA START -->
-    <div class="ltn__slider-area ltn__slider-3  section-bg-1"  data-bg="img/bg/14.jpg">
+    <div class="ltn__slider-area ltn__slider-3  section-bg-1"  data-bg="{% static 'img/bg/14.jpg' %}">
         <div style="position: relative; top: 50px;" class="container">
 
-            <h2 style="margin-left: 460px; margin-bottom: 30px;">List of all students</h2>
+            <h2 style="margin-left: 420px; margin-bottom: 30px;">List of all students</h2>
 
             <div class="container mb-3 mt-3">
                 <table class="table table-stripped table-bothered table-hover mydatatable" style="width: 100%">
@@ -200,10 +201,10 @@
                     </thead>
 
                     <tbody>
-
+                        {% if dataset %}
+                            {% for data in dataset %}
+                            
                         <tr style="cursor: pointer;">
-                            {% if dataset %}
-                                {% for data in dataset %}
                             <th scope='row'> <img style="border-radius: 40px;" src="{{ data.images.url }}"> </th>
                             <td>{{ data.st_index_number }}</td>
                             <td>{{ data.first_name }}</td>
@@ -220,7 +221,6 @@
                             {% endif %}
                             
                         </tr>
-
                         
 
                     </tbody>

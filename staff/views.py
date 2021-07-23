@@ -66,14 +66,6 @@ def staffDashboard(request):
 
 
 @user_passes_test(check_user, login_url='/loginStaff')
-def solved(request, complaint_id):
-    typed = Typed.objects.filter(user_id=request.user).first()
-    complaint = get_object_or_404(NewComplaint, complaint_id=complaint_id, student_hall=typed.student_hall)
-    complaint.complaint_status = 'RESOLVED'
-    complaint.save()
-    return redirect('staff:staffDashboard')
-
-@user_passes_test(check_user, login_url='/loginStaff')
 def staff_addNewStudent(request):
     if request.method == 'POST':
         typed = Typed.objects.filter(user_id=request.user).first()
@@ -112,7 +104,7 @@ def staff_addNewVisitor(request):
 
             messages.success(request, f'Visitor Recorded')
 
-            return redirect('staff:staffDashboard')
+            return redirect('staff:staffManageVisitors')
         
     context = {
         's_form': NewVisitorForm(),
@@ -246,6 +238,21 @@ def leave(request, vistor_id):
 
 
 # staff view all complaints.
+@user_passes_test(check_user, login_url='/loginStaff')
 def staffViewAllComplaints(request):
-    return render(request, 'staff/staff_view_all_complaints.html')
+    typed = Typed.objects.filter(user_id=request.user).first()
+    dataset = NewComplaint.objects.filter(student_hall=typed.student_hall)
+    context = {
+        'dataset': dataset,
+    }
+    return render(request, 'staff/staff_view_all_complaints.html', context)
     
+
+
+@user_passes_test(check_user, login_url='/loginStaff')
+def solved(request, complaint_id):
+    typed = Typed.objects.filter(user_id=request.user).first()
+    complaint = get_object_or_404(NewComplaint, complaint_id=complaint_id, student_hall=typed.student_hall)
+    complaint.complaint_status = 'RESOLVED'
+    complaint.save()
+    return redirect('staff:staffViewAllComplaints')

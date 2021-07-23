@@ -200,10 +200,9 @@
                     </thead>
 
                     <tbody>
-
+                        {% if dataset %}
+                            {% for data in dataset %}
                         <tr style="cursor: pointer;">
-                            {% if dataset %}
-                                {% for data in dataset %}
                             <th scope='row'> <img style="border-radius: 40px;" src="{{ data.images.url }}"> </th>
                             <td>{{ data.st_index_number }}</td>
                             <td>{{ data.first_name }}</td>
@@ -214,13 +213,12 @@
                             <td>{{ data.level }}</td>
                             <td>{{ data.mobile_number }}</td>
                             <td>{{ data.date_registered.date }}</td>
-                            <td>Checked In</td>
+                            <td>{{ data.date_registered.date }}</td>
                             <td><i class="fas fa-edit"></i> <i class="fas fa-trash-alt"></i></td>
-                                {% endfor %}
-                            {% endif %}
                             
                         </tr>
-
+                            {% endfor %}
+                        {% endif %}
                         
 
                     </tbody>

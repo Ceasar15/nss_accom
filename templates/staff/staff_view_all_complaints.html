@@ -200,14 +200,23 @@
                         {% if dataset %}
                             {% for data in dataset %}
                         <tr style="cursor: pointer;">
-                            <td>{{ data.student_room_number}}</td>
-                            <td>{{ data.mobile_number}}</td>
-                            <td>{{ data.complaint_type}}</td>
-                            <td>{{ data.complaint_description}}</td>
-                            <td>{{ data.date_submitted.date}}</td>
-                            <td>{{ data.complaint_status}}</td>
-                            <td><i class="fas fa-trash-alt"></i></td>
-                                                      
+                            <td>{{ data.student_room_number }}</td>
+                            <td>{{ data.mobile_number }}</td>
+                            <td>{{ data.complaint_type }}</td>
+                            <td>{{ data.complaint_description }}</td>
+                            <td>{{ data.date_submitted.date }}</td>
+                            {% if data.complaint_status == "PENDING" %}
+                            <td> PENDING </td>
+                            {% else %}
+                            <td>RESLOVED</td>
+                            {% endif %}
+
+                            {% if data.complaint_status == "PENDING" %}
+                            <td><a href="{% url 'staff:solved' data.complaint_id %}">RESLOVED</a></td>
+                            {% else %}
+                            <td>Solved</td>
+                            {% endif %}
+
                         </tr>
                             {% endfor %}
                         {% endif %}

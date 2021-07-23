@@ -210,11 +210,11 @@ def staffViewAllStudents(request):
 
 
 @user_passes_test(check_user, login_url='/loginStaff')
-def check_in(request, index_number):
-    student = get_object_or_404(NewStudent, index_number=index_number)
-    student.check_in = False
+def check_in(request, id):
+    student = get_object_or_404(NewStudent, id=id)
+    student.check_in = True
     student.save()
-    return redirect('staff:staffManageVisitors')
+    return redirect('staff:staffViewAllStudents')
 
 
 # staff view all visitors.

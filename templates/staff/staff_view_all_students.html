@@ -201,16 +201,8 @@
                     </thead>
 
                     <tbody>
-<<<<<<< HEAD
                         {% if dataset %}
                             {% for data in dataset %}
-                            
-||||||| 25ed3a0
-
-=======
-                        {% if dataset %}
-                            {% for data in dataset %}
->>>>>>> f6195bc2b6d74c042a93408be942511d67a9b18a
                         <tr style="cursor: pointer;">
                             <th scope='row'> <img style="border-radius: 40px;" src="{{ data.images.url }}"> </th>
                             <td>{{ data.st_index_number }}</td>
@@ -230,12 +222,6 @@
 
                             <!-- <td><i class="fas fa-edit"></i> <i class="fas fa-trash-alt"></i></td> -->
                             
-<<<<<<< HEAD
-                        </tr>
-||||||| 25ed3a0
-                        </tr>
-
-=======
                             {% if data.check_in is False %}
                             <td><a href="{% url 'staff:check_in' data.id %}">CHECK OUT</a></td>
                             {% else %}
@@ -246,7 +232,6 @@
                         </tr>
                             {% endfor %}
                         {% endif %}
->>>>>>> f6195bc2b6d74c042a93408be942511d67a9b18a
                         
 
                     </tbody>

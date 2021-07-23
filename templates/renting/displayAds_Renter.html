@@ -1,3 +1,5 @@
+{% load static %}
+
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -9,16 +11,16 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Place favicon.png in the root directory -->
-    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
-    <!-- Font Icons css -->
-    <link rel="stylesheet" href="css/font-icons.css">
-    <!-- plugins css -->
-    <link rel="stylesheet" href="css/plugins.css">
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Responsive css -->
-    <link rel="stylesheet" href="css/responsive.css">
+     <!-- Place favicon.png in the root directory -->
+   <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon" />
+   <!-- Font Icons css -->
+   <link rel="stylesheet" href="{% static 'css/font-icons.css' %}">
+   <!-- plugins css -->
+   <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+   <!-- Main Stylesheet -->
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   <!-- Responsive css -->
+   <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
 </head>
 
 <body>
@@ -696,9 +698,7 @@
                                                     <li><span>2 </span>
                                                         Bathrooms
                                                     </li>
-                                                   <!--  <li><span>3450 </span>
-                                                        square Ft
-                                                    </li> -->
+                                                  
                                                 </ul>
                                             </div>
                                             <div class="product-info-bottom">
@@ -718,10 +718,7 @@
                                                                 <i class="flaticon-expand"></i>
                                                             </a>
                                                         </li>
-                                                      <!--   <li>
-                                                            <a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
-                                                                <i class="flaticon-heart-1"></i></a>
-                                                        </li> -->
+                                                     
                                                         <li>
                                                             <a href="product-details.html" title="Product Details">
                                                                 <i class="flaticon-add"></i>
@@ -764,9 +761,7 @@
                                                     <li><span>2 </span>
                                                         Bathrooms
                                                     </li>
-                                                    <!-- <li><span>3450 </span>
-                                                        square Ft
-                                                    </li> -->
+                                                    
                                                 </ul>
                                             </div>
                                             <div class="product-info-bottom">
@@ -1208,9 +1203,9 @@
 <!-- Body main wrapper end -->
 
     <!-- All JS Plugins -->
-    <script src="js/plugins.js"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
     <!-- Main JS -->
-    <script src="js/main.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
   
 </body>
 

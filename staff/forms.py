@@ -21,6 +21,8 @@ class PostAnnoumcementForm(forms.ModelForm):
             'time_submitted',
         )
 
+
+
 class NewStudentForm(forms.ModelForm):
     st_index_number = forms.CharField(max_length=15)
     first_name = forms.CharField(max_length=50)
@@ -52,6 +54,8 @@ class NewStudentForm(forms.ModelForm):
             'check_in',
         )
 
+
+
 class NewVisitorForm(forms.ModelForm):
 
     class Meta:
@@ -72,6 +76,7 @@ class NewVisitorForm(forms.ModelForm):
     def visiting_status(self):
         visiting_status = self.cleaned_data['visiting_status']
         return visiting_status
+
 
 
 class UpdateVisitorForm(forms.ModelForm):

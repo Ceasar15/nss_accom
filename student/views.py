@@ -1,3 +1,4 @@
+from staff.models import PostAnnouncement
 from django.http import request
 from users.models import Typed
 from django.shortcuts import render
@@ -108,6 +109,14 @@ def studentViewAllComplaints(request):
 
     return render(request, 'student/student_view_all_complaints.html', context)
 
+
 @user_passes_test(check_user, login_url='/loginStudent')
 def studentViewAnnouncements(request):
-    return render(request, 'student/student_view_announcements.html')
+
+    typed = Typed.objects.filter(user_id=request.user).first()
+    dataset = PostAnnouncement.objects.filter(hall=typed.student_hall)
+
+    context = {
+        'dataset': dataset,
+    }
+    return render(request, 'student/student_view_announcements.html', context)

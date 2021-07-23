@@ -67,9 +67,25 @@
                             <nav>
                                 <div class="ltn__main-menu">
                                     <ul style="float: right;">
-                                        <li><a href="index.html">Home</a></li>
-                                        <li><a href="#">About</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li>
+                                            <a href="#">Home</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="{% url 'renting:postRentAdds' %}">Post rent ads</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="{% url 'renting:landlordViewRentAds' %}">View rent ads</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#">User</a>
+                                        </li>
+
+                                        <li class="btn-wrapper animated">
+                                            <a href="{% url 'logout' %}" class="theme-btn-1 btn btn-effect-1" style="height:60px; width:100px;"  >Sign Out</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </nav>
@@ -91,7 +107,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ltn__shop-options">
-                        <h1>APARTMENTS AVAILABLE FOR RENT</h1>
+                        <h1>YOUR APARTMENTS AVAILABLE FOR RENT</h1>
                         <ul>
                             <li>
                                 <div class="ltn__grid-list-tab-menu ">
@@ -101,22 +117,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                              <!--  <div class="short-by text-center">
-                                    <select class="nice-select">
-                                        <option>Search Apartments</option> -->
-                                        <!-- <option>Sort by popularity</option> -->
-                                       <!--  <option>Sort by new arrivals</option>
-                                        <option>Search by price: low to high</option>
-                                        <option>Search by price: high to low</option>
-                                    </select>
-                                </div>  -->
-                            </li>
-                            <li>
-                               <!-- <div class="showing-product-number text-right">
-                                    <span>Showing 9 of 20 results</span>
-                                </div> --> 
-                            </li>
+                            
                         </ul>
                     </div>
                     <div class="tab-content">
@@ -141,7 +142,7 @@
                                         <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                                             
                                             <div class="product-img" >
-                                                <a href="product-details.html"><img src="{% static 'img/pin1.jpg' %}" alt="#" height="280px"></a>
+                                                <a href="{% url 'renting:landlordViewHouseDetails' %}"><img src="{% static 'img/pin1.jpg' %}" alt="#" height="280px"></a>
 
                                                 <div class="real-estate-agent">
                                                     <div class="agent-img">
@@ -210,7 +211,7 @@
                                     <div class="col-lg-4 col-sm-6 col-12">
                                         <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                                             <div class="product-img">
-                                                <a href="product-details.html"><img src="{% static 'img/pin4.jpg' %}" alt="#" height="280px"></a>
+                                                <a href="{% url 'renting:landlordViewHouseDetails' %}"><img src="{% static 'img/pin4.jpg' %}" alt="#" height="280px"></a>
                                                 <div class="real-estate-agent">
                                                     <div class="agent-img">
                                                         <a href="team-details.html"><img src="{% static 'img/landlord1.jpg' %}" alt="#"></a>
@@ -276,7 +277,7 @@
                                     <div class="col-lg-4 col-sm-6 col-12" >
                                         <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                                             <div class="product-img">
-                                                <a href="product-details.html"><img src="{% static 'img/pin1.jpg' %}" alt="#" height="280px"></a>
+                                                <a href="{% url 'renting:landlordViewHouseDetails' %}"><img src="{% static 'img/pin1.jpg' %}" alt="#" height="280px"></a>
                                                 <div class="real-estate-agent">
                                                     <div class="agent-img">
                                                         <a href="team-details.html"><img src="{% static 'img/landlord1.jpg' %}" alt="#"></a>
@@ -341,7 +342,7 @@
     <!-- PRODUCT DETAILS AREA END -->
 
 
-    
+
 
 
 
@@ -352,7 +353,7 @@
             <div class="row">
                 <div class="col-lg-12">
                 <div class="call-to-action-inner call-to-action-inner-6 ltn__secondary-bg text-center---">
-                       <a href="submit_Ad.html"><div class="coll-to-info text-color-white">
+                       <a href="{% url 'renting:postRentAdds' %}"><div class="coll-to-info text-color-white">
                             <h1>Click here to post an Ad of your available Apartment</h1>
                             <p>We can help you get Tenants for your Apartment</p>
                         </div></a>

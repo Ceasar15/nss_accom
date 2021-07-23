@@ -629,6 +629,11 @@ def landlordViewRentAds(request):
 
 
 
+# the page where the landlord can see his own house details.
+def landlordViewHouseDetails(request):
+    return render(request, 'renting/displayProduct.html')
+
+
 
 
 

@@ -30,8 +30,9 @@ urlpatterns = [
 	path('postRentAdds/', rt.postRentAdds, name='postRentAdds'),
 	path('landlord_register/', us.LandlordRegister, name='loginLandlord'),
 	path('landlordViewRentAds', rt.landlordViewRentAds, name='landlordViewRentAds'),
-	path('studentAndStaffViewRentAds/', rt.studentAndStaffViewRentAds, name='studentAndStaffViewRentAds')
+	path('studentAndStaffViewRentAds/', rt.studentAndStaffViewRentAds, name='studentAndStaffViewRentAds'),
+	path('landlordViewHouseDetails/', rt.landlordViewHouseDetails, name='landlordViewHouseDetails')
 
 
-	
+
 ]

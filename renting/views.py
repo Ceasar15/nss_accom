@@ -620,7 +620,7 @@ def postRentAdds(request):
     preferred_tenant_form = PreferredTenantForm(request.POST)
 
     if request.method == 'POST' and request.user.is_authenticated:
-        if all(form.is_valid(), house_has_form.is_valid(), amenities_form.is_valid(), rules_form.is_valid(), preferred_tenant_form.is_valid() ):
+        if all((form.is_valid(), house_has_form.is_valid(), amenities_form.is_valid(), rules_form.is_valid(), preferred_tenant_form.is_valid())):
             rh_obj = form.save(commit=False)
             rh_obj.user = request.user
             rh_obj.save()
@@ -633,6 +633,8 @@ def postRentAdds(request):
                 preferred_tenant_form.save()
             else:
                 print(img_form.errors)
+            
+            return redirect('renting:landlordViewRentAds')
 
 
     # GET Request

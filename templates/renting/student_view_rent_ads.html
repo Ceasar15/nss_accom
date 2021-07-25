@@ -181,7 +181,13 @@
                                         <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                                             <div class="product-img">
                                                 <a href="{% url 'renting:studentViewHouseDetails' house.id %}?next={{request.path}}">
-                                                    <img src="{% static 'img/pin1.jpg' %}" alt="#" height="280px">
+                                                    {% if house.houseimages_set.all %}
+                                                        {% for img in house.houseimages_set.all %}
+                                                            {% if forloop.counter == 1 %}
+                                                                <img src="{{img.images.url}}" alt="#" height="280px">
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% endif %}
                                                 </a>
                                                 <div class="real-estate-agent">
                                                     <div class="agent-img">

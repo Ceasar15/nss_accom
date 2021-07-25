@@ -612,7 +612,31 @@ def viewRentAdds(request):
 # the page where a landlord can post his rent adds.
 @user_passes_test(check_user, login_url='/signInLandlord')
 def postRentAdds(request):
-    return render(request, 'renting/post_rent_adds.html')
+    form = RentalHouseForm(initial={'country':'Ghana'}, data=request.POST or None)
+    img_form = HouseImagesForm(request.POST, files=request.FILES)
+    house_has_form = HouseHasForm(request.POST)
+    amenities_form = AmenitiesForm(request.POST)
+    rules_form = RulesForm(request.POST)
+    preferred_tenant_form = PreferredTenantForm(request.POST)
+
+    if request.method == 'POST' and request.user.is_authenticated:
+        if all(form.is_valid(), ):
+            rh_obj = form.save(commit=False)
+            rh_obj.user = request.user
+            rh_obj.save()
+            if img_form.is_valid():
+                for img_file in request.FILES.getlist('images'):
+                    HouseImages.objects.create(images=img_file, nrh=rh_obj)
+            else:
+                print(img_form.errors)
+
+
+    # GET Request
+    elif request.user.is_anonymous:
+        modl = 'true'
+        return render(request, 'renting/rental_post.html', locals())
+
+    return render(request, 'renting/post_rent_adds.html', locals())
 
 
 

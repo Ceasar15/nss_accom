@@ -630,9 +630,8 @@ def check_student_user(user):
 # the page where a student can view all rent ads.
 @user_passes_test(check_student_user, login_url='/loginStudent')
 def studentViewRentAds(request):
-    return render(request, 'renting/student_view_rent_ads.html')
-
-
+    f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())
+    return render(request, 'renting/student_view_rent_ads.html', {'filter': f})
 
 
 # the page where a staff can view all rent ads.
@@ -657,27 +656,5 @@ def landlordViewHouseDetails(request):
 # the page where the student can view the details of the ad.
 def studentViewHouseDetails(request):
     return render(request, 'renting/student_view_ad_details.html')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

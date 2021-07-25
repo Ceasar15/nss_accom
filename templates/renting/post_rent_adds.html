@@ -137,6 +137,7 @@
                         <h4 class="title-2">Post your rent ad !</h4>
 
                         <form id="contact-form" method="post">
+                            {% csrf_token %}
 
                             <h4 class="title-2">1. Fill your house address</h4>
                             <div class="row">

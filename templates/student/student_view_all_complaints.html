@@ -106,6 +106,16 @@
                                         </li>
 
 
+                                        <li class="menu-icon"><a href="#">NSS Accommodation</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'renting:studentViewRentAds' %}">Access NSS Accommodation</a></li>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+
+
 
                                         {% if user.is_authenticated %}	
                                         <li>
@@ -119,7 +129,6 @@
                                         <li class="btn-wrapper animated">
                                             <a href="{% url 'logout' %}" class="theme-btn-1 btn btn-effect-1" style="height:60px; width:100px;"  >Sign Out</a>
                                         </li>
-                                     
 
                                     </ul>
                                 </div>

@@ -617,21 +617,38 @@ def postRentAdds(request):
 
 
 
-# the page where a student/staff can view all rent ads.
-def studentAndStaffViewRentAds(request):
-    return render(request, 'renting/displayAds_Renter.html')
+# the page where a student can view all rent ads.
+def studentViewRentAds(request):
+    return render(request, 'renting/student_view_rent_ads.html')
+
+
+
+
+# the page where a staff can view all rent ads.
+def staffViewRentAds(request):
+    return render(request, 'renting/staff_view_rent_ads.html')
+
 
 
 
 # the page where a landlord can view all of their posted ads.
 def landlordViewRentAds(request):
-    return render(request, 'renting/shop-grid.html')
+    return render(request, 'renting/landlord_view_rent_ads.html')
 
 
 
 # the page where the landlord can see his own house details.
 def landlordViewHouseDetails(request):
-    return render(request, 'renting/displayProduct.html')
+    return render(request, 'renting/landlord_view_own_ads_details.html')
+
+
+
+# the page where the student can view the details of the ad.
+def studentViewHouseDetails(request):
+    return render(request, 'renting/student_view_ad_details.html')
+
+
+
 
 
 

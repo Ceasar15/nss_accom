@@ -56,8 +56,7 @@
                     <div class="col">
                         <div class="site-logo-wrap">
                             <div class="site-logo">
-                                <li><a href="index.html">LOGO</a></li>
-                                <!-- <a href="index.html"><img src="img/logo.png" alt="Logo"></a> -->
+                                <a href="{% url 'tracking:index' %}"><img src="{% static 'img/logo.png' %}" alt="Logo"></a>
                             </div>
                         </div>
                     </div>
@@ -66,9 +65,80 @@
                             <nav>
                                 <div class="ltn__main-menu">
                                     <ul style="float: right;">
-                                        <li><a href="index.html">Home</a></li>
-                                        <li><a href="#">About</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li class="menu-icon"><a href="#">Students</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'staff:addNewStudent' %}">Add new student</a>
+                                                </li>
+        
+                                                <li>
+                                                    <a href="{% url 'staff:staffViewAllStudents' %}">View all students</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+
+                                        <li class="menu-icon"><a href="#">Visitors</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'staff:addNewVisitor' %}">Add new visitor</a>
+                                                </li>
+        
+                                                <li>
+                                                    <a href="{% url 'staff:staffManageVisitors' %}">Manage visitors</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+
+                                        <li class="menu-icon"><a href="#">Complaints</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'staff:staffViewAllComplaints' %}">View all complaints</a>
+                                                </li>
+        
+                                            </ul>
+                                        </li>
+
+
+                                        <li class="menu-icon"><a href="#">Announcements</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'staff:staffPostAnnouncement' %}">Post an announcement</a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="{% url 'staff:staffPostAnnouncement' %}">Manage announcements</a>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+
+
+                                        <li class="menu-icon"><a href="#">NSS Accommodation</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'renting:staffViewRentAds' %}">Access NSS Accommodation</a></li>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+            
+
+                                        {% if user.is_authenticated %}	
+                                        <li>
+                                            <a href="#">{{ user.first_name }}</a></li>
+                                            {% else %}
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'student:loginStudent' %}">Login</a></li>
+                                        {% endif %}
+
+
+                                        <li class="btn-wrapper animated">
+                                            <a href="{% url 'logout' %}" class="theme-btn-1 btn btn-effect-1" style="height:60px; width:100px;"  >Sign Out</a>
+                                        </li>
+
                                     </ul>
                                 </div>
                             </nav>
@@ -104,31 +174,17 @@
                                <div class="short-by text-center">
                                     <select class="nice-select">
                                         <option>Search Apartments</option>
-                                        <!-- <option></option> -->
                                         <option>Search by Areas</option>
                                         <option>Search by price: low to high</option>
                                         <option>Search by price: high to low</option>
                                     </select>
                                 </div>
                             </li>
-                            <!--   <li>
-                               <div class="short-by text-center">
-                                    <select class="nice-select">
-                                        <option>Search Apartments</option>
-                                        <option>Sort by popularity</option>
-                                        <option>Sort by new arrivals</option>
-                                        <option>Search by price: low to high</option>
-                                        <option>Search by price: high to low</option>
-                                    </select>
-                                </div>
-                            </li> -->
-                            <li>
-                               <!-- <div class="showing-product-number text-right">
-                                    <span>Showing 9 of 20 results</span>
-                                </div> --> 
-                            </li>
+                        
                         </ul>
                     </div>
+
+
                     <div class="tab-content">
                         <div class="tab-pane fade active show" id="liton_product_grid">
                             <div class="ltn__product-tab-content-inner ltn__product-grid-view">
@@ -142,14 +198,17 @@
                                             </form>
                                         </div>
                                     </div>
-                                    <!-- ltn__product-item -->
+
+
+
+                                    <!-- ltn__product-item 1 -->
                                     <div class="col-lg-4 col-sm-6 col-12">
                                         <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                                             <div class="product-img">
-                                <a href="displayProduct.html"><img src="img/product-3/1.jpg" alt="#"></a>
+                                                <a href="displayProduct.html"><img src="{% static 'img/pin1.jpg' %}" alt="#" height="280px"></a>
                                                 <div class="real-estate-agent">
                                                     <div class="agent-img">
-                                                        <a href="team-details.html"><img src="img/blog/author.jpg" alt="#"></a>
+                                                        <a href="team-details.html"><img src="{% static 'img/landlord1.jpg' %}" alt="#"></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -204,14 +263,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- ltn__product-item -->
+
+
+
+                                    <!-- ltn__product-item 2-->
                                     <div class="col-lg-4 col-sm-6 col-12">
                                         <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                                             <div class="product-img">
-                                                <a href="product-details.html"><img src="img/product-3/2.jpg" alt="#"></a>
+                                                <a href="product-details.html"><img src="{% static 'img/pin4.jpg' %}" alt="#" height="280px"></a>
                                                 <div class="real-estate-agent">
                                                     <div class="agent-img">
-                                                        <a href="team-details.html"><img src="img/blog/author.jpg" alt="#"></a>
+                                                        <a href="team-details.html"><img src="{% static 'img/landlord1.jpg' %}" alt="#"></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -266,14 +328,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- ltn__product-item -->
+
+
+
+                                    <!-- ltn__product-item 3 -->
                                     <div class="col-lg-4 col-sm-6 col-12">
                                         <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                                             <div class="product-img">
-                                                <a href="product-details.html"><img src="img/product-3/3.jpg" alt="#"></a>
+                                                <a href="product-details.html"><img src="{% static 'img/pin1.jpg' %}" alt="#" height="280px"></a>
                                                 <div class="real-estate-agent">
                                                     <div class="agent-img">
-                                                        <a href="team-details.html"><img src="img/blog/author.jpg" alt="#"></a>
+                                                        <a href="team-details.html"><img src="{% static 'img/landlord1.jpg' %}" alt="#"></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -328,14 +393,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- ltn__product-item -->
+
+
+
+                                    <!-- ltn__product-item 4-->
                                     <div class="col-lg-4 col-sm-6 col-12">
                                         <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                                             <div class="product-img">
-                                                <a href="product-details.html"><img src="img/product-3/4.jpg" alt="#"></a>
+                                                <a href="product-details.html"><img src="{% static 'img/pin4.jpg' %}" alt="#" height="280px"></a>
                                                 <div class="real-estate-agent">
                                                     <div class="agent-img">
-                                                        <a href="team-details.html"><img src="img/blog/author.jpg" alt="#"></a>
+                                                        <a href="team-details.html"><img src="{% static 'img/landlord1.jpg' %}" alt="#"></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -390,14 +458,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- ltn__product-item -->
+
+
+
+                                    <!-- ltn__product-item 5-->
                                     <div class="col-lg-4 col-sm-6 col-12">
                                         <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                                             <div class="product-img">
-                                                <a href="product-details.html"><img src="img/product-3/5.jpg" alt="#"></a>
+                                                <a href="product-details.html"><img src="{% static 'img/pin1.jpg' %}" alt="#" height="280px"></a>
                                                 <div class="real-estate-agent">
                                                     <div class="agent-img">
-                                                        <a href="team-details.html"><img src="img/blog/author.jpg" alt="#"></a>
+                                                        <a href="team-details.html"><img src="{% static 'img/landlord1.jpg' %}" alt="#"></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -452,14 +523,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- ltn__product-item -->
+
+
+
+                                    <!-- ltn__product-item 6-->
                                     <div class="col-lg-4 col-sm-6 col-12">
                                         <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                                             <div class="product-img">
-                                                <a href="product-details.html"><img src="img/product-3/6.jpg" alt="#"></a>
+                                                <a href="product-details.html"><img src="{% static 'img/pin4.jpg' %}" alt="#" height="280px"></a>
                                                 <div class="real-estate-agent">
                                                     <div class="agent-img">
-                                                        <a href="team-details.html"><img src="img/blog/author.jpg" alt="#"></a>
+                                                        <a href="team-details.html"><img src="{% static 'img/landlord1.jpg' %}" alt="#"></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -514,378 +588,22 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!--  -->
+                                    <!-- ltn product item end -->
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="liton_product_list">
-                            <div class="ltn__product-tab-content-inner ltn__product-list-view">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <!-- Search Widget -->
-                                        <div class="ltn__search-widget mb-30">
-                                            <form action="#">
-                                                <input type="text" name="search" placeholder="Search your keyword...">
-                                                <button type="submit"><i class="fas fa-search"></i></button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <!-- ltn__product-item -->
-                                    <div class="col-lg-12">
-                                        <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5">
-                                            <div class="product-img">
-                                                <a href="product-details.html"><img src="img/product-3/1.jpg" alt="#"></a>
-                                            </div>
-                                            <div class="product-info">
-                                                <div class="product-badge-price">
-                                                    <div class="product-badge">
-                                                        <ul>
-                                                            <li class="sale-badg">For Rent</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="product-price">
-                                                        <span>900gh<label>/Month</label></span>
-                                                    </div>
-                                                </div>
-                                                <h2 class="product-title"><a href="product-details.html">New Apartment Nice View</a></h2>
-                                                <div class="product-img-location">
-                                                    <ul>
-                                                        <li>
-                                                           <a href="locations.html"><i class="flaticon-pin"></i>Legon campus, Accra</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <ul class="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
-                                                    <li><span>3 </span>
-                                                        Bedrooms
-                                                    </li>
-                                                    <li><span>2 </span>
-                                                        Bathrooms
-                                                    </li>
-                                                   <!--  <li><span>3450 </span>
-                                                        square Ft
-                                                    </li> -->
-                                                </ul>
-                                            </div>
-                                            <div class="product-info-bottom">
-                                                <div class="real-estate-agent">
-                                                    <div class="agent-img">
-                                                        <a href="team-details.html"><img src="img/blog/author.jpg" alt="#"></a>
-                                                    </div>
-                                                    <div class="agent-brief">
-                                                        <h6><a href="team-details.html">William Seklo</a></h6>
-                                                        <small>Landlord</small>
-                                                    </div>
-                                                </div>
-                                                <div class="product-hover-action">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
-                                                                <i class="flaticon-expand"></i>
-                                                            </a>
-                                                        </li>
-                                                      <!--   <li>
-                                                            <a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
-                                                                <i class="flaticon-heart-1"></i></a>
-                                                        </li> -->
-                                                        <li>
-                                                            <a href="product-details.html" title="Product Details">
-                                                                <i class="flaticon-add"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- ltn__product-item -->
-                                    <div class="col-lg-12">
-                                        <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5">
-                                            <div class="product-img">
-                                                <a href="product-details.html"><img src="img/product-3/2.jpg" alt="#"></a>
-                                            </div>
-                                            <div class="product-info">
-                                                <div class="product-badge-price">
-                                                    <div class="product-badge">
-                                                        <ul>
-                                                            <li class="sale-badg">For Rent</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="product-price">
-                                                        <span>900gh<label>/Month</label></span>
-                                                    </div>
-                                                </div>
-                                                <h2 class="product-title"><a href="product-details.html">New Apartment Nice View</a></h2>
-                                                <div class="product-img-location">
-                                                    <ul>
-                                                        <li>
-                                                           <a href="locations.html"><i class="flaticon-pin"></i>Legon campus, Accra</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <ul class="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
-                                                    <li><span>3 </span>
-                                                        Bedrooms
-                                                    </li>
-                                                    <li><span>2 </span>
-                                                        Bathrooms
-                                                    </li>
-                                                    <!-- <li><span>3450 </span>
-                                                        square Ft
-                                                    </li> -->
-                                                </ul>
-                                            </div>
-                                            <div class="product-info-bottom">
-                                                <div class="real-estate-agent">
-                                                    <div class="agent-img">
-                                                        <a href="team-details.html"><img src="img/blog/author.jpg" alt="#"></a>
-                                                    </div>
-                                                    <div class="agent-brief">
-                                                        <h6><a href="team-details.html">William Seklo</a></h6>
-                                                        <small>Landlord</small>
-                                                    </div>
-                                                </div>
-                                                <div class="product-hover-action">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
-                                                                <i class="flaticon-expand"></i>
-                                                            </a>
-                                                        </li>
-                                                       <!--  <li>
-                                                            <a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
-                                                                <i class="flaticon-heart-1"></i></a>
-                                                        </li> -->
-                                                        <li>
-                                                            <a href="product-details.html" title="Product Details">
-                                                                <i class="flaticon-add"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- ltn__product-item -->
-                                    <div class="col-lg-12">
-                                        <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5">
-                                            <div class="product-img">
-                                                <a href="product-details.html"><img src="img/product-3/3.jpg" alt="#"></a>
-                                            </div>
-                                            <div class="product-info">
-                                                <div class="product-badge-price">
-                                                    <div class="product-badge">
-                                                        <ul>
-                                                            <li class="sale-badg">For Rent</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="product-price">
-                                                        <span>900gh<label>/Month</label></span>
-                                                    </div>
-                                                </div>
-                                                <h2 class="product-title"><a href="product-details.html">New Apartment Nice View</a></h2>
-                                                <div class="product-img-location">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="locations.html"><i class="flaticon-pin"></i>Legon campus, Accra</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <ul class="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
-                                                    <li><span>3 </span>
-                                                        Bedrooms
-                                                    </li>
-                                                    <li><span>2 </span>
-                                                        Bathrooms
-                                                    </li>
-                                                  
-                                                </ul>
-                                            </div>
-                                            <div class="product-info-bottom">
-                                                <div class="real-estate-agent">
-                                                    <div class="agent-img">
-                                                        <a href="team-details.html"><img src="img/blog/author.jpg" alt="#"></a>
-                                                    </div>
-                                                    <div class="agent-brief">
-                                                        <h6><a href="team-details.html">William Seklo</a></h6>
-                                                        <small>Landlord</small>
-                                                    </div>
-                                                </div>
-                                                <div class="product-hover-action">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
-                                                                <i class="flaticon-expand"></i>
-                                                            </a>
-                                                        </li>
-                                                     
-                                                        <li>
-                                                            <a href="product-details.html" title="Product Details">
-                                                                <i class="flaticon-add"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- ltn__product-item -->
-                                    <div class="col-lg-12">
-                                        <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5">
-                                            <div class="product-img">
-                                                <a href="product-details.html"><img src="img/product-3/4.jpg" alt="#"></a>
-                                            </div>
-                                            <div class="product-info">
-                                                <div class="product-badge-price">
-                                                    <div class="product-badge">
-                                                        <ul>
-                                                            <li class="sale-badg">For Rent</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="product-price">
-                                                        <span>900gh<label>/Month</label></span>
-                                                    </div>
-                                                </div>
-                                                <h2 class="product-title"><a href="product-details.html">New Apartment Nice View</a></h2>
-                                                <div class="product-img-location">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="locations.html"><i class="flaticon-pin"></i>Legon campus, Accra</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <ul class="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
-                                                    <li><span>3 </span>
-                                                        Bedrooms
-                                                    </li>
-                                                    <li><span>2 </span>
-                                                        Bathrooms
-                                                    </li>
-                                                    
-                                                </ul>
-                                            </div>
-                                            <div class="product-info-bottom">
-                                                <div class="real-estate-agent">
-                                                    <div class="agent-img">
-                                                        <a href="team-details.html"><img src="img/blog/author.jpg" alt="#"></a>
-                                                    </div>
-                                                    <div class="agent-brief">
-                                                        <h6><a href="team-details.html">William Seklo</a></h6>
-                                                        <small>Landlord</small>
-                                                    </div>
-                                                </div>
-                                                <div class="product-hover-action">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
-                                                                <i class="flaticon-expand"></i>
-                                                            </a>
-                                                        </li>
-                                                        <!-- <li>
-                                                            <a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
-                                                                <i class="flaticon-heart-1"></i></a>
-                                                        </li> -->
-                                                        <li>
-                                                            <a href="product-details.html" title="Product Details">
-                                                                <i class="flaticon-add"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- ltn__product-item -->
-                                    <div class="col-lg-12">
-                                        <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5">
-                                            <div class="product-img">
-                                                <a href="product-details.html"><img src="img/product-3/5.jpg" alt="#"></a>
-                                            </div>
-                                            <div class="product-info">
-                                                <div class="product-badge-price">
-                                                    <div class="product-badge">
-                                                        <ul>
-                                                            <li class="sale-badg">For Rent</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="product-price">
-                                                        <span>900gh<label>/Month</label></span>
-                                                    </div>
-                                                </div>
-                                                <h2 class="product-title"><a href="product-details.html">New Apartment Nice View</a></h2>
-                                                <div class="product-img-location">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="locations.html"><i class="flaticon-pin"></i>Legon campus, Accra</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <ul class="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
-                                                    <li><span>3 </span>
-                                                        Bedrooms
-                                                    </li>
-                                                    <li><span>2 </span>
-                                                        Bathrooms
-                                                    </li>
-                                                   <!--  <li><span>3450 </span>
-                                                        square Ft
-                                                    </li> -->
-                                                </ul>
-                                            </div>
-                                            <div class="product-info-bottom">
-                                                <div class="real-estate-agent">
-                                                    <div class="agent-img">
-                                                        <a href="team-details.html"><img src="img/blog/author.jpg" alt="#"></a>
-                                                    </div>
-                                                    <div class="agent-brief">
-                                                        <h6><a href="team-details.html">William Seklo</a></h6>
-                                                        <small>Landlord</small>
-                                                    </div>
-                                                </div>
-                                                <div class="product-hover-action">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
-                                                                <i class="flaticon-expand"></i>
-                                                            </a>
-                                                        </li>
-                                                       <!--  <li>
-                                                            <a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
-                                                                <i class="flaticon-heart-1"></i></a>
-                                                        </li> -->
-                                                        <li>
-                                                            <a href="product-details.html" title="Product Details">
-                                                                <i class="flaticon-add"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--  -->
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
-                   <!--  <div class="ltn__pagination-area text-center">
-                        <div class="ltn__pagination">
-                            <ul>
-                                <li><a href="#"><i class="fas fa-angle-double-left"></i></a></li>
-                                <li><a href="#">1</a></li>
-                                <li class="active"><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">...</a></li>
-                                <li><a href="#">10</a></li>
-                                <li><a href="#"><i class="fas fa-angle-double-right"></i></a></li>
-                            </ul>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>
     </div>
     <!-- PRODUCT DETAILS AREA END -->
+
+
+
+
+
 
     <!-- CALL TO ACTION START (call-to-action-6) -->
     <div class="ltn__call-to-action-area call-to-action-6 before-bg-bottom" data-bg="img/1.jpg--">
@@ -898,7 +616,7 @@
                             <p>We can help you find one. Explore now!</p>
                         </div>
                         <div class="btn-wrapper">
-                            <a class="btn btn-effect-3 btn-white" href="displayAds_Renter.html">Explore available Rent Ads <i class="icon-next"></i></a>
+                            <a class="btn btn-effect-3 btn-white" href="{% url 'renting:staffViewRentAds' %}">Explore available Rent Ads <i class="icon-next"></i></a>
                         </div>
                     </div>
                 </div>
@@ -906,6 +624,9 @@
         </div>
     </div>
     <!-- CALL TO ACTION END -->
+
+
+
 
     <!-- FOOTER AREA START -->
     <footer class="ltn__footer-area  ">

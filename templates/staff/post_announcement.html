@@ -46,13 +46,7 @@
                             <div class="ltn__top-bar-menu">
                                 <ul>
                                     <li class="d-none">
-                                       
-                                    </li>
-                                    <li>
-                                       
-                                    </li>
-                                    <li>
-                                        
+                                   
                                     </li>
                                 </ul>
                             </div>
@@ -82,69 +76,80 @@
                                     <ul style="float: right;">
 
                                         <li class="menu-icon"><a href="#">Students</a>
-                                        <ul>
-                                            <li>
-                                                <a href="{% url 'staff:addNewStudent' %}">Add new student</a>
-                                            </li>
-    
-                                            <li>
-                                                <a href="{% url 'staff:staffViewAllStudents' %}">View all students</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-
-
-                                    <li class="menu-icon"><a href="#">Visitors</a>
-                                        <ul>
-                                            <li>
-                                                <a href="{% url 'staff:addNewVisitor' %}">Add new visitor</a>
-                                            </li>
-    
-                                            <li>
-                                                <a href="{% url 'staff:staffManageVisitors' %}">Manage visitors</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-
-
-                                    <li class="menu-icon"><a href="#">Complaints</a>
-                                        <ul>
-                                            <li>
-                                                <a href="{% url 'staff:staffViewAllComplaints' %}">View all complaints</a>
-                                            </li>
-    
-                                        </ul>
-                                    </li>
-
-
-                                    <li class="menu-icon"><a href="#">Announcements</a>
-                                        <ul>
-                                            <li>
-                                                <a href="{% url 'staff:staffPostAnnouncement' %}">Post an announcement</a>
-                                            </li>
-
-                                            <li>
-                                                <a href="{% url 'staff:staffPostAnnouncement' %}">Manage announcements</a>
-                                            </li>
-
-                                        </ul>
-                                    </li>
-
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'staff:addNewStudent' %}">Add new student</a>
+                                                </li>
         
-
-                                    {% if user.is_authenticated %}	
-                                    <li>
-                                        <a href="#">{{ user.first_name }}</a></li>
-                                        {% else %}
-                                    </li>
-                                    <li>
-                                        <a href="{% url 'student:loginStudent' %}">Login</a></li>
-                                    {% endif %}
+                                                <li>
+                                                    <a href="{% url 'staff:staffViewAllStudents' %}">View all students</a>
+                                                </li>
+                                            </ul>
+                                        </li>
 
 
-                                    <li class="btn-wrapper animated">
-                                        <a href="{% url 'logout' %}" class="theme-btn-1 btn btn-effect-1" style="height:60px; width:100px;"  >Sign Out</a>
-                                    </li>
+                                        <li class="menu-icon"><a href="#">Visitors</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'staff:addNewVisitor' %}">Add new visitor</a>
+                                                </li>
+        
+                                                <li>
+                                                    <a href="{% url 'staff:staffManageVisitors' %}">Manage visitors</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+
+                                        <li class="menu-icon"><a href="#">Complaints</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'staff:staffViewAllComplaints' %}">View all complaints</a>
+                                                </li>
+        
+                                            </ul>
+                                        </li>
+
+
+                                        <li class="menu-icon"><a href="#">Announcements</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'staff:staffPostAnnouncement' %}">Post an announcement</a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="{% url 'staff:staffPostAnnouncement' %}">Manage announcements</a>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+
+
+                                        <li class="menu-icon"><a href="#">NSS Accommodation</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'renting:staffViewRentAds' %}">Access NSS Accommodation</a></li>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+            
+
+                                        {% if user.is_authenticated %}	
+                                        <li>
+                                            <a href="#">{{ user.first_name }}</a></li>
+                                            {% else %}
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'student:loginStudent' %}">Login</a></li>
+                                        {% endif %}
+
+
+                                        <li class="btn-wrapper animated">
+                                            <a href="{% url 'logout' %}" class="theme-btn-1 btn btn-effect-1" style="height:60px; width:100px;"  >Sign Out</a>
+                                        </li>
+
+                                        
                                     </ul>
                                 </div>
                             </nav>

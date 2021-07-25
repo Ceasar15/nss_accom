@@ -616,8 +616,19 @@ def postRentAdds(request):
 
 
 
+# check if student is authenticated
+def check_student_user(user):
+    if user.is_authenticated:
+        typed = Typed.objects.filter(user_id=user).first()
+        if typed.user_group == 'student':
+            return user.first_name
+    else:
+        requesst = request
+        return render(requesst,'student/login_student.html')
+
 
 # the page where a student can view all rent ads.
+@user_passes_test(check_student_user, login_url='/loginStudent')
 def studentViewRentAds(request):
     return render(request, 'renting/student_view_rent_ads.html')
 

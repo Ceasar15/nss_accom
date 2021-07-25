@@ -28,5 +28,13 @@ urlpatterns = [
 	path('signInLandlord/', rt.signInLandlord, name='signInLandlord'),
 	path('viewRentAdds/', rt.viewRentAdds, name='viewRentAdds'),
 	path('postRentAdds/', rt.postRentAdds, name='postRentAdds'),
-	path('landlord_register/', us.LandlordRegister, name='loginLandlord')
+	path('landlord_register/', us.LandlordRegister, name='loginLandlord'),
+	path('landlordViewRentAds', rt.landlordViewRentAds, name='landlordViewRentAds'),
+	path('studentViewRentAds/', rt.studentViewRentAds, name='studentViewRentAds'),
+	path('staffViewRentAds/', rt.staffViewRentAds, name='staffViewRentAds'),
+	path('studentViewHouseDetails/', rt.studentViewHouseDetails, name='studentViewHouseDetails'),
+	path('landlordViewHouseDetails/', rt.landlordViewHouseDetails, name='landlordViewHouseDetails')
+
+
+
 ]

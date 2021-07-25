@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Student view all complaints</title>
+    <title>View all students</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -52,7 +52,11 @@
                                 <ul>
                                     <li class="d-none">
                                        
-                                    
+                                    </li>
+                                    <li>
+                                      
+                                    </li>
+                                    <li>
                                      
                                     </li>
                                 </ul>
@@ -71,7 +75,7 @@
                     <div class="col">
                         <div class="site-logo-wrap">
                             <div class="site-logo">
-                                <a href="{% url 'tracking:index' %}"><img src="{% static 'img/logo.png' %}" alt="Logo"></a>
+                                <a href="index.html"><img src="{% static 'img/logo.png' %}" alt="Logo"></a>
                             </div>
                          
                         </div>
@@ -81,41 +85,57 @@
                             <nav>
                                 <div class="ltn__main-menu">
                                     <ul style="float: right;">
+                                        <li class="menu-icon"><a href="#">Students</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'staff:addNewStudent' %}">Add new student</a>
+                                                </li>
+        
+                                                <li>
+                                                    <a href="{% url 'staff:staffViewAllStudents' %}">View all students</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+
+                                        <li class="menu-icon"><a href="#">Visitors</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'staff:addNewVisitor' %}">Add new visitor</a>
+                                                </li>
+        
+                                                <li>
+                                                    <a href="{% url 'staff:staffManageVisitors' %}">Manage visitors</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
 
                                         <li class="menu-icon"><a href="#">Complaints</a>
                                             <ul>
                                                 <li>
-                                                    <a href="{% url 'student:studentSubmitComplaint' %}">Submit complaint</a></li>
+                                                    <a href="{% url 'staff:staffViewAllComplaints' %}">View all complaints</a>
                                                 </li>
-
-                                                <li>
-                                                    <a href="{% url 'student:studentViewAllComplaints' %}">View all complaints</a></li>
-                                                </li>
-
+        
                                             </ul>
                                         </li>
+
 
 
                                         <li class="menu-icon"><a href="#">Announcements</a>
                                             <ul>
                                                 <li>
-                                                    <a href="{% url 'student:studentViewAnnouncements' %}">View all announcements</a></li>
+                                                    <a href="{% url 'staff:staffPostAnnouncement' %}">Post an announcement</a>
                                                 </li>
 
-                                            </ul>
-                                        </li>
-
-
-                                        <li class="menu-icon"><a href="#">NSS Accommodation</a>
-                                            <ul>
                                                 <li>
-                                                    <a href="{% url 'renting:studentViewRentAds' %}">Access NSS Accommodation</a></li>
+                                                    <a href="{% url 'staff:staffPostAnnouncement' %}">Manage announcements</a>
                                                 </li>
 
                                             </ul>
                                         </li>
 
-
+            
 
                                         {% if user.is_authenticated %}	
                                         <li>
@@ -126,9 +146,11 @@
                                             <a href="{% url 'student:loginStudent' %}">Login</a></li>
                                         {% endif %}
 
+
                                         <li class="btn-wrapper animated">
                                             <a href="{% url 'logout' %}" class="theme-btn-1 btn btn-effect-1" style="height:60px; width:100px;"  >Sign Out</a>
                                         </li>
+
 
                                     </ul>
                                 </div>
@@ -155,38 +177,51 @@
     <div class="ltn__slider-area ltn__slider-3  section-bg-1"  data-bg="img/bg/14.jpg">
         <div style="position: relative; top: 50px;" class="container">
 
-            <h2 style="margin-left: 420px; margin-bottom: 30px;">Your Submitted complaints</h2>
+            <h2 style="margin-left: 460px; margin-bottom: 30px;">List of all students</h2>
 
             <div class="container mb-3 mt-3">
                 <table class="table table-stripped table-bothered table-hover mydatatable" style="width: 100%">
                     <thead>
                         <tr style="background-color: #FF5A3C; ">
-                            
+                            <th scope='col'>Student Picture</th>
+                            <th scope='col'>Index Number</th>
+                            <th scope='col'>First Name</th>
+                            <th scope='col'>Last Name</th>
+                            <th scope='col'>Gender</th>
                             <th scope='col'>Room Number</th>
+                            <th scope='col'>Course</th>
+                            <th scope='col'>Level</th>
                             <th scope='col'>Mobile Number</th>
-                            <th scope='col'>Complaint Type</th>
-                            <th scope='col'>Complaint Description</th>
-                            <th scope='col'>Date Submitted</th>
-                            <th scope='col'>Complaint Status</th>
-                           <!--  <th scope='col'>Actions</th> -->
+                            <th scope='col'>Date Added</th>
+                            <th scope='col'>Check In Status</th>
+                            <th scope='col'>Actions</th>
 
                         </tr>
                     </thead>
 
                     <tbody>
-                        {% if dataset %}
-                            {% for data in dataset %}
+
                         <tr style="cursor: pointer;">
-                            <td>{{ data.student_room_number}}</td>
-                            <td>{{ data.mobile_number}}</td>
-                            <td>{{ data.complaint_type}}</td>
-                            <td>{{ data.complaint_description}}</td>
-                            <td>{{ data.date_submitted.date}}</td>
-                            <td>{{ data.complaint_status}}</td>
-                                                      
+                            {% if dataset %}
+                                {% for data in dataset %}
+                            <th scope='row'> <img style="border-radius: 40px;" src="{{ data.images.url }}"> </th>
+                            <td>{{ data.st_index_number }}</td>
+                            <td>{{ data.first_name }}</td>
+                            <td>{{ data.last_name }} </td>
+                            <td>{{ data.gender }}</td>
+                            <td>{{ data.room_number }}</td>
+                            <td>{{ data.course }}</td>
+                            <td>{{ data.level }}</td>
+                            <td>{{ data.mobile_number }}</td>
+                            <td>{{ data.date_registered.date }}</td>
+                            <td>Checked In</td>
+                            <td><i class="fas fa-edit"></i> <i class="fas fa-trash-alt"></i></td>
+                                {% endfor %}
+                            {% endif %}
+                            
                         </tr>
-                            {% endfor %}
-                        {% endif %}
+
+                        
 
                     </tbody>
 

@@ -75,7 +75,7 @@
                     <div class="col">
                         <div class="site-logo-wrap">
                             <div class="site-logo">
-                                <a href="index.html"><img src="{% static 'img/logo.png' %}" alt="Logo"></a>
+                                <a href="{% url 'tracking:index' %}"><img src="{% static 'img/logo.png' %}" alt="Logo"></a>
                             </div>
                          
                         </div>
@@ -112,7 +112,6 @@
                                         </li>
 
 
-
                                         <li class="menu-icon"><a href="#">Complaints</a>
                                             <ul>
                                                 <li>
@@ -122,7 +121,6 @@
                                             </ul>
                                         </li>
 
-                                        
 
                                         <li class="menu-icon"><a href="#">Announcements</a>
                                             <ul>
@@ -137,6 +135,15 @@
                                             </ul>
                                         </li>
 
+
+                                        <li class="menu-icon"><a href="#">NSS Accommodation</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'renting:staffViewRentAds' %}">Access NSS Accommodation</a></li>
+                                                </li>
+
+                                            </ul>
+                                        </li>
             
 
                                         {% if user.is_authenticated %}	
@@ -153,6 +160,7 @@
                                             <a href="{% url 'logout' %}" class="theme-btn-1 btn btn-effect-1" style="height:60px; width:100px;"  >Sign Out</a>
                                         </li>
 
+                                        
                                     </ul>
                                 </div>
                             </nav>

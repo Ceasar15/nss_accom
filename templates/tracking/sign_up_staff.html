@@ -118,7 +118,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title-area text-center">
-                        <h1 class="section-title">SIGN UP </h1>
+                        <i class="fas fa-user-tie fa-3x"></i>
+                        <h1 class="section-title">STAFF SIGN UP </h1>
                         <p>Sign up to create your account now</p>
                     </div>
                 </div>
@@ -148,7 +149,8 @@
 
                             <div style="display: flex;">
                             <input type="text" id="id_phone_no" name="phone_no" placeholder="PHONE NUMBER" required style="border-color: grey; border-width: 1px; width:300px;">
-                            <select name="user_group" id="id_user_group" style="width: 300px; height: 65px;">
+                            
+                            <select name="user_group" id="id_user_group" style="width: 300px; height: 65px; position: relative; left:100px;">
                                
                                 <option value="staff">Staff</option>
                                
@@ -156,7 +158,7 @@
                             </div>
 
 
-                            <div class="btn-wrapper mt-0" style="display: flex;">  
+                            <div class="btn-wrapper mt-0" style="margin-bottom: 30px;" >  
                                 <select name="student_hall" id="id_student_hall" style="width: 300px; height: 65px;">
                                     <option value="akuafo_main">Akuafo Main Hall</option>
                                     <option value="akuafo_annexA">Akuafo Hall Annex A</option>
@@ -187,12 +189,15 @@
 
                                 </select>
 
-                                <input type="submit" value="Sign Up" class="theme-btn-1 btn btn-block" style="width:300px;"> 
+                            </div>
+
+                            <div class="btn-wrapper mt-0">  
+                                <button type="submit" class="theme-btn-1 btn btn-block" style="width:600px; margin-left: 10px;"> Sign Up </button>
                             </div>
 
                             <div class="go-to-btn mt-20">
                                 <a href="{% url 'staff:loginStaff' %}" style="margin-left: 360px;" ><small>Already have an account? Log in here</small></a>
-                            </div> 
+                            </div>  
 
                            
                            

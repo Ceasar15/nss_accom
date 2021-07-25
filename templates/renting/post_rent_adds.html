@@ -3,11 +3,10 @@
 <html class="no-js" lang="zxx">
 
 
-<!-- Mirrored from maelectrics.com/tf/html/quarter-preview/quarter/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Jul 2021 16:55:02 GMT -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>post_submit complain</title>
+    <title>Post your rent ads</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -45,15 +44,8 @@
                         <div class="top-bar-right text-right">
                             <div class="ltn__top-bar-menu">
                                 <ul>
-                                    <li class="d-none">
-                                       
-                                    </li>
-                                    <li>
-                                       
-                                    </li>
-                                    <li>
-                                        
-                                    </li>
+                                    <li class="d-none"> </li>
+
                                 </ul>
                             </div>
                         </div>
@@ -80,15 +72,40 @@
                             <nav>
                                 <div class="ltn__main-menu">
                                     <ul style="float: right;">
-                                        <li><a href="index.html">Home</a>
-                                           
+                                        <li>
+                                            <a href="#">Home</a>
                                         </li>
-                                        <li><a href="#">About</a>
-                                           
+
+                                        <li>
+                                            <a href="#">About</a>
                                         </li>
                                       
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li>
+                                            <a href="#">Contact</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#">Post rent ads</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="{% url 'renting:landlordViewRentAds' %}">View rent ads</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#">User</a>
+                                        </li>
+
+                                        <li class="btn-wrapper animated">
+                                            <a href="{% url 'logout' %}" class="theme-btn-1 btn btn-effect-1" style="height:60px; width:100px;"  >Sign Out</a>
+                                        </li>
+
+
+
+
+
                                     </ul>
+
                                 </div>
                             </nav>
                         </div>
@@ -118,45 +135,118 @@
                 <div class="col-lg-12">
                     <div class="ltn__form-box contact-form-box box-shadow white-bg">
                         <h4 class="title-2">Post your rent ad !</h4>
-                        <form id="contact-form" action="https://maelectrics.com/tf/html/quarter-preview/quarter/mail.php" method="post">
+
+                        <form id="contact-form" method="post">
+
+                            <h4 class="title-2">1. Fill your house address</h4>
                             <div class="row">
+
                                 <div class="col-md-6">
-                                    <div class="input-item input-item-name ltn__custom-icon">
-                                        <input type="text" name="name" placeholder="Enter your name">
-                                    </div>
+                                    <input type="text" id='id_house_no' name="house_no" placeholder="House Number" required>
                                 </div>
+
                                 <div class="col-md-6">
-                                    <div class="input-item input-item-email ltn__custom-icon">
-                                        <input type="email" name="email" placeholder="Enter email address">
-                                    </div>
+                                    <input type="text" id='id_street_address' name="street_address" placeholder="Street Address" required>
                                 </div>
+
                                 <div class="col-md-6">
-                                    <div class="input-item">
-                                        <select class="nice-select">
-                                            <option>Select Complaint Type</option>
-                                            <option>Plumbing </option>
-                                            <option>Door knobs </option>
-                                            <option>Electrical gadgets</option>
-                                            <option>Leakages</option>
-                                            <option>Theft Issue</option>
-                                            <option>water issue</option>
-                                        </select>
-                                    </div>
+                                    <input type="text" id='id_area' name="area" placeholder="Area" required>
                                 </div>
+
                                 <div class="col-md-6">
-                                    <div class="input-item input-item-phone ltn__custom-icon">
-                                        <input type="text" name="phone" placeholder="Enter phone number">
-                                    </div>
+                                    <input type="text" id='id_city' name="city" placeholder="City" required>
                                 </div>
+
+                                <div class="col-md-6">
+                                    <input type="text" id='id_country' name="country" placeholder="Ghana" required disabled>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <select id="id_country" name="country" style="width: 600px;">
+                                        <option>Greater Accra Region</option>
+                                        <option>Ashanti Region</option>
+                                        <option>Western North Region</option>
+                                        <option>Western Region</option>
+                                        <option>Volta Region</option>
+                                        <option>Eastern Region</option>
+                                        <option>Upper East Region</option>
+                                        <option>Upper West Region</option>
+                                        <option>Northern Region</option>
+                                        <option>North East Region</option>
+                                        <option>Ahafo Region</option>
+                                        <option>Bono Region</option>
+                                        <option>Savanna Region</option>
+                                        <option>Bono East Region</option>
+                                        <option>Oti Region</option>
+                                        <option>Western Region</option>
+                                        <option>Central Region</option>
+                                    </select>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <input type="text" id='id_rent' name="rent" placeholder="Rent Price in GHS" required>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <input type="text" id='id_rent' name="rent" placeholder="Start Date. Enter in the format MM/DD/YYYY" required>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <input type="text" id='id_rent' name="rent" placeholder="End Date. Enter in the format MM/DD/YYYY" required>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <input type="file" id='id_images' name="images" placeholder="Upload house images" required>
+                                    <p>Upload house images</p>
+                                </div>
+
                             </div>
-                            <div class="input-item input-item-textarea ltn__custom-icon">
-                                <textarea name="message" placeholder="Enter message"></textarea>
+
+
+                            <!-- Second requirements -->
+                            <h4 class="title-2" style="margin-top: 50px;">2. House has</h4>
+                            <div class="row">
+                                
+                                <div >
+                                    <label for="kitchen">Kitchen</label>
+                                    <select id='kitchen' name="kitchen" style="width: 140px">
+                                        <option>Private</option>
+                                        <option>Shared</option>
+                                        <option>Not available</option>
+                                    </select>
+                                    
+                                </div>
+
+                                
+                                <div >
+                                    <label for="bathroom">Bathroom</label>
+                                    <select id='bathroom' name="bathroom" style="width: 140px">
+                                        <option>Private</option>
+                                        <option>Shared</option>
+                                        <option>Not available</option>
+                                    </select>
+                                    
+                                </div>
+
+
+
                             </div>
-                            <p><label class="input-info-save mb-0"><input type="checkbox" name="agree"> Save my name, email, and website in this browser for the next time I comment.</label></p>
+
+
+                            
+
+
+
+
+
+
                             <div class="btn-wrapper mt-0">
                                 <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Post rent ad</button>
                             </div>
-                            <p class="form-messege mb-0 mt-20"></p>
+
                         </form>
                     </div>
                 </div>
@@ -278,6 +368,5 @@
   
 </body>
 
-<!-- Mirrored from maelectrics.com/tf/html/quarter-preview/quarter/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Jul 2021 16:55:05 GMT -->
 </html>
 

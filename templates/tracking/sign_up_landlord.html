@@ -129,32 +129,59 @@
                         <form method="post" class="ltn__form-box contact-form-box">
                             {% csrf_token %}
 
-                            <div style="display: flex;">
-                            <input type="text" id="id_first_name" name="first_name" placeholder="FIRST NAME" required style="border-color: grey; border-width: 1px;" >
-                            <input type="text" id="id_last_name" name="last_name" placeholder="LAST NAME" required style="border-color: grey; border-width: 1px;">
-                            </div>
+                            <div style="display: flex">
+                                <div class='col-md-6'>
+                                    <input type="text" id="id_first_name" name="first_name" placeholder="FIRST NAME" required style="border-color: grey; border-width: 1px; width: 300px;" >
+                                </div>
 
-                            <div style="display: flex;">
-                            <input type="text" id="id_username" name="username" placeholder="USERNAME(STUDENT ID)" required autofocus="" style="border-color: grey; border-width: 1px;">
-                            <input type="text" id="id_email" name="email" placeholder="EMAIL" required style="border-color: grey; border-width: 1px;">
+                                <div class='col-md-6'>
+                                    <input type="text" id="id_last_name" name="last_name" placeholder="LAST NAME" required style="border-color: grey; border-width: 1px; width: 300px;">
+                                </div>                
                             
                             </div>
 
-                            <div style="display: flex;">
-                            <input type="password" id="id_password1" name="password1" autocomplete="new-password" placeholder="PASSWORD" required style="border-color: grey; border-width: 1px;">
-                            <input type="password" id="id_password2" name="password2" autocomplete="new-password" placeholder="Confirm PASSWORD" required style="border-color: grey; border-width: 1px;">
+
+                            <div style="display: flex">
+                                <div class='col-md-6'>
+                                    <input type="text" id="id_username" name="username" placeholder="USERNAME(STUDENT ID)" required autofocus="" style="border-color: grey; border-width: 1px; width: 300px;">
+                                </div>
+
+                                <div class='col-md-6'>
+                                    <input type="text" id="id_email" name="email" placeholder="EMAIL" required style="border-color: grey; border-width: 1px; width: 300px;">
+                                </div>
+                            
                             </div>
 
+
+
                             <div style="display: flex;">
-                            <input type="text" id="id_phone_no" name="phone_no" placeholder="PHONE NUMBER" required style="border-color: grey; border-width: 1px; width:300px;">
-                            <select name="user_group" id="id_user_group" style="width: 300px; height: 65px;">
-                                <option value="landlord">Landlord</option>
-                            </select>
+                                <div class='col-md-6'>
+                                    <input type="password" id="id_password1" name="password1" autocomplete="new-password" placeholder="PASSWORD" required style="border-color: grey; border-width: 1px; width: 300px;">
+                                </div>
+
+                                <div>
+                                    <input type="password" id="id_password2" name="password2" autocomplete="new-password" placeholder="Confirm PASSWORD" required style="border-color: grey; border-width: 1px; width: 317px;">
+                                </div>
                             </div>
 
 
-                            <div class="btn-wrapper mt-0" style="display: flex;">  
-                                <input type="submit" value="Sign Up" class="theme-btn-1 btn btn-block" style="width:300px;"> 
+                            <div style="display: flex;">
+                                <div class='col-md-6'>
+                                    <input type="text" id="id_phone_no" name="phone_no" placeholder="PHONE NUMBER" required style="border-color: grey; border-width: 1px; width:300px;">
+                                </div>
+
+                                <div class='col-md-6'>
+                                    <select name="user_group" id="id_user_group" style="width: 300px; height: 65px; position:relative; left: 70px;">
+                                        <option value="landlord">Landlord</option>
+                                    </select>
+                                </div>
+                            
+                            </div>
+
+
+
+                            <div class="btn-wrapper mt-0">  
+                                <button type="submit" class="theme-btn-1 btn btn-block" style="width:600px; margin-left: 10px;"> Sign Up </button>
                             </div>
 
                             <div class="go-to-btn mt-20">

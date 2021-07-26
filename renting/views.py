@@ -675,15 +675,16 @@ def staffViewRentAds(request):
 @user_passes_test(check_user, login_url='/signInLandlord')
 def landlordViewRentAds(request):
     houses_list = NewRentalHouse.objects.filter(user=request.user)
-    
-    # houses_list = []
+    if houses_list:
+        for house in houses_list:
+            hh = HouseHas.objects.filter(nrh=house)
+            for h in hh:
+                bed = h.bedroom
 
-    context = {
-        'houses_list': houses_list,
-    }
+
     
     # hh = HouseHas.objects.filter(nrh=nrh_obj)
-    return render(request, 'renting/landlord_view_rent_ads.html', context)
+    return render(request, 'renting/landlord_view_rent_ads.html', locals())
 
 
 

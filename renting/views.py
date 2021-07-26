@@ -649,6 +649,21 @@ def studentViewHouseDetails(request):
 
 
 
+# the page where the student can view landlord details.
+def studentViewLandlordDetails(request):
+    return render(request, 'renting/student_view_landlord_details.html')
+
+
+
+# the page where the student can view landlord details.
+def staffViewLandlordDetails(request):
+    return render(request, 'renting/staff_view_landlord_details.html')
+
+
+
+
+
+
 
 
 

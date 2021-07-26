@@ -722,20 +722,21 @@ def studentViewHouseDetails(request):
 
 # the page where the student can view the details of the landlord.
 def studentViewLandlordDetails(request):
-    return render(request, 'renting/student_view_ad_landlord.html')
+    return render(request, 'renting/student_view_landlord_details.html')
 
 
 
 # the page where the staff can view the details of the landlord.
 def staffViewLandlordDetails(request):
-    return render(request, 'renting/staff_view_ad_landlord.html')
+    return render(request, 'renting/staff_view_landlord_details.html')
 
 
 
+# the page where the staff can view the details of the ad.
+def staffViewAdDetails(request):
+    return render(request, 'renting/staff_view_ad_details.html')
 
-# new post ads page.
-def newPostRentAds(request):
-    return render(request, 'renting/old_landlord_post_rent_ads.html')
+
 
 
 

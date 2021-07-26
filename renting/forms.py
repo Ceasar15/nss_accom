@@ -25,13 +25,6 @@ class RentalHouseForm(forms.ModelForm):
 		exclude = ['user']
 
 
-	def __init__(self, *args, **kwargs):
-		super().__init__(*args,**kwargs)
-		for visible in self.visible_fields():
-			visible.field.widget.attrs['class'] = 'input is-small'
-		self.fields['in_date'].widget.attrs['class'] = 'ip-date'
-		self.fields['out_date'].widget.attrs['class'] = 'ip-date'
-
 class HouseImagesForm(forms.ModelForm):
 	images = forms.FileField(widget=forms.ClearableFileInput(attrs={'class':'file-input','multiple':True}), required=False)
 	

@@ -27,15 +27,6 @@ def check_user(user):
         requesst = request
         return render(requesst, 'renting/login_NSS.html')
 
-
-
-
-
-
-
-
-
-
 # def home_page(request):
 #     # User logged in or not
 #     if request.user.is_authenticated:
@@ -609,17 +600,75 @@ def viewRentAdds(request):
         return render(request, 'renting/view_rent_adds.html')
 
 
+
+
 # the page where a landlord can post his rent adds.
 @user_passes_test(check_user, login_url='/signInLandlord')
 def postRentAdds(request):
-    return render(request, 'renting/post_rent_adds.html')
+    form = RentalHouseForm(initial={'country':'Ghana'}, data=request.POST or None)
+    img_form = HouseImagesForm(request.POST, files=request.FILES)
+    house_has_form = HouseHasForm(request.POST)
+    amenities_form = AmenitiesForm(request.POST)
+    rules_form = RulesForm(request.POST)
+    preferred_tenant_form = PreferredTenantForm(request.POST)
+
+    if request.method == 'POST' and request.user.is_authenticated:
+        if all((form.is_valid(), house_has_form.is_valid(), amenities_form.is_valid(), rules_form.is_valid(), preferred_tenant_form.is_valid())):
+            rh_obj = form.save(commit=False)
+            rh_obj.user = request.user
+            rh_obj.save()
+            nrh_obj = NewRentalHouse.objects.get(pk=rh_obj.id)
+            if img_form.is_valid():
+                for img_file in request.FILES.getlist('images'):
+                    HouseImages.objects.create(images=img_file, nrh=nrh_obj)
+                im = img_form.save(commit=False)
+                im.nrh = nrh_obj
+                im.save()
+                hs = house_has_form.save(commit=False)
+                hs.nrh = nrh_obj
+                hs.save()
+                amf = amenities_form.save(commit=False)
+                amf.nrh = nrh_obj
+                amf.save()
+                rf = rules_form.save(commit=False)
+                rf.nrh = nrh_obj
+                rf.save()
+                pf = preferred_tenant_form.save(commit=False)
+                pf.nrh = nrh_obj
+                pf.save()
+            else:
+                print(img_form.errors)
+            
+            return redirect('renting:landlordViewRentAds')
+
+
+    # GET Request
+    elif request.user.is_anonymous:
+        modl = 'true'
+        return render(request, 'renting/rental_post.html', locals())
+
+    return render(request, 'renting/post_rent_adds.html', locals())
+
+
+
+# check if student is authenticated
+def check_student_user(user):
+    if user.is_authenticated:
+        typed = Typed.objects.filter(user_id=user).first()
+        if typed.user_group == 'student':
+            return user.first_name
+    else:
+        requesst = request
+        return render(requesst,'student/login_student.html')
 
 
 
 
 # the page where a student can view all rent ads.
+@user_passes_test(check_student_user, login_url='/loginStudent')
 def studentViewRentAds(request):
-    return render(request, 'renting/student_view_rent_ads.html')
+    f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())
+    return render(request, 'renting/student_view_rent_ads.html', {'filter': f})
 
 
 
@@ -632,8 +681,30 @@ def staffViewRentAds(request):
 
 
 # the page where a landlord can view all of their posted ads.
+@user_passes_test(check_user, login_url='/signInLandlord')
 def landlordViewRentAds(request):
-    return render(request, 'renting/landlord_view_rent_ads.html')
+    house_list = NewRentalHouse.objects.filter(user=request.user)
+    houses_list = []
+    edit_list = []
+    for hous_obj in house_list:
+        nrh_obj = NewRentalHouse.objects.filter(pk=hous_obj.id)
+        try:
+            rl = Rules.objects.get(nrh=hous_obj)
+            pt = PreferredTenant.objects.get(nrh=hous_obj)
+            am = Amenities.objects.get(nrh=hous_obj)
+            hhh = HouseHas.objects.get(nrh=hous_obj)
+            imgs = HouseImages.objects.filter(nrh=hous_obj)
+            proceed = True
+        except:
+            proceed = False
+
+        if proceed:
+            houses_list.append(hous_obj)
+        else:
+            edit_list.append(hous_obj)
+
+    hh = HouseHas.objects.filter(nrh=house_list.id)
+    return render(request, 'renting/landlord_view_rent_ads.html', locals())
 
 
 
@@ -646,42 +717,5 @@ def landlordViewHouseDetails(request):
 # the page where the student can view the details of the ad.
 def studentViewHouseDetails(request):
     return render(request, 'renting/student_view_ad_details.html')
-
-
-
-# the page where the student can view landlord details.
-def studentViewLandlordDetails(request):
-    return render(request, 'renting/student_view_landlord_details.html')
-
-
-
-# the page where the student can view landlord details.
-def staffViewLandlordDetails(request):
-    return render(request, 'renting/staff_view_landlord_details.html')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

@@ -628,6 +628,9 @@ def postRentAdds(request):
             if img_form.is_valid():
                 for img_file in request.FILES.getlist('images'):
                     HouseImages.objects.create(images=img_file, nrh=nrh_obj)
+                im = img_form.save(commit=False)
+                im.nrh = nrh_obj
+                im.save()
                 hs = house_has_form.save(commit=False)
                 hs.nrh = nrh_obj
                 hs.save()

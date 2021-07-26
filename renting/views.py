@@ -27,15 +27,6 @@ def check_user(user):
         requesst = request
         return render(requesst, 'renting/login_NSS.html')
 
-
-
-
-
-
-
-
-
-
 # def home_page(request):
 #     # User logged in or not
 #     if request.user.is_authenticated:

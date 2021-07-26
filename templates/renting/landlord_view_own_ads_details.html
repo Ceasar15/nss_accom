@@ -111,14 +111,13 @@
 
         <div class="carousel-inner" style="margin-top: 50px;">
             
-          <div class="carousel-item active">
             {% for img in imgs %}
+          <div class="carousel-item active">
             <div class="container" style="width: 1000px; height: 600px;">
-                <img class="d-block w-100" src="{{ img.images.url }}" alt="First slide" >
+                <img class="d-block w-100" src="{{ img.images.url }}" style=" position: relative; left: 100px; width: 1000px; height: 500px;" alt="First slide" >
             </div>
-            {% endfor %}
         </div>
- 
+        {% endfor %}
 
       
           <div class="carousel-item">

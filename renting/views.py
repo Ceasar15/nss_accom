@@ -700,13 +700,10 @@ def landlordViewHouseDetails(request, id):
             imgs = HouseImages.objects.filter(nrh=nrh_obj)
             for img in imgs:
                 print(img.images)
-
         except:
             nrh_obj = None
-
         if nrh_obj:
             return render(request, 'renting/landlord_view_own_ads_details.html', locals())
-
     elif request.user.is_anonymous:
         modl='true'
         return render(request, 'renting/landlord_view_own_ads_details.html', locals())

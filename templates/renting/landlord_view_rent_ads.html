@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Display Ads</title>
+    <title>Displayy Ads</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -136,12 +136,18 @@
 
 
                                     <!-- ltn__product-item 1-->
+                                    {% if houses_list %}
+                                        {% for house in houses_list %}
                                     <div class="col-lg-4 col-sm-6 col-12">
 
                                         <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                                             
                                             <div class="product-img" >
-                                                <a href="{% url 'renting:landlordViewHouseDetails' %}"><img src="{% static 'img/pin1.jpg' %}" alt="#" height="280px"></a>
+                                                <a href="{% url 'renting:landlordViewHouseDetails' %}">
+                                                    {% for img in imgs %}  
+                                                    <img src="{{ img.images.url }}" alt="#" height="280px">
+                                                    {% endfor %}
+                                                </a>
 
                                                 <div class="real-estate-agent">
                                                     <div class="agent-img">
@@ -161,15 +167,15 @@
                                                 <div class="product-img-location">
                                                     <ul>
                                                         <li>
-                                                            <a href="locations.html"><i class="flaticon-pin"></i>Legon campus, Accra</a>
+                                                            <a href="locations.html"><i class="flaticon-pin"></i>{{ house.area }}, {{ house.city }}</a>
                                                         </li>
                                                     </ul>
                                                 </div>
                                                 <ul class="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
-                                                    <li><span>3 </span>
+                                                    <li><span>{{ hh.bedroom }}</span>
                                                         Bedrooms
                                                     </li>
-                                                    <li><span>2 </span>
+                                                    <li><span>{{ hh.bathroom }} </span>
                                                         Bathrooms
                                                     </li>
                                                    <!--  <li><span>3450 </span>
@@ -197,11 +203,15 @@
                                             </div>
                                             <div class="product-info-bottom">
                                                 <div class="product-price">
-                                                    <span>900gh<label>/Month</label></span>
+                                                    <span>GHc{{house.rent}}.00<label>/Month</label></span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                        {% endfor %}
+                                    {% else %}
+                                    <div class="box column is-full resul-txt">Sorry..!! You don't have any ads..<a class="button is-primary" href="{% url 'renting:post_rent_ad' %}">Post Ad</a></div>
+                                    {% endif %}
                                     <!-- end of ltn_product item 1 -->
 
 

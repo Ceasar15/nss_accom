@@ -698,6 +698,9 @@ def landlordViewHouseDetails(request, id):
             pt = PreferredTenant.objects.get(nrh=nrh_obj)
             rl = Rules.objects.get(nrh=nrh_obj)
             imgs = HouseImages.objects.filter(nrh=nrh_obj)
+            for img in imgs:
+                print(img.images)
+
         except:
             nrh_obj = None
 

@@ -624,13 +624,22 @@ def postRentAdds(request):
             rh_obj = form.save(commit=False)
             rh_obj.user = request.user
             rh_obj.save()
+            nrh_obj = NewRentalHouse.objects.get(pk=rh_obj.id)
             if img_form.is_valid():
                 for img_file in request.FILES.getlist('images'):
                     HouseImages.objects.create(images=img_file, nrh=rh_obj)
-                house_has_form.save()
-                amenities_form.save()
-                rules_form.save()
-                preferred_tenant_form.save()
+                hs = house_has_form.save(commit=False)
+                hs.nrh = nrh_obj
+                hs.save()
+                amf = amenities_form.save(commit=False)
+                amf.nrh = nrh_obj
+                amf.save()
+                rf = rules_form.save(commit=False)
+                rf.nrh = nrh_obj
+                rf.save()
+                pf = preferred_tenant_form.save(commit=False)
+                pf.nrh = nrh_obj
+                pf.save()
             else:
                 print(img_form.errors)
             

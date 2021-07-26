@@ -143,7 +143,7 @@
                                         <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                                             
                                             <div class="product-img" >
-                                                <a href="{% url 'renting:landlordViewHouseDetails' %}">
+                                                <a href="{% url 'renting:landlordViewHouseDetails' house.id %}">
                                                     {% for img in house.houseimages_set.all %}
                                                     <img src="{{ img.images.url }}" alt="#" height="280px">
                                                     {% endfor %}
@@ -163,11 +163,11 @@
                                                         <li class="sale-badg">For Rent</li>
                                                     </ul>
                                                 </div>
-                                                <h2 class="product-title"><a href="product-details.html">New Apartment Nice View</a></h2>
+                                                <h2 class="product-title"><a href="{% url 'renting:landlordViewHouseDetails' house.id %}">New Apartment Nice View</a></h2>
                                                 <div class="product-img-location">
                                                     <ul>
                                                         <li>
-                                                            <a href="locations.html"><i class="flaticon-pin"></i>{{ house.area }}, {{ house.city }}</a>
+                                                            <a href="{% url 'renting:landlordViewHouseDetails' house.id %}"><i class="flaticon-pin"></i>{{ house.area }}, {{ house.city }}</a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -220,7 +220,7 @@
                                     <div class="col-lg-4 col-sm-6 col-12">
                                         <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                                             <div class="product-img">
-                                                <a href="{% url 'renting:landlordViewHouseDetails' %}"><img src="{% static 'img/pin4.jpg' %}" alt="#" height="280px"></a>
+                                                <a href="{% url 'renting:landlordViewHouseDetails' house.id %}"><img src="{% static 'img/pin4.jpg' %}" alt="#" height="280px"></a>
                                                 <div class="real-estate-agent">
                                                     <div class="agent-img">
                                                         <a href="team-details.html"><img src="{% static 'img/landlord1.jpg' %}" alt="#"></a>
@@ -286,7 +286,7 @@
                                     <div class="col-lg-4 col-sm-6 col-12" >
                                         <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                                             <div class="product-img">
-                                                <a href="{% url 'renting:landlordViewHouseDetails' %}"><img src="{% static 'img/pin1.jpg' %}" alt="#" height="280px"></a>
+                                                <a href="{% url 'renting:landlordViewHouseDetails' house.id %}"><img src="{% static 'img/pin1.jpg' %}" alt="#" height="280px"></a>
                                                 <div class="real-estate-agent">
                                                     <div class="agent-img">
                                                         <a href="team-details.html"><img src="{% static 'img/landlord1.jpg' %}" alt="#"></a>

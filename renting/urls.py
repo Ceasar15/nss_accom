@@ -33,7 +33,7 @@ urlpatterns = [
     path('studentViewRentAds/', rt.studentViewRentAds, name='studentViewRentAds'),
     path('staffViewRentAds/', rt.staffViewRentAds, name='staffViewRentAds'),
     path('studentViewHouseDetails/', rt.studentViewHouseDetails, name='studentViewHouseDetails'),
-    path('landlordViewHouseDetails/', rt.landlordViewHouseDetails, name='landlordViewHouseDetails')
+    path('landlordViewHouseDetails/<int:id>/', rt.landlordViewHouseDetails, name='landlordViewHouseDetails')
 
 
 

@@ -689,9 +689,24 @@ def landlordViewRentAds(request):
 
 
 # the page where the landlord can see his own house details.
-def landlordViewHouseDetails(request):
-    return render(request, 'renting/landlord_view_own_ads_details.html')
+def landlordViewHouseDetails(request, id):
+    if request.user.is_authenticated:
+        try:
+            nrh_obj = NewRentalHouse.objects.get(pk=id)
+            r_hh = HouseHas.objects.get(nrh=nrh_obj)
+            am = Amenities.objects.get(nrh=nrh_obj)
+            pt = PreferredTenant.objects.get(nrh=nrh_obj)
+            rl = Rules.objects.get(nrh=nrh_obj)
+            imgs = HouseImages.objects.filter(nrh=nrh_obj)
+        except:
+            nrh_obj = None
 
+        if nrh_obj:
+            return render(request, 'renting/landlord_view_own_ads_details.html', locals())
+
+    elif request.user.is_anonymous:
+        modl='true'
+        return render(request, 'renting/landlord_view_own_ads_details.html', locals())
 
 
 # the page where the student can view the details of the ad.

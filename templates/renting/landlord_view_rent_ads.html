@@ -144,7 +144,7 @@
                                             
                                             <div class="product-img" >
                                                 <a href="{% url 'renting:landlordViewHouseDetails' %}">
-                                                    {% for img in imgs %}  
+                                                    {% for img in house.houseimages_set.all %}
                                                     <img src="{{ img.images.url }}" alt="#" height="280px">
                                                     {% endfor %}
                                                 </a>
@@ -172,7 +172,7 @@
                                                     </ul>
                                                 </div>
                                                 <ul class="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
-                                                    <li><span>{{ hh.bedroom }}</span>
+                                                    <li><span>{{ hhh.bedroom }}</span>
                                                         Bedrooms
                                                     </li>
                                                     <li><span>{{ hh.bathroom }} </span>

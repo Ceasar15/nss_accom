@@ -477,10 +477,7 @@ def house_details(request, id):
         modl='true'
         return render(request, 'renting/house_detail.html', locals())
 
-
-
 def rent_ads(request):
-        
     if request.user.is_authenticated:
         house_list = NewRentalHouse.objects.filter(user=request.user)
         houses_list = []
@@ -687,7 +684,7 @@ def landlordViewRentAds(request):
             pt = PreferredTenant.objects.get(nrh=hous_obj)
             am = Amenities.objects.get(nrh=hous_obj)
             hhh = HouseHas.objects.get(nrh=hous_obj)
-            imgs = HouseImages.objects.filter(nrh=hous_obj)
+            imgs = HouseImages.objects.filter(nrh=nrh_obj)
             proceed = True
         except:
             proceed = False
@@ -697,7 +694,7 @@ def landlordViewRentAds(request):
         else:
             edit_list.append(hous_obj)
 
-    hh = HouseHas.objects.filter(nrh=house_list.id)
+    hh = HouseHas.objects.filter(nrh=nrh_obj)
     return render(request, 'renting/landlord_view_rent_ads.html', locals())
 
 

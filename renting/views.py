@@ -477,10 +477,7 @@ def house_details(request, id):
         modl='true'
         return render(request, 'renting/house_detail.html', locals())
 
-
-
 def rent_ads(request):
-        
     if request.user.is_authenticated:
         house_list = NewRentalHouse.objects.filter(user=request.user)
         houses_list = []
@@ -683,35 +680,39 @@ def staffViewRentAds(request):
 # the page where a landlord can view all of their posted ads.
 @user_passes_test(check_user, login_url='/signInLandlord')
 def landlordViewRentAds(request):
-    house_list = NewRentalHouse.objects.filter(user=request.user)
-    houses_list = []
-    edit_list = []
-    for hous_obj in house_list:
-        nrh_obj = NewRentalHouse.objects.filter(pk=hous_obj.id)
-        try:
-            rl = Rules.objects.get(nrh=hous_obj)
-            pt = PreferredTenant.objects.get(nrh=hous_obj)
-            am = Amenities.objects.get(nrh=hous_obj)
-            hhh = HouseHas.objects.get(nrh=hous_obj)
-            imgs = HouseImages.objects.filter(nrh=hous_obj)
-            proceed = True
-        except:
-            proceed = False
+    houses_list = NewRentalHouse.objects.filter(user=request.user)
+    if houses_list:
+        for house in houses_list:
+            hh = HouseHas.objects.filter(nrh=house)
+            for h in hh:
+                bed = h.bedroom
 
-        if proceed:
-            houses_list.append(hous_obj)
-        else:
-            edit_list.append(hous_obj)
 
-    hh = HouseHas.objects.filter(nrh=house_list.id)
+    
+    # hh = HouseHas.objects.filter(nrh=nrh_obj)
     return render(request, 'renting/landlord_view_rent_ads.html', locals())
 
 
 
 # the page where the landlord can see his own house details.
-def landlordViewHouseDetails(request):
-    return render(request, 'renting/landlord_view_own_ads_details.html')
-
+def landlordViewHouseDetails(request, id):
+    if request.user.is_authenticated:
+        try:
+            nrh_obj = NewRentalHouse.objects.get(pk=id)
+            r_hh = HouseHas.objects.get(nrh=nrh_obj)
+            am = Amenities.objects.get(nrh=nrh_obj)
+            pt = PreferredTenant.objects.get(nrh=nrh_obj)
+            rl = Rules.objects.get(nrh=nrh_obj)
+            imgs = HouseImages.objects.filter(nrh=nrh_obj)
+            for img in imgs:
+                print(img.images)
+        except:
+            nrh_obj = None
+        if nrh_obj:
+            return render(request, 'renting/landlord_view_own_ads_details.html', locals())
+    elif request.user.is_anonymous:
+        modl='true'
+        return render(request, 'renting/landlord_view_own_ads_details.html', locals())
 
 
 # the page where the student can view the details of the ad.

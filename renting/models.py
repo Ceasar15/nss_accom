@@ -72,8 +72,8 @@ class HouseImages(models.Model):
     nrh = models.ForeignKey(NewRentalHouse, on_delete=models.CASCADE)
 
     def images(self):
-        if self.images and hasattr(self.images, 'url'):
-            return self.images.url
+        if self.imagess and hasattr(self.imagess, 'url'):
+            return self.imagess.url
 
 class HouseHas(models.Model):
 

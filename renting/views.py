@@ -681,9 +681,12 @@ def staffViewRentAds(request):
 @user_passes_test(check_user, login_url='/signInLandlord')
 def landlordViewRentAds(request):
     if request.user.is_authenticated:
-        house_list = NewRentalHouse.objects.filter(user=request.user)
+        house_list = NewRentalHouse.objects.filter(user=request.user).order_by('-date_registered')
         for house in house_list:
-            print(house.rent)
+            hh = HouseHas.objects.get(nrh=house)
+            rl = Rules.objects.get(nrh=house)
+            pt = PreferredTenant.objects.get(nrh=house)
+            am = Amenities.objects.get(nrh=house)
         houses_list = []
         edit_list = []
         for hous_obj in house_list:

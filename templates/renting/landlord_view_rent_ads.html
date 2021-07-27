@@ -145,7 +145,13 @@
                                             <div class="product-img" >
                                                 <a href="{% url 'renting:landlordViewHouseDetails' house.id %}">
                                                     {% for img in house.houseimages_set.all %}
-                                                    <img src="{{ img.images.url }}" alt="#" height="280px">
+                                                        {% if forloop.counter == 1 %}
+                                                    <img src="{{ img.imagess.url }}" alt="#" height="280px">
+                                                        {% endif %}
+                                                    {% empty %}
+                                                    <div class="columns is-centered">
+                                                        <i class="fa fa-picture-o fa-10x has-text-grey-light" aria-hidden="true"></i>
+                                                    </div>
                                                     {% endfor %}
                                                 </a>
 
@@ -171,17 +177,14 @@
                                                         </li>
                                                     </ul>
                                                 </div>
-                                                <ul class="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
-                                                    <li><span>{{ house_has.bedroom }}</span>
+                                                <!-- <ul class="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
+                                                    <li><span>{{ hh.bedroom }}</span>
                                                         Bedrooms
                                                     </li>
                                                     <li><span>{{ h.bathroom }} </span>
                                                         Bathrooms
                                                     </li>
-                                                   <!--  <li><span>3450 </span>
-                                                        square Ft
-                                                    </li> -->
-                                                </ul>
+                                                </ul> -->
                                                 <div class="product-hover-action">
                                                     <ul>
                                                         <li>

@@ -146,7 +146,7 @@
                                                 <a href="{% url 'renting:landlordViewHouseDetails' house.id %}">
                                                     {% for img in house.houseimages_set.all %}
                                                         {% if forloop.counter == 1 %}
-                                                    <img src="{{ img.imagess.url }}" alt="#" height="280px">
+                                                    <img src="{{ img.imagess.url|default_if_none:'#' }}" alt="#" height="280px">
                                                         {% endif %}
                                                     {% empty %}
                                                     <div class="columns is-centered">

@@ -687,6 +687,7 @@ def landlordViewRentAds(request):
             rl = Rules.objects.get(nrh=house)
             pt = PreferredTenant.objects.get(nrh=house)
             am = Amenities.objects.get(nrh=house)
+            img = HouseImages.objects.filter(nrh=house)
         houses_list = []
         edit_list = []
         for hous_obj in house_list:

@@ -67,8 +67,10 @@ class NewRentalHouse(models.Model):
     
     rent = models.PositiveIntegerField(default=100)
 
+image_dafault = 'img/default.jpg'
+
 class HouseImages(models.Model):
-    imagess = models.ImageField(upload_to=house_images, blank=True)
+    imagess = models.ImageField(upload_to=house_images, blank=True, default=image_dafault)
     nrh = models.ForeignKey(NewRentalHouse, on_delete=models.CASCADE)
 
     def images(self):

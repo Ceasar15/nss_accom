@@ -579,6 +579,7 @@ def signInLandlord(request):
     return render(request, 'renting/login_NSS.html', context)
 
 
+
 # the page where a landlord can view his rent adds.
 @user_passes_test(check_user, login_url='/signInLandlord')
 def viewRentAdds(request):
@@ -713,6 +714,7 @@ def landlordViewHouseDetails(request, id):
     elif request.user.is_anonymous:
         modl='true'
         return render(request, 'renting/landlord_view_own_ads_details.html', locals())
+
 
 
 # the page where the student can view the details of the ad.

@@ -680,25 +680,22 @@ def staffViewRentAds(request):
 # the page where a landlord can view all of their posted ads.
 @user_passes_test(check_user, login_url='/signInLandlord')
 def landlordViewRentAds(request):
-    houses_list = NewRentalHouse.objects.filter(user=request.user).order_by('-date_registered')
-    if houses_list:
-        for house in houses_list:
-            hh = HouseHas.objects.filter(nrh=house)
-            for h in hh:
-                bed = h.bedroom
-        houses_list= []
+    house_list = NewRentalHouse.objects.filter(user=request.user).order_by('-date_registered')
+    houses_list= []
+    for nrh_obj in house_list:
+        try:
+            r_hh = HouseHas.objects.get(nrh=nrh_obj)
+            am = Amenities.objects.get(nrh=nrh_obj)
+            pt = PreferredTenant.objects.get(nrh=nrh_obj)
+            rl = Rules.objects.get(nrh=nrh_obj)
+            imgs = HouseImages.objects.filter(nrh=nrh_obj)
+            proceed = True
+        except:
+            proceed = False
         
-    try:
-        nrh_obj = NewRentalHouse.objects.get(pk=id)
-        r_hh = HouseHas.objects.get(nrh=nrh_obj)
-        am = Amenities.objects.get(nrh=nrh_obj)
-        pt = PreferredTenant.objects.get(nrh=nrh_obj)
-        rl = Rules.objects.get(nrh=nrh_obj)
-        imgs = HouseImages.objects.filter(nrh=nrh_obj)
-    except:
-        nrh_obj = None
+        if proceed:
+            houses_list.append(nrh_obj)
 
-    
     return render(request, 'renting/landlord_view_rent_ads.html', locals())
 
 

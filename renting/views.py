@@ -680,23 +680,31 @@ def staffViewRentAds(request):
 # the page where a landlord can view all of their posted ads.
 @user_passes_test(check_user, login_url='/signInLandlord')
 def landlordViewRentAds(request):
-    house_list = NewRentalHouse.objects.filter(user=request.user).order_by('-date_registered')
-    houses_list= []
-    for nrh_obj in house_list:
-        try:
-            r_hh = HouseHas.objects.get(nrh=nrh_obj)
-            am = Amenities.objects.get(nrh=nrh_obj)
-            pt = PreferredTenant.objects.get(nrh=nrh_obj)
-            rl = Rules.objects.get(nrh=nrh_obj)
-            imgs = HouseImages.objects.filter(nrh=nrh_obj)
-            proceed = True
-        except:
-            proceed = False
-        
-        if proceed:
-            houses_list.append(nrh_obj)
+    if request.user.is_authenticated:
+        house_list = NewRentalHouse.objects.filter(user=request.user)
+        houses_list = []
+        edit_list = []
+        for hous_obj in house_list:
+            try:
+                rl = Rules.objects.get(nrh=hous_obj)
+                pt = PreferredTenant.objects.get(nrh=hous_obj)
+                am = Amenities.objects.get(nrh=hous_obj)
+                hh = HouseHas.objects.get(nrh=hous_obj)
+                proceed = True
+            except:
+                proceed = False
 
-    return render(request, 'renting/landlord_view_rent_ads.html', locals())
+            if proceed:
+                houses_list.append(hous_obj)
+            else:
+                edit_list.append(hous_obj)
+
+
+        return render(request, 'renting/landlord_view_rent_ads.html', locals())
+
+    elif request.user.is_anonymous:
+        modl='true'
+        return render(request, 'renting/landlord_view_rent_ads.html', locals())
 
 
 

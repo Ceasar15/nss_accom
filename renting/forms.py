@@ -33,11 +33,11 @@ class HouseImagesForm(forms.ModelForm):
 		fields = ['images']
 
 class HouseImagesEditForm(forms.ModelForm):
-	images = forms.ImageField(widget=forms.FileInput(attrs={'class':'file-input','multiple':True}), required=False)
+	imagess = forms.ImageField(widget=forms.FileInput(attrs={'class':'file-input','multiple':True}), required=False)
 
 	class Meta:
 		model = HouseImages
-		fields = ['images']
+		fields = ['imagess']
 
 
 # Defining all fields is hectic process

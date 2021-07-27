@@ -619,11 +619,8 @@ def postRentAdds(request):
             rh_obj.save()
             nrh_obj = NewRentalHouse.objects.get(pk=rh_obj.id)
             if img_form.is_valid():
-                for img_file in request.FILES.getlist('images'):
-                    HouseImages.objects.create(images=img_file, nrh=nrh_obj)
-                im = img_form.save(commit=False)
-                im.nrh = nrh_obj
-                im.save()
+                for img_file in request.FILES.getlist('imagess'):
+                    HouseImages.objects.create(imagess=img_file, nrh=nrh_obj)
                 hs = house_has_form.save(commit=False)
                 hs.nrh = nrh_obj
                 hs.save()
@@ -683,16 +680,25 @@ def staffViewRentAds(request):
 # the page where a landlord can view all of their posted ads.
 @user_passes_test(check_user, login_url='/signInLandlord')
 def landlordViewRentAds(request):
-    houses_list = NewRentalHouse.objects.filter(user=request.user)
+    houses_list = NewRentalHouse.objects.filter(user=request.user).order_by('-date_registered')
     if houses_list:
         for house in houses_list:
             hh = HouseHas.objects.filter(nrh=house)
             for h in hh:
                 bed = h.bedroom
-
+        houses_list= []
+        
+    try:
+        nrh_obj = NewRentalHouse.objects.get(pk=id)
+        r_hh = HouseHas.objects.get(nrh=nrh_obj)
+        am = Amenities.objects.get(nrh=nrh_obj)
+        pt = PreferredTenant.objects.get(nrh=nrh_obj)
+        rl = Rules.objects.get(nrh=nrh_obj)
+        imgs = HouseImages.objects.filter(nrh=nrh_obj)
+    except:
+        nrh_obj = None
 
     
-    # hh = HouseHas.objects.filter(nrh=nrh_obj)
     return render(request, 'renting/landlord_view_rent_ads.html', locals())
 
 

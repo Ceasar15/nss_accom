@@ -62,13 +62,13 @@ class NewRentalHouse(models.Model):
     city = models.CharField(max_length=150)
     area = models.CharField(max_length=150)
     country = models.CharField(max_length=100, default='Ghana')
-    
+    date_registered = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
     rent = models.PositiveIntegerField(default=100)
 
 class HouseImages(models.Model):
-    images = models.FileField(upload_to=house_images, blank=True)
+    imagess = models.FileField(upload_to=house_images, blank=True)
     nrh = models.ForeignKey(NewRentalHouse, on_delete=models.CASCADE)
 
     def images(self):

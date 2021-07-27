@@ -682,6 +682,8 @@ def staffViewRentAds(request):
 def landlordViewRentAds(request):
     if request.user.is_authenticated:
         house_list = NewRentalHouse.objects.filter(user=request.user)
+        for house in house_list:
+            print(house.rent)
         houses_list = []
         edit_list = []
         for hous_obj in house_list:

@@ -68,7 +68,7 @@ class NewRentalHouse(models.Model):
     rent = models.PositiveIntegerField(default=100)
 
 class HouseImages(models.Model):
-    imagess = models.FileField(upload_to=house_images, blank=True)
+    imagess = models.ImageField(upload_to=house_images, blank=True)
     nrh = models.ForeignKey(NewRentalHouse, on_delete=models.CASCADE)
 
     def images(self):

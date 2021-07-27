@@ -610,7 +610,9 @@ def postRentAdds(request):
     rules_form = RulesForm(request.POST)
     preferred_tenant_form = PreferredTenantForm(request.POST)
 
+
     if request.method == 'POST' and request.user.is_authenticated:
+        print(form, img_form, house_has_form, amenities_form, rules_form, preferred_tenant_form)
         if all((form.is_valid(), house_has_form.is_valid(), amenities_form.is_valid(), rules_form.is_valid(), preferred_tenant_form.is_valid())):
             rh_obj = form.save(commit=False)
             rh_obj.user = request.user
@@ -643,7 +645,7 @@ def postRentAdds(request):
     # GET Request
     elif request.user.is_anonymous:
         modl = 'true'
-        return render(request, 'renting/rental_post.html', locals())
+        return render(request, 'renting/post_rent_adds.html', locals())
 
     return render(request, 'renting/post_rent_adds.html', locals())
 

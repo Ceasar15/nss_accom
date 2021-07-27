@@ -16,7 +16,7 @@ class RentalHouseForm(forms.ModelForm):
 	area = forms.CharField(widget=forms.TextInput(attrs={'class':'input', 'placeholder':'Area'}))
 	city = forms.CharField(widget=forms.TextInput(attrs={'class':'input', 'placeholder':'City'}))
 	region = forms.ChoiceField(label='REGION', choices=STATE_CHOICES, widget=forms.Select(attrs={'class':'multiple'}))
-	country = forms.CharField(widget=forms.TextInput(attrs={'class':'input', 'placeholder':'Ghana'}), disabled=True, required=False)
+	country = forms.CharField(widget=forms.TextInput(attrs={'class':'input', 'placeholder':'Ghana'}), required=False)
 	rent = forms.IntegerField(widget=forms.NumberInput())
 
 	class Meta:
@@ -38,7 +38,6 @@ class HouseImagesEditForm(forms.ModelForm):
 	class Meta:
 		model = HouseImages
 		fields = ['images']
-
 
 
 # Defining all fields is hectic process

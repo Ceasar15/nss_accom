@@ -146,7 +146,7 @@
                         <h4 class="title-2">1. House details</h4>
 
                         
-                        <form id="contact-form"  method="post">{% csrf_token %}
+                        <form id="contact-form" method="post" enctype="multipart/form-data">{% csrf_token %}
 
                             <!-- First requirements ( House address )-->
                             <div class="row">
@@ -187,7 +187,7 @@
                                 <div class="col-md-6">
                                     <div class="input-item input-item-phone ">
                                         <label for='id_country'> Country</label>
-                                        <input type="text" id="id_country" readonly name="country" placeholder="Ghana" required maxlength="10">
+                                        <input type="text" id="id_country" readonly value="Ghana" name="country" placeholder="Ghana" required maxlength="10">
                                     </div>
                                 </div>  
 
@@ -266,7 +266,7 @@
                                     <div class="input-item">
                                         <label for='id_kitchen'>Kitchen</label>
                                         <select class="nice-select" id="id_kitchen" name="kitchen" required>
-                                            <option>Private</option>
+                                            <option value="Pr">Private</option>
                                             <option>Shared</option>
                                             <option>Not Available</option>
                                         </select>
@@ -279,7 +279,7 @@
                                         <label for='id_bedroom'>Bedroom</label>
                                         <select class="nice-select" id="id_bedroom" name="bedroom" required>
                                             <option>0</option>
-                                            <option>1</option>
+                                            <option value="one">1</option>
                                             <option>2</option>
                                             <option>3</option>
                                             <option>4</option>
@@ -292,7 +292,7 @@
                                     <div class="input-item">
                                         <label for='id_bathroom'>Bathroom</label>
                                         <select class="nice-select" id="id_bathroom" name="bathroom" required>
-                                            <option>Private</option>
+                                            <option value="Pr">Private</option>
                                             <option>Shared</option>
                                             <option>Not Available</option>
                                         </select>
@@ -304,7 +304,7 @@
                                     <div class="input-item">
                                         <label for='id_balcony'>Balcony</label>
                                         <select class="nice-select" id="id_balcony" name="balcony" required>
-                                            <option>Private</option>
+                                            <option value="Pr">Private</option>
                                             <option>Shared</option>
                                             <option>Not Available</option>
                                         </select>
@@ -317,7 +317,7 @@
                                     <div class="input-item">
                                         <label for='id_toilet'>Toilet</label>
                                         <select class="nice-select" id="id_toilet" name="toilet" required>
-                                            <option>Private</option>
+                                            <option value="Pr">Private</option>
                                             <option>Shared</option>
                                             <option>Not Available</option>
                                         </select>
@@ -330,7 +330,7 @@
                                     <div class="input-item">
                                         <label for='id_living_room'>Living Room</label>
                                         <select class="nice-select" id="id_living_room" name="living_room" required>
-                                            <option>Private</option>
+                                            <option value="Pr">Private</option>
                                             <option>Shared</option>
                                             <option>Not Available</option>
                                         </select>
@@ -342,7 +342,7 @@
                                     <div class="input-item">
                                         <label for='id_parking'>Parking</label>
                                         <select class="nice-select" id="id_parking" name="parking" required>
-                                            <option>Yes</option>
+                                            <option value="Y">Yes</option>
                                             <option>No</option>
                                         </select>
                                     </div>
@@ -362,8 +362,8 @@
                                 <div class="col-md-6">
                                     <div class="input-item">
                                         <label for='id_complaint_type'>Bed</label>
-                                        <select class="nice-select" id="id_complaint_type" name="complaint_type" required>
-                                            <option>Yes</option>
+                                        <select class="nice-select" id="id_bed" name="bed" required>
+                                            <option value="Y">Yes</option>
                                             <option>No</option>
                                         </select>
                                     </div>
@@ -374,8 +374,8 @@
                                 <div class="col-md-6">
                                     <div class="input-item">
                                         <label for='id_complaint_type'>Furnished</label>
-                                        <select class="nice-select" id="id_complaint_type" name="complaint_type" required>
-                                            <option>Yes</option>
+                                        <select class="nice-select" id="id_furnished" name="furnished" required>
+                                            <option value="Y">Yes</option>
                                             <option>No</option>
                                         </select>
                                     </div>
@@ -396,7 +396,7 @@
                                     <div class="input-item">
                                         <label for='id_smoking_allowed'>Smoking Allowed</label>
                                         <select class="nice-select" id="id_smoking_allowed" name="smoking_allowed" required>
-                                            <option>Yes</option>
+                                            <option value="Y">Yes</option>
                                             <option>No</option>
                                         </select>
                                     </div>
@@ -407,7 +407,7 @@
                                     <div class="input-item">
                                         <label for='id_musical_instrument'>Musical Instruments</label>
                                         <select class="nice-select" id="id_musical_instrument" name="musical_instrument" required>
-                                            <option>Yes</option>
+                                            <option value="Y">Yes</option>
                                             <option>No</option>
                                         </select>
                                     </div>
@@ -429,7 +429,7 @@
                                     <div class="input-item">
                                         <label for='id_gender'>Gender</label>
                                         <select class="nice-select" id="id_gender" name="gender" required>
-                                            <option>Male</option>
+                                            <option value="M">Male</option>
                                             <option>Female</option>
                                         </select>
                                     </div>

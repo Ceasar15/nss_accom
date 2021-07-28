@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.http import request
 from django.shortcuts import render, reverse, redirect
 from django.urls import reverse_lazy
@@ -744,7 +745,9 @@ def studentViewHouseDetails(request, id):
 
 
 # the page where the student can view the details of the landlord.
-def studentViewLandlordDetails(request):
+def studentViewLandlordDetails(request, id):
+    landlord = User.objects.filter(id=id)
+    print(landlord)
     return render(request, 'renting/student_view_landlord_details.html')
 
 

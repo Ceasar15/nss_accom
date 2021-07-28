@@ -196,7 +196,7 @@
                                                 </a>
                                                 <div class="real-estate-agent">
                                                     <div class="agent-img">
-                                                        <a href="{% url 'renting:studentViewLandlordDetails'  %}"><img src="{% static 'img/landlord1.jpg' %}" alt="#"></a>
+                                                        <a href="{% url 'renting:studentViewLandlordDetails'   %}"><img src="{% static 'img/landlord1.jpg' %}" alt="#"></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -210,7 +210,7 @@
                                                 <div class="product-img-location">
                                                     <ul>
                                                         <li>
-                                                            <a href="{% url 'renting:studentViewHouseDetails' house.id %}"><i class="flaticon-pin"></i>{{house.city}}</a>
+                                                            <a href="{% url 'renting:studentViewHouseDetails' house.id %}"><i class="flaticon-pin"></i>{{ house.area }}, {{ house.city }}</a>
                                                         </li>
                                                     </ul>
                                                 </div>

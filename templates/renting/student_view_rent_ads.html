@@ -183,9 +183,16 @@
                                         <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                                             <div class="product-img">
                                                 <a href="{% url 'renting:studentViewHouseDetails' house.id %}">
-
+                                                    {% for img in house.houseimages_set.all %}
+                                                        {% if forloop.counter == 1 %}
                                                                 <img src="{{ img.imagess.url }}" alt="#" height="280px">
-                  
+                                                        
+                                                            {% endif %}
+                                                        {% empty %}
+                                                        <div class="columns is-centered">
+                                                            <i class="fa fa-picture-o fa-10x has-text-grey-light" aria-hidden="true"></i>
+                                                        </div>
+                                                        {% endfor %}
                                                 </a>
                                                 <div class="real-estate-agent">
                                                     <div class="agent-img">

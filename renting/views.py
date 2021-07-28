@@ -28,29 +28,6 @@ def check_user(user):
         requesst = request
         return render(requesst, 'renting/login_NSS.html')
 
-# def home_page(request):
-#     # User logged in or not
-#     if request.user.is_authenticated:
-#         logged = True
-
-#         #Getting the logged on user type 
-#         try:
-#             ut = request.user.ut.user_type	
-#         except:
-#             ut = None	
-
-#     form = SearchForm()
-#     log = 'false'
-#     return render(request, 'renting/home.html', locals())
-
-
-# def user_signin_status(request):
-#     if request.user.is_authenticated:
-#         return JsonResponse({'user':'logged_in'})
-
-#     elif request.user.is_anonymous:
-#         return JsonResponse({'user':'not_logged_in'})
-
 
 def search_list(request):
     f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())

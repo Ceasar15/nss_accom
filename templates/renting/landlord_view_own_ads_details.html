@@ -110,18 +110,36 @@
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="cursor: pointer; margin-bottom: 100px;" >
 
         <div class="carousel-inner" style="margin-top: 50px;">
-            
-        {% for img in imgs %}
-          <div class="carousel-item active">    
-            <div class="container" style="width: 1000px; height: 600px;">
-                <img class="d-block w-100" src="{{ img.imagess.url }}"  alt="First slide" >
+            <div class="carousel-item active">
+                <div class="container" style="width: 1000px; height: 600px;">
+                    <img class="d-block w-100" src="{{ imgs.0.imagess.url }}" alt="First slide" >
+                </div>
+              </div>
+            {% for img in imgs|slice:"1:" %}
+            <div class="carousel-item">
+              <div class="container" style="width: 1000px; height: 600px;">
+                  <img class="d-block w-100" src="{{ img.imagess.url }}" alt="First slide" >
+              </div>
             </div>
-        </div>
-        {% endfor %}
-
-
-        </div>
-
+            {% endfor %}
+<!--   
+            <div class="carousel-item">
+              <div class="container" style="width: 1000px; height: 600px;">
+              <img class="d-block w-100" src="{% static 'img/pin4.jpg' %}" alt="Second slide">
+              </div>
+            </div>
+  
+            <div class="carousel-item">
+                <div class="container" style="width: 1000px; height: 600px;">
+                  <img class="d-block w-100" src="{% static 'img/pin1.jpg' %}" alt="Third slide">
+                </div>
+              
+            </div>
+   -->
+          </div>
+  
+  
+  
 
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
             <i class="fas fa-arrow-left" aria-hidden="true" style="color: black;" ></i> 

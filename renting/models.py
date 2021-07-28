@@ -6,7 +6,7 @@ import django_filters
 
 STATE_CHOICES = [
 
-    ('Greater Accra Region','Greater Accra Region'),
+('Greater Accra Region','Greater Accra Region'),
 ('Ashanti Region','Ashanti Region'),
 ('Western North Region','Western North Region'),
 ('Western Region','Western Region'),
@@ -23,6 +23,7 @@ STATE_CHOICES = [
 ('Upper West Region','Upper West Region'),
 ('Central Region','Central Region'),
 ]
+
 
 HH_FIELD_CHOICES = (
         ('Pr','Private'),

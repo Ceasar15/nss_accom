@@ -747,7 +747,8 @@ def studentViewHouseDetails(request, id):
 # the page where the student can view the details of the landlord.
 def studentViewLandlordDetails(request, id):
     landlord = User.objects.filter(id=id)
-    print(landlord)
+    for l in landlord:
+        print(l.id)
     return render(request, 'renting/student_view_landlord_details.html')
 
 

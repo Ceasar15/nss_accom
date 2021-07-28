@@ -202,13 +202,26 @@
 
 
                                     <!-- ltn__product-item 1 -->
+                                    {% if filter %}
+                                        {% for house in filter.qs %}
                                     <div class="col-lg-4 col-sm-6 col-12">
                                         <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                                             <div class="product-img">
-                                                <a href="{% url 'renting:staffViewAdDetails' %}"><img src="{% static 'img/pin1.jpg' %}" alt="#" height="280px"></a>
+                                                <a href="{% url 'renting:studentViewHouseDetails' house.id %}">
+                                                    {% for img in house.houseimages_set.all %}
+                                                        {% if forloop.counter == 1 %}
+                                                                <img src="{{ img.imagess.url }}" alt="#" height="280px">
+                                                        
+                                                            {% endif %}
+                                                        {% empty %}
+                                                        <div class="columns is-centered">
+                                                            <i class="fa fa-picture-o fa-10x has-text-grey-light" aria-hidden="true"></i>
+                                                        </div>
+                                                        {% endfor %}
+                                                </a>
                                                 <div class="real-estate-agent">
                                                     <div class="agent-img">
-                                                        <a href="{% url 'renting:staffViewLandlordDetails' %}"><img src="{% static 'img/landlord1.jpg' %}" alt="#"></a>
+                                                        <a href="{% url 'renting:studentViewLandlordDetails'  %}"><img src="{% static 'img/landlord1.jpg' %}" alt="#"></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -218,11 +231,11 @@
                                                         <li class="sale-badg">For Rent</li>
                                                     </ul>
                                                 </div>
-                                                <h2 class="product-title"><a href="product-details.html">New Apartment Nice View</a></h2>
+                                                <h2 class="product-title"><a href="{% url 'renting:studentViewHouseDetails' house.id %}">New Apartment Nice View</a></h2>
                                                 <div class="product-img-location">
                                                     <ul>
                                                         <li>
-                                                            <a href="locations.html"><i class="flaticon-pin"></i>Legon campus, Accra</a>
+                                                            <a href="{% url 'renting:studentViewHouseDetails' house.id %}"><i class="flaticon-pin"></i>{{house.city}}</a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -233,23 +246,16 @@
                                                     <li><span>2 </span>
                                                         Bathrooms
                                                     </li>
-                                                   <!--  <li><span>3450 </span>
-                                                        square Ft
-                                                    </li> -->
                                                 </ul>
                                                 <div class="product-hover-action">
                                                     <ul>
                                                         <li>
-                                                            <a href="#" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
+                                                            <a href="{%  url 'renting:studentViewHouseDetails' house.id %}" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
                                                                 <i class="flaticon-expand"></i>
                                                             </a>
                                                         </li>
-                                                      <!--   <li>
-                                                            <a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
-                                                                <i class="flaticon-heart-1"></i></a>
-                                                        </li> -->
                                                         <li>
-                                                            <a href="product-details.html" title="Product Details">
+                                                            <a href="{%  url 'renting:studentViewHouseDetails' house.id  %}" title="Product Details">
                                                                 <i class="flaticon-add"></i>
                                                             </a>
                                                         </li>
@@ -258,336 +264,15 @@
                                             </div>
                                             <div class="product-info-bottom">
                                                 <div class="product-price">
-                                                    <span>900gh<label>/Month</label></span>
+                                                    <span>GHc{{house.rent}}.00<label>/Month</label></span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                        {% endfor %}
+                                    {% endif %}
 
 
-
-                                    <!-- ltn__product-item 2-->
-                                    <div class="col-lg-4 col-sm-6 col-12">
-                                        <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
-                                            <div class="product-img">
-                                                <a href="{% url 'renting:staffViewAdDetails' %}"><img src="{% static 'img/pin4.jpg' %}" alt="#" height="280px"></a>
-                                                <div class="real-estate-agent">
-                                                    <div class="agent-img">
-                                                        <a href="{% url 'renting:staffViewLandlordDetails' %}"><img src="{% static 'img/landlord1.jpg' %}" alt="#"></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product-info">
-                                                <div class="product-badge">
-                                                    <ul>
-                                                        <li class="sale-badg">For Rent</li>
-                                                    </ul>
-                                                </div>
-                                                <h2 class="product-title"><a href="product-details.html">New Apartment Nice View</a></h2>
-                                                <div class="product-img-location">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="locations.html"><i class="flaticon-pin"></i>Legon campus, Accra</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <ul class="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
-                                                    <li><span>3 </span>
-                                                        Bedrooms
-                                                    </li>
-                                                    <li><span>2 </span>
-                                                        Bathrooms
-                                                    </li>
-                                                    <!-- <li><span>3450 </span>
-                                                        square Ft
-                                                    </li> -->
-                                                </ul>
-                                                <div class="product-hover-action">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
-                                                                <i class="flaticon-expand"></i>
-                                                            </a>
-                                                        </li>
-                                                       <!--  <li>
-                                                            <a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
-                                                                <i class="flaticon-heart-1"></i></a>
-                                                        </li> -->
-                                                        <li>
-                                                            <a href="product-details.html" title="Product Details">
-                                                                <i class="flaticon-add"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="product-info-bottom">
-                                                <div class="product-price">
-                                                    <span>900gh<label>/Month</label></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-
-                                    <!-- ltn__product-item 3 -->
-                                    <div class="col-lg-4 col-sm-6 col-12">
-                                        <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
-                                            <div class="product-img">
-                                                <a href="{% url 'renting:staffViewAdDetails' %}"><img src="{% static 'img/pin1.jpg' %}" alt="#" height="280px"></a>
-                                                <div class="real-estate-agent">
-                                                    <div class="agent-img">
-                                                        <a href="{% url 'renting:staffViewLandlordDetails' %}"><img src="{% static 'img/landlord1.jpg' %}" alt="#"></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product-info">
-                                                <div class="product-badge">
-                                                    <ul>
-                                                        <li class="sale-badg">For Rent</li>
-                                                    </ul>
-                                                </div>
-                                                <h2 class="product-title"><a href="product-details.html">New Apartment Nice View</a></h2>
-                                                <div class="product-img-location">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="locations.html"><i class="flaticon-pin"></i>Legon campus, Accra</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <ul class="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
-                                                    <li><span>3 </span>
-                                                        Bedrooms
-                                                    </li>
-                                                    <li><span>2 </span>
-                                                        Bathrooms
-                                                    </li>
-                                                   <!--  <li><span>3450 </span>
-                                                        square Ft
-                                                    </li> -->
-                                                </ul>
-                                                <div class="product-hover-action">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
-                                                                <i class="flaticon-expand"></i>
-                                                            </a>
-                                                        </li>
-                                                       <!--  <li>
-                                                            <a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
-                                                                <i class="flaticon-heart-1"></i></a>
-                                                        </li> -->
-                                                        <li>
-                                                            <a href="product-details.html" title="Product Details">
-                                                                <i class="flaticon-add"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="product-info-bottom">
-                                                <div class="product-price">
-                                                    <span>900gh<label>/Month</label></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-
-                                    <!-- ltn__product-item 4-->
-                                    <div class="col-lg-4 col-sm-6 col-12">
-                                        <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
-                                            <div class="product-img">
-                                                <a href="{% url 'renting:staffViewAdDetails' %}"><img src="{% static 'img/pin4.jpg' %}" alt="#" height="280px"></a>
-                                                <div class="real-estate-agent">
-                                                    <div class="agent-img">
-                                                        <a href="{% url 'renting:staffViewLandlordDetails' %}"><img src="{% static 'img/landlord1.jpg' %}" alt="#"></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product-info">
-                                                <div class="product-badge">
-                                                    <ul>
-                                                        <li class="sale-badg">For Rent</li>
-                                                    </ul>
-                                                </div>
-                                                <h2 class="product-title"><a href="product-details.html">New Apartment Nice View</a></h2>
-                                                <div class="product-img-location">
-                                                    <ul>
-                                                        <li>
-                                                           <a href="locations.html"><i class="flaticon-pin"></i>Legon campus, Accra</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <ul class="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
-                                                    <li><span>3 </span>
-                                                        Bedrooms
-                                                    </li>
-                                                    <li><span>2 </span>
-                                                        Bathrooms
-                                                    </li>
-                                                  <!--   <li><span>3450 </span>
-                                                        square Ft
-                                                    </li> -->
-                                                </ul>
-                                                <div class="product-hover-action">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
-                                                                <i class="flaticon-expand"></i>
-                                                            </a>
-                                                        </li>
-                                                       <!--  <li>
-                                                            <a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
-                                                                <i class="flaticon-heart-1"></i></a>
-                                                        </li> -->
-                                                        <li>
-                                                            <a href="product-details.html" title="Product Details">
-                                                                <i class="flaticon-add"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="product-info-bottom">
-                                                <div class="product-price">
-                                                    <span>900gh<label>/Month</label></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-
-                                    <!-- ltn__product-item 5-->
-                                    <div class="col-lg-4 col-sm-6 col-12">
-                                        <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
-                                            <div class="product-img">
-                                                <a href="{% url 'renting:staffViewAdDetails' %}"><img src="{% static 'img/pin1.jpg' %}" alt="#" height="280px"></a>
-                                                <div class="real-estate-agent">
-                                                    <div class="agent-img">
-                                                        <a href="{% url 'renting:staffViewLandlordDetails' %}"><img src="{% static 'img/landlord1.jpg' %}" alt="#"></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product-info">
-                                                <div class="product-badge">
-                                                    <ul>
-                                                        <li class="sale-badg">For Rent</li>
-                                                    </ul>
-                                                </div>
-                                                <h2 class="product-title"><a href="product-details.html">New Apartment Nice View</a></h2>
-                                                <div class="product-img-location">
-                                                    <ul>
-                                                        <li>
-                                                           <a href="locations.html"><i class="flaticon-pin"></i>Legon campus, Accra</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <ul class="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
-                                                    <li><span>3 </span>
-                                                        Bedrooms
-                                                    </li>
-                                                    <li><span>2 </span>
-                                                        Bathrooms
-                                                    </li>
-                                                   <!--  <li><span>3450 </span>
-                                                        square Ft
-                                                    </li> -->
-                                                </ul>
-                                                <div class="product-hover-action">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
-                                                                <i class="flaticon-expand"></i>
-                                                            </a>
-                                                        </li>
-                                                       <!--  <li>
-                                                            <a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
-                                                                <i class="flaticon-heart-1"></i></a>
-                                                        </li> -->
-                                                        <li>
-                                                            <a href="product-details.html" title="Product Details">
-                                                                <i class="flaticon-add"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="product-info-bottom">
-                                                <div class="product-price">
-                                                    <span>900gh<label>/Month</label></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-
-                                    <!-- ltn__product-item 6-->
-                                    <div class="col-lg-4 col-sm-6 col-12">
-                                        <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
-                                            <div class="product-img">
-                                                <a href="{% url 'renting:staffViewAdDetails' %}"><img src="{% static 'img/pin4.jpg' %}" alt="#" height="280px"></a>
-                                                <div class="real-estate-agent">
-                                                    <div class="agent-img">
-                                                        <a href="{% url 'renting:staffViewLandlordDetails' %}"><img src="{% static 'img/landlord1.jpg' %}" alt="#"></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product-info">
-                                                <div class="product-badge">
-                                                    <ul>
-                                                        <li class="sale-badg">For Rent</li>
-                                                    </ul>
-                                                </div>
-                                                <h2 class="product-title"><a href="product-details.html">New Apartment Nice View</a></h2>
-                                                <div class="product-img-location">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="locations.html"><i class="flaticon-pin"></i>Legon campus, Accra</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <ul class="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
-                                                    <li><span>3 </span>
-                                                        Bedrooms
-                                                    </li>
-                                                    <li><span>2 </span>
-                                                        Bathrooms
-                                                    </li>
-                                                    <!-- <li><span>3450 </span>
-                                                        square Ft
-                                                    </li> -->
-                                                </ul>
-                                                <div class="product-hover-action">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
-                                                                <i class="flaticon-expand"></i>
-                                                            </a>
-                                                        </li>
-                                                       <!--  <li>
-                                                            <a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
-                                                                <i class="flaticon-heart-1"></i></a>
-                                                        </li> -->
-                                                        <li>
-                                                            <a href="product-details.html" title="Product Details">
-                                                                <i class="flaticon-add"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="product-info-bottom">
-                                                <div class="product-price">
-                                                    <span>900gh<label>/Month</label></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <!-- ltn product item end -->
                                 </div>
                             </div>

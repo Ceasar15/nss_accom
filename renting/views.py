@@ -685,8 +685,6 @@ def staffViewRentAds(request):
     return render(request, 'renting/staff_view_rent_ads.html', {'filter': f})
 
 
-
-
 # the page where a landlord can view all of their posted ads.
 @user_passes_test(check_user, login_url='/signInLandlord')
 def landlordViewRentAds(request):
@@ -746,10 +744,11 @@ def studentViewHouseDetails(request, id):
 
 # the page where the student can view the details of the landlord.
 def studentViewLandlordDetails(request, id):
-    landlord = User.objects.filter(id=id)
-    for l in landlord:
-        print(l.id)
-    return render(request, 'renting/student_view_landlord_details.html')
+    user = User.objects.get(id=id)
+    context = {
+        'user': user,
+    }
+    return render(request, 'renting/student_view_landlord_details.html', context)
 
 
 

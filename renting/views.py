@@ -753,8 +753,12 @@ def studentViewLandlordDetails(request, id):
 
 
 # the page where the staff can view the details of the landlord.
-def staffViewLandlordDetails(request):
-    return render(request, 'renting/staff_view_landlord_details.html')
+def staffViewLandlordDetails(request, id):
+    user = User.objects.get(id=id)
+    context = {
+        'user': user,
+    }
+    return render(request, 'renting/staff_view_landlord_details.html', context)
 
 
 

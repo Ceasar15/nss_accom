@@ -737,7 +737,7 @@ def landlordViewHouseDetails(request, id):
 
 
 # the page where the student can view the details of the ad.
-def studentViewHouseDetails(request):
+def studentViewHouseDetails(request, id):
     return render(request, 'renting/student_view_ad_details.html')
 
 

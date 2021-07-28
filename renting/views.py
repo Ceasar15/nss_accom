@@ -49,8 +49,6 @@ def renting_house_results(request):
     else:
         return render(request, 'renting/renting_house_results.html')
 
-
-
 # Make it as only post
 # @login_required
 def post_rent_ad(request):

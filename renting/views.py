@@ -741,12 +741,11 @@ def studentViewHouseDetails(request, id):
         
 
 
-
 # the page where the student can view the details of the landlord.
 def studentViewLandlordDetails(request, id):
-    user = User.objects.get(id=id)
+    landlord = User.objects.get(id=id)
     context = {
-        'user': user,
+        'landlord': landlord,
     }
     return render(request, 'renting/student_view_landlord_details.html', context)
 
@@ -754,9 +753,9 @@ def studentViewLandlordDetails(request, id):
 
 # the page where the staff can view the details of the landlord.
 def staffViewLandlordDetails(request, id):
-    user = User.objects.get(id=id)
+    landlord = User.objects.get(id=id)
     context = {
-        'user': user,
+        'landlord': landlord,
     }
     return render(request, 'renting/staff_view_landlord_details.html', context)
 

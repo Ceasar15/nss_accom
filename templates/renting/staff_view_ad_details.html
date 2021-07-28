@@ -214,16 +214,17 @@
         <div class="carousel-inner" style="margin-top: 50px;">
           <div class="carousel-item active">
             <div class="container" style="width: 1000px; height: 600px;">
-                <img class="d-block w-100" src="{% static 'img/pin1.jpg' %}" alt="First slide" >
+                <img class="d-block w-100" src="{{ imgs.0.imagess.url }}" alt="First slide" >
             </div>
-            
           </div>
 
+          {% for img in imgs|slice:"1:" %}
           <div class="carousel-item">
             <div class="container" style="width: 1000px; height: 600px;">
-            <img class="d-block w-100" src="{% static 'img/pin4.jpg' %}" alt="Second slide">
+            <img class="d-block w-100" src="{{ img.imagess.url }}" alt="Second slide">
             </div>
           </div>
+          {% endfor %}
 
           <div class="carousel-item">
               <div class="container" style="width: 1000px; height: 600px;">

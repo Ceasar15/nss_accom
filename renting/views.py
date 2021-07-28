@@ -682,37 +682,16 @@ def staffViewRentAds(request):
 def landlordViewRentAds(request):
     if request.user.is_authenticated:
         house_list = NewRentalHouse.objects.filter(user=request.user).order_by('-date_registered')
-        for house in house_list:
-            hh = HouseHas.objects.get(nrh=house)
-            rl = Rules.objects.get(nrh=house)
-            pt = PreferredTenant.objects.get(nrh=house)
-            am = Amenities.objects.get(nrh=house)
-            img = HouseImages.objects.filter(nrh=house)
-        houses_list = []
-        edit_list = []
-        for hous_obj in house_list:
-            try:
-                rl = Rules.objects.get(nrh=hous_obj)
-                pt = PreferredTenant.objects.get(nrh=hous_obj)
-                am = Amenities.objects.get(nrh=hous_obj)
-                hh = HouseHas.objects.get(nrh=hous_obj)
-                proceed = True
-            except:
-                proceed = False
-
-            if proceed:
-                houses_list.append(hous_obj)
-            else:
-                edit_list.append(hous_obj)
 
 
-        return render(request, 'renting/landlord_view_rent_ads.html', locals())
+        context = {
+            'house_list': house_list
+        }
+        return render(request, 'renting/landlord_view_rent_ads.html', context)
 
     elif request.user.is_anonymous:
         modl='true'
         return render(request, 'renting/landlord_view_rent_ads.html', locals())
-
-
 
 # the page where the landlord can see his own house details.
 def landlordViewHouseDetails(request, id):

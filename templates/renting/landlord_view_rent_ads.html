@@ -136,8 +136,8 @@
 
 
                                     <!-- ltn__product-item 1-->
-                                    {% if houses_list %}
-                                        {% for house in houses_list %}
+                                    {% if house_list %}
+                                        {% for house in house_list %}
                                     <div class="col-lg-4 col-sm-6 col-12">
 
                                         <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
@@ -146,7 +146,7 @@
                                                 <a href="{% url 'renting:landlordViewHouseDetails' house.id %}">
                                                     {% for img in house.houseimages_set.all %}
                                                         {% if forloop.counter == 1 %}
-                                                    <img src="{{ img.imagess.url|default_if_none:'#' }}" alt="#" height="280px">
+                                                    <img src="{{ img.images.url|default_if_none:'#' }}" alt="#" height="280px">
                                                         {% endif %}
                                                     {% empty %}
                                                     <div class="columns is-centered">
@@ -177,14 +177,14 @@
                                                         </li>
                                                     </ul>
                                                 </div>
-                                                <!-- <ul class="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
-                                                    <li><span>{{ hh.bedroom }}</span>
+                                                <ul class="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
+                                                    <li><span>{{ house.househas.bedroom }}</span>
                                                         Bedrooms
                                                     </li>
-                                                    <li><span>{{ h.bathroom }} </span>
+                                                    <li><span>{{ house.househas.bathroom }} </span>
                                                         Bathrooms
                                                     </li>
-                                                </ul> -->
+                                                </ul>
                                                 <div class="product-hover-action">
                                                     <ul>
                                                         <li>
@@ -192,10 +192,7 @@
                                                                 <i class="flaticon-expand"></i>
                                                             </a>
                                                         </li>
-                                                      <!--   <li>
-                                                            <a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
-                                                                <i class="flaticon-heart-1"></i></a>
-                                                        </li> -->
+
                                                         <li>
                                                             <a href="#" title="Product Details">
                                                                 <i class="flaticon-add"></i>
@@ -222,130 +219,6 @@
 
 
                                     
-                                    <!-- ltn__product-item 2-->
-                                    <div class="col-lg-4 col-sm-6 col-12">
-                                        <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
-                                            <div class="product-img">
-                                                <a href="{% url 'renting:landlordViewHouseDetails' house.id %}"><img src="{% static 'img/pin4.jpg' %}" alt="#" height="280px"></a>
-                                                <div class="real-estate-agent">
-                                                    <div class="agent-img">
-                                                        <a href="#"><img src="{% static 'img/landlord1.jpg' %}" alt="#"></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product-info">
-                                                <div class="product-badge">
-                                                    <ul>
-                                                        <li class="sale-badg">For Rent</li>
-                                                    </ul>
-                                                </div>
-                                                <h2 class="product-title"><a href="product-details.html">New Apartment Nice View</a></h2>
-                                                <div class="product-img-location">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="locations.html"><i class="flaticon-pin"></i>Legon campus, Accra</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <ul class="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
-                                                    <li><span>3 </span>
-                                                        Bedrooms
-                                                    </li>
-                                                    <li><span>2 </span>
-                                                        Bathrooms
-                                                    </li>
-                                                    <!-- <li><span>3450 </span>
-                                                        square Ft
-                                                    </li> -->
-                                                </ul>
-                                                <div class="product-hover-action">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
-                                                                <i class="flaticon-expand"></i>
-                                                            </a>
-                                                        </li>
-                                                       <!--  <li>
-                                                            <a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
-                                                                <i class="flaticon-heart-1"></i></a>
-                                                        </li> -->
-                                                        <li>
-                                                            <a href="product-details.html" title="Product Details">
-                                                                <i class="flaticon-add"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="product-info-bottom">
-                                                <div class="product-price">
-                                                    <span>900gh<label>/Month</label></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- end of ltn product item 2 -->
-
-
-
-                                    <!-- ltn__product-item 3-->
-                                    <div class="col-lg-4 col-sm-6 col-12" >
-                                        <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
-                                            <div class="product-img">
-                                                <a href="{% url 'renting:landlordViewHouseDetails' house.id %}"><img src="{% static 'img/pin1.jpg' %}" alt="#" height="280px"></a>
-                                                <div class="real-estate-agent">
-                                                    <div class="agent-img">
-                                                        <a href="#"><img src="{% static 'img/landlord1.jpg' %}" alt="#"></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="product-info">
-                                                <div class="product-badge">
-                                                    <ul>
-                                                        <li class="sale-badg">For Rent</li>
-                                                    </ul>
-                                                </div>
-                                                <h2 class="product-title"><a href="product-details.html">New Apartment Nice View</a></h2>
-                                                <div class="product-img-location">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="locations.html"><i class="flaticon-pin"></i>Legon campus, Accra</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <ul class="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
-                                                    <li><span>3 </span>
-                                                        Bedrooms
-                                                    </li>
-                                                    <li><span>2 </span>
-                                                        Bathrooms
-                                                    </li>
-                                                  
-                                                </ul>
-                                                <div class="product-hover-action">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
-                                                                <i class="flaticon-expand"></i>
-                                                            </a>
-                                                        </li>
-                                                      
-                                                        <li>
-                                                            <a href="product-details.html" title="Product Details">
-                                                                <i class="flaticon-add"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="product-info-bottom">
-                                                <div class="product-price">
-                                                    <span>900gh<label>/Month</label></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- ltn__product-item 3-->
                                 </div>
                             </div>
                         </div>

@@ -751,7 +751,7 @@ def studentViewHouseDetails(request, id):
         except:
             nrh_obj = None
         if nrh_obj:
-            return render(request, 'renting/landlord_view_own_ads_details.html', locals())
+            return render(request, 'renting/student_view_ad_details.html', locals())
     elif request.user.is_anonymous:
         modl='true'
         return render(request, 'renting/student_view_ad_details.html', locals())

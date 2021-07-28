@@ -188,23 +188,17 @@
         <div class="carousel-inner" style="margin-top: 50px;">
           <div class="carousel-item active">
             <div class="container" style="width: 1000px; height: 600px;">
-                <img class="d-block w-100" src="{% static 'img/pin1.jpg' %}" alt="First slide" >
+                <img class="d-block w-100" src="{{ imgs.0.imagess.url }}" alt="First slide" >
             </div>
-            
           </div>
 
+          {% for img in imgs|slice:"1:" %}
           <div class="carousel-item">
             <div class="container" style="width: 1000px; height: 600px;">
-            <img class="d-block w-100" src="{% static 'img/pin4.jpg' %}" alt="Second slide">
+            <img class="d-block w-100" src="{{ img.imagess.url }}" alt="Second slide">
             </div>
           </div>
-
-          <div class="carousel-item">
-              <div class="container" style="width: 1000px; height: 600px;">
-                <img class="d-block w-100" src="{% static 'img/pin1.jpg' %}" alt="Third slide">
-              </div>
-            
-          </div>
+          {% endfor %}
 
         </div>
 
@@ -241,7 +235,7 @@
                                     <a class="bg-orange" href="#">For Rent</a>
                                 </li>
                                 <li class="ltn__blog-date">
-                                    <i class="far fa-calendar-alt"></i>May 19, 2021
+                                    <i class="far fa-calendar-alt"></i>{{ nrh_obj.date_registered.date }}
                                 </li>
                                 <li>
                                     <a href="#"><i class="far fa-comments"></i>35 Comments</a>
@@ -263,14 +257,14 @@
                             <ul>
                                 <!-- <li><label>Property ID:</label><span>HZ29</span></li> -->
                                 <!-- <li><label>Home Area: </label> <span>120 sqft</span></li> -->
-                                <li><label>Rooms:</label> <span>7</span></li>
-                                <li><label>Baths:</label> <span>2</span></li>
+                                <li><label>Rooms:</label> <span>{{ r_hh.bedroom }}</span></li>
+                                <li><label>Baths:</label> <span>{{ r_hh.bathroom }}</span></li>
                                 <li><label>Year built:</label> <span>1992</span></li>
                             </ul>
                             <ul>
                                 <!-- <li><label>Lot Area:</label> <span>HZ29 </span></li> -->
                                 <!-- <li><label>Lot dimensions:</label> <span>120 sqft</span></li> -->
-                                <li><label>Beds:</label> <span>7</span></li>
+                                <li><label>Beds:</label> <span>{{ am.bed }}</span></li>
                                 <li><label>Price:</label> <span>2</span></li>
                                 <li><label>Property Status:</label> <span>For Sale</span></li>
                             </ul>

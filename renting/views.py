@@ -756,7 +756,7 @@ def staffViewLandlordDetails(request):
 
 
 # the page where the staff can view the details of the ad.
-def staffViewAdDetails(request):
+def staffViewAdDetails(request, id):
     if request.user.is_authenticated:
         try:
             nrh_obj = NewRentalHouse.objects.get(pk=id)

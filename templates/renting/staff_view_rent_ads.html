@@ -207,7 +207,7 @@
                                     <div class="col-lg-4 col-sm-6 col-12">
                                         <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                                             <div class="product-img">
-                                                <a href="{% url 'renting:studentViewHouseDetails' house.id %}">
+                                                <a href="{% url 'renting:staffViewAdDetails' house.id %}">
                                                     {% for img in house.houseimages_set.all %}
                                                         {% if forloop.counter == 1 %}
                                                                 <img src="{{ img.imagess.url }}" alt="#" height="280px">
@@ -231,11 +231,11 @@
                                                         <li class="sale-badg">For Rent</li>
                                                     </ul>
                                                 </div>
-                                                <h2 class="product-title"><a href="{% url 'renting:studentViewHouseDetails' house.id %}">New Apartment Nice View</a></h2>
+                                                <h2 class="product-title"><a href="{% url 'renting:staffViewAdDetails' house.id %}">New Apartment Nice View</a></h2>
                                                 <div class="product-img-location">
                                                     <ul>
                                                         <li>
-                                                            <a href="{% url 'renting:studentViewHouseDetails' house.id %}"><i class="flaticon-pin"></i>{{house.city}}</a>
+                                                            <a href="{% url 'renting:staffViewAdDetails' house.id %}"><i class="flaticon-pin"></i>{{house.city}}</a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -250,12 +250,12 @@
                                                 <div class="product-hover-action">
                                                     <ul>
                                                         <li>
-                                                            <a href="{%  url 'renting:studentViewHouseDetails' house.id %}" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
+                                                            <a href="{%  url 'renting:staffViewAdDetails' house.id %}" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
                                                                 <i class="flaticon-expand"></i>
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <a href="{%  url 'renting:studentViewHouseDetails' house.id  %}" title="Product Details">
+                                                            <a href="{%  url 'renting:staffViewAdDetails' house.id  %}" title="Product Details">
                                                                 <i class="flaticon-add"></i>
                                                             </a>
                                                         </li>

@@ -199,7 +199,7 @@
                                                         <li class="sale-badg">For Rent</li>
                                                     </ul>
                                                 </div>
-                                                <h2 class="product-title"><a href="{% url 'renting:house_details' house.id %}?next={{request.path}}">New Apartment Nice View</a></h2>
+                                                <h2 class="product-title"><a href="{% url 'renting:house_details' house.id %}">New Apartment Nice View</a></h2>
                                                 <div class="product-img-location">
                                                     <ul>
                                                         <li>
@@ -218,7 +218,7 @@
                                                 <div class="product-hover-action">
                                                     <ul>
                                                         <li>
-                                                            <a href="{% url 'renting:house_details' house.id %}?next={{request.path}}" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
+                                                            <a href="{% url 'renting:house_details' house.id %}" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
                                                                 <i class="flaticon-expand"></i>
                                                             </a>
                                                         </li>

@@ -658,6 +658,15 @@ def check_student_user(user):
         requesst = request
         return render(requesst,'student/login_student.html')
 
+#check if staff is authenticated
+def check_staff_user(user):
+    if user.is_authenticated:
+        typed = Typed.objects.filter(user_id=user).first()
+        if typed.user_group == 'staff':
+            return user.first_name
+    else:
+        requesst = request
+        return render(requesst,'student/login_staff.html')
 
 
 
@@ -668,11 +677,11 @@ def studentViewRentAds(request):
     return render(request, 'renting/student_view_rent_ads.html', {'filter': f})
 
 
-
-
 # the page where a staff can view all rent ads.
+@user_passes_test(check_staff_user, login_url='/loginStaff')
 def staffViewRentAds(request):
-    return render(request, 'renting/staff_view_rent_ads.html')
+    f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())
+    return render(request, 'renting/staff_view_rent_ads.html', {'filter': f})
 
 
 

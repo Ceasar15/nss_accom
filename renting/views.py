@@ -112,7 +112,6 @@ def post_rent_ad(request):
         return render(request, 'renting/rental_post.html', locals())
 
 
-
 # @login_required
 def update_rent_ad(request, id):
     if request.user.is_authenticated:

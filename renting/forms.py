@@ -1,5 +1,6 @@
 from django import forms
-from .models import (NewRentalHouse, HouseHas, 
+from django.db.models import fields
+from .models import (ContactLandlord, NewRentalHouse, HouseHas, 
 	Amenities, Rules, PreferredTenant, STATE_CHOICES, HH_FIELD_CHOICES, 
 	FIELD_CHOICES, GENDER_PREF, ROOMS, HouseImages)
 
@@ -104,3 +105,11 @@ class PreferredTenantForm(forms.ModelForm):
 		model = PreferredTenant
 		fields = '__all__'
 		exclude = ['nrh']
+
+
+class ContactLandlordForm(forms.ModelForm):
+
+	class Meta:
+		model = ContactLandlord
+		fields = '__all__'
+		

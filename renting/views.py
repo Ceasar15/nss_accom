@@ -9,7 +9,7 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.conf import settings
 from django.db.models import Q
 
-from .forms import SearchForm, RentalHouseForm, HouseHasForm, AmenitiesForm, RulesForm, PreferredTenantForm, HouseImagesForm, HouseImagesEditForm
+from .forms import ContactLandlordForm, SearchForm, RentalHouseForm, HouseHasForm, AmenitiesForm, RulesForm, PreferredTenantForm, HouseImagesForm, HouseImagesEditForm
 from .models import NewRentalHouse, HouseHas, Amenities, PreferredTenant, Rules, HouseImages, SearchFilter
 from users.models import Typed
 from users.forms import UserTypeForm
@@ -718,6 +718,15 @@ def studentViewHouseDetails(request, id):
 # the page where the student can view the details of the landlord.
 def studentViewLandlordDetails(request, id):
     landlord = User.objects.get(id=id)
+    contact_landlord = ContactLandlordForm(request.POST)
+
+    if request.method == 'POST':
+        if contact_landlord.is_valid():
+            cl = contact_landlord.save(commit=False)
+            cl.user = request.user
+            cl.save()
+
+            return redirect('renting:staffViewRentAds')
     context = {
         'landlord': landlord,
     }

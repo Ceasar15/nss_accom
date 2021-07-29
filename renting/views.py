@@ -668,7 +668,6 @@ def staffViewRentAds(request):
 def landlordViewRentAds(request):
     if request.user.is_authenticated:
         house_list = NewRentalHouse.objects.filter(user=request.user).order_by('-date_registered')
-        
         return render(request, 'renting/landlord_view_rent_ads.html', locals())
 
     elif request.user.is_anonymous:

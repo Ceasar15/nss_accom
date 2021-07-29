@@ -768,7 +768,15 @@ def staffViewAdDetails(request, id):
 
 
 # the landlord profile page.
+from users.forms import ProfileForm
 def landlordProfile(request):
+    profile_form = ProfileForm(request.POST)
+    if profile_form.is_valid():
+        pf = profile_form.save(commit=False)
+        pf.user = request.user
+        pf.save()
+
+        return redirect('renting:postRentAdds')
     return render(request, 'renting/landlord_profile.html')
 
 

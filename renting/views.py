@@ -650,10 +650,8 @@ def check_staff_user(user):
 def studentViewRentAds(request):
     f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())
     for house in f.qs:
-        print(house.househas)
         profile = Profile.objects.get(user_id=house.user_id)
-        print(profile.location)
-
+        
     return render(request, 'renting/student_view_rent_ads.html', {'filter': f, 
     'profile': profile})
 

@@ -719,11 +719,11 @@ def studentViewHouseDetails(request, id):
 def studentViewLandlordDetails(request, id):
     landlord = User.objects.get(id=id)
     contact_landlord = ContactLandlordForm(request.POST)
-
     if request.method == 'POST':
         if contact_landlord.is_valid():
             cl = contact_landlord.save(commit=False)
             cl.user = request.user
+            cl.landlord_id = request.user.id
             cl.save()
 
             return redirect('renting:staffViewRentAds')

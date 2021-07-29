@@ -194,8 +194,8 @@
                             <div class="col-lg-6">
                                 <div class="ltn__team-details-member-about">
                                     <ul>
-                                        <li><strong>Occupation:</strong>Landlord</li>
-                                        <li><strong>Location:</strong>Accra, Legon</li>
+                                        <li><strong>Occupation:</strong>{{ profile.occupation }}</li>
+                                        <li><strong>Location:</strong>{{ profile.location }}</li>
                                         <!-- <li><strong>Practice Area:</strong> Property Seller</li> -->
                                     </ul>
                                 </div>
@@ -206,7 +206,7 @@
                                     <ul>
                                         <li><strong>Email:</strong>{{ landlord.email }}</li>
                                         <!-- <li><strong>Fax:</strong> +0123-456 789</li> -->
-                                        <li><strong>Phone:</strong> +233 240 009 0168</li>
+                                        <li><strong>Phone:</strong> +233 (0) {{ typed.phone_no }}</li>
                                     </ul>
                                 </div>
                             </div>

@@ -11,7 +11,7 @@ from django.db.models import Q
 
 from .forms import ContactLandlordForm, SearchForm, RentalHouseForm, HouseHasForm, AmenitiesForm, RulesForm, PreferredTenantForm, HouseImagesForm, HouseImagesEditForm
 from .models import NewRentalHouse, HouseHas, Amenities, PreferredTenant, Rules, HouseImages, SearchFilter
-from users.models import Typed
+from users.models import Profile, Typed
 from users.forms import UserTypeForm
 from student.forms import StudentRegisterForm, UserContactFrom
 
@@ -716,8 +716,12 @@ def studentViewHouseDetails(request, id):
 
 
 # the page where the student can view the details of the landlord.
+from users.models import Typed
 def studentViewLandlordDetails(request, id):
     landlord = User.objects.get(id=id)
+    profile = Profile.objects.get(user_id=id)
+    typed = Typed.objects.get(user_id_id=id)
+
     contact_landlord = ContactLandlordForm(request.POST)
     if request.method == 'POST':
         if contact_landlord.is_valid():
@@ -729,6 +733,8 @@ def studentViewLandlordDetails(request, id):
             return redirect('renting:staffViewRentAds')
     context = {
         'landlord': landlord,
+        'profile': profile,
+        'typed': typed,
     }
     return render(request, 'renting/student_view_landlord_details.html', context)
 

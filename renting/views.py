@@ -698,6 +698,7 @@ def studentViewHouseDetails(request, id):
     if request.user.is_authenticated:
         try:
             nrh_obj = NewRentalHouse.objects.get(pk=id)
+            house_list = NewRentalHouse.objects.get(user=request.user)
             r_hh = HouseHas.objects.get(nrh=nrh_obj)
             am = Amenities.objects.get(nrh=nrh_obj)
             pt = PreferredTenant.objects.get(nrh=nrh_obj)
@@ -716,7 +717,7 @@ def studentViewHouseDetails(request, id):
 
 
 # the page where the student can view the details of the landlord.
-from users.models import Typed
+from users.models import Typed, Profile
 def studentViewLandlordDetails(request, id):
     landlord = User.objects.get(id=id)
     profile = Profile.objects.get(user_id=id)

@@ -651,7 +651,7 @@ def studentViewRentAds(request):
     f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())
     for house in f.qs:
         profile = Profile.objects.get(user_id=house.user_id)
-        
+
     return render(request, 'renting/student_view_rent_ads.html', {'filter': f, 
     'profile': profile})
 
@@ -727,9 +727,11 @@ def studentViewLandlordDetails(request, id):
     typed = Typed.objects.get(user_id_id=id)
     
     contact_landlord = ContactLandlordForm(request.POST)
+    # print(contact_landlord)
     if request.method == 'POST':
         if contact_landlord.is_valid():
             cl = contact_landlord.save(commit=False)
+            print(cl)
             cl.user = request.user
             cl.landlord_id = request.user.id
             cl.save()
@@ -749,6 +751,7 @@ def staffViewLandlordDetails(request, id):
     landlord = User.objects.get(id=id)
     profile = Profile.objects.get(user_id=id)
     typed = Typed.objects.get(user_id_id=id)
+
     
     context = {
         'landlord': landlord,

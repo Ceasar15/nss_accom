@@ -131,6 +131,7 @@ class SearchFilter(django_filters.FilterSet):
         )
 
 
+
 class ContactLandlord(models.Model):
     full_name = models.CharField(max_length=150)
     email = models.EmailField()

@@ -198,7 +198,7 @@
                 <div class="col-lg-4">
                     <div class="ltn__team-details-member-info text-center mb-40">
                         <div class="team-details-img">
-                            <img src="{{ profile.profile_image.url }}" alt="Team Member Image">
+                            <img src="{{ profile.profile_image.url }}" height="250px" width="350px" alt="Team Member Image">
                         </div>
                         <h2>{{ landlord.last_name }} {{ landlord.first_name }}</h2>
                         <h6 class="text-uppercase ltn__secondary-color">{{ profile.occupation }}</h6>
@@ -247,47 +247,48 @@
                         </div>
 
 
-
-                        
-                        <div class="ltn__form-box contact-form-box box-shadow white-bg mt-50">
+                        <div class="ltn__form-box contact-form-box box-shadow white-bg mt-50" style="width: 1150px">
                             <h4 class="title-2" >Interested in this house? Contact {{ landlord.last_name }} {{ landlord.first_name }} for further inquiry</h4>
-                            <form id="contact-form" method="post">
+                            <form id="contact-form" method="post" autocapitalize="word">
+                                {% csrf_token %}
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="input-item input-item-name ltn__custom-icon">
-                                            <input type="text" name="name" placeholder="Enter your name">
+                                            <input type="text" id="id_full_name" name="full_name" placeholder="Enter your name">
                                         </div>
                                     </div>
+
                                     <div class="col-md-6">
                                         <div class="input-item input-item-email ltn__custom-icon">
-                                            <input type="email" name="email" placeholder="Enter email address">
+                                            <input type="email" id="id_email" name="email" placeholder="Enter email address">
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="input-item">
-                                            <select class="nice-select">
-                                                <option>Select Service Type</option>
-                                                <option>Rent an Apartment</option>
-                                                <option>Consulting Service</option>
-                                            </select>
-                                        </div>
-                                    </div>
+
+               
                                     <div class="col-md-6">
                                         <div class="input-item input-item-phone ltn__custom-icon">
-                                            <input type="text" name="phone" placeholder="Enter phone number">
+                                            <input type="text" id="id_phone" name="phone" placeholder="Enter phone number">
                                         </div>
                                     </div>
+
                                 </div>
+
+
                                 <div class="input-item input-item-textarea ltn__custom-icon">
-                                    <textarea name="message" placeholder="Enter message"></textarea>
+                                    <textarea id="id_message" name="message" placeholder="Enter message"></textarea>
                                 </div>
                                 
                                 <div class="btn-wrapper mt-0">
-                                    <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">get A free service</button>
+                                    <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Send Details To Landlord </button>
                                 </div>
-                                <p class="form-messege mb-0 mt-20"></p>
+                                
                             </form>
                         </div>
+
+
+
+
+
                     </div>
                 </div>
             </div>

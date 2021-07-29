@@ -13,7 +13,11 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = "__all__"
+        fields = {
+            'location',
+            'occupation',
+            'profile_image',
+        }
 
 class UserTypeForm(forms.ModelForm):
     user_type = forms.ChoiceField(choices=CHOICES, widget=forms.Select(attrs={'class':''}))

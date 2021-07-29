@@ -698,7 +698,7 @@ def studentViewHouseDetails(request, id):
     if request.user.is_authenticated:
         try:
             nrh_obj = NewRentalHouse.objects.get(pk=id)
-            house_list = NewRentalHouse.objects.get(user=request.user)
+            print(nrh_obj)
             r_hh = HouseHas.objects.get(nrh=nrh_obj)
             am = Amenities.objects.get(nrh=nrh_obj)
             pt = PreferredTenant.objects.get(nrh=nrh_obj)

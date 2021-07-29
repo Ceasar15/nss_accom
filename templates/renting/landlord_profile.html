@@ -151,53 +151,33 @@
                 <div class="col-lg-12">
                     <div class="ltn__form-box contact-form-box box-shadow white-bg">
                         <h4 class="title-2">Landlord Profile !</h4>
-                        <form id="contact-form"  method="post">{% csrf_token %}
+                        <form id="contact-form" enctype="multipart/form-data" method="post">{% csrf_token %}
                             <div class="row">
 
                                 <div class="col-md-6">
-                                    <div class="input-item input-item-name ltn__custom-icon">
-                                        <input type="text" id="id_fullname" name="fullname" placeholder="Landlord Full Name" required maxlength="5" >
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="input-item input-item-phone ltn__custom-icon">
-                                        <input type="text" id="id_mobile_number" name="mobile_number" placeholder="Mobile Number" required maxlength="10">
-                                    </div>
-                                </div>                                
-
-
-                                <div class="col-md-6">
                                     <div class="input-item input-item-textarea ltn__custom-icon">
-                                        <input type="text" id="id_email" name="email"  placeholder="Email" required>
+                                        <input type="text" id="id_location" name="location"  placeholder="Landlord Location" required>
                                     </div>
                                 </div>
 
 
                                 <div class="col-md-6">
                                     <div class="input-item input-item-textarea ltn__custom-icon">
-                                        <input type="text" id="id_location" name="location"  placeholder="Location" required>
+                                        <input type="text" id="id_occupation" name="occupation"  placeholder="Landlord Occupation" required>
                                     </div>
                                 </div>
 
 
-                                <div class="col-md-6">
-                                    <div class="input-item input-item-textarea ltn__custom-icon">
-                                        <input type="text" id="id_occupation" name="occupation"  placeholder="Occupation" required>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-md-6">
-                                    <input type="file" id='id_imagess' name="imagess" placeholder="Upload profile picture"  required>
+                                <div class="col-md-6" style="margin-top: 4px;">
+                                    <input type="file" id='id_profile_image' name="profile_image" placeholder="Upload profile picture"  required>
                                     <p style="margin-top: 5px;">Upload profile picture</p>
                                 </div>
 
                             </div>
 
 
-                            <div class="btn-wrapper mt-0">
-                                <button id="btn" class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Update Profile</button>
+                            <div class="btn-wrapper mt-0" style="position: relative; top: 30px;">
+                                <button id="btn" class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit" >Update Profile</button>
                             </div>
 
 

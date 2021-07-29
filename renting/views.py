@@ -765,22 +765,19 @@ def staffViewAdDetails(request, id):
         return render(request, 'renting/staff_view_ad_details.html', locals())
 
 
-
-
 # the landlord profile page.
 from users.forms import ProfileForm
 def landlordProfile(request):
-    profile_form = ProfileForm(request.POST)
+    profile_form = ProfileForm(request.POST, request.FILES)
     if profile_form.is_valid():
         pf = profile_form.save(commit=False)
         pf.user = request.user
         pf.save()
 
         return redirect('renting:postRentAdds')
-    return render(request, 'renting/landlord_profile.html')
-
-
-
-
-
-
+    else:
+        profile_form = ProfileForm()
+        context = {
+            'profile_form': profile_form,
+        }
+        return render(request, 'renting/landlord_profile.html', context)

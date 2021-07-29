@@ -654,9 +654,7 @@ def studentViewRentAds(request):
         profile = Profile.objects.get(user_id=house.user_id)
         print(profile.location)
 
-
     return render(request, 'renting/student_view_rent_ads.html', {'filter': f})
-
 
 # the page where a staff can view all rent ads.
 @user_passes_test(check_staff_user, login_url='/loginStaff')

@@ -39,3 +39,8 @@ class ContactDetails(models.Model):
     phone_no = models.IntegerField()
         
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    location = models.CharField(max_length=30)
+    occupation = models.CharField(max_length=190)
+    profile_image = models.ImageField(upload_to='landlord/profile_image/', blank=True)

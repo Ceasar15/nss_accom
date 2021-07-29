@@ -1,9 +1,23 @@
 from django import forms
 from django.contrib.auth.models import User
-from users.models import Typed, CHOICES, ContactDetails
+from django.db.models import fields
+from users.models import Typed, CHOICES, ContactDetails, Profile
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from django.db import transaction
+
+
+
+
+class ProfileForm(forms.ModelForm):
+
+    class Meta:
+        model = Profile
+        fields = {
+            'location',
+            'occupation',
+            'profile_image',
+        }
 
 class UserTypeForm(forms.ModelForm):
     user_type = forms.ChoiceField(choices=CHOICES, widget=forms.Select(attrs={'class':''}))

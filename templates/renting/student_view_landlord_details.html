@@ -172,7 +172,7 @@
                 <div class="col-lg-4">
                     <div class="ltn__team-details-member-info text-center mb-40">
                         <div class="team-details-img">
-                            <img src="{% static 'img/landlord2.jpg' %}" alt="Team Member Image">
+                            <img src="{{ profile.profile_image.url }}" height="250px" width="350px" alt="Team Member Image">
                         </div>
                         <h2>{{ landlord.last_name }} {{ landlord.first_name }}</h2>
                         <h6 class="text-uppercase ltn__secondary-color">Landlord</h6>
@@ -196,8 +196,8 @@
                             <div class="col-lg-6">
                                 <div class="ltn__team-details-member-about">
                                     <ul>
-                                        <li><strong>Occupation:</strong>Landlord</li>
-                                        <li><strong>Location:</strong>Accra, Legon</li>
+                                        <li><strong>Occupation:</strong>{{ profile.occupation }}</li>
+                                        <li><strong>Location:</strong>{{ profile.location }}</li>
                                         <!-- <li><strong>Practice Area:</strong> Property Seller</li> -->
                                     </ul>
                                 </div>
@@ -208,7 +208,7 @@
                                     <ul>
                                         <li><strong>Email:</strong>{{ landlord.email }}</li>
                                         <!-- <li><strong>Fax:</strong> +0123-456 789</li> -->
-                                        <li><strong>Phone:</strong> +233 240 009 0168</li>
+                                        <li><strong>Phone:</strong> +233 (0) {{ typed.phone_no }}</li>
                                     </ul>
                                 </div>
                             </div>

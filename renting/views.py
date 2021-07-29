@@ -775,5 +775,5 @@ def landlordProfile(request):
         pf.save()
 
         return redirect('renting:postRentAdds')
-        
-    return render(request, 'renting/landlord_profile.html', context)
+
+    return render(request, 'renting/landlord_profile.html')

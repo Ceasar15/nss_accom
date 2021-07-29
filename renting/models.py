@@ -136,6 +136,6 @@ class ContactLandlord(models.Model):
     email = models.EmailField()
     phone = models.CharField(max_length=20)
     message = models.TextField()
-    landlord_id = models.IntegerField()
+    landlord_id = models.IntegerField(null=True, blank=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     

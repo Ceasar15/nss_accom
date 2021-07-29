@@ -36,7 +36,8 @@ urlpatterns = [
     path('staffViewRentAds/', rt.staffViewRentAds, name='staffViewRentAds'),
     path('staffViewAdDetails/<int:id>/', rt.staffViewAdDetails, name='staffViewAdDetails'),
     path('staffViewLandlordDetails/<int:id>/', rt.staffViewLandlordDetails, name='staffViewLandlordDetails'),
-    path('landlordViewHouseDetails/<int:id>/', rt.landlordViewHouseDetails, name='landlordViewHouseDetails')
+    path('landlordViewHouseDetails/<int:id>/', rt.landlordViewHouseDetails, name='landlordViewHouseDetails'),
+    path('landlordProfile/', rt.landlordProfile, name='landlordProfile')
 
 
 

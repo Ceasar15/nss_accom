@@ -758,5 +758,12 @@ def staffViewAdDetails(request, id):
 
 
 
+# the landlord profile page.
+def landlordProfile(request):
+    return render(request, 'renting/landlord_profile.html')
+
+
+
+
 
 

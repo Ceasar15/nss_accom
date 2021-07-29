@@ -80,53 +80,46 @@
                             <nav>
                                 <div class="ltn__main-menu">
                                     <ul style="float: right;">
-                                        <li class="menu-icon"><a href="#">Complaints</a>
-                                            <ul>
-                                                <li>
-                                                    <a href="{% url 'student:studentSubmitComplaint' %}">Submit complaint</a></li>
-                                                </li>
-
-                                                <li>
-                                                    <a href="{% url 'student:studentViewAllComplaints' %}">View all complaints</a></li>
-                                                </li>
-
-                                            </ul>
+                                        <li>
+                                            <a href="#">Home</a>
                                         </li>
 
-
-                                        <li class="menu-icon"><a href="#">Announcements</a>
-                                            <ul>
-                                                <li>
-                                                    <a href="{% url 'student:studentViewAnnouncements' %}">View all announcements</a></li>
-                                                </li>
-
-                                            </ul>
+                                        <li>
+                                            <a href="#">About</a>
+                                        </li>
+                                      
+                                        <li>
+                                            <a href="#">Contact</a>
                                         </li>
 
-
-                                        <li class="menu-icon"><a href="#">NSS Accommodation</a>
-                                            <ul>
-                                                <li>
-                                                    <a href="{% url 'renting:studentViewRentAds' %}">Access NSS Accommodation</a></li>
-                                                </li>
-
-                                            </ul>
+                                        <li>
+                                            <a href="#">Post rent ads</a>
                                         </li>
 
-
+                                        <li>
+                                            <a href="{% url 'renting:landlordViewRentAds' %}">View rent ads</a>
+                                        </li>
 
                                         {% if user.is_authenticated %}	
-                                        <li>
-                                            <a href="#">{{ user.first_name }}</a></li>
+                                        <li class="menu-icon"><a href="{% url 'renting:landlordProfile' %}">{{ user.first_name }}</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'renting:landlordProfile' %}">Profile</a>
+                                                </li>
+                                            </ul>
                                             {% else %}
                                         </li>
+
                                         <li>
-                                            <a href="{% url 'student:loginStudent' %}">Login</a></li>
+                                            <a href="{% url 'renting:signInLandlord' %}">Login</a>
+                                        </li>
                                         {% endif %}
+
 
                                         <li class="btn-wrapper animated">
                                             <a href="{% url 'logout' %}" class="theme-btn-1 btn btn-effect-1" style="height:60px; width:100px;"  >Sign Out</a>
                                         </li>
+
 
                                     </ul>
                                 </div>
@@ -157,54 +150,57 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ltn__form-box contact-form-box box-shadow white-bg">
-                        <h4 class="title-2">Submit your complaint !</h4>
+                        <h4 class="title-2">Landlord Profile !</h4>
                         <form id="contact-form"  method="post">{% csrf_token %}
                             <div class="row">
 
                                 <div class="col-md-6">
                                     <div class="input-item input-item-name ltn__custom-icon">
-                                        <input type="text" id="id_student_room_number" name="student_room_number" placeholder="Room number" required maxlength="5" >
+                                        <input type="text" id="id_fullname" name="fullname" placeholder="Landlord Full Name" required maxlength="5" >
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="input-item input-item-phone ltn__custom-icon">
-                                        <input type="text" id="id_mobile_number" name="mobile_number" placeholder="Enter phone number" required maxlength="10">
+                                        <input type="text" id="id_mobile_number" name="mobile_number" placeholder="Mobile Number" required maxlength="10">
                                     </div>
                                 </div>                                
 
 
                                 <div class="col-md-6">
-                                    <div class="input-item">
-                                        <select class="nice-select" id="id_complaint_type" name="complaint_type" required>
-                                            <option>Select Complaint Type</option>
-                                            <option>Plumbing </option>
-                                            <option>Door knobs </option>
-                                            <option>Electrical gadgets</option>
-                                            <option>Leakages</option>
-                                            <option>Theft Issue</option>
-                                            <option>Water issue</option>
-                                            <option>Other</option>
-                                        </select>
+                                    <div class="input-item input-item-textarea ltn__custom-icon">
+                                        <input type="text" id="id_email" name="email"  placeholder="Email" required>
                                     </div>
                                 </div>
 
 
                                 <div class="col-md-6">
                                     <div class="input-item input-item-textarea ltn__custom-icon">
-                                        <input type="text" id="id_other_complaint_type" name="complaint_type" disabled placeholder="Specify the other complaint type here." required>
+                                        <input type="text" id="id_location" name="location"  placeholder="Location" required>
                                     </div>
                                 </div>
 
-                            </div>
-                            <div class="input-item input-item-textarea ltn__custom-icon">
-                                <textarea name="complaint_description" id="id_complaint_description" placeholder="Complaint Description" required></textarea>
+
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-textarea ltn__custom-icon">
+                                        <input type="text" id="id_occupation" name="occupation"  placeholder="Occupation" required>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <input type="file" id='id_imagess' name="imagess" placeholder="Upload profile picture"  required>
+                                    <p style="margin-top: 5px;">Upload profile picture</p>
+                                </div>
+
                             </div>
 
+
                             <div class="btn-wrapper mt-0">
-                                <button id="btn" class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Submit Complaint</button>
+                                <button id="btn" class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Update Profile</button>
                             </div>
-                            <p class="form-messege mb-0 mt-20"></p>
+
+
                         </form>
                     </div>
                 </div>

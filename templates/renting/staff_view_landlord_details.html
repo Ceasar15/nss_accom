@@ -198,7 +198,7 @@
                 <div class="col-lg-4">
                     <div class="ltn__team-details-member-info text-center mb-40">
                         <div class="team-details-img">
-                            <img src="{{ profile.profile_image.url }}" alt="Team Member Image">
+                            <img src="{{ profile.profile_image.url }}" height="250px" width="350px" alt="Team Member Image">
                         </div>
                         <h2>{{ landlord.last_name }} {{ landlord.first_name }}</h2>
                         <h6 class="text-uppercase ltn__secondary-color">{{ profile.occupation }}</h6>
@@ -258,11 +258,13 @@
                                             <input type="text" name="name" placeholder="Enter your name">
                                         </div>
                                     </div>
+
                                     <div class="col-md-6">
                                         <div class="input-item input-item-email ltn__custom-icon">
                                             <input type="email" name="email" placeholder="Enter email address">
                                         </div>
                                     </div>
+
                                     <div class="col-md-6">
                                         <div class="input-item">
                                             <select class="nice-select">
@@ -272,12 +274,16 @@
                                             </select>
                                         </div>
                                     </div>
+
                                     <div class="col-md-6">
                                         <div class="input-item input-item-phone ltn__custom-icon">
                                             <input type="text" name="phone" placeholder="Enter phone number">
                                         </div>
                                     </div>
+
                                 </div>
+
+
                                 <div class="input-item input-item-textarea ltn__custom-icon">
                                     <textarea name="message" placeholder="Enter message"></textarea>
                                 </div>
@@ -285,7 +291,7 @@
                                 <div class="btn-wrapper mt-0">
                                     <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">get A free service</button>
                                 </div>
-                                <p class="form-messege mb-0 mt-20"></p>
+
                             </form>
                         </div>
                     </div>

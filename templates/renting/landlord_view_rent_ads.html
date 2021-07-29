@@ -71,20 +71,41 @@
                                         </li>
 
                                         <li>
-                                            <a href="{% url 'renting:postRentAdds' %}">Post rent ads</a>
+                                            <a href="#">About</a>
+                                        </li>
+                                      
+                                        <li>
+                                            <a href="#">Contact</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#">Post rent ads</a>
                                         </li>
 
                                         <li>
                                             <a href="{% url 'renting:landlordViewRentAds' %}">View rent ads</a>
                                         </li>
 
-                                        <li>
-                                            <a href="#">User</a>
+                                        {% if user.is_authenticated %}	
+                                        <li class="menu-icon"><a href="{% url 'renting:landlordProfile' %}">{{ user.first_name }}</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'renting:landlordProfile' %}">Profile</a>
+                                                </li>
+                                            </ul>
+                                            {% else %}
                                         </li>
+
+                                        <li>
+                                            <a href="{% url 'renting:signInLandlord' %}">Login</a>
+                                        </li>
+                                        {% endif %}
+
 
                                         <li class="btn-wrapper animated">
                                             <a href="{% url 'logout' %}" class="theme-btn-1 btn btn-effect-1" style="height:60px; width:100px;"  >Sign Out</a>
                                         </li>
+
                                     </ul>
                                 </div>
                             </nav>

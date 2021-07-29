@@ -649,6 +649,8 @@ def check_staff_user(user):
 @user_passes_test(check_student_user, login_url='/loginStudent')
 def studentViewRentAds(request):
     f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())
+    print(f)
+
     return render(request, 'renting/student_view_rent_ads.html', {'filter': f})
 
 

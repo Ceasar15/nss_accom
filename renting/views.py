@@ -743,9 +743,15 @@ def studentViewLandlordDetails(request, id):
 # the page where the staff can view the details of the landlord.
 def staffViewLandlordDetails(request, id):
     landlord = User.objects.get(id=id)
+    profile = Profile.objects.get(user_id=id)
+    typed = Typed.objects.get(user_id_id=id)
+    
     context = {
         'landlord': landlord,
+        'profile': profile,
+        'typed': typed,
     }
+
     return render(request, 'renting/staff_view_landlord_details.html', context)
 
 

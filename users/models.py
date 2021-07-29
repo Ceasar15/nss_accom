@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from users.managers import UT
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from renting.models import NewRentalHouse
 
 CHOICES = (
     ('student','student'),
@@ -16,9 +17,6 @@ class Typed(models.Model):
     user_group = models.CharField(max_length=20, choices=CHOICES)
     phone_no = models.IntegerField(null=True)
     student_hall = models.CharField(max_length=100, default='No Hall', blank=True, null=True)
-
-
-
 
     class Meta:
         unique_together = ('user_id', 'user_group')
@@ -44,3 +42,4 @@ class Profile(models.Model):
     location = models.CharField(max_length=30)
     occupation = models.CharField(max_length=190)
     profile_image = models.ImageField(upload_to='landlord/profile_image/', blank=True)
+    nrh = models.ForeignKey(NewRentalHouse, on_delete=models.CASCADE, null=True, blank=True) 

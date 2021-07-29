@@ -111,5 +111,10 @@ class ContactLandlordForm(forms.ModelForm):
 
 	class Meta:
 		model = ContactLandlord
-		fields = '__all__'
+		fields = {
+			'full_name',
+			'email',
+			'phone',
+			'message',
+		}
 		

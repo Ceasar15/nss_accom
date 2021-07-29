@@ -587,7 +587,6 @@ def postRentAdds(request):
 
 
     if request.method == 'POST' and request.user.is_authenticated:
-        print(form, img_form, house_has_form, amenities_form, rules_form, preferred_tenant_form)
         if all((form.is_valid(), house_has_form.is_valid(), amenities_form.is_valid(), rules_form.is_valid(), preferred_tenant_form.is_valid())):
             rh_obj = form.save(commit=False)
             rh_obj.user = request.user
@@ -726,9 +725,10 @@ def studentViewLandlordDetails(request, id):
     profile = Profile.objects.get(user_id=id)
     typed = Typed.objects.get(user_id_id=id)
     
-    contact_landlord = ContactLandlordForm(request.POST)
+    contact_landlord = ContactLandlordForm(request.POST, initial = {'landlord_id': '1'})
     # print(contact_landlord)
     if request.method == 'POST':
+        print(contact_landlord)
         if contact_landlord.is_valid():
             cl = contact_landlord.save(commit=False)
             print(cl)
@@ -736,7 +736,7 @@ def studentViewLandlordDetails(request, id):
             cl.landlord_id = request.user.id
             cl.save()
 
-            return redirect('renting:staffViewRentAds')
+            return redirect('renting:studentViewRentAds')
     context = {
         'landlord': landlord,
         'profile': profile,

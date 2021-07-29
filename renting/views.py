@@ -725,7 +725,7 @@ def studentViewLandlordDetails(request, id):
     profile = Profile.objects.get(user_id=id)
     typed = Typed.objects.get(user_id_id=id)
     
-    contact_landlord = ContactLandlordForm(request.POST, initial = {'landlord_id': '1'})
+    contact_landlord = ContactLandlordForm(request.POST)
     # print(contact_landlord)
     if request.method == 'POST':
         print(contact_landlord)

@@ -649,6 +649,12 @@ def check_staff_user(user):
 @user_passes_test(check_student_user, login_url='/loginStudent')
 def studentViewRentAds(request):
     f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())
+    for house in f.qs:
+        print(house.househas)
+        profile = Profile.objects.get(user_id=house.user_id)
+        print(profile.location)
+
+
     return render(request, 'renting/student_view_rent_ads.html', {'filter': f})
 
 
@@ -716,7 +722,7 @@ def studentViewHouseDetails(request, id):
 
 
 # the page where the student can view the details of the landlord.
-from users.models import Typed
+from users.models import Typed, Profile
 def studentViewLandlordDetails(request, id):
     landlord = User.objects.get(id=id)
     profile = Profile.objects.get(user_id=id)

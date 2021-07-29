@@ -55,7 +55,6 @@ ROOMS = (
 def house_images(instance, filename):
     return f'user_{instance.nrh.user.username}/{filename}'
 
-
 class NewRentalHouse(models.Model):
     house_no = models.CharField(max_length=100)
     region = models.CharField(max_length=100, choices=STATE_CHOICES)

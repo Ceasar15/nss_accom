@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.http import request
 from django.shortcuts import render, reverse, redirect
 from django.urls import reverse_lazy
@@ -658,6 +659,15 @@ def check_student_user(user):
         requesst = request
         return render(requesst,'student/login_student.html')
 
+#check if staff is authenticated
+def check_staff_user(user):
+    if user.is_authenticated:
+        typed = Typed.objects.filter(user_id=user).first()
+        if typed.user_group == 'staff':
+            return user.first_name
+    else:
+        requesst = request
+        return render(requesst,'student/login_staff.html')
 
 
 
@@ -668,13 +678,11 @@ def studentViewRentAds(request):
     return render(request, 'renting/student_view_rent_ads.html', {'filter': f})
 
 
-
-
 # the page where a staff can view all rent ads.
+@user_passes_test(check_staff_user, login_url='/loginStaff')
 def staffViewRentAds(request):
-    return render(request, 'renting/staff_view_rent_ads.html')
-
-
+    f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())
+    return render(request, 'renting/staff_view_rent_ads.html', {'filter': f})
 
 
 # the page where a landlord can view all of their posted ads.
@@ -682,37 +690,12 @@ def staffViewRentAds(request):
 def landlordViewRentAds(request):
     if request.user.is_authenticated:
         house_list = NewRentalHouse.objects.filter(user=request.user).order_by('-date_registered')
-        for house in house_list:
-            hh = HouseHas.objects.get(nrh=house)
-            rl = Rules.objects.get(nrh=house)
-            pt = PreferredTenant.objects.get(nrh=house)
-            am = Amenities.objects.get(nrh=house)
-            img = HouseImages.objects.filter(nrh=house)
-        houses_list = []
-        edit_list = []
-        for hous_obj in house_list:
-            try:
-                rl = Rules.objects.get(nrh=hous_obj)
-                pt = PreferredTenant.objects.get(nrh=hous_obj)
-                am = Amenities.objects.get(nrh=hous_obj)
-                hh = HouseHas.objects.get(nrh=hous_obj)
-                proceed = True
-            except:
-                proceed = False
-
-            if proceed:
-                houses_list.append(hous_obj)
-            else:
-                edit_list.append(hous_obj)
-
-
+        
         return render(request, 'renting/landlord_view_rent_ads.html', locals())
 
     elif request.user.is_anonymous:
         modl='true'
         return render(request, 'renting/landlord_view_rent_ads.html', locals())
-
-
 
 # the page where the landlord can see his own house details.
 def landlordViewHouseDetails(request, id):
@@ -737,26 +720,66 @@ def landlordViewHouseDetails(request, id):
 
 
 # the page where the student can view the details of the ad.
-def studentViewHouseDetails(request):
-    return render(request, 'renting/student_view_ad_details.html')
-
+def studentViewHouseDetails(request, id):
+    if request.user.is_authenticated:
+        try:
+            nrh_obj = NewRentalHouse.objects.get(pk=id)
+            r_hh = HouseHas.objects.get(nrh=nrh_obj)
+            am = Amenities.objects.get(nrh=nrh_obj)
+            pt = PreferredTenant.objects.get(nrh=nrh_obj)
+            rl = Rules.objects.get(nrh=nrh_obj)
+            imgs = HouseImages.objects.filter(nrh=nrh_obj)
+            for img in imgs:
+                print(img.images)
+        except:
+            nrh_obj = None
+        if nrh_obj:
+            return render(request, 'renting/student_view_ad_details.html', locals())
+    elif request.user.is_anonymous:
+        modl='true'
+        return render(request, 'renting/student_view_ad_details.html', locals())
+        
 
 
 # the page where the student can view the details of the landlord.
-def studentViewLandlordDetails(request):
-    return render(request, 'renting/student_view_landlord_details.html')
+def studentViewLandlordDetails(request, id):
+    landlord = User.objects.get(id=id)
+    context = {
+        'landlord': landlord,
+    }
+    return render(request, 'renting/student_view_landlord_details.html', context)
 
 
 
 # the page where the staff can view the details of the landlord.
-def staffViewLandlordDetails(request):
-    return render(request, 'renting/staff_view_landlord_details.html')
+def staffViewLandlordDetails(request, id):
+    landlord = User.objects.get(id=id)
+    context = {
+        'landlord': landlord,
+    }
+    return render(request, 'renting/staff_view_landlord_details.html', context)
 
 
 
 # the page where the staff can view the details of the ad.
-def staffViewAdDetails(request):
-    return render(request, 'renting/staff_view_ad_details.html')
+def staffViewAdDetails(request, id):
+    if request.user.is_authenticated:
+        try:
+            nrh_obj = NewRentalHouse.objects.get(pk=id)
+            r_hh = HouseHas.objects.get(nrh=nrh_obj)
+            am = Amenities.objects.get(nrh=nrh_obj)
+            pt = PreferredTenant.objects.get(nrh=nrh_obj)
+            rl = Rules.objects.get(nrh=nrh_obj)
+            imgs = HouseImages.objects.filter(nrh=nrh_obj)
+            for img in imgs:
+                print(img.images)
+        except:
+            nrh_obj = None
+        if nrh_obj:
+            return render(request, 'renting/staff_view_ad_details.html', locals())
+    elif request.user.is_anonymous:
+        modl='true'
+        return render(request, 'renting/staff_view_ad_details.html', locals())
 
 
 

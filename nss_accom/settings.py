@@ -92,6 +92,7 @@ WSGI_APPLICATION = 'nss_accom.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',

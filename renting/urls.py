@@ -31,11 +31,11 @@ urlpatterns = [
     path('landlord_register/', us.LandlordRegister, name='loginLandlord'),
     path('landlordViewRentAds', rt.landlordViewRentAds, name='landlordViewRentAds'),
     path('studentViewRentAds/', rt.studentViewRentAds, name='studentViewRentAds'),
-    path('studentViewHouseDetails/', rt.studentViewHouseDetails, name='studentViewHouseDetails'),
-    path('studentViewLandlordDetails/', rt.studentViewLandlordDetails, name='studentViewLandlordDetails'),
+    path('studentViewHouseDetails/<int:id>/', rt.studentViewHouseDetails, name='studentViewHouseDetails'),
+    path('studentViewLandlordDetails/<int:id>/', rt.studentViewLandlordDetails, name='studentViewLandlordDetails'),
     path('staffViewRentAds/', rt.staffViewRentAds, name='staffViewRentAds'),
-    path('staffViewAdDetails/', rt.staffViewAdDetails, name='staffViewAdDetails'),
-    path('staffViewLandlordDetails/', rt.staffViewLandlordDetails, name='staffViewLandlordDetails'),
+    path('staffViewAdDetails/<int:id>/', rt.staffViewAdDetails, name='staffViewAdDetails'),
+    path('staffViewLandlordDetails/<int:id>/', rt.staffViewLandlordDetails, name='staffViewLandlordDetails'),
     path('landlordViewHouseDetails/<int:id>/', rt.landlordViewHouseDetails, name='landlordViewHouseDetails')
 
 

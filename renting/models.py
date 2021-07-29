@@ -129,3 +129,13 @@ class SearchFilter(django_filters.FilterSet):
         return NewRentalHouse.objects.filter(
             Q(city__iexact=value)  
         )
+
+
+class ContactLandlord(models.Model):
+    full_name = models.CharField(max_length=150)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    message = models.TextField()
+    landlord_id = models.IntegerField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    

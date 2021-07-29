@@ -37,4 +37,5 @@ class Typed(models.Model):
 class ContactDetails(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_no = models.IntegerField()
-            
+        
+

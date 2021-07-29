@@ -721,7 +721,9 @@ def studentViewLandlordDetails(request, id):
     landlord = User.objects.get(id=id)
     profile = Profile.objects.get(user_id=id)
     typed = Typed.objects.get(user_id_id=id)
-
+    print(landlord.location)
+    # print(landlord.profile_image)
+    
     contact_landlord = ContactLandlordForm(request.POST)
     if request.method == 'POST':
         if contact_landlord.is_valid():

@@ -11,7 +11,7 @@ from django.conf import settings
 from django.db.models import Q
 
 from .forms import ContactLandlordForm, SearchForm, RentalHouseForm, HouseHasForm, AmenitiesForm, RulesForm, PreferredTenantForm, HouseImagesForm, HouseImagesEditForm, RatingForm
-from .models import NewRentalHouse, HouseHas, Amenities, PreferredTenant, Rules, HouseImages, SearchFilter
+from .models import NewRentalHouse, HouseHas, Amenities, PreferredTenant, Rating, Rules, HouseImages, SearchFilter
 from users.models import Profile, Typed
 from users.forms import UserTypeForm
 from student.forms import StudentRegisterForm, UserContactFrom
@@ -794,11 +794,12 @@ def staffViewAdDetails(request, id):
         pt = PreferredTenant.objects.get(nrh=nrh_obj)
         rl = Rules.objects.get(nrh=nrh_obj)
         imgs = HouseImages.objects.filter(nrh=nrh_obj)
+        rating_count = Rating.objects.filter(landlord_id=nrh_obj.id).count()
+        print(rating_count)
         for img in imgs:
             print(img.images)
         if form.is_valid():
             fm = form.save(commit=False)
-            print(fm)
             fm.user = request.user
             fm.landlord = product
             fm.save()

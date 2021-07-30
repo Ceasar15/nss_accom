@@ -787,8 +787,6 @@ def staffViewLandlordDetails(request, id):
 def staffViewAdDetails(request, id):
     form = RatingForm(request.POST)
     product = get_object_or_404(NewRentalHouse, pk=id)
-    nrh_obj = NewRentalHouse.objects.get(pk=id)
-    print(form)
     if request.method == "POST":
         nrh_obj = NewRentalHouse.objects.get(pk=id)
         r_hh = HouseHas.objects.get(nrh=nrh_obj)

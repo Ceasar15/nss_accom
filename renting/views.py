@@ -634,6 +634,8 @@ def check_student_user(user):
         requesst = request
         return render(requesst,'student/login_student.html')
 
+
+
 #check if staff is authenticated
 def check_staff_user(user):
     if user.is_authenticated:
@@ -642,7 +644,7 @@ def check_staff_user(user):
             return user.first_name
     else:
         requesst = request
-        return render(requesst,'student/login_staff.html')
+        return render(requesst,'staff/login_staff.html')
 
 
 

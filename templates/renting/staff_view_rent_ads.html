@@ -184,21 +184,85 @@
                     </div>
 
 
-                    <div class="tab-content">
+                    <div class="tab-content" style="overflow-x: hidden;">
                         <div class="tab-pane fade active show" id="liton_product_grid">
                             <div class="ltn__product-tab-content-inner ltn__product-grid-view">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <!-- Search Widget -->
+                                <form action="#">
+
+                                    <div class="row" style="display: flex;">
+
+                                        <div class="col-md-6" >
+                                            <!-- Search Widget Search by area or city -->
+                                            <div class="ltn__search-widget mb-30">
+                                                    <input type="text" name="search" placeholder="Search by city, area or region..." style="width: 300px">
+                                                    <button type="submit" style="height: 59.5px; position:relative; left: -5px; top: 1px;"><i class="fas fa-search"></i></button>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-6" style="position: relative; right: 200px">
+                                            <!-- Search Widget Search by area or city -->
+                                            <div class="ltn__search-widget mb-30">
+                                                    <input type="number" name="search" placeholder="Search by minimum price..." style="width: 300px; height: 60px">
+                                                    <button type="submit" style="height: 59.5px; position:relative; left: -5px; top: 1px;"><i class="fas fa-search"></i></button>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-6" style="margin-left: 800px; position: relative; bottom: 90px">
+                                            <!-- Search Widget Search by area or city -->
+                                            <div class="ltn__search-widget mb-30">
+                                                    <input type="number" name="search" placeholder="Search by maximum price..." style="width: 300px">
+                                                    <button type="submit" style="height: 59.5px; position:relative; left: -5px; top: 1px;"><i class="fas fa-search"></i></button>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+
+
+                                    </div>
+
+                                </form>
+                                
+                                   
+
+                                    
+                                    
+
+
+                                    <!-- <div class="col-md-6" style="position: relative; right: 280px">
+                                         Search Widget 
                                         <div class="ltn__search-widget mb-30">
                                             <form action="#">
-                                                <input type="text" name="search" placeholder="Search your keyword...">
-                                                <button type="submit"><i class="fas fa-search"></i></button>
+                                                <input type="text" name="search" placeholder="Search by City, Area or Region..." style="width: 300px">
                                             </form>
                                         </div>
                                     </div>
 
 
+                                    <div class="col-md-6" style="position: relative; bottom: 90px; left: 640px">
+                                         Search Widget 
+                                        <div class="ltn__search-widget mb-30">
+                                            <form action="#">
+                                                <input type="text" name="search" placeholder="Search by City, Area or Region..." style="width: 300px">
+                                            </form>
+                                        </div>
+                                    </div> -->
+
+
+
+                               
+
+                                    
+
+
+                                    <div class="row">
 
                                     <!-- ltn__product-item 1 -->
                                     {% if filter %}

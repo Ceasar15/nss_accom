@@ -337,9 +337,11 @@
                                     </div>
                                         {% endfor %}
                                     {% else %}
-                                    {% for house in filter.qs %}
-                                    <div class="col-lg-4 col-sm-6 col-12" ><h2>Sorry..!! Results not found for the city you are looking for.. try for other city</h2></div>                                
-                                    {%endfor%}
+                                    <div class="col-lg-4 col-sm-6 col-12" >
+                                        <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
+                                            <h2>Sorry..!! Results not found for the city you are looking for.. try for other city</h2>
+                                        </div>
+                                    </div>                             
                                     {% endif %}
 
                                     <!-- ltn product item end -->

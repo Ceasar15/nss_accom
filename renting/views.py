@@ -661,7 +661,9 @@ def studentViewRentAds(request):
 @user_passes_test(check_staff_user, login_url='/loginStaff')
 def staffViewRentAds(request):
     f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())
-    return render(request, 'renting/staff_view_rent_ads.html', {'filter': f})
+    for house in f.qs:
+        profile = Profile.objects.get(user_id=house.user_id)
+    return render(request, 'renting/staff_view_rent_ads.html', {'filter': f, 'profile': profile})
 
 
 # the page where a landlord can view all of their posted ads.
@@ -676,6 +678,7 @@ def landlordViewRentAds(request):
         return render(request, 'renting/landlord_view_rent_ads.html', locals())
 
 # the page where the landlord can see his own house details.
+@user_passes_test(check_user, login_url='/signInLandlord')
 def landlordViewHouseDetails(request, id):
     if request.user.is_authenticated:
         try:
@@ -698,6 +701,7 @@ def landlordViewHouseDetails(request, id):
 
 
 # the page where the student can view the details of the ad.
+@user_passes_test(check_student_user, login_url='/loginStudent')
 def studentViewHouseDetails(request, id):
     if request.user.is_authenticated:
         try:
@@ -721,6 +725,7 @@ def studentViewHouseDetails(request, id):
 
 # the page where the student can view the details of the landlord.
 from users.models import Typed, Profile
+@user_passes_test(check_student_user, login_url='/loginStudent')
 def studentViewLandlordDetails(request, id):
     landlord = User.objects.get(id=id)
     profile = Profile.objects.get(user_id=id)
@@ -748,11 +753,23 @@ def studentViewLandlordDetails(request, id):
 
 
 # the page where the staff can view the details of the landlord.
+@user_passes_test(check_staff_user, login_url='/loginStaff')
 def staffViewLandlordDetails(request, id):
     landlord = User.objects.get(id=id)
     profile = Profile.objects.get(user_id=id)
     typed = Typed.objects.get(user_id_id=id)
+    contact_landlord = ContactLandlordForm(request.POST)
+    # print(contact_landlord)
+    if request.method == 'POST':
+        print(contact_landlord)
+        if contact_landlord.is_valid():
+            cl = contact_landlord.save(commit=False)
+            print(cl)
+            cl.user = request.user
+            cl.landlord_id = request.user.id
+            cl.save()
 
+            return render(request, 'renting/staff_view_landlord_details.html')
     
     context = {
         'landlord': landlord,
@@ -765,6 +782,7 @@ def staffViewLandlordDetails(request, id):
 
 
 # the page where the staff can view the details of the ad.
+@user_passes_test(check_staff_user, login_url='/loginStaff')
 def staffViewAdDetails(request, id):
     if request.user.is_authenticated:
         try:
@@ -787,6 +805,7 @@ def staffViewAdDetails(request, id):
 
 # the landlord profile page.
 from users.forms import ProfileForm
+@user_passes_test(check_user, login_url='/signInLandlord')
 def landlordProfile(request):
     profile_form = ProfileForm(request.POST, request.FILES)
     if profile_form.is_valid():

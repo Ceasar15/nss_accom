@@ -146,3 +146,4 @@ class Rating(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     rating = models.CharField(max_length=50)
     comments = models.CharField(max_length=100)
+    date = models.DateTimeField(auto_created=True, auto_now=True)

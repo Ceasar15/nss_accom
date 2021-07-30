@@ -119,7 +119,7 @@ class ContactLandlordForm(forms.ModelForm):
         }
 
 class RatingForm(forms.ModelForm):
-        
+    rating = forms.RadioSelect(attrs={'id': 'value'})
     class Meta:
         model = Rating
         fields = ('rating', 'comments')

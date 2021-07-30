@@ -421,7 +421,7 @@
                                     <li><a href="#"><i class="fas fa-star"></i></a></li>
                                     <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
                                     <li><a href="#"><i class="far fa-star"></i></a></li>
-                                    <li class="review-total"> <a href="#"> ( 95 Reviews )</a></li>
+                                    <li class="review-total"> <a href="#"> ( {{ rating_count}} Reviews )</a></li>
                                 </ul>
                             </div>
                             <hr>
@@ -429,52 +429,31 @@
                             <div class="ltn__comment-area mb-30">
                                 <div class="ltn__comment-inner">
                                     <ul>
+                                        
+                                        {% for r in rating %}
                                         <li>
                                             <div class="ltn__comment-item clearfix">
                                                 <div class="ltn__commenter-img">
-                                                    <img src="img/testimonial/1.jpg" alt="Image">
+                                                    <img src="https://freesvg.org/img/1526852190.png" alt="Image">
                                                 </div>
                                                 <div class="ltn__commenter-comment">
-                                                    <h6><a href="#">Adam Smit</a></h6>
+                                                    <h6><a href="#">{{ r.user.first_name }} {{ r.user.last_name }}</a></h6>
                                                     <div class="product-ratting">
                                                         <ul>
-                                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                            <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                                            <li><a href="#"><i class="far fa-star"></i></a></li>
+                                                            <li><a href="#"> {{ r.rating }} <i class="fas fa-star"></i></a></li>
                                                         </ul>
                                                     </div>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, omnis fugit corporis iste magnam ratione.</p>
-                                                    <span class="ltn__comment-reply-btn">September 3, 2021</span>
+                                                    <p>{{ r.comments }}</p>
+                                                    <span class="ltn__comment-reply-btn">{{ r.date.date }}</span>
                                                 </div>
                                             </div>
                                         </li>
+                                        {% endfor %}
+
                                         <li>
                                             <div class="ltn__comment-item clearfix">
                                                 <div class="ltn__commenter-img">
-                                                    <img src="img/testimonial/3.jpg" alt="Image">
-                                                </div>
-                                                <div class="ltn__commenter-comment">
-                                                    <h6><a href="#">Adam Smit</a></h6>
-                                                    <div class="product-ratting">
-                                                        <ul>
-                                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                            <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                                            <li><a href="#"><i class="far fa-star"></i></a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, omnis fugit corporis iste magnam ratione.</p>
-                                                    <span class="ltn__comment-reply-btn">September 2, 2021</span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ltn__comment-item clearfix">
-                                                <div class="ltn__commenter-img">
-                                                    <img src="img/testimonial/2.jpg" alt="Image">
+                                                    <img src="https://freesvg.org/img/1526852190.png" alt="Image">
                                                 </div>
                                                 <div class="ltn__commenter-comment">
                                                     <h6><a href="#">Adam Smit</a></h6>
@@ -497,8 +476,11 @@
                             </div>
                             <!-- comment-reply -->
                             <div class="ltn__comment-reply-area ltn__form-box mb-30">
-                                <form action="#">
+                                <form method="post" action="{% url 'renting:staffViewAdDetails' nrh_obj.id %}">
+                                    {% csrf_token %}
+
                                     <h4>Add a Review</h4>
+                                    
                                     <div class="mb-30">
 
                                         <div class="add-a-review">
@@ -515,7 +497,7 @@
                                     </div>
                                     
                                     <div class="input-item input-item-textarea ltn__custom-icon">
-                                        <textarea placeholder="Type your comments...." ></textarea>
+                                        <textarea name="comments" id="id_comments" placeholder="Type your comments...." ></textarea>
                                     </div>
 
                                    

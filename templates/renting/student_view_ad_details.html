@@ -485,7 +485,7 @@
                             </div>
                             <!-- comment-reply -->
                             <div class="ltn__comment-reply-area ltn__form-box mb-30">
-                                <form method="post" action="{% url 'renting:staffViewAdDetails' nrh_obj.id %}">
+                                <form method="post" action="{% url 'renting:studentViewAdDetails' nrh_obj.id %}">
                                     {% csrf_token %}
 
                                     <h4>Add a Review</h4>
@@ -505,7 +505,7 @@
                                     </div>
                                     
                                     <div class="input-item input-item-textarea ltn__custom-icon">
-                                        <textarea placeholder="Type your comments...."></textarea>
+                                        <textarea name="comments" id="id_comments" placeholder="Type your comments...."></textarea>
                                     </div>
                                     
                                     

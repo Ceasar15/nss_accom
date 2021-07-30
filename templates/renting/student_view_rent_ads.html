@@ -195,14 +195,14 @@
                                                 </a>
                                                 <div class="real-estate-agent">
                                                     <div class="agent-img">
-                                                        <a href="{% url 'renting:studentViewLandlordDetails'  house.user_id %}"><img src="{% static 'img/landlord1.jpg' %}" alt="#"></a>
+                                                        <a href="{% url 'renting:studentViewLandlordDetails'  house.user_id %}"><img src="{{ profile.profile_image.url }}" alt="#"></a>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="product-info">
                                                 <div class="product-badge">
                                                     <ul>
-                                                        <li class="sale-badg">For Rent <p>{{ profile.location }}</p></li>
+                                                        <li class="sale-badg">For Rent ></li>
                                                     </ul>
                                                 </div>
                                                 <h2 class="product-title"><a href="{% url 'renting:studentViewHouseDetails' house.id %}">New Apartment Nice View</a></h2>

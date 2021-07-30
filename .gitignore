@@ -124,6 +124,8 @@ my_env/
 venv/
 ENV/
 
+media/
+media
 
 # Spyder project settings
 .spyderproject

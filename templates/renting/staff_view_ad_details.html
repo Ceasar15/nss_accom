@@ -104,7 +104,7 @@
                     <div class="col">
                         <div class="site-logo-wrap">
                             <div class="site-logo">
-                                <a href="index.html"><img src="{% static 'img/logo.png' }" alt="Logo"></a>
+                                <a href="{% url 'tracking:index' %}"><img src="{% static 'img/logo.png' %}" alt="Logo"></a>
                             </div>
                         </div>
                     </div>
@@ -507,18 +507,18 @@
                                         <div class="add-a-review">
                                             <h6>Your ratings </h6>
                                             <div class="rating"> 
-                                                <input type="radio" name="rating" value="1" id="id_rating"><label for="1">☆</label>
-                                                <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> 
-                                                <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> 
-                                                <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> 
                                                 <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+                                                <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> 
+                                                <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> 
+                                                <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> 
+                                                <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
                                             </div>
                                         </div>
 
                                     </div>
                                     
                                     <div class="input-item input-item-textarea ltn__custom-icon">
-                                        <textarea name="comments" id="id_comments" placeholder="Type your comments...." required ></textarea>
+                                        <textarea name="comments" id="id_comments" placeholder="Type your comments...." ></textarea>
                                     </div>
 
                                    

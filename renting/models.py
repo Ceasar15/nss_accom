@@ -140,3 +140,9 @@ class ContactLandlord(models.Model):
     landlord_id = models.IntegerField(null=True, blank=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     
+
+class Rating(models.Model):
+    landlord = models.ForeignKey(NewRentalHouse, default=None, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    rating = models.CharField(max_length=50)
+    comments = models.CharField(max_length=100)

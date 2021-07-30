@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.http import request
-from django.shortcuts import render, reverse, redirect
+from django.http.response import HttpResponse
+from django.shortcuts import get_object_or_404, render, reverse, redirect
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -9,7 +10,7 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.conf import settings
 from django.db.models import Q
 
-from .forms import ContactLandlordForm, SearchForm, RentalHouseForm, HouseHasForm, AmenitiesForm, RulesForm, PreferredTenantForm, HouseImagesForm, HouseImagesEditForm
+from .forms import ContactLandlordForm, SearchForm, RentalHouseForm, HouseHasForm, AmenitiesForm, RulesForm, PreferredTenantForm, HouseImagesForm, HouseImagesEditForm, RatingForm
 from .models import NewRentalHouse, HouseHas, Amenities, PreferredTenant, Rules, HouseImages, SearchFilter
 from users.models import Profile, Typed
 from users.forms import UserTypeForm
@@ -663,10 +664,8 @@ def studentViewRentAds(request):
 @user_passes_test(check_staff_user, login_url='/loginStaff')
 def staffViewRentAds(request):
     f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())
-    for house in f.qs:
-        profile = Profile.objects.get(user_id=house.user_id)
-    return render(request, 'renting/staff_view_rent_ads.html', {'filter': f, 'profile': profile})
-
+    
+    return render(request, 'renting/staff_view_rent_ads.html', {'filter': f})
 
 # the page where a landlord can view all of their posted ads.
 @user_passes_test(check_user, login_url='/signInLandlord')
@@ -786,6 +785,22 @@ def staffViewLandlordDetails(request, id):
 # the page where the staff can view the details of the ad.
 @user_passes_test(check_staff_user, login_url='/loginStaff')
 def staffViewAdDetails(request, id):
+    form = RatingForm(request.POST)
+    product = get_object_or_404(NewRentalHouse, pk=id)
+    print(form)
+    if request.method == "POST":
+        if form.is_valid():
+            fm = form.save(commit=False)
+            print(fm)
+            fm.user = request.user
+            fm.landlord = product
+            fm.save()
+
+        context = {
+            'fm': fm, 
+        }
+        return render(request, 'renting/staff_view_ad_details.html',context)
+
     if request.user.is_authenticated:
         try:
             nrh_obj = NewRentalHouse.objects.get(pk=id)

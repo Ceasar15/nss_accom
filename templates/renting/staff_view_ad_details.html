@@ -497,7 +497,9 @@
                             </div>
                             <!-- comment-reply -->
                             <div class="ltn__comment-reply-area ltn__form-box mb-30">
-                                <form action="#">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    
                                     <h4>Add a Review</h4>
                                     <div class="mb-30">
 
@@ -515,7 +517,7 @@
                                     </div>
                                     
                                     <div class="input-item input-item-textarea ltn__custom-icon">
-                                        <textarea placeholder="Type your comments...." required ></textarea>
+                                        <textarea name="comments" id="id_comments" placeholder="Type your comments...." required ></textarea>
                                     </div>
 
                                    

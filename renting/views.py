@@ -787,8 +787,17 @@ def staffViewLandlordDetails(request, id):
 def staffViewAdDetails(request, id):
     form = RatingForm(request.POST)
     product = get_object_or_404(NewRentalHouse, pk=id)
+    nrh_obj = NewRentalHouse.objects.get(pk=id)
     print(form)
     if request.method == "POST":
+        nrh_obj = NewRentalHouse.objects.get(pk=id)
+        r_hh = HouseHas.objects.get(nrh=nrh_obj)
+        am = Amenities.objects.get(nrh=nrh_obj)
+        pt = PreferredTenant.objects.get(nrh=nrh_obj)
+        rl = Rules.objects.get(nrh=nrh_obj)
+        imgs = HouseImages.objects.filter(nrh=nrh_obj)
+        for img in imgs:
+            print(img.images)
         if form.is_valid():
             fm = form.save(commit=False)
             print(fm)
@@ -796,10 +805,8 @@ def staffViewAdDetails(request, id):
             fm.landlord = product
             fm.save()
 
-        context = {
-            'fm': fm, 
-        }
-        return render(request, 'renting/staff_view_ad_details.html',context)
+
+        return render(request, 'renting/staff_view_ad_details.html', locals())
 
     if request.user.is_authenticated:
         try:

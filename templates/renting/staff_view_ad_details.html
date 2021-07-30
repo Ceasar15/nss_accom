@@ -497,16 +497,17 @@
                             </div>
                             <!-- comment-reply -->
                             <div class="ltn__comment-reply-area ltn__form-box mb-30">
-                                <form method="post">
+                                <form method="post" action="{% url 'renting:staffViewAdDetails' nrh_obj.id %}">
                                     {% csrf_token %}
-                                    
+
                                     <h4>Add a Review</h4>
+                                    
                                     <div class="mb-30">
 
                                         <div class="add-a-review">
                                             <h6>Your ratings </h6>
                                             <div class="rating"> 
-                                                <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                                                <input type="radio" name="rating" value="1" id="id_rating"><label for="1">☆</label>
                                                 <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> 
                                                 <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> 
                                                 <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> 

@@ -99,7 +99,7 @@
                     <div class="col">
                         <div class="site-logo-wrap">
                             <div class="site-logo">
-                                <a href="index.html"><img src="img/logo.png" alt="Logo"></a>
+                                <a href="index.html"><img src="{% static 'img/logo.png' }" alt="Logo"></a>
                             </div>
                         </div>
                     </div>
@@ -497,15 +497,9 @@
                                     <div class="mb-30">
                                         <div class="add-a-review">
                                             <h6>Your Ratings:</h6>
-                                            <div class="product-ratting">
-                                                <ul>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                </ul>
-                                            </div>
+                                            <div class="container">
+                                                <span id="rateMe2"  class="empty-stars"></span>
+                                              </div>
                                         </div>
                                     </div>
                                     

@@ -285,7 +285,7 @@
                                                     <div class="agent-img">
                                                         <a href="{% url 'renting:staffViewLandlordDetails' house.user_id  %}">
                                                             
-                                                            <img src="{{ profile.profile_image.url }}" alt="#">
+                                                            <img src="#" alt="#">
                                                             
                                                         </a>
                                                     </div>
@@ -337,9 +337,10 @@
                                     </div>
                                         {% endfor %}
                                     {% else %}
-                                    <div class="box column is-full resul-txt">Sorry..!! Results not found for the city you are looking for.. try for other city</div>                                
+                                    {% for house in filter.qs %}
+                                    <div class="col-lg-4 col-sm-6 col-12" ><h2>Sorry..!! Results not found for the city you are looking for.. try for other city</h2></div>                                
+                                    {%endfor%}
                                     {% endif %}
-
 
                                     <!-- ltn product item end -->
                                 </div>

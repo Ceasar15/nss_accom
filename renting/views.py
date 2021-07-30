@@ -704,6 +704,48 @@ def landlordViewHouseDetails(request, id):
 # the page where the student can view the details of the ad.
 @user_passes_test(check_student_user, login_url='/loginStudent')
 def studentViewHouseDetails(request, id):
+    form = RatingForm(request.POST)
+    product = get_object_or_404(NewRentalHouse, pk=id)
+    if request.method == "POST":
+        nrh_obj = NewRentalHouse.objects.get(pk=id)
+        r_hh = HouseHas.objects.get(nrh=nrh_obj)
+        am = Amenities.objects.get(nrh=nrh_obj)
+        pt = PreferredTenant.objects.get(nrh=nrh_obj)
+        rl = Rules.objects.get(nrh=nrh_obj)
+        imgs = HouseImages.objects.filter(nrh=nrh_obj)
+        rating_count = Rating.objects.filter(landlord_id=nrh_obj.id).count()
+        rating = Rating.objects.filter(landlord_id=nrh_obj.id).order_by('-date')
+        for img in imgs:
+            print(img.images)
+        if form.is_valid():
+            fm = form.save(commit=False)
+            fm.user = request.user
+            fm.landlord = product
+            fm.save()
+
+
+        return render(request, 'renting/student_view_ad_details.html', locals())
+
+    if request.user.is_authenticated:
+        try:
+            nrh_obj = NewRentalHouse.objects.get(pk=id)
+            r_hh = HouseHas.objects.get(nrh=nrh_obj)
+            am = Amenities.objects.get(nrh=nrh_obj)
+            pt = PreferredTenant.objects.get(nrh=nrh_obj)
+            rl = Rules.objects.get(nrh=nrh_obj)
+            imgs = HouseImages.objects.filter(nrh=nrh_obj)
+            rating_count = Rating.objects.filter(landlord_id=nrh_obj.id).count()
+            rating = Rating.objects.filter(landlord_id=nrh_obj.id).order_by('-date')
+            for img in imgs:
+                print(img.images)
+        except:
+            nrh_obj = None
+        if nrh_obj:
+            return render(request, 'renting/student_view_ad_details.html', locals())
+    elif request.user.is_anonymous:
+        modl='true'
+        return render(request, 'renting/student_view_ad_details.html', locals())
+
     if request.user.is_authenticated:
         try:
             nrh_obj = NewRentalHouse.objects.get(pk=id)
@@ -795,7 +837,7 @@ def staffViewAdDetails(request, id):
         rl = Rules.objects.get(nrh=nrh_obj)
         imgs = HouseImages.objects.filter(nrh=nrh_obj)
         rating_count = Rating.objects.filter(landlord_id=nrh_obj.id).count()
-        print(rating_count)
+        rating = Rating.objects.filter(landlord_id=nrh_obj.id).order_by('-date')
         for img in imgs:
             print(img.images)
         if form.is_valid():
@@ -815,6 +857,8 @@ def staffViewAdDetails(request, id):
             pt = PreferredTenant.objects.get(nrh=nrh_obj)
             rl = Rules.objects.get(nrh=nrh_obj)
             imgs = HouseImages.objects.filter(nrh=nrh_obj)
+            rating_count = Rating.objects.filter(landlord_id=nrh_obj.id).count()
+            rating = Rating.objects.filter(landlord_id=nrh_obj.id).order_by('-date')
             for img in imgs:
                 print(img.images)
         except:

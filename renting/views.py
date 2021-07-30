@@ -663,11 +663,16 @@ def studentViewRentAds(request):
 # the page where a staff can view all rent ads.
 @user_passes_test(check_staff_user, login_url='/loginStaff')
 def staffViewRentAds(request):
-    f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())
-    for house in f.qs:
-        profile = Profile.objects.get(user_id=house.user_id)
-        return render(request, 'renting/staff_view_rent_ads.html', {'filter': f, 'profile': profile})
-
+    if request.GET:
+        f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())
+        for house in f.qs:
+            profile = Profile.objects.get(user_id=house.user_id)
+            return render(request, 'renting/staff_view_rent_ads.html', {'filter': f, 'profile': profile})
+    else:
+        f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())
+        for house in f.qs:
+            profile = Profile.objects.get(user_id=house.user_id)
+            return render(request, 'renting/staff_view_rent_ads.html', {'filter': f, 'profile': profile})
 
 
 # the page where a landlord can view all of their posted ads.

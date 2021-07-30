@@ -485,7 +485,9 @@
                             </div>
                             <!-- comment-reply -->
                             <div class="ltn__comment-reply-area ltn__form-box mb-30">
-                                <form action="#">
+                                <form method="post" action="{% url 'renting:staffViewAdDetails' nrh_obj.id %}">
+                                    {% csrf_token %}
+
                                     <h4>Add a Review</h4>
                                     <div class="mb-30">
 

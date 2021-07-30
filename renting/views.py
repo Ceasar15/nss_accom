@@ -664,9 +664,13 @@ def studentViewRentAds(request):
 @user_passes_test(check_staff_user, login_url='/loginStaff')
 def staffViewRentAds(request):
     f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())
-    for house in f.qs:
-        profile = Profile.objects.get(user_id=house.user_id)
-    return render(request, 'renting/staff_view_rent_ads.html', {'filter': f, 'profile': profile})
+    try:
+        for house in f.qs:
+            profile = Profile.objects.get(user_id=house.user_id)
+            return render(request, 'renting/staff_view_rent_ads.html', {'filter': f, 'profile': profile})
+    except:
+        return render(request, 'renting/staff_view_rent_ads.html')
+    
 
 
 # the page where a landlord can view all of their posted ads.

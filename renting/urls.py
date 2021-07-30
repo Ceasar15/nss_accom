@@ -37,8 +37,8 @@ urlpatterns = [
     path('staffViewAdDetails/<int:id>/', rt.staffViewAdDetails, name='staffViewAdDetails'),
     path('staffViewLandlordDetails/<int:id>/', rt.staffViewLandlordDetails, name='staffViewLandlordDetails'),
     path('landlordViewHouseDetails/<int:id>/', rt.landlordViewHouseDetails, name='landlordViewHouseDetails'),
-    path('landlordProfile/', rt.landlordProfile, name='landlordProfile')
-
+    path('landlordProfile/', rt.landlordProfile, name='landlordProfile'),
+    # path("rating/<int:id>/", rt.add_rating, name="add_rating")
 
 
 ]

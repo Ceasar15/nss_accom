@@ -284,11 +284,9 @@
                                                 <div class="real-estate-agent">
                                                     <div class="agent-img">
                                                         <a href="{% url 'renting:staffViewLandlordDetails' house.user_id  %}">
-                                                            {% if profile %}
+                                                            
                                                             <img src="{{ profile.profile_image.url }}" alt="#">
-                                                            {% else %}
-                                                            <img src="#" alt="Default Image">
-                                                            {% endif %}
+                                                            
                                                         </a>
                                                     </div>
                                                 </div>

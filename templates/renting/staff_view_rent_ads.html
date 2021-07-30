@@ -187,14 +187,13 @@
                     <div class="tab-content" style="overflow-x: hidden;">
                         <div class="tab-pane fade active show" id="liton_product_grid">
                             <div class="ltn__product-tab-content-inner ltn__product-grid-view">
-                                <form action="#">
-
+                                <form method="get" action="{% url ''renting:staffViewRentAds' %}">
+                                    {% csrf_token %}
                                     <div class="row" style="display: flex;">
 
                                         <div class="col-md-6" >
-                                            <!-- Search Widget Search by area or city -->
                                             <div class="ltn__search-widget mb-30">
-                                                    <input type="text" name="search" placeholder="Search by city, area or region..." style="width: 300px">
+                                                    <input type="text" value="" id="id_city" name="city" placeholder="Search by city, area or region..." style="width: 300px">
                                                     <button type="submit" style="height: 59.5px; position:relative; left: -5px; top: 1px;"><i class="fas fa-search"></i></button>
                                             </div>
                                         </div>
@@ -203,7 +202,7 @@
                                         <div class="col-md-6" style="position: relative; right: 200px">
                                             <!-- Search Widget Search by area or city -->
                                             <div class="ltn__search-widget mb-30">
-                                                    <input type="number" name="search" placeholder="Search by minimum price..." style="width: 300px; height: 60px">
+                                                    <input type="number" value="" name="rent__gt" id="id_rent__gt" placeholder="Search by minimum price..." style="width: 300px; height: 60px">
                                                     <button type="submit" style="height: 59.5px; position:relative; left: -5px; top: 1px;"><i class="fas fa-search"></i></button>
                                             </div>
                                         </div>
@@ -212,7 +211,7 @@
                                         <div class="col-md-6" style="margin-left: 800px; position: relative; bottom: 90px">
                                             <!-- Search Widget Search by area or city -->
                                             <div class="ltn__search-widget mb-30">
-                                                    <input type="number" name="search" placeholder="Search by maximum price..." style="width: 300px">
+                                                    <input type="number" value="" name="rent__lt" id="id_rent__lt" placeholder="Search by maximum price..." style="width: 300px">
                                                     <button type="submit" style="height: 59.5px; position:relative; left: -5px; top: 1px;"><i class="fas fa-search"></i></button>
                                             </div>
                                         </div>

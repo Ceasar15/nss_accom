@@ -74,15 +74,12 @@ def staff_addNewStudent(request):
         if s_form.is_valid():
             
             sform = s_form.save(commit=False)
-            print(sform)
-            print(sform.course)
             sform.hall = typed.student_hall
-            print(sform.hall)
             sform.save()
 
-            messages.success(request, f'New Student Added')
+            messages.success(request, f'New Student Added Successfully.')
 
-            return redirect('staff:staffDashboard')
+            return redirect('staff:addNewStudent')
         
     context = {
         's_form': NewStudentForm(),
@@ -102,9 +99,9 @@ def staff_addNewVisitor(request):
             sform.hall = typed.student_hall
             sform.save()
 
-            messages.success(request, f'Visitor Recorded')
+            messages.success(request, f'Visitor Recorded Successfully!')
 
-            return redirect('staff:staffManageVisitors')
+            return redirect('staff:addNewVisitor')
         
     context = {
         's_form': NewVisitorForm(),
@@ -165,16 +162,13 @@ def staffPostAnnouncement(request):
             obj = p_form.save(commit=False)
             obj.annou_user = request.user
             obj.save()
-            messages.success(request, f'Your Announcement has been Updated Successfully')
+            messages.success(request, f'Your Announcement has been Posted Successfully')
             
-            return redirect('staff:staffDashboard')
-    
+            return redirect('staff:staffPostAnnouncement')
     context={
-    
             'p_form': PostAnnoumcementForm()
     
             }
-        
     return render(request, 'staff/post_announcement.html', context)
 
 

@@ -85,9 +85,9 @@ def studentSubmitComplaint(request):
 
             complaint.save()
 
-            messages.success(request, "Thank you.")
+            messages.success(request, "Thank you. Complain Submitted.")
 
-            return redirect("student:studentViewAllComplaints")
+            return redirect("student:studentSubmitComplaint")
         else:
             return render(request, "student/student_submit_complaint.html")    
     else:

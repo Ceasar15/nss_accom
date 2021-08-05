@@ -611,9 +611,9 @@ def postRentAdds(request):
                 pf.save()
             else:
                 print(img_form.errors)
-            
-            return redirect('renting:landlordViewRentAds')
 
+            messages.success(request, f'Your Ad has been Posted Successfully')
+            return redirect('renting:postRentAdds')
 
     # GET Request
     elif request.user.is_anonymous:
@@ -857,16 +857,39 @@ def staffViewAdDetails(request, id):
 # the landlord profile page.
 from users.forms import ProfileForm
 @user_passes_test(check_user, login_url='/signInLandlord')
-def landlordProfile(request):
-    profile_form = ProfileForm(request.POST, request.FILES)
-    if profile_form.is_valid():
-        pf = profile_form.save(commit=False)
-        pf.user = request.user
-        pf.save()
+def landlordProfile(request, id):
+    
+    obj = User.objects.get(id = id)
+    ids = str(id)
+    profile_form = ProfileForm(request.POST or None, request.FILES, instance= obj)
 
-        return redirect('renting:postRentAdds')
+    print(profile_form)
+    print(id)
+    print(obj)
+    
+    if request.method == 'POST':
+        if profile_form.is_valid():
+            pro = profile_form.save(commit=False)
+            pro.nrh = 5
+            pro.save()
+            messages.success(request, f'Your profile has been Updated!')
+            return redirect('renting:landlordViewRentAds')
+    
+    context =  {
+        'profile_form': profile_form
+        }
+    return render(request, 'renting/landlord_profile.html', context)
 
-    return render(request, 'renting/landlord_profile.html')
+    # profile_form = ProfileForm(request.POST, request.FILES)
+    # if profile_form.is_valid():
+    #     pf = profile_form.save(commit=False)
+    #     pf.user = request.user
+    #     pf.save()
+
+    #     messages.success(request, f'Your profile has been Updated!')
+    #     return redirect('renting:landlordProfile')
+
+    # return render(request, 'renting/landlord_profile.html')
 
 
 # Payment Process for Student

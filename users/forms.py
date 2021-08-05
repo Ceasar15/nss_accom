@@ -94,6 +94,7 @@ class ContactForm(forms.ModelForm):
         model = Contact
         fields = {
             'fullname',
+            'phone',
             'email',
             'message',
         }

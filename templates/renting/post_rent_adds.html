@@ -95,10 +95,10 @@
                                         </li>
 
                                         {% if user.is_authenticated %}	
-                                        <li class="menu-icon"><a href="{% url 'renting:landlordProfile' %}">{{ user.first_name }}</a>
+                                        <li class="menu-icon"><a href="{% url 'renting:landlordProfile' user.id %}">{{ user.first_name }}</a>
                                             <ul>
                                                 <li>
-                                                    <a href="{% url 'renting:landlordProfile' %}">Profile</a>
+                                                    <a href="{% url 'renting:landlordProfile' user.id %}">Profile</a>
                                                 </li>
                                             </ul>
                                             {% else %}
@@ -146,8 +146,12 @@
                     <div class="ltn__form-box contact-form-box box-shadow white-bg">
                         <h4 class="title-2">Fill in the following details to post your rent ad !</h4>
                         <h4 class="title-2">1. House details</h4>
+                        {% if messages %}
+                            {% for message in messages %}
+                                {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+                            {% endfor %}
+                        {% endif %}
 
-                        
                         <form id="contact-form" method="post" enctype="multipart/form-data">{% csrf_token %}
 
                             <!-- First requirements ( House address )-->

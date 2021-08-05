@@ -90,10 +90,10 @@
                                         </li>
 
                                         {% if user.is_authenticated %}	
-                                        <li class="menu-icon"><a href="{% url 'renting:landlordProfile' %}">{{ user.first_name }}</a>
+                                        <li class="menu-icon"><a href="{% url 'renting:landlordProfile' user.id %}">{{ user.first_name }}</a>
                                             <ul>
                                                 <li>
-                                                    <a href="{% url 'renting:landlordProfile' %}">Profile</a>
+                                                    <a href="{% url 'renting:landlordProfile' user.id %}">Profile</a>
                                                 </li>
                                             </ul>
                                             {% else %}

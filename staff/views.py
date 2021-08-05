@@ -162,9 +162,9 @@ def staffPostAnnouncement(request):
             obj = p_form.save(commit=False)
             obj.annou_user = request.user
             obj.save()
-            messages.success(request, f'Your Announcement has been Updated Successfully')
+            messages.success(request, f'Your Announcement has been Posted Successfully')
             
-            return redirect('staff:staffDashboard')
+            return redirect('staff:staffPostAnnouncement')
     
     context={
     

@@ -2,7 +2,7 @@ from django import forms
 from django.db.models import fields
 from .models import (ContactLandlord, NewRentalHouse, HouseHas, 
     Amenities, Rules, PreferredTenant, STATE_CHOICES, HH_FIELD_CHOICES, 
-    FIELD_CHOICES, GENDER_PREF, ROOMS, HouseImages, Rating)
+    FIELD_CHOICES, GENDER_PREF, ROOMS, HouseImages, Rating, Payments)
 
 
 
@@ -124,4 +124,26 @@ class RatingForm(forms.ModelForm):
         model = Rating
         fields = ('rating', 'comments')
             
-        
+
+class PaymentsForm(forms.ModelForm):
+    class Meta:
+        model = Payments
+        fields = (
+                'fullname',
+                'email',
+                'mobile_number',
+                'amount'
+        )
+
+    def clean_phone(self):
+        fullname = self.cleaned_data['fullname']
+        return fullname
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        return email
+    def clean_mobile_number(self):
+        mobile_number = self.cleaned_data['mobile_number']
+        return mobile_number
+    def clean_amount(self):
+        amount = self.cleaned_data['amount']
+        return amount        

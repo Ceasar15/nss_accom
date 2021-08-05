@@ -664,8 +664,10 @@ def studentViewRentAds(request):
 @user_passes_test(check_staff_user, login_url='/loginStaff')
 def staffViewRentAds(request):
     f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())
+    for house in f.qs:
+        profile = Profile.objects.get(user_id=house.user_id)
     
-    return render(request, 'renting/staff_view_rent_ads.html', {'filter': f})
+    return render(request, 'renting/staff_view_rent_ads.html', {'filter': f, 'profile': profile})
 
 # the page where a landlord can view all of their posted ads.
 @user_passes_test(check_user, login_url='/signInLandlord')
@@ -865,3 +867,43 @@ def landlordProfile(request):
         return redirect('renting:postRentAdds')
 
     return render(request, 'renting/landlord_profile.html')
+
+
+# Payment Process for Student
+from .forms import PaymentsForm 
+def student_payment(request):
+    form = PaymentsForm(request.POST)
+    if request.method == 'POST':
+        print(request.POST)
+        pay_form = PaymentsForm(request.POST, request.FILES)
+
+        if pay_form.is_valid():
+            obj = pay_form.save(commit=False)
+            obj.user = request.user
+            obj.save()
+            messages.success(request, f'Your Payment has been Updated Successfully')
+            return redirect('renting:studentViewRentAds')
+    else:
+        context = {
+            'form': PaymentsForm(),
+        }
+        return render(request, "renting/student_payment.html", context)
+
+# Process Payment for Staff
+def staff_payment(request):
+    form = PaymentsForm(request.POST)
+    if request.method == 'POST':
+        print(request.POST)
+        pay_form = PaymentsForm(request.POST, request.FILES)
+
+        if pay_form.is_valid():
+            obj = pay_form.save(commit=False)
+            obj.user = request.user
+            obj.save()
+            messages.success(request, f'Your Payment has been Updated Successfully')
+            return redirect('renting:staffViewRentAds')
+    else:
+        context = {
+            'form': PaymentsForm(),
+        }
+        return render(request, "renting/staff_payment.html", context)

@@ -147,3 +147,18 @@ class Rating(models.Model):
     rating = models.CharField(max_length=50)
     comments = models.CharField(max_length=100)
     date = models.DateTimeField(auto_created=True, auto_now=True)
+
+
+class Payments(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)    
+    fullname= models.CharField(max_length=100, null=True)
+    email= models.EmailField(max_length=110, null=True)
+    mobile_number= models.CharField(null=True, max_length=15)
+    amount= models.IntegerField(null=True)
+    created_on = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+
+    def __str__(self):
+        return str(self.fullname)
+    
+    class Meta:
+        ordering = ["-created_on"]

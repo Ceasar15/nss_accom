@@ -74,7 +74,6 @@ def staff_addNewStudent(request):
         if s_form.is_valid():
             
             sform = s_form.save(commit=False)
-            print(sform)
             sform.hall = typed.student_hall
             sform.save()
 

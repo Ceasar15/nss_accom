@@ -19,36 +19,18 @@
             <i class="fa fa-phone"></i>
             <label for="mobile_number">Mobile Number</label>
             <input class="input100" type="text" id="mobile_number" name="mobile_number" placeholder="Mobile Number" maxlength="10" required>
-            <span class="focus-input100"></span>
-            <span class="symbol-input100"></span>
-        </div>
-        <div style="text-align:center;" class="wrap-input100 validate-input m-b-10">
-            <i class="fa fa-chevron-circle-down"></i>
-            <label for="type">Type</label>
-            <select id="type" name="types" class="input100" required>
-                <option class="input100" value="Dues" name="dues">Dues</option>
-                <option class="input100" value="Welfare" name="welfare">Welfare</option>
-                <option class="input100" value="Special Contribution" name="special">Special Contribution</option>
-                <option class="input100" value="Donation" name="donation">Donation</option>
-            </select>
-            <span class="focus-input100"></span>
-            <span class="symbol-input100"></span>
+
         </div>
         <div style="text-align:center;" class="wrap-input100 validate-input m-b-10">
             <i class="fa fa-money"></i>
             <label for="amount">Amount</label>
             <input class="input100" type="number" id="amount" name="amount" placeholder="Amount" min="1" required>
-            <span class="focus-input100"></span>
-            <span class="symbol-input100"></span>
+
         </div>
         
         <div class="container-login100-form-btn p-t-10">
             <script src="https://js.paystack.co/v1/inline.js"></script>
             <button class="login100-form-btn" type="button" onclick="payWithPaystack()" >Pay</button>
-        </div>
-        <div class="text-center w-full p-t-25 p-b-230">
-            <a href="{% url 'youth:index' %}" class="txt1">Home<br></a>
-            <a href="{% url 'accounts:dashboard' %}" class="txt1">Dashboard<br></a>
         </div>
     </form>
     

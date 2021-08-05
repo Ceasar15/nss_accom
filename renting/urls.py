@@ -38,7 +38,6 @@ urlpatterns = [
     path('staffViewLandlordDetails/<int:id>/', rt.staffViewLandlordDetails, name='staffViewLandlordDetails'),
     path('landlordViewHouseDetails/<int:id>/', rt.landlordViewHouseDetails, name='landlordViewHouseDetails'),
     path('landlordProfile/', rt.landlordProfile, name='landlordProfile'),
-    # path("rating/<int:id>/", rt.add_rating, name="add_rating")
 
 
 ]

@@ -611,7 +611,7 @@ def postRentAdds(request):
                 pf.save()
             else:
                 print(img_form.errors)
-                
+
             messages.success(request, f'Your Ad has been Posted Successfully')
             return redirect('renting:postRentAdds')
 
@@ -858,13 +858,15 @@ def staffViewAdDetails(request, id):
 from users.forms import ProfileForm
 @user_passes_test(check_user, login_url='/signInLandlord')
 def landlordProfile(request):
+
     profile_form = ProfileForm(request.POST, request.FILES)
     if profile_form.is_valid():
         pf = profile_form.save(commit=False)
         pf.user = request.user
         pf.save()
 
-        return redirect('renting:postRentAdds')
+        messages.success(request, f'Your profile has been Updated!')
+        return redirect('renting:landlordProfile')
 
     return render(request, 'renting/landlord_profile.html')
 

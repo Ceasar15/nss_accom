@@ -132,7 +132,6 @@ class PaymentsForm(forms.ModelForm):
                 'fullname',
                 'email',
                 'mobile_number',
-                'types',
                 'amount'
         )
 

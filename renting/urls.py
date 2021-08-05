@@ -38,6 +38,7 @@ urlpatterns = [
     path('staffViewLandlordDetails/<int:id>/', rt.staffViewLandlordDetails, name='staffViewLandlordDetails'),
     path('landlordViewHouseDetails/<int:id>/', rt.landlordViewHouseDetails, name='landlordViewHouseDetails'),
     path('landlordProfile/', rt.landlordProfile, name='landlordProfile'),
+    path('student_payment/', rt.student_payment, name="student_payment"),
 
 
 ]

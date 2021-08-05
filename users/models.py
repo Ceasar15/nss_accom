@@ -46,6 +46,6 @@ class Profile(models.Model):
 
 class Contact(models.Model):
     fullname = models.CharField(max_length=190)
+    phone = models.CharField(max_length=90)
     email = models.EmailField(max_length=190)
     message = models.TextField()
-    

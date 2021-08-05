@@ -77,7 +77,7 @@ def staff_addNewStudent(request):
             sform.hall = typed.student_hall
             sform.save()
 
-            messages.success(request, f'New Student Added')
+            messages.success(request, f'New Student Added Successfully.')
 
             return redirect('staff:staffDashboard')
         

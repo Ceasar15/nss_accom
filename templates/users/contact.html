@@ -585,6 +585,8 @@
                     <div class="ltn__form-box contact-form-box box-shadow white-bg">
                         <h4 class="title-2">Contact Us</h4>
                         <form id="contact-form"  method="post">
+                            {% csrf_token %}
+                            
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-item input-item-name ltn__custom-icon">

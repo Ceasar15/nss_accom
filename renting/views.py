@@ -888,3 +888,21 @@ def student_payment(request):
             'form': PaymentsForm(),
         }
         return render(request, "renting/student_payment.html", context)
+
+def staff_payment(request):
+    form = PaymentsForm(request.POST)
+    if request.method == 'POST':
+        print(request.POST)
+        pay_form = PaymentsForm(request.POST, request.FILES)
+
+        if pay_form.is_valid():
+            obj = pay_form.save(commit=False)
+            obj.user = request.user
+            obj.save()
+            messages.success(request, f'Your Payment has been Updated Successfully')
+            return redirect('renting:studentViewRentAds')
+    else:
+        context = {
+            'form': PaymentsForm(),
+        }
+        return render(request, "renting/student_payment.html", context)

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 from users.forms import ContactForm, UserTypeForm, UserForm, UpdatePhoneNo
 from users.models import Typed
@@ -238,9 +239,11 @@ def contact(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
-            
+            messages.success(request, 'Messages Sent!')
             return redirect('users:contact')
+
     context = {
         'form': ContactForm()
     }
+    
     return render(request, 'users/contact.html', context)

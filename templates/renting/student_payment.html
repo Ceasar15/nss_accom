@@ -6,47 +6,48 @@
         <button class="login100-form-btn" type="button" onclick="payWithPaystack()" >Pay</button>
 
     </form>
-    <script>
-        function payWithPaystack(){
-            var fullname = document.getElementById("fullname").value;
-            var email = document.getElementById("email").value;
-            var mobile_number = document.getElementById("mobile_number").value;
-            var amount = document.getElementById("amount").value;
-      
-            var handler = PaystackPop.setup({
-              key: 'pk_live_6fd88f7a7e79d8ce558178692fab1f5e37293c5f',
-              // pk_test_c67af25f5c63f4500477a93ce4ca5221e5a758a3
-              email: email,
-              amount: amount * 100,
-              currency: "GHS",
-              ref: ''+Math.floor((Math.random() * 10000000000) + 1), 
-              metadata: {
-                  custom_fields: [
-                  {
-                      display_name: "Name",
-                      variable_name: "fullname",
-                      value: fullname
-                  },
-                  {
-                      display_name: "Mobile Number",
-                      variable_name: "mobile_number",
-                      value: mobile_number
-                  }
-               ]
-            },
-            callback: function(response){
-              ref = response.reference
-              // window.location ="{% url 'student:studentDashboard' %}";
-              // document.getElementById("reff") = ref
-              document.getElementById("forms").submit();
-              alert('Transaction was successful. Reference: ' + response.reference);
-              
-            },
-            onClose: function(){
-                alert('Transaction Cancelled!');
-            }
-          });
-          handler.openIframe();
-        }
-      </script>
 </p>
+
+<script>
+    function payWithPaystack(){
+        var fullname = document.getElementById("fullname").value;
+        var email = document.getElementById("email").value;
+        var mobile_number = document.getElementById("mobile_number").value;
+        var amount = document.getElementById("amount").value;
+  
+        var handler = PaystackPop.setup({
+          key: 'pk_live_6fd88f7a7e79d8ce558178692fab1f5e37293c5f',
+          // pk_test_c67af25f5c63f4500477a93ce4ca5221e5a758a3
+          email: email,
+          amount: amount * 100,
+          currency: "GHS",
+          ref: ''+Math.floor((Math.random() * 10000000000) + 1), 
+          metadata: {
+              custom_fields: [
+              {
+                  display_name: "Name",
+                  variable_name: "fullname",
+                  value: fullname
+              },
+              {
+                  display_name: "Mobile Number",
+                  variable_name: "mobile_number",
+                  value: mobile_number
+              }
+           ]
+        },
+        callback: function(response){
+          ref = response.reference
+          // window.location ="{% url 'student:studentDashboard' %}";
+          // document.getElementById("reff") = ref
+          document.getElementById("forms").submit();
+          alert('Transaction was successful. Reference: ' + response.reference);
+          
+        },
+        onClose: function(){
+            alert('Transaction Cancelled!');
+        }
+      });
+      handler.openIframe();
+    }
+  </script>

@@ -586,7 +586,7 @@
                         <h4 class="title-2">Contact Us</h4>
                         <form id="contact-form"  method="post">
                             {% csrf_token %}
-                            
+
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-item input-item-name ltn__custom-icon">
@@ -597,7 +597,7 @@
 
                                 <div class="col-md-6">
                                     <div class="input-item input-item-email ltn__custom-icon">
-                                        <input type="email" name="email" placeholder="Enter email address" required>
+                                        <input type="email" name="email" id="id_email" placeholder="Enter email address" required>
                                     </div>
                                 </div>
 
@@ -631,7 +631,7 @@
 
 
                            <div class="btn-wrapper mt-0">
-                                <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Submit Your Message</button>
+                                <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit" >Submit Your Message</button>
                             </div>
                             <p class="form-messege mb-0 mt-20"></p>
                         </form>

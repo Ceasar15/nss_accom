@@ -154,7 +154,6 @@ class Payments(models.Model):
     fullname= models.CharField(max_length=100, null=True)
     email= models.EmailField(max_length=110, null=True)
     mobile_number= models.CharField(null=True, max_length=15)
-    types= models.CharField(null=True, max_length=100)
     amount= models.IntegerField(null=True)
     created_on = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 

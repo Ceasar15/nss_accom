@@ -860,16 +860,20 @@ from users.forms import ProfileForm
 def landlordProfile(request, id):
     
     obj = User.objects.get(id = id)
-
+    ids = str(id)
     profile_form = ProfileForm(request.POST or None, request.FILES, instance= obj)
 
     print(profile_form)
     print(id)
     print(obj)
-    if profile_form.is_valid():
-       profile_form.save()
-       messages.success(request, f'Your profile has been Updated!')
-       return redirect('renting:landlordViewRentAds')
+    
+    if request.method == 'POST':
+        if profile_form.is_valid():
+            pro = profile_form.save(commit=False)
+            pro.nrh = 5
+            pro.save()
+            messages.success(request, f'Your profile has been Updated!')
+            return redirect('renting:landlordViewRentAds')
     
     context =  {
         'profile_form': profile_form

@@ -611,9 +611,10 @@ def postRentAdds(request):
                 pf.save()
             else:
                 print(img_form.errors)
-            
-            return redirect('renting:landlordViewRentAds')
 
+            messages.success(request, f'Your Ad has been Posted Successfully')
+
+            return redirect('renting:postRentAdds')
 
     # GET Request
     elif request.user.is_anonymous:

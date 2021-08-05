@@ -40,8 +40,8 @@
 
     <!-- HEADER AREA START (header-5) -->
     <header class="ltn__header-area ltn__header-5 ltn__header-transparent--- gradient-color-4---">
-        <!-- ltn__header-top-area start -->
-        <div class="ltn__header-top-area section-bg-6 top-area-color-white---">
+         <!-- ltn__header-top-area start -->
+         <div class="ltn__header-top-area section-bg-6 top-area-color-white---">
             <div class="container">
                 <div class="row">
                    
@@ -51,8 +51,12 @@
                                 <ul>
                                     <li class="d-none">
                                        
-                                   
-                                     
+                                    </li>
+                                    <li>
+                                       
+                                    </li>
+                                    <li>
+                                        
                                     </li>
                                 </ul>
                             </div>
@@ -62,6 +66,9 @@
             </div>
         </div>
         <!-- ltn__header-top-area end -->
+
+
+
         
         <!-- ltn__header-middle-area start -->
         <div class="ltn__header-middle-area ltn__header-sticky ltn__sticky-bg-white">
@@ -69,8 +76,8 @@
                 <div class="row">
                     <div class="col">
                         <div class="site-logo-wrap">
-                            <div class="site-logo">
-                                <a href="{% url 'tracking:index' %}"><img src="{% static 'img/logo.png' %}" alt="Logo"></a>
+                            <div class="site-logo" style="height: 85px">
+                                <a href="{% url 'tracking:index' %}"><img src="{% static 'img/ug_logo.png' %}" alt="Logo" height="80px" ></a> 
                             </div>
                          
                         </div>
@@ -115,6 +122,23 @@
                                         </li>
 
 
+                                        <li class="menu-icon"><a href="#">UG Student Services</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="https://sakai.ug.edu.gh/portal/site/!gateway/tool/!gateway-110" target="_blank">Sakai LMS</a></li>
+                                                </li>
+
+                                                <li>
+                                                    <a href="https://sts.ug.edu.gh/services/" target="_blank">STS</a></li>
+                                                </li>
+
+                                                <li>
+                                                    <a href="https://ienabler.ug.edu.gh/pls/prodi41/w99pkg.mi_login" target="_blank">MIS</a></li>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+
 
                                         {% if user.is_authenticated %}	
                                         <li>
@@ -154,8 +178,8 @@
     <div class="ltn__slider-area ltn__slider-3  section-bg-1"  data-bg="img/bg/14.jpg">
         <div style="position: relative; top: 50px;" class="container">
 
-            <h6 style="margin-left: 490px; margin-bottom: 30px;">All announcements</h6>
-
+    <!-- <h6 style="margin-left: 490px; margin-bottom: 30px;">All announcements</h6> -->
+ 
 
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">

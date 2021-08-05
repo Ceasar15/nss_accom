@@ -35,17 +35,15 @@
 
     <!-- HEADER AREA START (header-5) -->
     <header class="ltn__header-area ltn__header-5 ltn__header-transparent--- gradient-color-4---">
-        <!-- ltn__header-top-area start -->
-        <div class="ltn__header-top-area section-bg-6 top-area-color-white---">
+         <!-- ltn__header-top-area start -->
+         <div class="ltn__header-top-area section-bg-6 top-area-color-white---">
             <div class="container">
                 <div class="row">
-                   
                     <div class="col-md-5">
                         <div class="top-bar-right text-right">
                             <div class="ltn__top-bar-menu">
                                 <ul>
-                                    <li class="d-none">
-                                        
+                                    <li>
                                     </li>
                                 </ul>
                             </div>
@@ -59,6 +57,7 @@
 
 
         
+       
         <!-- ltn__header-middle-area start -->
         <div class="ltn__header-middle-area ltn__header-sticky ltn__sticky-bg-white">
             <div class="container">
@@ -66,9 +65,8 @@
                     <div class="col">
                         <div class="site-logo-wrap">
                             <div class="site-logo">
-                                <a href="{% url 'tracking:index' %}"><img src="{% static 'img/logo.png' %}" alt="Logo"></a> 
+                                <a href="{% url 'tracking:index' %}"><img src="{% static 'img/ug_logo.png' %}" alt="Logo" height="100px" ></a> 
                             </div>
-                           
                         </div>
                     </div>
                     <div class="col header-menu-column">
@@ -89,7 +87,7 @@
                                         </li>
 
                                         <li>
-                                            <a href="#">Post rent ads</a>
+                                            <a href="{% url 'renting:postRentAdds' %}">Post rent ads</a>
                                         </li>
 
                                         <li>
@@ -116,13 +114,11 @@
                                             <a href="{% url 'logout' %}" class="theme-btn-1 btn btn-effect-1" style="height:60px; width:100px;"  >Sign Out</a>
                                         </li>
 
-
                                     </ul>
                                 </div>
                             </nav>
                         </div>
                     </div>
-                  
                 </div>
             </div>
         </div>

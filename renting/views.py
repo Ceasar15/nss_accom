@@ -867,7 +867,7 @@ def landlordProfile(request, id):
     if land_form.is_valid():
        land_form.save()
        messages.success(request, f'Your profile has been Updated!')
-       return redirect('renting:')
+       return redirect('renting:landlordViewRentAds')
     
     context =  {
         'upload_form':land_form

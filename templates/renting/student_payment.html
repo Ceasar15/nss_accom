@@ -1,8 +1,9 @@
 <p>
-    <form method="post">
+    <form method="POST" id="forms" enctype="multipart/form-data">
         {% csrf_token %}
 
         {{ form.as_p }}
+        <script src="https://js.paystack.co/v1/inline.js"></script>
         <button class="login100-form-btn" type="button" onclick="payWithPaystack()" >Pay</button>
 
     </form>

@@ -858,19 +858,21 @@ def staffViewAdDetails(request, id):
 from users.forms import ProfileForm
 @user_passes_test(check_user, login_url='/signInLandlord')
 def landlordProfile(request, id):
-    land_id = int(id)
-    try:
-        land_sel = User.objects.get(id = land_id)
-    except User.DoesNotExist:
-        return redirect('renting:loginLandlord')
-    land_form = ProfileForm(request.POST or None, request.FILES, instance= land_sel)
-    if land_form.is_valid():
-       land_form.save()
+    
+    obj = User.objects.get(id = id)
+
+    profile_form = ProfileForm(request.POST or None, request.FILES, instance= obj)
+
+    print(profile_form)
+    print(id)
+    print(obj)
+    if profile_form.is_valid():
+       profile_form.save()
        messages.success(request, f'Your profile has been Updated!')
        return redirect('renting:landlordViewRentAds')
     
     context =  {
-        'upload_form':land_form
+        'profile_form': profile_form
         }
     return render(request, 'renting/landlord_profile.html', context)
 

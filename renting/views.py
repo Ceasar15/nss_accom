@@ -872,7 +872,7 @@ def landlordProfile(request):
 # Payment Process
 from .forms import PaymentsForm 
 def student_payment(request):
-    form = PaymentsForm()
+    form = PaymentsForm(request.POST)
     if request.method == 'POST':
         print(request.POST)
         pay_form = PaymentsForm(request.POST, request.FILES)
@@ -884,8 +884,7 @@ def student_payment(request):
             messages.success(request, f'Your Payment has been Updated Successfully')
             return redirect('renting:studentViewRentAds')
     else:
-        return render(request, "renting/student_payment.html")
-    context = {
-        'form': form,
-    }
-    return render(request, "renting/student_payment.html", context)
+        context = {
+            'form': PaymentsForm(),
+        }
+        return render(request, "renting/student_payment.html", context)

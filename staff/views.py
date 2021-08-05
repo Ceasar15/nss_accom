@@ -77,7 +77,6 @@ def staff_addNewStudent(request):
             print(sform)
             print(sform.course)
             sform.hall = typed.student_hall
-            print(sform.hall)
             sform.save()
 
             messages.success(request, f'New Student Added')

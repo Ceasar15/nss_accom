@@ -585,7 +585,11 @@
                     <div class="ltn__form-box contact-form-box box-shadow white-bg">
                         <h4 class="title-2">Contact Us</h4>
                         
-                                                
+                        {% if messages %}
+                            {% for message in messages %}
+                                {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+                            {% endfor %}
+                        {% endif %}                                                
 
                         <form  method="post">
                             {% csrf_token %}

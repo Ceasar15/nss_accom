@@ -395,10 +395,15 @@
 
 
                         <!-- The button to book the room or contact the landlord -->
-                        <div class="btn-wrapper animated">
-                            <a href="{% url 'renting:studentViewLandlordDetails' nrh_obj.user_id %}" class="theme-btn-1 btn btn-effect-1">Rent / Contact Landlord</a>
+                        <div class="row">
+                        <div class="btn-wrapper animated" style="width: 350px;">
+                            <a href="{% url 'renting:studentViewLandlordDetails' nrh_obj.user_id %}" class="theme-btn-1 btn btn-effect-1">Contact Landlord</a>
                         </div>
                         
+                        <div class="btn-wrapper animated" style="margin-right: 40px; width: 300px;">
+                            <a href="{% url 'renting:student_payment' %}" class="theme-btn-1 btn btn-effect-1">Make Payment</a>
+                        </div>
+                        </div>
 
 
 

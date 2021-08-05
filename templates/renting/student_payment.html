@@ -2,30 +2,22 @@
 <form method="POST" id="forms" enctype="multipart/form-data">       
     {% csrf_token %}
         <div style="text-align:center;" class="wrap-input100 validate-input m-b-10">
-            <i class="fa fa-user"></i>
             <label for="fullname">Full Name</label>
             <input class="input100" type="text" id="fullname" name="fullname" placeholder="Full Name" required>
-            <span class="focus-input100"></span>
-            <span class="symbol-input100"></span>
         </div>
         <div style="text-align:center;" class="wrap-input100 validate-input m-b-10">
-            <i class="fa fa-envelope-o"></i>
             <label for="email">Email</label>
             <input class="input100" type="email" id="email" name="email" required>
-            <span class="focus-input100"></span>
-            <span class="symbol-input100"></span>
+            
         </div>
         <div style="text-align:center;" class="wrap-input100 validate-input m-b-10">
-            <i class="fa fa-phone"></i>
             <label for="mobile_number">Mobile Number</label>
             <input class="input100" type="text" id="mobile_number" name="mobile_number" placeholder="Mobile Number" maxlength="10" required>
 
         </div>
         <div style="text-align:center;" class="wrap-input100 validate-input m-b-10">
-            <i class="fa fa-money"></i>
             <label for="amount">Amount</label>
             <input class="input100" type="number" id="amount" name="amount" placeholder="Amount" min="1" required>
-
         </div>
         
         <div class="container-login100-form-btn p-t-10">

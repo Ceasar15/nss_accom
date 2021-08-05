@@ -165,7 +165,6 @@ def staffPostAnnouncement(request):
             messages.success(request, f'Your Announcement has been Posted Successfully')
             
             return redirect('staff:staffPostAnnouncement')
-    
     context={
     
             'p_form': PostAnnoumcementForm()

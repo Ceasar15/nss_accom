@@ -79,7 +79,7 @@ def staff_addNewStudent(request):
 
             messages.success(request, f'New Student Added Successfully.')
 
-            return redirect('staff:staffDashboard')
+            return redirect('staff:addNewStudent')
         
     context = {
         's_form': NewStudentForm(),
@@ -99,9 +99,9 @@ def staff_addNewVisitor(request):
             sform.hall = typed.student_hall
             sform.save()
 
-            messages.success(request, f'Visitor Recorded')
+            messages.success(request, f'Visitor Recorded Successfully!')
 
-            return redirect('staff:staffManageVisitors')
+            return redirect('staff:addNewVisitor')
         
     context = {
         's_form': NewVisitorForm(),

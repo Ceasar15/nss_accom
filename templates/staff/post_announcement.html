@@ -184,13 +184,18 @@
                 </div>
 
                 <div class="submit-complaint-form-div">
+                        {% if messages %}
+                            {% for message in messages %}
+                                {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+                            {% endfor %}
+                        {% endif %}
                     <form method="post">
                         {% csrf_token %}
-                        <!-- {{ p_form }} -->
+
                         <div class="input-item input-item-textarea ltn__custom-icon" style="margin-left: 250px; position: relative; bottom: 20px; width: 800px; margin-right: 30px;">
                             <input type='text' id="id_announcement_title" name="announcement_title" maxlength="100" placeholder='Announcement title' required  />
 
-                            <!-- <textarea id="id_announcement_body" name='announcement_body' placeholder="Announcement Body" style="height:200px; width: 800px; border-color: grey; border-width: 1px; resize: none;"  ></textarea> -->
+
                         </div>
 
 

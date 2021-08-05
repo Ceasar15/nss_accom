@@ -1,7 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.db.models import fields
-from users.models import Typed, CHOICES, ContactDetails, Profile
+from numpy import mod
+from users.models import Contact, Typed, CHOICES, ContactDetails, Profile
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from django.db import transaction
@@ -86,3 +87,13 @@ class EditProfileForm(UserChangeForm):
             'email',
             'password'
         ]
+
+class ContactForm(forms.ModelForm):
+
+    class Meta:
+        model = Contact
+        fields = {
+            'fullname',
+            'email',
+            'message',
+        }

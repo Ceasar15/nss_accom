@@ -43,3 +43,9 @@ class Profile(models.Model):
     occupation = models.CharField(max_length=190)
     profile_image = models.ImageField(upload_to='landlord/profile_image/', blank=True)
     nrh = models.ForeignKey(NewRentalHouse, on_delete=models.CASCADE, null=True, blank=True) 
+
+class Contact(models.Model):
+    fullname = models.CharField(max_length=190)
+    email = models.EmailField(max_length=190)
+    message = models.TextField()
+    

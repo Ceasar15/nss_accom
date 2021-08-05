@@ -3,7 +3,7 @@ from django.http import JsonResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.models import User
 
-from users.forms import UserTypeForm, UserForm, UpdatePhoneNo
+from users.forms import ContactForm, UserTypeForm, UserForm, UpdatePhoneNo
 from users.models import Typed
 
 
@@ -231,3 +231,15 @@ def account_delete(request):
     usr_obj.delete()
 
     return HttpResponseRedirect(reverse('renting:home'))
+
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('users:contact')
+    context = {
+        'form': ContactForm()
+    }
+    return render(request, 'users/contact.html', context)

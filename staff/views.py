@@ -166,11 +166,9 @@ def staffPostAnnouncement(request):
             
             return redirect('staff:staffPostAnnouncement')
     context={
-    
             'p_form': PostAnnoumcementForm()
     
             }
-        
     return render(request, 'staff/post_announcement.html', context)
 
 

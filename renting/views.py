@@ -611,9 +611,8 @@ def postRentAdds(request):
                 pf.save()
             else:
                 print(img_form.errors)
-
+                
             messages.success(request, f'Your Ad has been Posted Successfully')
-
             return redirect('renting:postRentAdds')
 
     # GET Request

@@ -867,3 +867,21 @@ def landlordProfile(request):
         return redirect('renting:postRentAdds')
 
     return render(request, 'renting/landlord_profile.html')
+
+
+# Payment Process
+from .forms import PaymentsForm 
+def payment(request):
+    if request.method == 'POST':
+        print(request.POST)
+        pay_form = PaymentsForm(request.POST, request.FILES)
+
+        if pay_form.is_valid():
+            obj = pay_form.save(commit=False)
+            obj.user = request.user
+            obj.save()
+            messages.success(request, f'Your Payment has been Updated Successfully')
+            return redirect('accounts:dashboard')
+    else:
+        return render(request, "renting/payment.html")
+    return render(request, "renting/payment.html")

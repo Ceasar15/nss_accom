@@ -145,9 +145,6 @@ class PaymentsForm(forms.ModelForm):
     def clean_mobile_number(self):
         mobile_number = self.cleaned_data['mobile_number']
         return mobile_number
-    def clean_type(self):
-        types = self.cleaned_data['types']
-        return types
     def clean_amount(self):
         amount = self.cleaned_data['amount']
         return amount        

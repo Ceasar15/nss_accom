@@ -75,7 +75,6 @@ def staff_addNewStudent(request):
             
             sform = s_form.save(commit=False)
             print(sform)
-            print(sform.course)
             sform.hall = typed.student_hall
             sform.save()
 

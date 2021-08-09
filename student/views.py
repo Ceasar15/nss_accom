@@ -115,6 +115,3 @@ def studentViewAnnouncements(request):
         'dataset': dataset,
     }
     return render(request, 'student/student_view_announcements.html', context)
-
-
-dalfmcsadkv sdfksdnf

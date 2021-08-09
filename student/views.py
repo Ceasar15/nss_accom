@@ -6,8 +6,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import  user_passes_test
 
-
-
 from .models import NewComplaint
 
 # Create your views here.

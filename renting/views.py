@@ -94,7 +94,7 @@ def update_rent_ad(request, id):
         return HttpResponseRedirect(reverse('renting:edit_whole', args=(id,)))
 
 
-# @login_required
+@user_passes_test(check_user, login_url='/signInLandlord')
 def edit_whole(request, id):
     PUB_KEY = settings.MAPBOX_PUBLIC_KEY
     if request.user.is_authenticated:
@@ -145,7 +145,9 @@ def edit_whole(request, id):
         modl = 'true'
         return render(request, 'renting/rental_post_edit.html', locals())
 
-# @login_required
+
+
+@user_passes_test(check_user, login_url='/signInLandlord')
 def delete_whole(request, id):
     if request.user.is_authenticated:
         try:
@@ -165,6 +167,7 @@ def delete_whole(request, id):
         return HttpResponseRedirect(reverse('renting:edit_whole', args=(id,)))
 
 
+@user_passes_test(check_user, login_url='/signInLandlord')
 def house_details(request, id):
     if request.user.is_authenticated:
         try:

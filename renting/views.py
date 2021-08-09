@@ -405,30 +405,6 @@ def delete_whole(request, id):
 
 
 
-def zipcode_validate(request):
-    pl_zip = pgeocode.Nominatim('pl')
-
-    try:
-        zip_obj = pl_zip.query_postal_code(request.GET['zipcode'])
-        # print(zip_obj, request.GET['zipcode'])
-        cond = pandas.isna(zip_obj.community_name)
-        # print(zip_obj)
-    except:
-        zip_obj = None
-
-    if not cond:
-        data = {
-        'city' : zip_obj.community_name
-        }
-        # print(zip_obj.community_name)
-        return JsonResponse(data)
-
-    else:
-        error = {
-         'zipcode':'Enter a valid ZipCode'
-        }
-        # print(type(error))
-        return JsonResponse(error, status=404)
 
 
 

@@ -1,23 +1,18 @@
 from django.contrib.auth.models import User
 from django.http import request
-from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404, render, reverse, redirect
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.decorators import user_passes_test
 from django.contrib import messages
 from django.http import HttpResponseRedirect, JsonResponse
 from django.conf import settings
 from django.db.models import Q
 
-from .forms import ContactLandlordForm, SearchForm, RentalHouseForm, HouseHasForm, AmenitiesForm, RulesForm, PreferredTenantForm, HouseImagesForm, HouseImagesEditForm, RatingForm
+from .forms import ContactLandlordForm, RentalHouseForm, HouseHasForm, AmenitiesForm, RulesForm, PreferredTenantForm, HouseImagesForm, HouseImagesEditForm, RatingForm
 from .models import NewRentalHouse, HouseHas, Amenities, PreferredTenant, Rating, Rules, HouseImages, SearchFilter
 from users.models import Profile, Typed
-from users.forms import UserTypeForm
 from student.forms import StudentRegisterForm, UserContactFrom
-
-import requests, pgeocode, pandas, json
-from datetime import datetime
 
 
 def check_user(user):

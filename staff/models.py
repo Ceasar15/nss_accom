@@ -92,14 +92,3 @@ class UpdateVisitor(models.Model):
 
     def __str__(self):
         return self.visitor
-
-
-# @receiver(post_save, sender=User)
-# def create_profile(sender, instance, created, **kwargs):
-#     if created:
-#         NewVisitor.objects.create(user=instance)
-    
-# @receiver(post_save, sender=User)
-# def save_profile(sender, instance, **kwargs):
-#     instance.staff_newvisitor.save()
-

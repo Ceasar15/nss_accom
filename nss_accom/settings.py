@@ -43,8 +43,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Third Party Apps
     'renting.apps.RentingConfig',
     'users.apps.UsersConfig',
+    'tracking.apps.TrackingConfig',
+    'student.apps.StudentConfig',
+    'staff.apps.StaffConfig',
     'social_django',
     'django_filters',
 
@@ -87,11 +92,12 @@ WSGI_APPLICATION = 'nss_accom.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': os.environ.get('NAME'),
-        'USER': 'bookmarks',
+        'USER': 'postgres',
         'PASSWORD': os.environ.get('PASSWORD'),
         'HOST': os.environ.get('HOST'),
         'PORT': '',
@@ -101,6 +107,9 @@ DATABASES = {
 
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
+
+# import dj_database_url
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 
 # Password validation
@@ -145,7 +154,7 @@ USE_TZ = True
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = 'https://finalyearprojectdatabase-53948.web.app/'
+LOGOUT_REDIRECT_URL = '/'
 
 # For password reset
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

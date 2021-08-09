@@ -23,6 +23,12 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/bulma.css' %}">
 
+	<link rel="stylesheet" type="text/css" href="{% static 'css/font-icons.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/plugins.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!-- Google fonts --> 
 	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet"> 
@@ -116,7 +122,7 @@
 	
 	<nav id='navbar-shadow' class="navbar is-fixed-top is-fullheight-with-navbar" style="background-color: #2E2A3B;" role="navigation" aria-label="main navigation">
 		<div class="navbar-brand nb-lg">
-		    <a class="navbar-item" href="{% url 'renting:home' %}">
+		    <a class="navbar-item" href="{% url 'tracking:index' %}">
 		      <img src="{% static '/img/house-logo.png' %}">
 		    </a>
 		    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">

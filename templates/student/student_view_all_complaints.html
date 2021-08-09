@@ -1,0 +1,366 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+
+<!-- Mirrored from maelectrics.com/tf/html/quarter-preview/quarter/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Jul 2021 16:54:40 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Student view all complaints</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+
+
+   <!-- Place favicon.png in the root directory -->
+   <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon" />
+   <!-- Font Icons css -->
+   <link rel="stylesheet" href="{% static 'css/font-icons.css' %}">
+   <!-- plugins css -->
+   <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+   <!-- Main Stylesheet -->
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   <!-- Responsive css -->
+   <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+
+<!-- Body main wrapper start -->
+<div class="body-wrapper">
+
+    <!-- HEADER AREA START (header-5) -->
+    <header class="ltn__header-area ltn__header-5 ltn__header-transparent--- gradient-color-4---">
+         <!-- ltn__header-top-area start -->
+         <div class="ltn__header-top-area section-bg-6 top-area-color-white---">
+            <div class="container">
+                <div class="row">
+                   
+                    <div class="col-md-5">
+                        <div class="top-bar-right text-right">
+                            <div class="ltn__top-bar-menu">
+                                <ul>
+                                    <li class="d-none">
+                                       
+                                    </li>
+                                    <li>
+                                       
+                                    </li>
+                                    <li>
+                                        
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ltn__header-top-area end -->
+
+
+
+
+        
+        <!-- ltn__header-middle-area start -->
+        <div class="ltn__header-middle-area ltn__header-sticky ltn__sticky-bg-white">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="site-logo-wrap">
+                            <div class="site-logo" style="height: 85px">
+                                <a href="{% url 'tracking:index' %}"><img src="{% static 'img/ug_logo.png' %}" alt="Logo" height="80px" ></a> 
+                            </div>
+                         
+                        </div>
+                    </div>
+                    <div class="col header-menu-column">
+                        <div class="header-menu d-none d-xl-block">
+                            <nav>
+                                <div class="ltn__main-menu">
+                                    <ul style="float: right;">
+
+                                        <li class="menu-icon"><a href="#">Complaints</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'student:studentSubmitComplaint' %}">Submit complaint</a></li>
+                                                </li>
+
+                                                <li>
+                                                    <a href="{% url 'student:studentViewAllComplaints' %}">View all complaints</a></li>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+
+
+                                        <li class="menu-icon"><a href="#">Announcements</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'student:studentViewAnnouncements' %}">View all announcements</a></li>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+
+
+                                        <li class="menu-icon"><a href="#">NSS Accommodation</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'renting:studentViewRentAds' %}">Access NSS Accommodation</a></li>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+
+
+                                        <li class="menu-icon"><a href="#">UG Student Services</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="https://sakai.ug.edu.gh/portal/site/!gateway/tool/!gateway-110" target="_blank">Sakai LMS</a></li>
+                                                </li>
+
+                                                <li>
+                                                    <a href="https://sts.ug.edu.gh/services/" target="_blank">STS</a></li>
+                                                </li>
+
+                                                <li>
+                                                    <a href="https://ienabler.ug.edu.gh/pls/prodi41/w99pkg.mi_login" target="_blank">MIS</a></li>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+
+
+
+                                        {% if user.is_authenticated %}	
+                                        <li>
+                                            <a href="#">{{ user.first_name }}</a></li>
+                                            {% else %}
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'student:loginStudent' %}">Login</a></li>
+                                        {% endif %}
+
+                                        <li class="btn-wrapper animated">
+                                            <a href="{% url 'logout' %}" class="theme-btn-1 btn btn-effect-1" style="height:60px; width:100px;"  >Sign Out</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <!-- ltn__header-middle-area end -->
+    </header>
+    <!-- HEADER AREA END -->
+
+   
+
+    <div class="ltn__utilize-overlay"></div>
+
+   
+    </div>
+    <!-- BREADCRUMB AREA END -->
+
+    <!-- LOGIN AREA START -->
+    <div class="ltn__slider-area ltn__slider-3  section-bg-1"  data-bg="img/bg/14.jpg">
+        <div style="position: relative; top: 50px;" class="container">
+
+            <h2 style="margin-left: 420px; margin-bottom: 30px;">Your Submitted complaints</h2>
+
+            <div class="container mb-3 mt-3">
+                <table class="table table-stripped table-bothered table-hover mydatatable" style="width: 100%">
+                    <thead>
+                        <tr style="background-color: #FF5A3C; ">
+                            
+                            <th scope='col'>Room Number</th>
+                            <th scope='col'>Mobile Number</th>
+                            <th scope='col'>Complaint Type</th>
+                            <th scope='col'>Complaint Description</th>
+                            <th scope='col'>Date Submitted</th>
+                            <th scope='col'>Complaint Status</th>
+                           <!--  <th scope='col'>Actions</th> -->
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% if dataset %}
+                            {% for data in dataset %}
+                        <tr style="cursor: pointer;">
+                            <td>{{ data.student_room_number}}</td>
+                            <td>{{ data.mobile_number}}</td>
+                            <td>{{ data.complaint_type}}</td>
+                            <td>{{ data.complaint_description}}</td>
+                            <td>{{ data.date_submitted.date}}</td>
+                            <td>{{ data.complaint_status}}</td>
+                                                      
+                        </tr>
+                            {% endfor %}
+                        {% endif %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+           
+        </div>
+    
+    
+
+
+        
+
+
+
+
+    <!-- FOOTER AREA START -->
+    <footer class="ltn__footer-area" style="position: relative; top: 300px;">
+        <div class="footer-top-area  section-bg-2 plr--5">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-3 col-md-6 col-sm-6 col-12">
+                        <div class="footer-widget footer-about-widget">
+                            <div class="footer-logo">
+                                <div class="site-logo">
+                                    <img src="img/logo-2.png" alt="Logo">
+                                </div>
+                            </div>
+                            <p>This is a system that helps hall assistants to keep track of students in the hall, also enable students submit complain and help NSS Personnels find accommodation with ease.</p>
+                            <div class="footer-address">
+                                <ul>
+                                    <li>
+                                        <div class="footer-address-icon">
+                                            <i class="icon-placeholder"></i>
+                                        </div>
+                                        <div class="footer-address-info">
+                                            <p>University of Ghana, Legon, Accra.</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="footer-address-icon">
+                                            <i class="icon-call"></i>
+                                        </div>
+                                        <div class="footer-address-info">
+                                            <p><a href="tel:+233 240 090 168">+233 240 090 168</a></p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="footer-address-icon">
+                                            <i class="icon-mail"></i>
+                                        </div>
+                                        <div class="footer-address-info">
+                                            <p><a href="mailto:marianboyeamoah@gmail.com">marianboyeamoah@gmail.com</a></p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="ltn__social-media mt-20">
+                                <ul>
+                                    <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="#" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
+                                    <li><a href="#" title="Youtube"><i class="fab fa-youtube"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-6 col-sm-6 col-12">
+                        <div class="footer-widget footer-menu-widget clearfix">
+                            <h4 class="footer-title">Institution</h4>
+                            <div class="footer-menu">
+                                <ul>
+                                    <li><a href="about.html">About</a></li>
+                                    <li><a href="contact.html">Contact us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-6 col-sm-6 col-12">
+                        <div class="footer-widget footer-menu-widget clearfix">
+                            <h4 class="footer-title">Services</h4>
+                            <div class="footer-menu">
+                                <ul>
+                                   <li><a href="login.html">Login as a Student</a></li>
+                                   <li><a href="login_staff.html">Login as a Staff</a></li>
+                                   <li><a href="login.html">Access NSS accommodation</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
+        <div class="ltn__copyright-area ltn__copyright-2 section-bg-7  plr--5">
+            <div class="container-fluid ltn__border-top-2">
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <div class="ltn__copyright-design clearfix">
+                            <p>All Rights Reserved @ Company <span class="current-year"></span></p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12 align-self-center">
+                        <div class="ltn__copyright-menu text-right">
+                            <ul>
+                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Claim</a></li>
+                                <li><a href="#">Privacy & Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div>
+
+
+    <!-- FOOTER AREA END -->
+
+</div>
+<!-- Body main wrapper end -->
+
+    <!-- All JS Plugins -->
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <!-- Main JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+
+
+
+    <!-- Datatables -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+
+    <script>
+        $('.mydatatable').DataTable({
+            pagingType: 'full_numbers',
+            
+        });
+
+    </script>
+
+
+</body>
+
+</html>
+

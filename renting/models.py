@@ -2,12 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Q
 import django_filters
-
 # Create your models here.
 
 STATE_CHOICES = [
 
-    ('Greater Accra Region','Greater Accra Region'),
+('Greater Accra Region','Greater Accra Region'),
 ('Ashanti Region','Ashanti Region'),
 ('Western North Region','Western North Region'),
 ('Western Region','Western Region'),
@@ -24,6 +23,7 @@ STATE_CHOICES = [
 ('Upper West Region','Upper West Region'),
 ('Central Region','Central Region'),
 ]
+
 
 HH_FIELD_CHOICES = (
         ('Pr','Private'),
@@ -55,7 +55,6 @@ ROOMS = (
 def house_images(instance, filename):
     return f'user_{instance.nrh.user.username}/{filename}'
 
-
 class NewRentalHouse(models.Model):
     house_no = models.CharField(max_length=100)
     region = models.CharField(max_length=100, choices=STATE_CHOICES)
@@ -63,19 +62,20 @@ class NewRentalHouse(models.Model):
     city = models.CharField(max_length=150)
     area = models.CharField(max_length=150)
     country = models.CharField(max_length=100, default='Ghana')
-    
+    date_registered = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    
-    # in_date = models.DateField()
-    # out_date = models.DateField()
     
     rent = models.PositiveIntegerField(default=100)
 
+image_dafault = 'img/default.jpg'
+
 class HouseImages(models.Model):
-    images = models.ImageField(upload_to=house_images, blank=True)
+    imagess = models.ImageField(upload_to=house_images, blank=True, default=image_dafault)
     nrh = models.ForeignKey(NewRentalHouse, on_delete=models.CASCADE)
 
-
+    def images(self):
+        if self.imagess and hasattr(self.imagess, 'url'):
+            return self.imagess.url
 
 class HouseHas(models.Model):
 
@@ -88,7 +88,7 @@ class HouseHas(models.Model):
     parking = models.CharField(max_length=2, choices=FIELD_CHOICES)
     nrh = models.OneToOneField(NewRentalHouse, on_delete=models.CASCADE) 
 
-region = models.CharField(max_length=100, choices=STATE_CHOICES)
+    region = models.CharField(max_length=100, choices=STATE_CHOICES, default="Greater Accra Region")
 
 class Amenities(models.Model):
 
@@ -129,3 +129,36 @@ class SearchFilter(django_filters.FilterSet):
         return NewRentalHouse.objects.filter(
             Q(city__iexact=value)  
         )
+
+
+
+class ContactLandlord(models.Model):
+    full_name = models.CharField(max_length=150)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    message = models.TextField()
+    landlord_id = models.IntegerField(null=True, blank=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    
+
+class Rating(models.Model):
+    landlord = models.ForeignKey(NewRentalHouse, default=None, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    rating = models.CharField(max_length=50)
+    comments = models.CharField(max_length=100)
+    date = models.DateTimeField(auto_created=True, auto_now=True)
+
+
+class Payments(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)    
+    fullname= models.CharField(max_length=100, null=True)
+    email= models.EmailField(max_length=110, null=True)
+    mobile_number= models.CharField(null=True, max_length=15)
+    amount= models.IntegerField(null=True)
+    created_on = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+
+    def __str__(self):
+        return str(self.fullname)
+    
+    class Meta:
+        ordering = ["-created_on"]

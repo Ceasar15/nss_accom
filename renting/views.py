@@ -50,67 +50,7 @@ def renting_house_results(request):
     else:
         return render(request, 'renting/renting_house_results.html')
 
-# Make it as only post
-# @login_required
-def post_rent_ad(request):
 
-    form = RentalHouseForm(initial={'country':'Ghana'}, data=request.POST or None)
-    img_form = HouseImagesForm(files=request.FILES)
-    PUB_KEY = settings.MAPBOX_PUBLIC_KEY
-    if request.method == 'POST' and request.user.is_authenticated:
-        if form.is_valid():
-            rh_obj = form.save(commit=False)
-            rh_obj.user = request.user
-            rh_obj.save()
-            if img_form.is_valid():
-                for img_file in request.FILES.getlist('images'):
-                    HouseImages.objects.create(images=img_file, nrh=rh_obj)
-            else:
-                print(img_form.errors)
-
-            data = {'url':reverse_lazy('renting:house_amenities'),
-                'id': rh_obj.id}
-
-            return JsonResponse(data)
-
-        else:
-            form_errors = form.errors.items()
-            print(form_errors)
-            data = dict()
-            if form_errors:
-                for field,value in form_errors:
-                    # print(field)
-                    if field == 'house_no':
-                        data.update({field:value[0]})
-                    else:
-                        data.update({field:value[0]})
-            return JsonResponse(data, status=409)
-
-    # GET Request
-    elif request.user.is_anonymous:
-        modl = 'true'
-        return render(request, 'renting/rental_post.html', locals())
-
-    # GET Request
-    elif request.user.is_authenticated:
-        # Saving the User_type
-        try:
-            ut = Typed.objects.get(user=request.user)
-            ut_form = UserTypeForm(data={'user_type':'owner'},instance=ut)
-        except:
-            ut = None
-
-        if ut:
-            if ut_form.is_valid():
-                ut_form.save()
-        else:
-            ut_form = UserTypeForm(data={'user_type':'owner'})
-            if ut_form.is_valid():
-                ut_obj = ut_form.save(commit=False)
-                ut_obj.user = request.user
-                ut_obj.save()
-
-        return render(request, 'renting/rental_post.html', locals())
 
 
 # @login_required

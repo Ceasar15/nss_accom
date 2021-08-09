@@ -880,16 +880,6 @@ def landlordProfile(request, id):
         }
     return render(request, 'renting/landlord_profile.html', context)
 
-    # profile_form = ProfileForm(request.POST, request.FILES)
-    # if profile_form.is_valid():
-    #     pf = profile_form.save(commit=False)
-    #     pf.user = request.user
-    #     pf.save()
-
-    #     messages.success(request, f'Your profile has been Updated!')
-    #     return redirect('renting:landlordProfile')
-
-    # return render(request, 'renting/landlord_profile.html')
 
 
 # Payment Process for Student

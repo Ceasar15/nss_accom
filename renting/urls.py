@@ -6,11 +6,9 @@ from users import views as us
 app_name='renting'
 urlpatterns = [
     path('disp/', rt.search_list, name='disp'),
-    path('post_ad/', rt.post_rent_ad, name='post_rent_ad'),
     path('update_ad/<int:id>/', rt.update_rent_ad, name='update_rent_ad'),
     path('edw/<int:id>/', rt.edit_whole, name='edit_whole'),
     path('dlw/<int:id>/', rt.delete_whole, name='del_whole'),
-    path('zp/', rt.zipcode_validate, name='validate_zip'),
     path('hd/<int:id>/', rt.house_details, name='house_details'),
     path('adlist/', rt.rent_ads, name='rent_ad_list'),
     path('del_img/<int:id>/',rt.del_house_image, name='del_img'),

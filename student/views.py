@@ -2,7 +2,7 @@ from staff.models import PostAnnouncement
 from django.http import request
 from users.models import Typed
 from django.shortcuts import render, redirect  	
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.decorators import  user_passes_test
 

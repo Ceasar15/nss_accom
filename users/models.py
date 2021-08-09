@@ -21,17 +21,6 @@ class Typed(models.Model):
     class Meta:
         unique_together = ('user_id', 'user_group')
 
-# @receiver(post_save, sender=User)
-# def create_user_type(sender, instance, created, **kwargs):
-#     if created:
-#         Typed.objects.create(user_id=instance)
-
-# @receiver(post_save, sender=User)
-# def save_user_type(sender, instance, **kwargs):
-#     instance.ut.save()
-
-
-
 class ContactDetails(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_no = models.IntegerField()

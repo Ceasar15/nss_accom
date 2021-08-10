@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from staff.models import PostAnnouncement
 from django.http import request
 from users.models import Typed
@@ -5,6 +6,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.decorators import  user_passes_test
+
+from notifications.models import Notification
 
 from .models import NewComplaint
 
@@ -48,12 +51,16 @@ def studentDashboard(request):
     total_complains = NewComplaint.objects.filter(student_hall=typed.student_hall, user=request.user).count()
     pending = NewComplaint.objects.filter(complaint_status='PENDING', student_hall=typed.student_hall, user=request.user).count()
     resolved = NewComplaint.objects.filter(complaint_status='RESOLVED', student_hall=typed.student_hall, user=request.user).count()
-
+    user = User.objects.get(id=request.user.id)
+    # notif = Notification.objects.unread().count()
+    notif = user.notifications.unread().count()
+    print(notif)
     context = {
 
         'total_complains': total_complains,
         'pending': pending,
         'resolved': resolved,
+        'unread_notif': notif,
 
     }
     
@@ -109,7 +116,7 @@ def studentViewAllComplaints(request):
 def studentViewAnnouncements(request):
 
     typed = Typed.objects.filter(user_id=request.user).first()
-    dataset = PostAnnouncement.objects.filter(hall=typed.student_hall)
+    dataset = PostAnnouncement.objects.filter(hall=typed.student_hall).order_by("-date_submitted")
 
     context = {
         'dataset': dataset,

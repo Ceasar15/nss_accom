@@ -1,4 +1,5 @@
 {% load static %}
+{% load notifications_tags %}
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -156,7 +157,11 @@
                         <div style="display:flex;">
                             <i class="fas fa-user-graduate fa-3x"></i>
                         <h1 style="margin-left: 20px;">Student Dashboard</h1>
-                        <p>dsd</p>
+                        <p>{% notifications_unread as unread_count %}
+                            {% if unread_count %}
+                                You have <strong>{{ unread_count }}</strong> unread notifications.
+                            {% endif %}
+                        </p>
                         </div>
 
                         <ul>

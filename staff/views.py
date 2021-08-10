@@ -6,6 +6,10 @@ from django.contrib import messages
 from django.contrib.auth.decorators import user_passes_test
 from django.utils import timezone
 
+from django.db.models.signals import post_save
+from notifications.signals import notify
+
+
 from .forms import NewStudentForm, PostAnnoumcementForm, NewVisitorForm, UpdateVisitorForm
 from .models import NewStudent, NewVisitor, PostAnnouncement
 from student.models import NewComplaint
@@ -45,6 +49,11 @@ def loginStaff(request):
 
     return render(request, 'staff/login_staff.html', context)
 
+
+def my_handler(sender, instance, created, **kwargs):
+    notify.send(instance, verb='was saved')
+
+post_save.connect(my_handler, sender=PostAnnouncement)
 
 @user_passes_test(check_user, login_url='/loginStaff')
 def staffDashboard(request):
@@ -162,13 +171,16 @@ def staffPostAnnouncement(request):
             obj.annou_user = request.user
             obj.save()
             messages.success(request, f'Your Announcement has been Posted Successfully')
-            
+
+            notify.send(user, recipient=user, verb='you reached level 10')
             return redirect('staff:staffPostAnnouncement')
     context={
             'p_form': PostAnnoumcementForm()
     
             }
     return render(request, 'staff/post_announcement.html', context)
+
+
 
 
 @user_passes_test(check_user, login_url='/loginStaff')

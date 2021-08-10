@@ -45,9 +45,10 @@ def loginStudent(request):
 @user_passes_test(check_user, login_url='/loginStudent')
 def studentDashboard(request):
     typed = Typed.objects.filter(user_id=request.user).first()
-    total_complains = NewComplaint.objects.filter(student_hall=typed.student_hall).count()
-    pending = NewComplaint.objects.filter(complaint_status='PENDING', student_hall=typed.student_hall).count()
-    resolved = NewComplaint.objects.filter(complaint_status='RESOLVED', student_hall=typed.student_hall).count()
+    total_complains = NewComplaint.objects.filter(student_hall=typed.student_hall, user=request.user).count()
+    print(total_complains)
+    pending = NewComplaint.objects.filter(complaint_status='PENDING', student_hall=typed.student_hall, user=request.user).count()
+    resolved = NewComplaint.objects.filter(complaint_status='RESOLVED', student_hall=typed.student_hall, user=request.user).count()
 
     context = {
 
@@ -95,7 +96,7 @@ def studentSubmitComplaint(request):
 @user_passes_test(check_user, login_url='/loginStudent')
 def studentViewAllComplaints(request):
     typed = Typed.objects.filter(user_id=request.user).first()
-    dataset = NewComplaint.objects.filter(student_hall=typed.student_hall)
+    dataset = NewComplaint.objects.filter(student_hall=typed.student_hall, user=request.user)
 
 
     context = {

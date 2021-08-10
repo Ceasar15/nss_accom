@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'staff.apps.StaffConfig',
     'social_django',
     'django_filters',
+    'notifications',
 
 ]
 

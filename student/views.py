@@ -54,6 +54,7 @@ def studentDashboard(request):
     user = User.objects.get(id=request.user.id)
     # notif = Notification.objects.unread().count()
     notif = user.notifications.unread().count()
+    notiff = Notification.objects.unread().count()
     print(notif)
     context = {
 
@@ -61,6 +62,7 @@ def studentDashboard(request):
         'pending': pending,
         'resolved': resolved,
         'unread_notif': notif,
+        'notiff': notiff,
 
     }
     

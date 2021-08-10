@@ -867,6 +867,9 @@ button:focus {
 .input-item-name.ltn__custom-icon::before {
   content: "\f007"; }
 
+  /* .input-item-password.ltn__custom-icon::before {
+    content: "\f007"; }
+   */
 .input-item-email.ltn__custom-icon::before {
   content: "\f0e0"; }
 

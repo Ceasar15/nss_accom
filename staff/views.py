@@ -50,12 +50,6 @@ def loginStaff(request):
 
     return render(request, 'staff/login_staff.html', context)
 
-
-def my_handler(sender, instance, created, **kwargs):
-    notify.send(instance, verb='was saved')
-
-post_save.connect(my_handler, sender=PostAnnouncement)
-
 @user_passes_test(check_user, login_url='/loginStaff')
 def staffDashboard(request):
     typed = Typed.objects.filter(user_id=request.user).first()
@@ -161,6 +155,14 @@ def update_viewVisitor(request, vistoor_id):
     }
     return render(request, 'staff/update_visitor.html', context)
 
+# def my_handler(sender, instance, created, **kwargs):
+#     print(sender)
+#     typed = Typed.objects.filter(user_id=request.user).first()
+#     user = User.objects.get(hall=typed.student_hall)
+#     print(user)
+#     notify.send(user, recipient=user, verb='new announcement posted')
+
+post_save.connect(my_handler, sender=PostAnnouncement)
 
 
 @user_passes_test(check_user, login_url='/loginStaff')
@@ -175,7 +177,7 @@ def staffPostAnnouncement(request):
             typed = Typed.objects.filter(user_id=request.user).first()
             user = User.objects.get(hall=typed.student_hall)
             print(user)
-            # notify.send(user, recipient=user, verb='new announcement posted')
+            notify.send(user, recipient=user, verb='new announcement posted')
             return redirect('staff:staffPostAnnouncement')
     context={
             'p_form': PostAnnoumcementForm()

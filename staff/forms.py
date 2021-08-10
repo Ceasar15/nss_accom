@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import fields
-from .models import GENDER_PREF, LEVEL_CHOICES, VISITOR_STATUS, NewStudent, NewVisitor, PostAnnouncement, UpdateVisitor
+from .models import GENDER_PREF, LEVEL_CHOICES, NewStudent, NewVisitor, PostAnnouncement, UpdateVisitor
 
 
 class PostAnnoumcementForm(forms.ModelForm):

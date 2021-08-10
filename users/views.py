@@ -18,9 +18,6 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
-def welcome(request):
-    return HttpResponse('Welcome page renders out')
-
 
 def Studentregister(request):
 
@@ -98,10 +95,6 @@ def LandlordRegister(request):
 
 
 def Staffregister(request):
-    # def get_context_data(self, **kwargs):
-    #     kwargs['user_type'] = 'staff'
-    #     return super().get_context_data(**kwargs)
-
 
     if request.method == 'POST':
         form = StaffRegisterForm(request.POST)
@@ -115,10 +108,6 @@ def Staffregister(request):
 
 
 def Landlordregister(request):
-    
-    # def get_context_data(self, **kwargs):
-    #     kwargs['user_type'] = 'landlord'
-    #     return super().get_context_data(**kwargs)
 
     if request.method == 'POST':
         form = StudentRegisterForm(request.POST)
@@ -177,7 +166,7 @@ def user_type(request):
             if utform.is_valid():
                 ut_obj = utform.save()
             else:
-                print(ut_form.erros)
+                print(utform.erros)
 
             # Handle the form errors
 

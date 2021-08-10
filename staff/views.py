@@ -1,10 +1,9 @@
 from django.http import request
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect	
-from django.contrib.auth import authenticate, login, logout		
+from django.contrib.auth import authenticate, login		
 from django.contrib import messages		
-from django.contrib.auth.decorators import login_required, user_passes_test
-from django.contrib.auth.models import User
+from django.contrib.auth.decorators import user_passes_test
 from django.utils import timezone
 
 from .forms import NewStudentForm, PostAnnoumcementForm, NewVisitorForm, UpdateVisitorForm

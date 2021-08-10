@@ -1,23 +1,18 @@
 from django.contrib.auth.models import User
 from django.http import request
-from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404, render, reverse, redirect
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.decorators import user_passes_test
 from django.contrib import messages
 from django.http import HttpResponseRedirect, JsonResponse
 from django.conf import settings
 from django.db.models import Q
 
-from .forms import ContactLandlordForm, SearchForm, RentalHouseForm, HouseHasForm, AmenitiesForm, RulesForm, PreferredTenantForm, HouseImagesForm, HouseImagesEditForm, RatingForm
+from .forms import ContactLandlordForm, RentalHouseForm, HouseHasForm, AmenitiesForm, RulesForm, PreferredTenantForm, HouseImagesForm, HouseImagesEditForm, RatingForm
 from .models import NewRentalHouse, HouseHas, Amenities, PreferredTenant, Rating, Rules, HouseImages, SearchFilter
 from users.models import Profile, Typed
-from users.forms import UserTypeForm
 from student.forms import StudentRegisterForm, UserContactFrom
-
-import requests, pgeocode, pandas, json
-from datetime import datetime
 
 
 def check_user(user):
@@ -49,68 +44,6 @@ def renting_house_results(request):
         return render(request,'renting/renting_house_results.html', context)
     else:
         return render(request, 'renting/renting_house_results.html')
-
-# Make it as only post
-# @login_required
-def post_rent_ad(request):
-
-    form = RentalHouseForm(initial={'country':'Ghana'}, data=request.POST or None)
-    img_form = HouseImagesForm(files=request.FILES)
-    PUB_KEY = settings.MAPBOX_PUBLIC_KEY
-    if request.method == 'POST' and request.user.is_authenticated:
-        if form.is_valid():
-            rh_obj = form.save(commit=False)
-            rh_obj.user = request.user
-            rh_obj.save()
-            if img_form.is_valid():
-                for img_file in request.FILES.getlist('images'):
-                    HouseImages.objects.create(images=img_file, nrh=rh_obj)
-            else:
-                print(img_form.errors)
-
-            data = {'url':reverse_lazy('renting:house_amenities'),
-                'id': rh_obj.id}
-
-            return JsonResponse(data)
-
-        else:
-            form_errors = form.errors.items()
-            print(form_errors)
-            data = dict()
-            if form_errors:
-                for field,value in form_errors:
-                    # print(field)
-                    if field == 'house_no':
-                        data.update({field:value[0]})
-                    else:
-                        data.update({field:value[0]})
-            return JsonResponse(data, status=409)
-
-    # GET Request
-    elif request.user.is_anonymous:
-        modl = 'true'
-        return render(request, 'renting/rental_post.html', locals())
-
-    # GET Request
-    elif request.user.is_authenticated:
-        # Saving the User_type
-        try:
-            ut = Typed.objects.get(user=request.user)
-            ut_form = UserTypeForm(data={'user_type':'owner'},instance=ut)
-        except:
-            ut = None
-
-        if ut:
-            if ut_form.is_valid():
-                ut_form.save()
-        else:
-            ut_form = UserTypeForm(data={'user_type':'owner'})
-            if ut_form.is_valid():
-                ut_obj = ut_form.save(commit=False)
-                ut_obj.user = request.user
-                ut_obj.save()
-
-        return render(request, 'renting/rental_post.html', locals())
 
 
 # @login_required
@@ -156,184 +89,7 @@ def update_rent_ad(request, id):
         return HttpResponseRedirect(reverse('renting:edit_whole', args=(id,)))
 
 
-
-# To get the HTML code of the House and Amenities
-def get_ha_code(request):
-    hform = HouseHasForm()
-    aform = AmenitiesForm()
-    return render(request, 'renting/house_has_and_amenities.html', locals())
-
-
-def get_rp_code(request):
-    rform = RulesForm()
-    ptform = PreferredTenantForm()
-
-    return render(request, 'renting/rules_and_preferred_tenant.html', locals())
-
-
-def save_house_has(request, id):
-    
-    # print(id)
-    try:
-        nrh_obj = NewRentalHouse.objects.get(pk=id)
-        hh_ex_obj = HouseHas.objects.filter(nrh=nrh_obj)
-        if hh_ex_obj:
-            hh_ex_form = HouseHasForm(data=request.POST or None, instance=hh_ex_obj[0])
-            hh_form = None
-        else:
-            hh_form = HouseHasForm(data=request.POST or None)
-        # print(nrh_obj)
-    except:
-        nrh_obj = None
-
-    if request.method == 'POST' and nrh_obj:
-        if hh_form is not None and hh_form.is_valid():
-            hh_mod_obj = hh_form.save(commit=False)
-            hh_mod_obj.nrh = nrh_obj
-            hh_mod_obj.save()
-
-            data = {
-                'url':reverse_lazy('renting:house_amenities'),
-                'hh_url':reverse_lazy('renting:house_has',args=(nrh_obj.id,))
-            }
-            # print(data['url'])
-            return JsonResponse(data)
-
-        elif hh_ex_form and hh_ex_form.is_valid():
-            hh_ex_form.save()
-
-            data = {
-                'url':reverse_lazy('renting:house_amenities')
-            }
-            # print(data['url'])
-            return JsonResponse(data)
-
-        else:
-            data = {
-                'error':hh_form.errors.as_json()
-            }
-    # 		print(form.errors)
-            return JsonResponse(data, status=400)
-
-    else:
-        return JsonResponse({
-                'error':'Object not found'
-            }, status=404)
-
-
-def save_amenities(request, id):
-    try:
-        nrh_obj = NewRentalHouse.objects.get(pk=id)
-        am_ex_obj = Amenities.objects.filter(nrh=nrh_obj)
-        if am_ex_obj:
-            a_ex_form = AmenitiesForm(data=request.POST or None, instance=am_ex_obj[0])
-            a_form = None
-        else:
-            a_form = AmenitiesForm(data=request.POST or None)
-    except:
-        nrh_obj = None
-
-    if request.method == 'POST' and nrh_obj:
-        if a_form is not None and a_form.is_valid():
-            a_mod_obj = a_form.save(commit=False)
-            a_mod_obj.nrh = nrh_obj
-            a_mod_obj.save()
-
-            data = {
-                'url':reverse_lazy('renting:rules_tenant'),
-                'a_url':reverse_lazy('renting:save_amenities',args=(nrh_obj.id,))
-            }
-            # print(data['url'])
-            return JsonResponse(data)
-
-        elif a_ex_form and a_ex_form.is_valid():
-            a_ex_form.save() 
-            data = {
-                'success':'posted'
-            }
-
-            return JsonResponse(data)
-####### Handle the Json Error message in Jquery, Ajax + django
-        else:
-            print(a_form.errors)
-
-def save_rules(request, id):
-    try:
-        nrh_obj = NewRentalHouse.objects.get(pk=id)
-        rl_ex_obj = Rules.objects.filter(nrh=nrh_obj)
-        if rl_ex_obj:
-            r_ex_form = RulesForm(data=request.POST or None, instance=rl_ex_obj[0])
-            r_form = None
-        else:
-            r_form = RulesForm(data=request.POST or None)
-    except:
-        nrh_obj = None
-
-    if request.method == 'POST' and nrh_obj:
-        if r_form is not None and r_form.is_valid():
-            r_mod_obj = r_form.save(commit=False)
-            r_mod_obj.nrh = nrh_obj
-            r_mod_obj.save()
-
-            data = {
-                'url':reverse_lazy('renting:rules_tenant'),
-                'r_url':reverse_lazy('renting:save_rules',args=(nrh_obj.id,))
-            }
-            # print(data['url'])
-            return JsonResponse(data)
-        elif r_ex_form and r_ex_form.is_valid():
-            r_ex_form.save()
-            data = {
-                'success':'posted'
-            }
-
-            return JsonResponse(data)
-        else:
-            print(r_form.errors)
-
-
-
-def save_pt(request, id):
-    
-    try:
-        nrh_obj = NewRentalHouse.objects.get(pk=id)
-        pt_ex_obj = PreferredTenant.objects.filter(nrh=nrh_obj)
-        if pt_ex_obj:
-            pt_ex_form = PreferredTenantForm(data=request.POST or None, instance=pt_ex_obj[0])
-            pt_form = None
-        else:
-            pt_form = PreferredTenantForm(data=request.POST or None)
-    except:
-        nrh_obj = None
-
-    if request.method == 'POST' and nrh_obj:
-        if pt_form is not None and pt_form.is_valid():
-            pt_mod_obj = pt_form.save(commit=False)
-            pt_mod_obj.nrh = nrh_obj
-            pt_mod_obj.save()
-
-            data = {
-                'url':reverse_lazy('renting:rules_tenant'),
-                'e_url':reverse_lazy('renting:edit_whole',args=(nrh_obj.id,)),
-                'd_url':reverse_lazy('renting:del_whole',args=(nrh_obj.id,)),
-                'h_url':reverse_lazy('renting:house_details',args=(nrh_obj.id,)),
-                'pt_url':reverse_lazy('renting:save_pt',args=(nrh_obj.id,))
-            }
-            return JsonResponse(data)
-
-        elif pt_ex_form and pt_ex_form.is_valid():
-            pt_ex_form.save()
-
-            data = {
-                'success':'posted'
-            }
-
-            return JsonResponse(data)
-
-        else:
-            print(pt_form.errors)	
-
-# @login_required
+@user_passes_test(check_user, login_url='/signInLandlord')
 def edit_whole(request, id):
     PUB_KEY = settings.MAPBOX_PUBLIC_KEY
     if request.user.is_authenticated:
@@ -384,7 +140,9 @@ def edit_whole(request, id):
         modl = 'true'
         return render(request, 'renting/rental_post_edit.html', locals())
 
-# @login_required
+
+
+@user_passes_test(check_user, login_url='/signInLandlord')
 def delete_whole(request, id):
     if request.user.is_authenticated:
         try:
@@ -404,34 +162,7 @@ def delete_whole(request, id):
         return HttpResponseRedirect(reverse('renting:edit_whole', args=(id,)))
 
 
-
-def zipcode_validate(request):
-    pl_zip = pgeocode.Nominatim('pl')
-
-    try:
-        zip_obj = pl_zip.query_postal_code(request.GET['zipcode'])
-        # print(zip_obj, request.GET['zipcode'])
-        cond = pandas.isna(zip_obj.community_name)
-        # print(zip_obj)
-    except:
-        zip_obj = None
-
-    if not cond:
-        data = {
-        'city' : zip_obj.community_name
-        }
-        # print(zip_obj.community_name)
-        return JsonResponse(data)
-
-    else:
-        error = {
-         'zipcode':'Enter a valid ZipCode'
-        }
-        # print(type(error))
-        return JsonResponse(error, status=404)
-
-
-
+@user_passes_test(check_user, login_url='/signInLandlord')
 def house_details(request, id):
     if request.user.is_authenticated:
         try:
@@ -453,6 +184,8 @@ def house_details(request, id):
         modl='true'
         return render(request, 'renting/house_detail.html', locals())
 
+
+@user_passes_test(check_user, login_url='/signInLandlord')
 def rent_ads(request):
     if request.user.is_authenticated:
         house_list = NewRentalHouse.objects.filter(user=request.user)
@@ -481,6 +214,7 @@ def rent_ads(request):
         return render(request, 'renting/house_detail.html', locals())
 
 
+@user_passes_test(check_user, login_url='/signInLandlord')
 def del_house_image(request,id):
     if request.user.is_authenticated:
         if request.method == 'DELETE':
@@ -880,16 +614,6 @@ def landlordProfile(request, id):
         }
     return render(request, 'renting/landlord_profile.html', context)
 
-    # profile_form = ProfileForm(request.POST, request.FILES)
-    # if profile_form.is_valid():
-    #     pf = profile_form.save(commit=False)
-    #     pf.user = request.user
-    #     pf.save()
-
-    #     messages.success(request, f'Your profile has been Updated!')
-    #     return redirect('renting:landlordProfile')
-
-    # return render(request, 'renting/landlord_profile.html')
 
 
 # Payment Process for Student

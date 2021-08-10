@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.http import request
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect	
@@ -171,8 +172,10 @@ def staffPostAnnouncement(request):
             obj.annou_user = request.user
             obj.save()
             messages.success(request, f'Your Announcement has been Posted Successfully')
-
-            notify.send(user, recipient=user, verb='you reached level 10')
+            typed = Typed.objects.filter(user_id=request.user).first()
+            user = User.objects.get(hall=typed.student_hall)
+            print(user)
+            # notify.send(user, recipient=user, verb='new announcement posted')
             return redirect('staff:staffPostAnnouncement')
     context={
             'p_form': PostAnnoumcementForm()

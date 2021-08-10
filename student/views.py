@@ -46,7 +46,6 @@ def loginStudent(request):
 def studentDashboard(request):
     typed = Typed.objects.filter(user_id=request.user).first()
     total_complains = NewComplaint.objects.filter(student_hall=typed.student_hall, user=request.user).count()
-    print(total_complains)
     pending = NewComplaint.objects.filter(complaint_status='PENDING', student_hall=typed.student_hall, user=request.user).count()
     resolved = NewComplaint.objects.filter(complaint_status='RESOLVED', student_hall=typed.student_hall, user=request.user).count()
 

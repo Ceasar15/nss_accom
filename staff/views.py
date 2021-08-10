@@ -188,7 +188,6 @@ def staffPostAnnouncement(request):
 
 @user_passes_test(check_user, login_url='/loginStaff')
 def updateVisitorStatus(request):
-    # user = request.newvisitor
     form = UpdateVisitorForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():

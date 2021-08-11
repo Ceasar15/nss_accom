@@ -151,7 +151,7 @@ def edit_whole(request, id):
         if nrh_obj:
             images_list = []
             form = RentalHouseForm(instance=nrh_obj)
-            img_form = HouseImagesEditForm(request.POST or None , request.FILES)
+            img_form = HouseImagesEditForm()
 
             if img_qset:
                 for img_obj in img_qset:
@@ -179,10 +179,57 @@ def edit_whole(request, id):
         return render(request, 'renting/rentalad_edit.html', locals())
     
     else:
-        hform = HouseHasForm()
-        aform = AmenitiesForm()
-        rform = RulesForm()
-        ptform = PreferredTenantForm()
+            form = RentalHouseForm(initial={'country':'Ghana'}, data=request.POST or None)
+    img_form = HouseImagesForm(request.POST, files=request.FILES)
+    house_has_form = HouseHasForm(request.POST)
+    amenities_form = AmenitiesForm(request.POST)
+    rules_form = RulesForm(request.POST)
+    preferred_tenant_form = PreferredTenantForm(request.POST)
+
+
+    if request.method == 'POST' and request.user.is_authenticated:
+    
+        if all((form.is_valid(), house_has_form.is_valid(), amenities_form.is_valid(), rules_form.is_valid(), preferred_tenant_form.is_valid())):
+            rh_obj = form.save(commit=False)
+            rh_obj.user = request.user
+            rh_obj.save()
+            nrh_obj = NewRentalHouse.objects.get(pk=rh_obj.id)
+            if img_form.is_valid():
+                for img_file in request.FILES.getlist('imagess'):
+                    HouseImages.objects.create(imagess=img_file, nrh=nrh_obj)
+                hs = house_has_form.save(commit=False)
+                hs.nrh = nrh_obj
+                hs.save()
+                amf = amenities_form.save(commit=False)
+                amf.nrh = nrh_obj
+                amf.save()
+                rf = rules_form.save(commit=False)
+                rf.nrh = nrh_obj
+                rf.save()
+                pf = preferred_tenant_form.save(commit=False)
+                pf.nrh = nrh_obj
+                pf.save()
+            else:
+                print(img_form.errors)
+
+            messages.success(request, f'Your Ad has been Posted Successfully')
+            return redirect('renting:postRentAdds')
+
+
+
+
+
+
+        # form = RentalHouseForm(request.POST, request.FILES, instance=nrh_obj)
+        # img_form = HouseImagesEditForm(request.POST, request.FILES, instance=img_qset)
+        # hform = HouseHasForm(request.POST, request.FILES, instance=hh_fobj)
+        # aform = AmenitiesForm(request.POST, request.FILES, instance=a_fobj)
+        # rform = RulesForm(request.POST, request.FILES, instance=r_fobj)
+        # ptform = PreferredTenantForm(request.POST, request.FILES, instance=pt_fobj)
+
+        # if all((form, img_form, hform, aform, rform, ptform )):
+            
+            
 
 
 

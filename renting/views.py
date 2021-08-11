@@ -176,19 +176,24 @@ def edit_whole(request, id):
                 ptform = PreferredTenantForm(instance=pt_obj)
             else:
                 ptform = PreferredTenantForm()
-        return render(request, 'renting/rentalad_edit.html', locals())
+        return render(request, 'renting/rental_ad_edit.html', locals())
     
     else:
-        form = RentalHouseForm(initial={'country':'Ghana'}, data=request.POST or None)
-        img_form = HouseImagesForm(request.POST, files=request.FILES)
-        house_has_form = HouseHasForm(request.POST)
-        amenities_form = AmenitiesForm(request.POST)
-        rules_form = RulesForm(request.POST)
-        preferred_tenant_form = PreferredTenantForm(request.POST)
-
-        if request.method == 'POST' and request.user.is_authenticated:
+        form = RentalHouseForm(initial={'country':'Ghana'}, data=request.POST or None, instance=nrh_obj)
+        images_list = []
+        if img_qset:
+            for img_obj in img_qset:
+                images_list.append(img_obj)
     
-            if all((form.is_valid(), house_has_form.is_valid(), amenities_form.is_valid(), rules_form.is_valid(), preferred_tenant_form.is_valid())):
+        img_form = HouseImagesForm(request.POST, files=request.FILES)
+        hform = HouseHasForm(request.POST, instance=hh_fobj)
+        aform = AmenitiesForm(request.POST, instance=a_fobj)
+        rform = RulesForm(request.POST, instance=r_fobj)
+        ptform = PreferredTenantForm(request.POST, instance=pt_fobj)
+
+        if request.method == 'POST':
+    
+            if all((form.is_valid(), hform.is_valid(), aform.is_valid(), rform.is_valid(), ptform.is_valid())):
                 rh_obj = form.save(commit=False)
                 rh_obj.user = request.user
                 rh_obj.save()
@@ -196,16 +201,16 @@ def edit_whole(request, id):
                 if img_form.is_valid():
                     for img_file in request.FILES.getlist('imagess'):
                         HouseImages.objects.create(imagess=img_file, nrh=nrh_obj)
-                    hs = house_has_form.save(commit=False)
+                    hs = hform.save(commit=False)
                     hs.nrh = nrh_obj
                     hs.save()
-                    amf = amenities_form.save(commit=False)
+                    amf = aform.save(commit=False)
                     amf.nrh = nrh_obj
                     amf.save()
-                    rf = rules_form.save(commit=False)
+                    rf = rform.save(commit=False)
                     rf.nrh = nrh_obj
                     rf.save()
-                    pf = preferred_tenant_form.save(commit=False)
+                    pf = ptform.save(commit=False)
                     pf.nrh = nrh_obj
                     pf.save()
                 else:

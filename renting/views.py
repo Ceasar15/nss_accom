@@ -630,7 +630,7 @@ def update_landlordProfile(request, id):
             pro.user_id = request.user.id
             pro.save()
             messages.success(request, f'Your profile has been Updated!')
-            return redirect('renting:landlordViewRentAds')
+            return redirect('renting:update_profile')
 
         context =  {
             'profile': profile,

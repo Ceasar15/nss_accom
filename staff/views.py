@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.http import request
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect	
@@ -5,6 +6,10 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages		
 from django.contrib.auth.decorators import user_passes_test
 from django.utils import timezone
+
+from django.db.models.signals import post_save
+from notifications.signals import notify
+
 
 from .forms import NewStudentForm, PostAnnoumcementForm, NewVisitorForm, UpdateVisitorForm
 from .models import NewStudent, NewVisitor, PostAnnouncement
@@ -44,7 +49,6 @@ def loginStaff(request):
     context = {}
 
     return render(request, 'staff/login_staff.html', context)
-
 
 @user_passes_test(check_user, login_url='/loginStaff')
 def staffDashboard(request):
@@ -151,6 +155,14 @@ def update_viewVisitor(request, vistoor_id):
     }
     return render(request, 'staff/update_visitor.html', context)
 
+# def my_handler(sender, instance, created, **kwargs):
+#     print(sender)
+#     typed = Typed.objects.filter(user_id=request.user).first()
+#     user = User.objects.get(hall=typed.student_hall)
+#     print(user)
+#     notify.send(user, recipient=user, verb='new announcement posted')
+
+# post_save.connect(my_handler, sender=PostAnnouncement)
 
 
 @user_passes_test(check_user, login_url='/loginStaff')
@@ -162,7 +174,10 @@ def staffPostAnnouncement(request):
             obj.annou_user = request.user
             obj.save()
             messages.success(request, f'Your Announcement has been Posted Successfully')
-            
+            typed = Typed.objects.filter(user_id=request.user).first()
+            user = PostAnnouncement.objects.filter(hall=typed.student_hall)
+            print(user)
+            notify.send(request.user, recipient=request.user, verb='new announcement posted')
             return redirect('staff:staffPostAnnouncement')
     context={
             'p_form': PostAnnoumcementForm()
@@ -171,9 +186,10 @@ def staffPostAnnouncement(request):
     return render(request, 'staff/post_announcement.html', context)
 
 
+
+
 @user_passes_test(check_user, login_url='/loginStaff')
 def updateVisitorStatus(request):
-    # user = request.newvisitor
     form = UpdateVisitorForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():

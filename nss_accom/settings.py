@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'staff.apps.StaffConfig',
     'social_django',
     'django_filters',
+    'notifications',
 
 ]
 
@@ -205,3 +206,5 @@ SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get('SOCIAL_AUTH_FACEBOOK_SECRET')
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 django_heroku.settings(locals())
+
+DJANGO_NOTIFICATIONS_CONFIG = { 'SOFT_DELETE': True}

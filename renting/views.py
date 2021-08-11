@@ -91,7 +91,6 @@ def update_rent_ad(request, id):
 
 @user_passes_test(check_user, login_url='/signInLandlord')
 def edit_whole(request, id):
-    PUB_KEY = settings.MAPBOX_PUBLIC_KEY
     if request.user.is_authenticated:
         try:
             nrh_obj = NewRentalHouse.objects.get(pk=id)
@@ -416,6 +415,7 @@ def landlordViewRentAds(request):
         return render(request, 'renting/landlord_view_rent_ads.html', locals())
 
 # landlord delete rent ad
+@user_passes_test(check_user, login_url='/signInLandlord')
 def delete_rent_ad(request, id):
     product = get_object_or_404(NewRentalHouse, pk=id)
     house_list = NewRentalHouse.objects.filter(user=request.user).order_by('-date_registered')
@@ -423,6 +423,7 @@ def delete_rent_ad(request, id):
         product.delete()
         return redirect('renting:landlordViewRentAds')
     return render(request, 'renting/delete_form.html', locals())
+
 
 # the page where the landlord can see his own house details.
 @user_passes_test(check_user, login_url='/signInLandlord')

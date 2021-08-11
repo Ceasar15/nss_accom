@@ -29,6 +29,6 @@ urlpatterns = [
     path('landlordProfile/<int:id>', rt.landlordProfile, name='landlordProfile'),
     path('student_payment/', rt.student_payment, name="student_payment"),
     path('staff_payment/', rt.staff_payment, name="staff_payment"),
-
+    path('landlordViewAdsOfOtherLandlords/', rt.landlordViewAdsOfOtherLandlords, name='landlordViewAdsOfOtherLandlords')
 
 ]

@@ -7,9 +7,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import user_passes_test
 from django.utils import timezone
 
-from django.db.models.signals import post_save
 from notifications.signals import notify
-
 
 from .forms import NewStudentForm, PostAnnoumcementForm, NewVisitorForm, UpdateVisitorForm
 from .models import NewStudent, NewVisitor, PostAnnouncement
@@ -112,7 +110,6 @@ def staff_addNewVisitor(request):
     return render(request, 'staff/add_new_visitor.html', context)
 
 
-
 @user_passes_test(check_user, login_url='/loginStaff')
 def list_viewVisitor(request):
     dataset = NewVisitor.objects.all()
@@ -122,20 +119,14 @@ def list_viewVisitor(request):
     return render(request, 'staff/list_visitor.html', context)
 
 
-
 @user_passes_test(check_user, login_url='/loginStaff')
 def detail_viewVisitor(request, vistor_id):
-
     data = NewVisitor.objects.all()
     print(data)
-    
     context = {
         'data': data
     }
-
     return render(request, 'staff/detail_visitor.html', context)
-
-
 
 @user_passes_test(check_user, login_url='/loginStaff')
 def update_viewVisitor(request, vistoor_id):
@@ -182,7 +173,6 @@ def staffPostAnnouncement(request):
             return redirect('staff:staffPostAnnouncement')
     context={
             'p_form': PostAnnoumcementForm()
-    
             }
     return render(request, 'staff/post_announcement.html', context)
 

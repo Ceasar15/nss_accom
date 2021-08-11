@@ -393,7 +393,6 @@ def studentViewRentAds(request):
     'profile': profile})
 
 
-
 # the page where a staff can view all rent ads.
 @user_passes_test(check_staff_user, login_url='/loginStaff')
 def staffViewRentAds(request):
@@ -596,19 +595,13 @@ def staffViewAdDetails(request, id):
 from users.forms import ProfileForm
 @user_passes_test(check_user, login_url='/signInLandlord')
 def landlordProfile(request, id):
-    
-    obj = User.objects.get(id = id)
-    ids = str(id)
-    profile_form = ProfileForm(request.POST or None, request.FILES, instance= obj)
 
-    print(profile_form)
-    print(id)
-    print(obj)
+    profile_form = ProfileForm(request.POST, request.FILES)
     
     if request.method == 'POST':
         if profile_form.is_valid():
             pro = profile_form.save(commit=False)
-            pro.nrh = 5
+            pro.user_id = request.user.id
             pro.save()
             messages.success(request, f'Your profile has been Updated!')
             return redirect('renting:landlordViewRentAds')
@@ -618,6 +611,31 @@ def landlordProfile(request, id):
         }
     return render(request, 'renting/landlord_profile.html', context)
 
+
+@user_passes_test(check_user, login_url='/signInLandlord')
+def update_landlordProfile(request, id):
+    profile = Profile.objects.get(user_id=request.user.id)
+    if request.method == 'GET':
+        context =  {
+            'profile': profile,
+            'profile_form': ProfileForm(instance=profile)
+        }
+        return render(request, 'renting/update_landlord_profile.html', context)
+
+    else:
+        profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if profile_form.is_valid():
+            pro = profile_form.save(commit=False)
+            pro.user_id = request.user.id
+            pro.save()
+            messages.success(request, f'Your profile has been Updated!')
+            return redirect('renting:update_profile')
+
+        context =  {
+            'profile': profile,
+            'profile_form': profile_form
+            }
+        return render(request, 'renting/update_landlord_profile.html', context)
 
 
 # Payment Process for Student
@@ -662,12 +680,10 @@ def staff_payment(request):
         return render(request, "renting/staff_payment.html", context)
 
 
-
-
 # landlord view ads from other landlords.
 @user_passes_test(check_user, login_url='/signInLandlord')
 def landlordViewAdsOfOtherLandlords(request):
-    f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())
+    f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.exclude(user_id=request.user))
     for house in f.qs:
         profile = Profile.objects.get(user_id=house.user_id)
 

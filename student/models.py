@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -29,6 +30,7 @@ class NewComplaint(models.Model):
     date_submitted = models.DateTimeField(default=timezone.now)
     complaint_status = models.CharField(max_length=20, choices=COMPLAINT_STATUS, default='PENDING')
     student_hall = models.CharField(max_length=50, default='No_Hall', null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
 
     class Meta:

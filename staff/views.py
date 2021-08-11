@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.http import request
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect	
@@ -5,6 +6,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages		
 from django.contrib.auth.decorators import user_passes_test
 from django.utils import timezone
+
+from notifications.signals import notify
 
 from .forms import NewStudentForm, PostAnnoumcementForm, NewVisitorForm, UpdateVisitorForm
 from .models import NewStudent, NewVisitor, PostAnnouncement
@@ -44,7 +47,6 @@ def loginStaff(request):
     context = {}
 
     return render(request, 'staff/login_staff.html', context)
-
 
 @user_passes_test(check_user, login_url='/loginStaff')
 def staffDashboard(request):
@@ -88,6 +90,25 @@ def staff_addNewStudent(request):
 
 
 @user_passes_test(check_user, login_url='/loginStaff')
+def update_viewStudent(request, id):
+    
+    obj = get_object_or_404(NewStudent, id=id)
+
+    form = NewStudentForm(request.POST or None, request.FILES or None, instance=obj)
+    print(form)
+
+    if form.is_valid():
+        form.save()
+        return redirect('staff:staffViewAllStudents')
+
+    context = {
+
+        'form': form
+   
+    }
+    return render(request, 'staff/update_visitor.html', context)
+
+@user_passes_test(check_user, login_url='/loginStaff')
 def staff_addNewVisitor(request):
     if request.method == 'POST':
         typed = Typed.objects.filter(user_id=request.user).first()
@@ -108,7 +129,6 @@ def staff_addNewVisitor(request):
     return render(request, 'staff/add_new_visitor.html', context)
 
 
-
 @user_passes_test(check_user, login_url='/loginStaff')
 def list_viewVisitor(request):
     dataset = NewVisitor.objects.all()
@@ -118,19 +138,14 @@ def list_viewVisitor(request):
     return render(request, 'staff/list_visitor.html', context)
 
 
-
 @user_passes_test(check_user, login_url='/loginStaff')
 def detail_viewVisitor(request, vistor_id):
-
     data = NewVisitor.objects.all()
     print(data)
-    
     context = {
         'data': data
     }
-
     return render(request, 'staff/detail_visitor.html', context)
-
 
 
 @user_passes_test(check_user, login_url='/loginStaff')
@@ -138,11 +153,11 @@ def update_viewVisitor(request, vistoor_id):
     
     obj = get_object_or_404(NewVisitor, vistor_id=vistoor_id)
 
-    form = NewVisitor(request.POST or None, instance= obj )
+    form = NewVisitorForm(request.POST or None, request.FILES or None, instance=obj )
 
     if form.is_valid():
         form.save()
-        return HttpResponseRedirect("/"+vistoor_id)
+        return redirect('staff:staffManageVisitors')
 
     context = {
 
@@ -151,6 +166,14 @@ def update_viewVisitor(request, vistoor_id):
     }
     return render(request, 'staff/update_visitor.html', context)
 
+# def my_handler(sender, instance, created, **kwargs):
+#     print(sender)
+#     typed = Typed.objects.filter(user_id=request.user).first()
+#     user = User.objects.get(hall=typed.student_hall)
+#     print(user)
+#     notify.send(user, recipient=user, verb='new announcement posted')
+
+# post_save.connect(my_handler, sender=PostAnnouncement)
 
 
 @user_passes_test(check_user, login_url='/loginStaff')
@@ -162,18 +185,20 @@ def staffPostAnnouncement(request):
             obj.annou_user = request.user
             obj.save()
             messages.success(request, f'Your Announcement has been Posted Successfully')
-            
+            typed = Typed.objects.filter(user_id=request.user).first()
+            user_list = []
+            user_list = PostAnnouncement.objects.filter(hall=typed.student_hall)
+            print(user_list)
+            notify.send(request.user, recipient=user_list, verb='new announcement posted')
             return redirect('staff:staffPostAnnouncement')
     context={
             'p_form': PostAnnoumcementForm()
-    
             }
     return render(request, 'staff/post_announcement.html', context)
 
 
 @user_passes_test(check_user, login_url='/loginStaff')
 def updateVisitorStatus(request):
-    # user = request.newvisitor
     form = UpdateVisitorForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():

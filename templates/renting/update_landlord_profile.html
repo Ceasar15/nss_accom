@@ -1,0 +1,8 @@
+<p>
+    <h3>Edit Profile</h3>
+            <form method="POST" action="{% url 'renting:update_profile' user.id %}" enctype="multipart/form-data">
+                {{ profile_form.as_p }}
+                {% csrf_token %}
+                <input type="submit" class="button edit" value="Edit">
+            </form>
+</p>

@@ -867,6 +867,9 @@ button:focus {
 .input-item-name.ltn__custom-icon::before {
   content: "\f007"; }
 
+  /* .input-item-password.ltn__custom-icon::before {
+    content: "\f007"; }
+   */
 .input-item-email.ltn__custom-icon::before {
   content: "\f0e0"; }
 
@@ -4570,6 +4573,7 @@ ul.wp-block-latest-posts.is-grid.alignwide {
   .mega-menu-parent {
     position: inherit !important; } }
 
+
 /* Menu Icon */
 .menu-icon > a {
   position: relative; }
@@ -4583,7 +4587,8 @@ ul.wp-block-latest-posts.is-grid.alignwide {
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     font-family: 'Font Awesome\ 5 Free';
-    font-weight: 900; }
+    font-weight: 900; } 
+
 
 /* Menu Item Badge */
 .menu-item-badge {
@@ -4625,6 +4630,8 @@ ul.wp-block-latest-posts.is-grid.alignwide {
 .menu-product-item:hover {
   -webkit-box-shadow: var(--ltn__box-shadow-1);
   box-shadow: var(--ltn__box-shadow-1); }
+
+
 
 /* ----------------------------------------------
     Header Options

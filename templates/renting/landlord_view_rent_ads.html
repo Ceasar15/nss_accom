@@ -86,7 +86,7 @@
                                         </li>
 
                                         <li>
-                                            <a href="{% url 'renting:landlordViewRentAds' %}">View rent ads</a>
+                                            <a href="{% url 'renting:landlordViewRentAds' %}">View your rent ads</a>
                                         </li>
 
                                         {% if user.is_authenticated %}	
@@ -143,22 +143,53 @@
                             
                         </ul>
                     </div>
-                    <div class="tab-content">
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+                        {% endfor %}
+                    {% endif %}
+
+                    <div class="tab-content" style="overflow-x: hidden;">
                         <div class="tab-pane fade active show" id="liton_product_grid">
                             <div class="ltn__product-tab-content-inner ltn__product-grid-view">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <!-- Search Widget -->
-                                        <div class="ltn__search-widget mb-30">
-                                           <!-- <form action="#">
-                                                <input type="text" name="search" placeholder="Search your keyword...">
-                                                <button type="submit"><i class="fas fa-search"></i></button>
-                                            </form> -->
+                                
+                                <form method="get" action="{% url 'renting:landlordViewRentAds' %}">
+                                    {% csrf_token %}
+
+                                    <div class="row" style="display: flex;">
+
+                                        <div class="col-md-6" >
+                                            <div class="ltn__search-widget mb-30">
+                                                    <input type="text" value="" id="id_city" name="city" placeholder="Search by city, area or region..." style="width: 300px">
+                                                    <button type="submit" style="height: 59.5px; position:relative; left: -5px; bottom: 0.5px;"><i class="fas fa-search"></i></button>
+                                            </div>
                                         </div>
+
+
+                                        <div class="col-md-6" style="position: relative; right: 200px">
+                                            <!-- Search Widget Search by area or city -->
+                                            <div class="ltn__search-widget mb-30">
+                                                    <input type="number" value="" name="rent__gt" id="id_rent__gt" placeholder="Search by minimum price..." style="width: 300px; height: 60px">
+                                                    <button type="submit" style="height: 60.5px; position:relative; left: -5px; bottom: 0.4px;"><i class="fas fa-search"></i></button>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-6" style="margin-left: 800px; position: relative; bottom: 118px">
+                                            <!-- Search Widget Search by area or city -->
+                                            <div class="ltn__search-widget mb-30">
+                                                    <input type="number" value="" name="rent__lt" id="id_rent__lt" placeholder="Search by maximum price..." style="width: 300px; height: 60px">
+                                                    <button type="submit" style="height: 60.5px; position:relative; left: -5px; bottom: 0.4px;"><i class="fas fa-search"></i></button>
+                                            </div>
+                                        </div>
+
                                     </div>
 
+                                </form>
 
 
+
+                                    <div class="row" style="position: relative; bottom: 100px">
                                     <!-- ltn__product-item 1-->
                                     {% if house_list %}
                                         {% for house in house_list %}
@@ -227,14 +258,14 @@
                                             </div>
                                             <div class="product-info-bottom">
                                                 <div class="product-price">
-                                                    <span>GHc{{house.rent}}.00<label>/Month</label></span>
+                                                    <span>GHc {{house.rent}}.00<label>/Month</label></span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                         {% endfor %}
                                     {% else %}
-                                    <div class="box column is-full resul-txt">Sorry..!! You don't have any ads..<a class="button is-primary" href="{% url 'renting:post_rent_ad' %}">Post Ad</a></div>
+                                    <div class="box column is-full resul-txt">Sorry..!! You don't have any ads..<a class="button is-primary" href="#">Post Ad</a></div>
                                     {% endif %}
                                     <!-- end of ltn_product item 1 -->
 
@@ -265,13 +296,13 @@
             <div class="row">
                 <div class="col-lg-12">
                 <div class="call-to-action-inner call-to-action-inner-6 ltn__secondary-bg text-center---">
-                       <a href="{% url 'renting:postRentAdds' %}"><div class="coll-to-info text-color-white">
-                            <h1>Click here to post an Ad of your available Apartment</h1>
+                       <a href="{% url 'renting:landlordViewAdsOfOtherLandlords' %}"><div class="coll-to-info text-color-white">
+                            <h1>Click here to see ads posted by other landlords</h1>
                             <p>We can help you get Tenants for your Apartment</p>
                         </div></a>
-                        <!-- <div class="btn-wrapper">
-                            <a class="btn btn-effect-3 btn-white" href="contact.html">Explore Properties <i class="icon-next"></i></a>
-                        </div> -->
+                        <div class="btn-wrapper">
+                            <a class="btn btn-effect-3 btn-white" href="{% url 'renting:landlordViewRentAds' %}">Explore your available rent ads <i class="icon-next"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>

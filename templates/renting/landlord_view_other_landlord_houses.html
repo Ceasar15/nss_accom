@@ -71,49 +71,41 @@
                             <nav>
                                 <div class="ltn__main-menu">
                                     <ul style="float: right;">
-                                        <li class="menu-icon"><a href="#">Complaints</a>
-                                            <ul>
-                                                <li>
-                                                    <a href="{% url 'student:studentSubmitComplaint' %}">Submit complaint</a></li>
-                                                </li>
-
-                                                <li>
-                                                    <a href="{% url 'student:studentViewAllComplaints' %}">View all complaints</a></li>
-                                                </li>
-
-                                            </ul>
+                                        <li>
+                                            <a href="#">Home</a>
                                         </li>
 
-
-                                        <li class="menu-icon"><a href="#">Announcements</a>
-                                            <ul>
-                                                <li>
-                                                    <a href="{% url 'student:studentViewAnnouncements' %}">View all announcements</a></li>
-                                                </li>
-
-                                            </ul>
+                                        <li>
+                                            <a href="#">About</a>
+                                        </li>
+                                      
+                                        <li>
+                                            <a href="#">Contact</a>
                                         </li>
 
-
-                                        <li class="menu-icon"><a href="#">NSS Accommodation</a>
-                                            <ul>
-                                                <li>
-                                                    <a href="{% url 'renting:studentViewRentAds' %}">Access NSS Accommodation</a></li>
-                                                </li>
-
-                                            </ul>
+                                        <li>
+                                            <a href="{% url 'renting:postRentAdds' %}">Post rent ads</a>
                                         </li>
 
-
+                                        <li>
+                                            <a href="{% url 'renting:landlordViewRentAds' %}">View your rent ads</a>
+                                        </li>
 
                                         {% if user.is_authenticated %}	
-                                        <li>
-                                            <a href="#">{{ user.first_name }}</a></li>
+                                        <li class="menu-icon"><a href="{% url 'renting:landlordProfile' user.id %}">{{ user.first_name }}</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'renting:landlordProfile' user.id %}">Profile</a>
+                                                </li>
+                                            </ul>
                                             {% else %}
                                         </li>
+
                                         <li>
-                                            <a href="{% url 'student:loginStudent' %}">Login</a></li>
+                                            <a href="{% url 'renting:signInLandlord' %}">Login</a>
+                                        </li>
                                         {% endif %}
+
 
                                         <li class="btn-wrapper animated">
                                             <a href="{% url 'logout' %}" class="theme-btn-1 btn btn-effect-1" style="height:60px; width:100px;"  >Sign Out</a>
@@ -141,7 +133,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ltn__shop-options">
-                        <h1>APARTMENTS AVAILABLE FOR RENT</h1>
+                        <h1>ADS POSTED BY OTHER LANDLORDS</h1>
                         <ul>
                             <li>
                                 <div class="ltn__grid-list-tab-menu ">
@@ -164,12 +156,13 @@
                         </ul>
                     </div>
 
+                    
 
                     <div class="tab-content" style="overflow-x: hidden;">
                         <div class="tab-pane fade active show" id="liton_product_grid">
                             <div class="ltn__product-tab-content-inner ltn__product-grid-view">
 
-                                <form method="get" action="{% url 'renting:studentViewRentAds' %}">
+                                <form method="get" action="{% url 'renting:landlordViewRentAds' %}">
                                     {% csrf_token %}
 
                                     <div class="row" style="display: flex;">
@@ -206,7 +199,7 @@
 
 
 
-                                    <div class="row" style="position: relative; bottom: 60px" >
+                                    <div class="row" style="position: relative; bottom: 100px" >
                                     <!-- ltn__product-item 1 -->
                                     {% if filter %}
                                         {% for house in filter.qs %}
@@ -294,156 +287,7 @@
 
    
 
-    <!-- Quotes area start -->
-    <!-- IMAGE SLIDER AREA START (img-slider-3) -->
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="cursor: pointer; margin-top: 100px; margin-bottom: 170px;" >
-        <h4 class="title-2" style="margin-left: 180px; margin-top: 30px">People like you who found accommodation using our application:</h4>
-
-        <div class="carousel-inner" style="margin-top: 50px; height: 400px; width: 1000px; margin-left: 180px; background-color: #F0F0F0">
-          <div class="carousel-item active">
-            <div class="container" style="width: 1000px; height: 600px;">
-                <!--  <img class="d-block w-100" src="#" alt="First slide" > -->  
-
-                
-                <!-- the message div -->
-                <div style="margin-top: 30px; padding-right: 15px;">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
-                </div>
-
-                <!-- the name and image of the student div -->
-                <div style="display: flex;">
-                    <div style="margin-top: 80px; font-size: 18px;">
-                        ~ Ceasar Kwadwo, NSS Personnel
-                    </div>
     
-                    <div style="margin-left: 350px">
-                        <img class="d-block w-100" style="border-radius: 40%;" height="210px" src="https://us.123rf.com/450wm/dotshock/dotshock1501/dotshock150100348/36311061-happy-smiling-successful-african-american-businessman-in-a-suit-in-a-modern-bright-office-indoors.jpg?ver=6" alt="First slide" > 
-                    </div>
-    
-    
-                    </div>
-           </div>
-          </div>
-
-         
-          <div class="carousel-item">
-            <div class="container" style="width: 1000px; height: 600px;">
-             <!-- <img class="d-block w-100" src="#" alt="Second slide"> -->
-             <div class="container" style="width: 1000px; height: 600px;">
-                <!--  <img class="d-block w-100" src="#" alt="First slide" > -->  
-
-                
-                <!-- the message div -->
-                <div style="margin-top: 30px; padding-right: 15px;">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
-                </div>
-
-                <!-- the name and image of the student div -->
-                <div style="display: flex;">
-                    <div style="margin-top: 80px; font-size: 18px;">
-                        ~ Larry N. N. Williams, NSS Personnel
-                    </div>
-    
-                    <div style="margin-left: 300px">
-                        <img class="d-block w-100" style="border-radius: 40%;" height="210px" src="https://763276.smushcdn.com/1371423/wp-content/uploads/2019/12/2019-12-celebrating-new-job-scaled.jpg?lossy=1&strip=1&webp=1" alt="First slide" > 
-                    </div>
-    
-    
-                    </div>
-           </div>
-
-
-            </div>
-          </div>
-
-
-
-          <div class="carousel-item">
-            <div class="container" style="width: 1000px; height: 600px;">
-             <!-- <img class="d-block w-100" src="#" alt="Second slide"> -->
-             <div class="container" style="width: 1000px; height: 600px;">
-                <!--  <img class="d-block w-100" src="#" alt="First slide" > -->  
-
-                
-                <!-- the message div -->
-                <div style="margin-top: 30px; padding-right: 15px;">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
-                </div>
-
-                <!-- the name and image of the student div -->
-                <div style="display: flex;">
-                    <div style="margin-top: 80px; font-size: 18px;">
-                        ~ Marian Amoah, NSS Personnel
-                    </div>
-    
-                    <div style="margin-left: 350px">
-                        <img class="d-block w-100" style="border-radius: 40%;" height="210px" src="https://thumbs.dreamstime.com/b/friendly-young-black-woman-office-clothes-talking-mobile-phone-workplace-empty-space-friendly-young-black-woman-office-211278238.jpg" alt="First slide" > 
-                    </div>
-    
-    
-                    </div>
-           </div>
-
-
-            </div>
-          </div>
-
-
-
-          <div class="carousel-item">
-            <div class="container" style="width: 1000px; height: 600px;">
-             <!-- <img class="d-block w-100" src="#" alt="Second slide"> -->
-             <div class="container" style="width: 1000px; height: 600px;">
-                <!--  <img class="d-block w-100" src="#" alt="First slide" > -->  
-
-                
-                <!-- the message div -->
-                <div style="margin-top: 30px; padding-right: 15px;">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
-                </div>
-
-                <!-- the name and image of the student div -->
-                <div style="display: flex;">
-                <div style="margin-top: 80px; font-size: 18px;">
-                    ~ Dennis Peprah, NSS Personnel
-                </div>
-
-                <div style="margin-left: 350px">
-                    <img class="d-block w-100" style="border-radius: 40%;" height="210px" src="https://thumbs.dreamstime.com/b/happy-black-freelancer-man-celebrating-success-working-online-computer-african-guy-looking-laptop-screen-raising-hands-215843726.jpg" alt="First slide" > 
-                </div>
-
-
-                </div>
-
-
-
-           </div>
-
-
-            </div>
-          </div>
-          <!-- slider end -->
-
-
-
-          
-
-        </div>
-
-
-        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-            <i class="fas fa-arrow-left" aria-hidden="true" style="color: black;" ></i> 
-            <span class="sr-only">Previous</span>
-        </a>
-
-        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-            <i class="fas fa-arrow-right" aria-hidden="true" style="color: black;" ></i> 
-          <span class="sr-only">Next</span>
-        </a>
-    </div>
-
-    <!-- Quotes area end -->
-
 
 
 
@@ -457,12 +301,14 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="call-to-action-inner call-to-action-inner-6 ltn__secondary-bg text-center---">
+                        <a href="{% url 'renting:postRentAdds' %}">
                         <div class="coll-to-info text-color-white">
-                            <h1>Looking for a convenient and affordable accommodation?</h1>
+                            <h1>Click here to post your rent ads</h1>
                             <p>We can help you find one. Explore now!</p>
                         </div>
+                        </a>
                         <div class="btn-wrapper">
-                            <a class="btn btn-effect-3 btn-white" href="{% url 'renting:studentViewRentAds' %}">Explore available Rent Ads <i class="icon-next"></i></a>
+                            <a class="btn btn-effect-3 btn-white" href="{% url 'renting:landlordViewRentAds' %}">Explore your available rent ads <i class="icon-next"></i></a>
                         </div>
                     </div>
                 </div>
@@ -575,6 +421,9 @@
     </footer>
     <!-- FOOTER AREA END -->
 
+
+
+
     <!-- MODAL AREA START (Quick View Modal) -->
     <div class="ltn__modal-area ltn__quick-view-modal-area">
         <div class="modal fade" id="quick_view_modal" tabindex="-1">
@@ -612,50 +461,7 @@
                                                 <span>900.00gh</span>
                                                 <del>1000.00gh</del>
                                             </div>
-                                            <div class="modal-product-meta ltn__product-details-menu-1">
-                                                <!-- <ul> -->
-                                                   <!--  <li>
-                                                        <strong>Categories:</strong> 
-                                                        <span>
-                                                            <a href="#">Parts</a>
-                                                            <a href="#">Car</a>
-                                                            <a href="#">Seat</a>
-                                                            <a href="#">Cover</a>
-                                                        </span>
-                                                    </li> -->
-                                                <!-- </ul> -->
-                                            </div>
-                                            <div class="ltn__product-details-menu-2">
-                                                <!-- <ul> -->
-                                                    <!-- <li>
-                                                        <div class="cart-plus-minus">
-                                                            <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
-                                                        </div>
-                                                    </li> -->
-                                               <!--      <li>
-                                                        <a href="#" class="theme-btn-1 btn btn-effect-1" title="Add to Cart" data-toggle="modal" data-target="#add_to_cart_modal">
-                                                            <i class="fas fa-shopping-cart"></i>
-                                                            <span>ADD TO CART</span>
-                                                        </a>
-                                                    </li> -->
-                                                <!-- </ul> -->
-                                            </div>
-                                            <div class="ltn__product-details-menu-3">
-                                             <!--    <ul>
-                                                    <li>
-                                                        <a href="#" class="" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
-                                                            <i class="far fa-heart"></i>
-                                                            <span>Add to Wishlist</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="" title="Compare" data-toggle="modal" data-target="#quick_view_modal">
-                                                            <i class="fas fa-exchange-alt"></i>
-                                                            <span>Compare</span>
-                                                        </a>
-                                                    </li>
-                                                </ul> -->
-                                            </div>
+                                            
                                             <hr>
                                             <div class="ltn__social-media">
                                                 <ul>

@@ -1,0 +1,23 @@
+<div class="main">
+    <form action="{% url 'renting:edit_whole' nrh_obj.id %}" method="post" enctype="multipart/form-data">
+        {% if messages %}
+        {% for message in messages %}
+            {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+        {% endfor %}
+    {% endif %}
+        {% csrf_token %}
+        {{ form.as_p }}
+        {{ hform.as_p }}
+        {% if images_list %}
+            {% for img in images_list %}
+            <img id='{{img.id}}' class="img-ad-cls" src="{{ img.imagess.url }}">
+            {% endfor %}
+        {% endif %}
+        <span>Upload Images</span>
+        {{ img_form.imagess }} 
+        {{ aform.as_p }}
+        {{ rform.as_p }}
+        {{ ptform.as_p }}
+        <input type="submit" value="Edit Ad">
+    </form>
+</div>

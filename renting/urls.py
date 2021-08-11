@@ -19,6 +19,7 @@ urlpatterns = [
     path('postRentAdds/', rt.postRentAdds, name='postRentAdds'),
     path('landlord_register/', us.LandlordRegister, name='loginLandlord'),
     path('landlordViewRentAds', rt.landlordViewRentAds, name='landlordViewRentAds'),
+    path('delete_ad/<int:id>/', rt.delete_rent_ad, name ='landlord_delete_rent_ad' ),
     path('studentViewRentAds/', rt.studentViewRentAds, name='studentViewRentAds'),
     path('studentViewHouseDetails/<int:id>/', rt.studentViewHouseDetails, name='studentViewHouseDetails'),
     path('studentViewLandlordDetails/<int:id>/', rt.studentViewLandlordDetails, name='studentViewLandlordDetails'),
@@ -27,8 +28,9 @@ urlpatterns = [
     path('staffViewLandlordDetails/<int:id>/', rt.staffViewLandlordDetails, name='staffViewLandlordDetails'),
     path('landlordViewHouseDetails/<int:id>/', rt.landlordViewHouseDetails, name='landlordViewHouseDetails'),
     path('landlordProfile/<int:id>', rt.landlordProfile, name='landlordProfile'),
+    path('update_profile/<int:id>', rt.update_landlordProfile, name='update_profile'),
     path('student_payment/', rt.student_payment, name="student_payment"),
     path('staff_payment/', rt.staff_payment, name="staff_payment"),
-
+    path('landlordViewAdsOfOtherLandlords/', rt.landlordViewAdsOfOtherLandlords, name='landlordViewAdsOfOtherLandlords')
 
 ]

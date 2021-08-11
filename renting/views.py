@@ -6,8 +6,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib import messages
 from django.http import HttpResponseRedirect, JsonResponse
-from django.conf import settings
 from django.db.models import Q
+from django.urls.base import is_valid_path
 
 from .forms import ContactLandlordForm, RentalHouseForm, HouseHasForm, AmenitiesForm, RulesForm, PreferredTenantForm, HouseImagesForm, HouseImagesEditForm, RatingForm
 from .models import NewRentalHouse, HouseHas, Amenities, PreferredTenant, Rating, Rules, HouseImages, SearchFilter
@@ -89,22 +89,17 @@ def update_rent_ad(request, id):
         return HttpResponseRedirect(reverse('renting:edit_whole', args=(id,)))
 
 
+
 @user_passes_test(check_user, login_url='/signInLandlord')
 def edit_whole(request, id):
-    PUB_KEY = settings.MAPBOX_PUBLIC_KEY
-    if request.user.is_authenticated:
-        try:
-            nrh_obj = NewRentalHouse.objects.get(pk=id)
-            hh_fobj = HouseHas.objects.filter(nrh=nrh_obj)
-            a_fobj = Amenities.objects.filter(nrh=nrh_obj)
-            r_fobj = Rules.objects.filter(nrh=nrh_obj)
-            pt_fobj = PreferredTenant.objects.filter(nrh=nrh_obj)
-            img_qset = HouseImages.objects.filter(nrh=nrh_obj)
-
-        except:
-            nrh_obj = None
-            # print(nrh_obj)
+    nrh_obj = NewRentalHouse.objects.get(pk=id)
+    hh_fobj = HouseHas.objects.filter(nrh=nrh_obj)
+    a_fobj = Amenities.objects.filter(nrh=nrh_obj)
+    r_fobj = Rules.objects.filter(nrh=nrh_obj)
+    pt_fobj = PreferredTenant.objects.filter(nrh=nrh_obj)
+    img_qset = HouseImages.objects.filter(nrh=nrh_obj)
         
+    if request.method == 'GET':
         if nrh_obj:
             images_list = []
             form = RentalHouseForm(instance=nrh_obj)
@@ -133,13 +128,49 @@ def edit_whole(request, id):
                 ptform = PreferredTenantForm(instance=pt_obj)
             else:
                 ptform = PreferredTenantForm()
+        return render(request, 'renting/rental_ad_edit.html', locals())
+    
+    else:
+        form = RentalHouseForm(initial={'country':'Ghana'}, data=request.POST or None, instance=nrh_obj)
+        images_list = []
+        if img_qset:
+            for img_obj in img_qset:
+                images_list.append(img_obj)
+    
+        img_form = HouseImagesForm(request.POST or None, request.FILES or None, instance=img_obj)
+        hform = HouseHasForm(request.POST or None, instance=hh_fobj[0])
+        aform = AmenitiesForm(request.POST or None, instance=a_fobj[0])
+        rform = RulesForm(request.POST or None, instance=r_fobj[0])
+        ptform = PreferredTenantForm(request.POST or None, instance=pt_fobj[0])
 
-        return render(request, 'renting/rental_post_edit.html', locals())
+        if request.method == 'POST':
+    
+            if all((form.is_valid(), hform.is_valid(), img_form.is_valid(), aform.is_valid(), rform.is_valid(), ptform.is_valid())):
+                rh_obj = form.save(commit=False)
+                rh_obj.user = request.user
+                rh_obj.save()
+                nrh_obj = NewRentalHouse.objects.get(pk=rh_obj.id)
+                if img_form.is_valid():
+                    for img_file in request.FILES.getlist('imagess'):
+                        HouseImages.objects.create(imagess=img_file, nrh=nrh_obj)
+                    hs = hform.save(commit=False)
+                    hs.nrh = nrh_obj
+                    hs.save()
+                    amf = aform.save(commit=False)
+                    amf.nrh = nrh_obj
+                    amf.save()
+                    rf = rform.save(commit=False)
+                    rf.nrh = nrh_obj
+                    rf.save()
+                    pf = ptform.save(commit=False)
+                    pf.nrh = nrh_obj
+                    pf.save()
+                else:
+                    print(img_form.errors)
 
-    elif request.user.is_anonymous:
-        modl = 'true'
-        return render(request, 'renting/rental_post_edit.html', locals())
-
+                messages.success(request, f'Your Ad has been Updated Successfully')
+                return redirect('renting:landlordViewRentAds')
+    
 
 
 @user_passes_test(check_user, login_url='/signInLandlord')
@@ -393,7 +424,6 @@ def studentViewRentAds(request):
     'profile': profile})
 
 
-
 # the page where a staff can view all rent ads.
 @user_passes_test(check_staff_user, login_url='/loginStaff')
 def staffViewRentAds(request):
@@ -402,6 +432,8 @@ def staffViewRentAds(request):
         profile = Profile.objects.get(user_id=house.user_id)
     
     return render(request, 'renting/staff_view_rent_ads.html', {'filter': f, 'profile': profile})
+
+
 
 # the page where a landlord can view all of their posted ads.
 @user_passes_test(check_user, login_url='/signInLandlord')
@@ -413,6 +445,17 @@ def landlordViewRentAds(request):
     elif request.user.is_anonymous:
         modl='true'
         return render(request, 'renting/landlord_view_rent_ads.html', locals())
+
+# landlord delete rent ad
+@user_passes_test(check_user, login_url='/signInLandlord')
+def delete_rent_ad(request, id):
+    product = get_object_or_404(NewRentalHouse, pk=id)
+    house_list = NewRentalHouse.objects.filter(user=request.user).order_by('-date_registered')
+    if request.method == 'POST':
+        product.delete()
+        return redirect('renting:landlordViewRentAds')
+    return render(request, 'renting/delete_form.html', locals())
+
 
 # the page where the landlord can see his own house details.
 @user_passes_test(check_user, login_url='/signInLandlord')
@@ -592,19 +635,13 @@ def staffViewAdDetails(request, id):
 from users.forms import ProfileForm
 @user_passes_test(check_user, login_url='/signInLandlord')
 def landlordProfile(request, id):
-    
-    obj = User.objects.get(id = id)
-    ids = str(id)
-    profile_form = ProfileForm(request.POST or None, request.FILES, instance= obj)
 
-    print(profile_form)
-    print(id)
-    print(obj)
+    profile_form = ProfileForm(request.POST, request.FILES)
     
     if request.method == 'POST':
         if profile_form.is_valid():
             pro = profile_form.save(commit=False)
-            pro.nrh = 5
+            pro.user_id = request.user.id
             pro.save()
             messages.success(request, f'Your profile has been Updated!')
             return redirect('renting:landlordViewRentAds')
@@ -614,6 +651,31 @@ def landlordProfile(request, id):
         }
     return render(request, 'renting/landlord_profile.html', context)
 
+
+@user_passes_test(check_user, login_url='/signInLandlord')
+def update_landlordProfile(request, id):
+    profile = Profile.objects.get(user_id=request.user.id)
+    if request.method == 'GET':
+        context =  {
+            'profile': profile,
+            'profile_form': ProfileForm(instance=profile)
+        }
+        return render(request, 'renting/update_landlord_profile.html', context)
+
+    else:
+        profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if profile_form.is_valid():
+            pro = profile_form.save(commit=False)
+            pro.user_id = request.user.id
+            pro.save()
+            messages.success(request, f'Your profile has been Updated!')
+            return redirect('renting:landlordProfile', id=request.user.id)
+
+        context =  {
+            'profile': profile,
+            'profile_form': profile_form
+            }
+        return render(request, 'renting/update_landlord_profile.html', context)
 
 
 # Payment Process for Student
@@ -636,6 +698,8 @@ def student_payment(request):
         }
         return render(request, "renting/student_payment.html", context)
 
+
+
 # Process Payment for Staff
 def staff_payment(request):
     form = PaymentsForm(request.POST)
@@ -654,3 +718,13 @@ def staff_payment(request):
             'form': PaymentsForm(),
         }
         return render(request, "renting/staff_payment.html", context)
+
+
+# landlord view ads from other landlords.
+@user_passes_test(check_user, login_url='/signInLandlord')
+def landlordViewAdsOfOtherLandlords(request):
+    f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.exclude(user_id=request.user))
+    for house in f.qs:
+        profile = Profile.objects.get(user_id=house.user_id)
+
+    return render(request, "renting/landlord_view_other_landlord_houses.html", {'filter': f, 'profile': profile})

@@ -3,16 +3,15 @@
 <html class="no-js" lang="zxx">
 
 
-<!-- Mirrored from maelectrics.com/tf/html/quarter-preview/quarter/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Jul 2021 16:54:40 GMT -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Login page</title>
+    <title>Student Sign Up</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-   <!-- Place favicon.png in the root directory -->
+    <!-- Place favicon.png in the root directory -->
    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon" />
    <!-- Font Icons css -->
    <link rel="stylesheet" href="{% static 'css/font-icons.css' %}">
@@ -46,12 +45,6 @@
                             <div class="ltn__top-bar-menu">
                                 <ul>
                                     <li class="d-none">
-                                       
-                                    </li>
-                                    <li>
-                                      
-                                    </li>
-                                    <li>
                                      
                                     </li>
                                 </ul>
@@ -63,6 +56,7 @@
         </div>
         <!-- ltn__header-top-area end -->
         
+        
         <!-- ltn__header-middle-area start -->
         <div class="ltn__header-middle-area ltn__header-sticky ltn__sticky-bg-white">
             <div class="container">
@@ -72,28 +66,28 @@
                             <div class="site-logo" style="height: 85px">
                                 <a href="{% url 'tracking:index' %}"><img src="{% static 'img/ug_logo.png' %}" alt="Logo" height="80px" ></a> 
                             </div>
+                           
+                        </div>
                     </div>
                     <div class="col header-menu-column">
                         <div class="header-menu d-none d-xl-block">
                             <nav>
                                 <div class="ltn__main-menu">
                                     <ul style="float: right;">
-                                        <li><a href="index.html">Home</a>
-                                         
+                                        <li class="#"><a href="index.html">Home</a>
+                                          
                                         </li>
-                                        <li><a href="#">About</a>
-                                            <li><a href="contact.html">Contact</a></li>
-                                            <ul>
-                                               
-
+                                        <li class="#"><a href="#">About</a>
+                                            
                                         </li>
-                                     
+                                       
+                                        <li><a href="{% url 'users:contact' %}">Contact</a></li>
                                     </ul>
                                 </div>
                             </nav>
                         </div>
                     </div>
-                   
+                  
                 </div>
             </div>
         </div>
@@ -103,107 +97,192 @@
 
    
 
-    <div class="ltn__utilize-overlay"></div>
-
-   
-    </div>
+    <!-- BREADCRUMB AREA START -->
+    <div class="ltn__breadcrumb-area text-left bg-overlay-white-30 bg-image "  data-bg="img/bg/14.jpg">
+     
+    
     <!-- BREADCRUMB AREA END -->
 
-    <!-- LOGIN AREA START -->
-    <div class="ltn__slider-area ltn__slider-3  section-bg-1"  data-bg="img/bg/14.jpg">
-        <div style="position: relative; top: 50px;" class="container">
+    
+    
+    <!-- CONTACT MESSAGE AREA START -->
+    <div class="ltn__contact-message-area mb-120 mb--100">
+        <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="section-title-area text-center">
-                        <h1 class="section-title">SIGN UP </h1>
-                        <p>Sign up to create your account now</p>
-                    </div>
-                </div>
-            </div>
+                    <div class="ltn__form-box contact-form-box box-shadow white-bg">
+                        <div class="row" style="margin-left: 2px">
+                            <h4 class="title-2">Student Sign Up !</h4>  
+                            <i class="fas fa-user-graduate fa-2x" style="margin-left: 40px; position: relative; bottom: 8px;"></i>  
 
-            <div style="position: relative; bottom:70px; margin-left: 230px;" class="row">
-                <div class="col-lg-9">
-                    <div class="account-login-inner">
-                        <form method="post" class="ltn__form-box contact-form-box">
+                        </div>
+                        
+                        <form id="contact-form"  method="post">
                             {% csrf_token %}
 
-                            <div style="display: flex;">
-                            <input type="text" id="id_first_name" name="first_name" placeholder="FIRST NAME" required style="border-color: grey; border-width: 1px;" >
-                            <input type="text" id="id_last_name" name="last_name" placeholder="LAST NAME" required style="border-color: grey; border-width: 1px;">
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-name ltn__custom-icon">
+                                         <input type="text" id="id_first_name" name="first_name" placeholder="FIRST NAME" required >
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-name ltn__custom-icon">
+                                         <input type="text" id="id_last_name" name="last_name" placeholder="LAST NAME" required>
+                                    </div>
+                                </div>            
+                                
+                                
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-name ltn__custom-icon">
+                                        <input type="text" id="id_username" name="username" placeholder="USERNAME(STUDENT ID)" required autofocus="" >
+                                    </div>
+                                </div> 
+
+
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-email ltn__custom-icon">
+                                        <input type="text" id="id_email" name="email" placeholder="EMAIL" required >
+                                    </div>
+                                </div> 
+
+
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-email ltn__custom-icon">
+                                        <input type="password" id="id_password1" name="password1" autocomplete="new-password" placeholder="PASSWORD" required >
+                                    </div>
+                                </div> 
+
+
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-email ltn__custom-icon">
+                                        <input type="password" id="id_password2" name="password2" autocomplete="new-password" placeholder="Confirm PASSWORD" required >
+                                    </div>
+                                </div> 
+
+
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-phone ltn__custom-icon">
+                                        <input type="text" id="id_phone_no" name="phone_no" placeholder="PHONE NUMBER" required >
+                                    </div>
+                                </div> 
+
+
+                                <div class="col-md-6">
+                                    <div class="input-item">
+                                        <select class="nice-select" name="user_group" id="id_user_group" required>
+                                            <option value="student">Student</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+
+                                <!-- <div class="col-md-6">
+                                    <div class="input-item">
+                                        <select class="nice-select" name="student_hall" id="id_student_hall" required>
+                                            <option value="akuafo_main">Akuafo Main Hall</option>
+                                            <option value="akuafo_annexA">Akuafo Hall Annex A</option>
+                                            <option value="akuafo_annexB">Akuafo Hall Annex B</option>
+                                            <option value="akuafo_annexC">Akuafo Hall Annex C</option>
+                                            <option value="akuafo_annexD">Akuafo Hall Annex D</option>
+                                            <option value="bani_blockA">Bani Hostel Block A</option>
+                                            <option value="bani_blockB">Bani Hostel Block B</option>
+                                            <option value="bani_blockC">Bani Hostel Block C</option>
+                                            <option value="bani_blockD">Bani Hostel Block D</option>
+                                            <option value="akuafo_annexD">Akuafo Annex D</option>
+                                            <option value="akuafo_main">Akuafo Main Hall</option>
+                                            <option value="akuafo_annexA">Akuafo Annex A</option>
+                                            <option value="akuafo_annexB">Akuafo Annex B</option>
+                                            <option value="akuafo_annexC">Akuafo Annex C</option>
+                                            <option value="akuafo_annexD">Akuafo Annex D</option>
+                                            <option value="akuafo_main">Akuafo Main Hall</option>
+                                            <option value="akuafo_annexA">Akuafo Annex A</option>
+                                            <option value="akuafo_annexB">Akuafo Annex B</option>
+                                            <option value="akuafo_annexC">Akuafo Annex C</option>
+                                            <option value="akuafo_annexD">Akuafo Annex D</option>
+                                            <option value="akuafo_main">Akuafo Main Hall</option>
+                                            <option value="akuafo_annexA">Akuafo Annex A</option>
+                                            <option value="akuafo_annexB">Akuafo Annex B</option>
+                                            <option value="akuafo_annexC">Akuafo Annex C</option>
+                                            <option value="akuafo_annexD">Akuafo Annex D</option>
+                                        </select>
+                                    </div>
+                                </div> -->
+
+
+                                <!-- Start of new select hall with datalist-->
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-email ltn__custom-icon">
+                                        <input list="student_hall" name="student_hall" id="id_student_hall" required class="nice-select" placeholder="SELECT YOUR HALL" />
+                                            <datalist id="student_hall" >
+                                                <option value="Akuafo Main Hall">Akuafo Main Hall</option>
+                                                <option value="Akuafo Hall Annex A">Akuafo Hall Annex A</option>
+                                                <option value="Akuafo Hall Annex B">Akuafo Hall Annex B</option>
+                                                <option value="akuafo_annexC">Akuafo Hall Annex C</option>
+                                                <option value="akuafo_annexD">Akuafo Hall Annex D</option>
+                                                <option value="bani_blockA">Bani Hostel Block A</option>
+                                                <option value="bani_blockB">Bani Hostel Block B</option>
+                                                <option value="bani_blockC">Bani Hostel Block C</option>
+                                                <option value="bani_blockD">Bani Hostel Block D</option>
+                                                <option value="akuafo_main">Akuafo Main Hall</option>
+                                                <option value="akuafo_annexA">Akuafo Hall Annex A</option>
+                                                <option value="akuafo_annexB">Akuafo Hall Annex B</option>
+                                                <option value="akuafo_annexC">Akuafo Hall Annex C</option>
+                                                <option value="akuafo_annexD">Akuafo Hall Annex D</option>
+                                                <option value="bani_blockA">Bani Hostel Block A</option>
+                                                <option value="bani_blockB">Bani Hostel Block B</option>
+                                                <option value="bani_blockC">Bani Hostel Block C</option>
+                                                <option value="bani_blockD">Bani Hostel Block D</option>
+                                            </datalist>
+
+                                    </div>
+
+                                </div>
+                                <!--End of new select hall with datalist-->
+
+
+
+
+
+
+
+
+
                             </div>
 
-                            <div style="display: flex;">
-                            <input type="text" id="id_username" name="username" placeholder="USERNAME(STUDENT ID)" required autofocus="" style="border-color: grey; border-width: 1px;">
-                            <input type="text" id="id_email" name="email" placeholder="EMAIL" required style="border-color: grey; border-width: 1px;">
-                            
+
+
+
+
+
+
+                            <div class="btn-wrapper mt-0">
+                                <button type="submit" value="Sign Up" id="btn" class="btn theme-btn-1 btn-effect-1 text-uppercase" style="width: 1080px;"> Sign Up </button>
                             </div>
 
-                            <div style="display: flex;">
-                            <input type="password" id="id_password1" name="password1" autocomplete="new-password" placeholder="PASSWORD" required style="border-color: grey; border-width: 1px;">
-                            <input type="password" id="id_password2" name="password2" autocomplete="new-password" placeholder="Confirm PASSWORD" required style="border-color: grey; border-width: 1px;">
-                            </div>
-
-                            <div style="display: flex;">
-                            <input type="text" id="id_phone_no" name="phone_no" placeholder="PHONE NUMBER" required style="border-color: grey; border-width: 1px; width:300px;">
-                            <select name="user_group" id="id_user_group" style="width: 300px; height: 65px;">
-                                <option value="student">Student</option>
-                               
-                            </select>
-                            </div>
-
-
-                            <div class="btn-wrapper mt-0" style="display: flex;">  
-                                <select name="student_hall" id="id_student_hall" style="width: 300px; height: 65px;">
-                                    <option value="akuafo_main">Akuafo Main Hall</option>
-                                    <option value="akuafo_annexA">Akuafo Hall Annex A</option>
-                                    <option value="akuafo_annexB">Akuafo Hall Annex B</option>
-                                    <option value="akuafo_annexC">Akuafo Hall Annex C</option>
-                                    <option value="akuafo_annexD">Akuafo Hall Annex D</option>
-                                    <option value="bani_blockA">Bani Hostel Block A</option>
-                                    <option value="bani_blockB">Bani Hostel Block B</option>
-                                    <option value="bani_blockC">Bani Hostel Block C</option>
-                                    <option value="bani_blockD">Bani Hostel Block D</option>
-                                    <option value="akuafo_annexD">Akuafo Annex D</option>
-                                    <option value="akuafo_main">Akuafo Main Hall</option>
-                                    <option value="akuafo_annexA">Akuafo Annex A</option>
-                                    <option value="akuafo_annexB">Akuafo Annex B</option>
-                                    <option value="akuafo_annexC">Akuafo Annex C</option>
-                                    <option value="akuafo_annexD">Akuafo Annex D</option>
-                                    <option value="akuafo_main">Akuafo Main Hall</option>
-                                    <option value="akuafo_annexA">Akuafo Annex A</option>
-                                    <option value="akuafo_annexB">Akuafo Annex B</option>
-                                    <option value="akuafo_annexC">Akuafo Annex C</option>
-                                    <option value="akuafo_annexD">Akuafo Annex D</option>
-                                    <option value="akuafo_main">Akuafo Main Hall</option>
-                                    <option value="akuafo_annexA">Akuafo Annex A</option>
-                                    <option value="akuafo_annexB">Akuafo Annex B</option>
-                                    <option value="akuafo_annexC">Akuafo Annex C</option>
-                                    <option value="akuafo_annexD">Akuafo Annex D</option>
-
-
-                                </select>
-
-                                <input type="submit" value="Sign Up" class="theme-btn-1 btn btn-block" style="width:300px;"> 
-                            </div>
+                                <!--  <button id="btn" class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Submit Complaint</button> -->
+ 
 
                             <div class="go-to-btn mt-20">
-                                <a href="{% url 'student:loginStudent' %}" style="margin-left: 360px;" ><small>Already have an account? Log in here</small></a>
+                                <a href="{% url 'student:loginStudent' %}" ><small>Already have an account? Log in here</small></a>
                             </div> 
 
-                           
-                           
-                            
                         </form>
                     </div>
                 </div>
-              
             </div>
         </div>
-    
-    
+    </div>
+    <!-- CONTACT MESSAGE AREA END -->
 
-    <!-- FOOTER AREA START -->
-    <footer class="ltn__footer-area" style="position: relative; top: 300px;">
+   
+
+   <!-- FOOTER AREA START -->
+    <footer style="position: relative; top: 300px;" class="ltn__footer-area  ">
         <div class="footer-top-area  section-bg-2 plr--5">
             <div class="container-fluid">
                 <div class="row">
@@ -211,7 +290,7 @@
                         <div class="footer-widget footer-about-widget">
                             <div class="footer-logo">
                                 <div class="site-logo">
-                                    <a href="{% url 'tracking:index' %}"></a><img src="{% static 'img/logo.png' %}" alt="Logo"></a>
+                                    <img src="img/logo-2.png" alt="Logo">
                                 </div>
                             </div>
                             <p>This is a system that helps hall assistants to keep track of students in the hall, also enable students submit complain and help NSS Personnels find accommodation with ease.</p>
@@ -258,7 +337,7 @@
                             <h4 class="footer-title">Institution</h4>
                             <div class="footer-menu">
                                 <ul>
-                                    <li><a href="about.html">About</a></li>
+                                    <li><a href="#">About</a></li>
                                     <li><a href="contact.html">Contact us</a></li>
                                 </ul>
                             </div>
@@ -276,7 +355,7 @@
                             </div>
                         </div>
                     </div>
-                  
+                   
                 </div>
             </div>
         </div>
@@ -304,15 +383,16 @@
     </div>
     <!-- FOOTER AREA END -->
 
-</div>
 <!-- Body main wrapper end -->
 
     <!-- All JS Plugins -->
     <script src="{% static 'js/plugins.js' %}"></script>
     <!-- Main JS -->
     <script src="{% static 'js/main.js' %}"></script>
+    <!-- Custom javascript -->
+    <script src="{% static 'js/custom.js' %}"></script>
   
 </body>
 
-<!-- Mirrored from maelectrics.com/tf/html/quarter-preview/quarter/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Jul 2021 16:54:40 GMT -->
 </html>
+

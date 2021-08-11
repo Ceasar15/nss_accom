@@ -86,7 +86,7 @@
                                         </li>
 
                                         <li>
-                                            <a href="{% url 'renting:landlordViewRentAds' %}">View rent ads</a>
+                                            <a href="{% url 'renting:landlordViewRentAds' %}">View your rent ads</a>
                                         </li>
 
                                         {% if user.is_authenticated %}	
@@ -255,7 +255,7 @@
                                             </div>
                                             <div class="product-info-bottom">
                                                 <div class="product-price">
-                                                    <span>GHc{{house.rent}}.00<label>/Month</label></span>
+                                                    <span>GHc {{house.rent}}.00<label>/Month</label></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -297,9 +297,9 @@
                             <h1>Click here to see ads posted by other landlords</h1>
                             <p>We can help you get Tenants for your Apartment</p>
                         </div></a>
-                        <!-- <div class="btn-wrapper">
-                            <a class="btn btn-effect-3 btn-white" href="contact.html">Explore Properties <i class="icon-next"></i></a>
-                        </div> -->
+                        <div class="btn-wrapper">
+                            <a class="btn btn-effect-3 btn-white" href="{% url 'renting:landlordViewRentAds' %}">Explore your available rent ads <i class="icon-next"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>

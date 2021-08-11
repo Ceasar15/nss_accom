@@ -3,7 +3,13 @@
         {% csrf_token %}
         {{ form.as_p }}
         {{ hform.as_p }}
-        {{ img_form.as_p }}
+        {% if images_list %}
+            {% for img in images_list %}
+            <img id='{{img.id}}' class="img-ad-cls" src="{{ img.imagess.url }}">
+            {% endfor %}
+        {% endif %}
+        <span>Upload Images</span>
+        {{ img_form.imagess }} 
         {{ aform.as_p }}
         {{ rform.as_p }}
         {{ ptform.as_p }}

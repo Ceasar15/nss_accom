@@ -422,7 +422,7 @@ def delete_rent_ad(request, id):
     if request.method == 'POST':
         product.delete()
         return redirect('renting:landlordViewRentAds')
-    return render(request, 'renting/landlord_view_rent_ads.html', locals())
+    return render(request, 'renting/delete_form.html', locals())
 
 # the page where the landlord can see his own house details.
 @user_passes_test(check_user, login_url='/signInLandlord')

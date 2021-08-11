@@ -19,6 +19,7 @@ urlpatterns = [
     path('postRentAdds/', rt.postRentAdds, name='postRentAdds'),
     path('landlord_register/', us.LandlordRegister, name='loginLandlord'),
     path('landlordViewRentAds', rt.landlordViewRentAds, name='landlordViewRentAds'),
+    path('delete_ad/<int:id>/', rt.delete_rent_ad, name ='landlord_delete_rent_ad' ),
     path('studentViewRentAds/', rt.studentViewRentAds, name='studentViewRentAds'),
     path('studentViewHouseDetails/<int:id>/', rt.studentViewHouseDetails, name='studentViewHouseDetails'),
     path('studentViewLandlordDetails/<int:id>/', rt.studentViewLandlordDetails, name='studentViewLandlordDetails'),

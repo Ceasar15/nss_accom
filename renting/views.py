@@ -356,6 +356,14 @@ def postRentAdds(request):
 
     return render(request, 'renting/post_rent_adds.html', locals())
 
+def delete_rent_ad(request, id):
+    context = {}
+    product = get_object_or_404(NewRentalHouse, pk=id)
+    if request.method == 'POST':
+        product.delete()
+        return redirect('renting:landlordViewRentAds')
+    return render(request, 'renting/landlord_view_rent_ads.html', context)
+
 
 
 # check if student is authenticated
@@ -629,7 +637,7 @@ def update_landlordProfile(request, id):
             pro.user_id = request.user.id
             pro.save()
             messages.success(request, f'Your profile has been Updated!')
-            return redirect('renting:landlordViewRentAds')
+            return redirect('renting:landlordProfile', id=request.user.id)
 
         context =  {
             'profile': profile,

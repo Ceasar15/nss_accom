@@ -106,30 +106,30 @@ def edit_whole(request, id):
         
         if nrh_obj:
             images_list = []
-            form = RentalHouseForm(instance=nrh_obj)
-            img_form = HouseImagesEditForm()
+            form = RentalHouseForm( request.POST or None ,instance=nrh_obj)
+            img_form = HouseImagesEditForm(request.POST or None , request.FILES)
 
             if img_qset:
                 for img_obj in img_qset:
                     images_list.append(img_obj)
             if hh_fobj:
                 hh_obj = hh_fobj[0]
-                hform = HouseHasForm(instance=hh_obj)
+                hform = HouseHasForm(request.POST or None ,instance=hh_obj)
             else:
                 hform = HouseHasForm()
             if a_fobj:
                 a_obj = a_fobj[0]
-                aform = AmenitiesForm(instance=a_obj)
+                aform = AmenitiesForm(request.POST or None ,instance=a_obj)
             else:
                 aform = AmenitiesForm()
             if r_fobj:
                 r_obj = r_fobj[0]
-                rform = RulesForm(instance=r_obj)
+                rform = RulesForm(request.POST or None ,instance=r_obj)
             else:
                 rform = RulesForm()
             if pt_fobj:
                 pt_obj = pt_fobj[0]
-                ptform = PreferredTenantForm(instance=pt_obj)
+                ptform = PreferredTenantForm(request.POST or None ,instance=pt_obj)
             else:
                 ptform = PreferredTenantForm()
 
@@ -138,6 +138,8 @@ def edit_whole(request, id):
     elif request.user.is_anonymous:
         modl = 'true'
         return render(request, 'renting/rental_ad_edit.html', locals())
+
+
 
 
 

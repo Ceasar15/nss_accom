@@ -137,11 +137,11 @@ def edit_whole(request, id):
             for img_obj in img_qset:
                 images_list.append(img_obj)
     
-        img_form = HouseImagesForm(request.POST, files=request.FILES)
-        hform = HouseHasForm(request.POST, instance=hh_fobj[0])
-        aform = AmenitiesForm(request.POST, instance=a_fobj[0])
-        rform = RulesForm(request.POST, instance=r_fobj[0])
-        ptform = PreferredTenantForm(request.POST, instance=pt_fobj[0])
+        img_form = HouseImagesForm(request.POST or None, request.FILES or None)
+        hform = HouseHasForm(request.POST or None, instance=hh_fobj[0])
+        aform = AmenitiesForm(request.POST or None, instance=a_fobj[0])
+        rform = RulesForm(request.POST or None, instance=r_fobj[0])
+        ptform = PreferredTenantForm(request.POST or None, instance=pt_fobj[0])
 
         if request.method == 'POST':
     

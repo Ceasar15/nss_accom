@@ -90,16 +90,15 @@ def staff_addNewStudent(request):
 
 
 @user_passes_test(check_user, login_url='/loginStaff')
-def update_viewVisitor(request, id):
+def update_viewStudent(request, id):
     
-    obj = get_object_or_404(NewVisitor, vistor_id=id)
+    obj = get_object_or_404(NewStudent, id=id)
 
-    form = NewVisitorForm(request.POST or None, instance=obj )
+    form = NewStudentForm(request.POST or None, instance=obj )
 
     if form.is_valid():
         form.save()
-        return redirect('staff:staffManageVisitors')
-        #return HttpResponseRedirect("/"+vistoor_id)
+        return redirect('staff:staffViewAllStudents')
 
     context = {
 

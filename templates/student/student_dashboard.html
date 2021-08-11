@@ -21,6 +21,17 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <!-- Responsive css -->
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+
+    <!-- For animation 
+    <link rel="stylesheet" href="font-awesome-animation.min.css">
+    -->
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+
+
+
 </head>
 
 <body>
@@ -178,21 +189,27 @@
                         </ul>
                     </div>
 
-                    <div class="tab-content">
-                        <div class="tab-pane fade active show" id="liton_product_grid">
-                            <div class="ltn__product-tab-content-inner ltn__product-grid-view">
-                                <div class="row">
-                                   
 
+                    
+
+                    
+                    <div class="tab-content" >
+                        <div class="tab-pane fade active show" id="liton_product_grid" >
+                            <div class="ltn__product-tab-content-inner ltn__product-grid-view" >
+                                <div class="row" >
+                                   
+                                    
                                     <!-- ltn__product-item -->
-                                    <div class="col-lg-4 col-sm-6 col-12" >
-                                        <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---" style="height: 350px;">
+                                    <div class="col-lg-4 col-sm-6 col-12 animate__animated animate__pulse " style="cursor: pointer;" >
+                                        <a href="{% url 'student:studentViewAllComplaints' %}">
+
+                                        <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---" style="height: 280px; background-color: #E8E8E8;">
                                           
                                             <div class="product-info">
-                                                <div class="product-badge">
+                                                <div class="product-badge" >
                                                     <i class="fas fa-edit fa-5x" style="margin-bottom: 30px;"></i>
                                                     <ul>
-                                                        <li class="sale-badg"><h4 style="color:#FF5A3C; ">Total Complaints:</h4> {{ total_complains }} </li>
+                                                        <li class="sale-badg" ><h4 style="color:#FF5A3C; ">Total Complaints:</h4><h2 style="color:#FF5A3C;"> {{ total_complains }} </h2></li>
                                                     </ul>
                                                     
                                                 </div>
@@ -200,19 +217,22 @@
                                             </div>
                                             
                                         </div>
+                                        </a>
                                     </div> <!-- ending of card -->
 
 
 
                                     <!-- ltn__product-item -->
-                                    <div class="col-lg-4 col-sm-6 col-12" >
-                                        <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---" style="height: 350px;">
+                                    <div class="col-lg-4 col-sm-6 col-12 animate__animated animate__pulse animate__delay-1s" style="cursor: pointer;" >
+                                        <a href="{% url 'student:studentViewAllComplaints' %}">
+
+                                        <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---" style="height: 280px; background-color: #E8E8E8;">
                                           
                                             <div class="product-info">
                                                 <div class="product-badge">
                                                     <i class="fas fa-check-double fa-5x" style="margin-bottom: 30px;"></i>
                                                     <ul>
-                                                        <li class="sale-badg"><h4 style="color:#FF5A3C; ">Resolved:</h4> {{ resolved }} </li>
+                                                        <li class="sale-badg"><h4 style="color:#FF5A3C; ">Resolved:</h4><h2 style="color:#FF5A3C;"> {{ resolved }} </h2></li>
                                                     </ul>
                                                     
                                                 </div>
@@ -220,19 +240,22 @@
                                             </div>
                                             
                                         </div>
+                                        </a>
                                     </div> <!-- ending of card -->
 
 
 
                                     <!-- ltn__product-item -->
-                                    <div class="col-lg-4 col-sm-6 col-12" >
-                                        <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---" style="height: 350px;">
+                                    <div class="col-lg-4 col-sm-6 col-12 animate__animated animate__pulse animate__delay-2s" style="cursor: pointer;" >
+                                        <a href="{% url 'student:studentViewAllComplaints' %}">
+
+                                        <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---" style="height: 280px; background-color: #E8E8E8;">
                                           
                                             <div class="product-info">
                                                 <div class="product-badge">
                                                     <i class="fas fa-spinner fa-5x" style="margin-bottom: 30px;"></i>
                                                     <ul>
-                                                        <li><h4 class="sale-badg" style="color:#FF5A3C;">Pending:</h4> {{ pending }} </li>
+                                                        <li><h4 class="sale-badg" style="color:#FF5A3C;">Pending:</h4><h2 style="color:#FF5A3C;"> {{ pending }} </h2></li>
                                                     </ul>
                                                     
                                                 </div>
@@ -240,19 +263,21 @@
                                             </div>
  
                                         </div>
+                                        </a>
                                     </div> <!-- ending of card -->
 
 
                                     
                                      <!-- ltn__product-item -->
-                                     <div class="col-lg-4 col-sm-6 col-12" >
-                                        <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---" style="height: 350px;">
+                                     <div class="col-lg-4 col-sm-6 col-12 animate__animated animate__pulse animate__delay-3s" style="cursor: pointer;" >
+                                        <a href="{% url 'student:studentViewAnnouncements' %}">
+                                        <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---" style="height: 280px; background-color: #E8E8E8;">
                                           
                                             <div class="product-info">
                                                 <div class="product-badge">
                                                     <i class="fas fa-bullhorn fa-5x" style="margin-bottom: 30px;"></i>
                                                     <ul>
-                                                        <li><h4 class="sale-badg" style="color:#FF5A3C;">Announcements:</h4> {{ pending }} </li>
+                                                        <li><h4 class="sale-badg" style="color:#FF5A3C;">Announcements:</h4><h2 style="color:#FF5A3C;"> {{ pending }} </h2> </li>
                                                     </ul>
                                                     
                                                 </div>
@@ -260,6 +285,7 @@
                                             </div>
  
                                         </div>
+                                        </a>
                                     </div> <!-- ending of card -->
 
 
@@ -270,6 +296,7 @@
                             </div>
                         </div>
                     </div>  
+                    
                 </div>
             </div>
         </div>

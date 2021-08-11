@@ -175,17 +175,16 @@ def staffPostAnnouncement(request):
             obj.save()
             messages.success(request, f'Your Announcement has been Posted Successfully')
             typed = Typed.objects.filter(user_id=request.user).first()
-            user = PostAnnouncement.objects.filter(hall=typed.student_hall)
-            print(user)
-            notify.send(request.user, recipient=request.user, verb='new announcement posted')
+            user_list = []
+            user_list = PostAnnouncement.objects.filter(hall=typed.student_hall)
+            print(user_list)
+            notify.send(request.user, recipient=user_list, verb='new announcement posted')
             return redirect('staff:staffPostAnnouncement')
     context={
             'p_form': PostAnnoumcementForm()
     
             }
     return render(request, 'staff/post_announcement.html', context)
-
-
 
 
 @user_passes_test(check_user, login_url='/loginStaff')

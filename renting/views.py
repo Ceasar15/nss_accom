@@ -169,7 +169,7 @@ def edit_whole(request, id):
                     print(img_form.errors)
 
                 messages.success(request, f'Your Ad has been Updated Successfully')
-                return redirect('renting:edit_whole', id=nrh_obj.id)
+                return redirect('renting:landlordViewRentAds')
     
 
 

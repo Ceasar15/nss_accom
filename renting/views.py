@@ -393,7 +393,6 @@ def studentViewRentAds(request):
     'profile': profile})
 
 
-
 # the page where a staff can view all rent ads.
 @user_passes_test(check_staff_user, login_url='/loginStaff')
 def staffViewRentAds(request):
@@ -667,7 +666,7 @@ def staff_payment(request):
 # landlord view ads from other landlords.
 @user_passes_test(check_user, login_url='/signInLandlord')
 def landlordViewAdsOfOtherLandlords(request):
-    f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())
+    f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.exclude(user_id=request.user))
     for house in f.qs:
         profile = Profile.objects.get(user_id=house.user_id)
 

@@ -216,7 +216,7 @@
 				{% endif %}
 			</div>
 		</div>
-		<form method="post" id='house_has_form' data-url="{% url 'renting:house_has' nrh_obj.id %}"> 
+		<form method="post" id='house_has_form' data-url="{% url 'renting:postRentAdds' nrh_obj.id %}"> 
 			{% csrf_token %}
 			<!-- First row HouseHas -->
 			<div class="columns is-half">

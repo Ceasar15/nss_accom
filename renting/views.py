@@ -133,11 +133,11 @@ def edit_whole(request, id):
             else:
                 ptform = PreferredTenantForm()
 
-        return render(request, 'renting/rental_post_edit.html', locals())
+        return render(request, 'renting/rental_ad_edit.html', locals())
 
     elif request.user.is_anonymous:
         modl = 'true'
-        return render(request, 'renting/rental_post_edit.html', locals())
+        return render(request, 'renting/rental_ad_edit.html', locals())
 
 
 

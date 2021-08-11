@@ -1,0 +1,12 @@
+<div class="main">
+    <form action="#" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {{ hform.as_p }}
+        {{ img_form.as_p }}
+        {{ aform.as_p }}
+        {{ rform.as_p }}
+        {{ ptform.as_p }}
+        <input type="submit" value="Edit Ad">
+    </form>
+</div>

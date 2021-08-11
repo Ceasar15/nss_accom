@@ -6,7 +6,6 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib import messages
 from django.http import HttpResponseRedirect, JsonResponse
-from django.conf import settings
 from django.db.models import Q
 
 from .forms import ContactLandlordForm, RentalHouseForm, HouseHasForm, AmenitiesForm, RulesForm, PreferredTenantForm, HouseImagesForm, HouseImagesEditForm, RatingForm
@@ -89,56 +88,98 @@ def update_rent_ad(request, id):
         return HttpResponseRedirect(reverse('renting:edit_whole', args=(id,)))
 
 
+# @user_passes_test(check_user, login_url='/signInLandlord')
+# def edit_whole(request, id):
+#     if request.user.is_authenticated:
+#         try:
+#             nrh_obj = NewRentalHouse.objects.get(pk=id)
+#             hh_fobj = HouseHas.objects.filter(nrh=nrh_obj)
+#             a_fobj = Amenities.objects.filter(nrh=nrh_obj)
+#             r_fobj = Rules.objects.filter(nrh=nrh_obj)
+#             pt_fobj = PreferredTenant.objects.filter(nrh=nrh_obj)
+#             img_qset = HouseImages.objects.filter(nrh=nrh_obj)
+
+#         except:
+#             nrh_obj = None
+#             # print(nrh_obj)
+        
+#         if nrh_obj:
+#             images_list = []
+#             form = RentalHouseForm( request.POST or None ,instance=nrh_obj)
+#             img_form = HouseImagesEditForm(request.POST or None , request.FILES)
+
+#             if img_qset:
+#                 for img_obj in img_qset:
+#                     images_list.append(img_obj)
+#             if hh_fobj:
+#                 hh_obj = hh_fobj[0]
+#                 hform = HouseHasForm(request.POST or None ,instance=hh_obj)
+#             else:
+#                 hform = HouseHasForm()
+#             if a_fobj:
+#                 a_obj = a_fobj[0]
+#                 aform = AmenitiesForm(request.POST or None ,instance=a_obj)
+#             else:
+#                 aform = AmenitiesForm()
+#             if r_fobj:
+#                 r_obj = r_fobj[0]
+#                 rform = RulesForm(request.POST or None ,instance=r_obj)
+#             else:
+#                 rform = RulesForm()
+#             if pt_fobj:
+#                 pt_obj = pt_fobj[0]
+#                 ptform = PreferredTenantForm(request.POST or None ,instance=pt_obj)
+#             else:
+#                 ptform = PreferredTenantForm()
+
+#         return render(request, 'renting/rental_ad_edit.html', locals())
+
+#     elif request.user.is_anonymous:
+#         modl = 'true'
+#         return render(request, 'renting/rental_ad_edit.html', locals())
+
 @user_passes_test(check_user, login_url='/signInLandlord')
 def edit_whole(request, id):
-    if request.user.is_authenticated:
-        try:
-            nrh_obj = NewRentalHouse.objects.get(pk=id)
-            hh_fobj = HouseHas.objects.filter(nrh=nrh_obj)
-            a_fobj = Amenities.objects.filter(nrh=nrh_obj)
-            r_fobj = Rules.objects.filter(nrh=nrh_obj)
-            pt_fobj = PreferredTenant.objects.filter(nrh=nrh_obj)
-            img_qset = HouseImages.objects.filter(nrh=nrh_obj)
-
-        except:
-            nrh_obj = None
-            # print(nrh_obj)
+    nrh_obj = NewRentalHouse.objects.get(pk=id)
+    hh_fobj = HouseHas.objects.filter(nrh=nrh_obj)
+    a_fobj = Amenities.objects.filter(nrh=nrh_obj)
+    r_fobj = Rules.objects.filter(nrh=nrh_obj)
+    pt_fobj = PreferredTenant.objects.filter(nrh=nrh_obj)
+    img_qset = HouseImages.objects.filter(nrh=nrh_obj)
         
+    if request.method == 'GET':
         if nrh_obj:
             images_list = []
-            form = RentalHouseForm( request.POST or None ,instance=nrh_obj)
-            img_form = HouseImagesEditForm(request.POST or None , request.FILES)
-
             if img_qset:
                 for img_obj in img_qset:
                     images_list.append(img_obj)
             if hh_fobj:
                 hh_obj = hh_fobj[0]
-                hform = HouseHasForm(request.POST or None ,instance=hh_obj)
+                hform = HouseHasForm(instance=hh_obj)
             else:
                 hform = HouseHasForm()
             if a_fobj:
                 a_obj = a_fobj[0]
-                aform = AmenitiesForm(request.POST or None ,instance=a_obj)
+                aform = AmenitiesForm(instance=a_obj)
             else:
                 aform = AmenitiesForm()
             if r_fobj:
                 r_obj = r_fobj[0]
-                rform = RulesForm(request.POST or None ,instance=r_obj)
+                rform = RulesForm(instance=r_obj)
             else:
                 rform = RulesForm()
             if pt_fobj:
                 pt_obj = pt_fobj[0]
-                ptform = PreferredTenantForm(request.POST or None ,instance=pt_obj)
+                ptform = PreferredTenantForm(instance=pt_obj)
             else:
                 ptform = PreferredTenantForm()
+        return render(request, 'renting/rentalad_edit.html', locals())
 
         return render(request, 'renting/rental_ad_edit.html', locals())
 
     elif request.user.is_anonymous:
         modl = 'true'
         return render(request, 'renting/rental_ad_edit.html', locals())
-
 
 
 

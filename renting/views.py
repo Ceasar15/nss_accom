@@ -595,14 +595,8 @@ def staffViewAdDetails(request, id):
 from users.forms import ProfileForm
 @user_passes_test(check_user, login_url='/signInLandlord')
 def landlordProfile(request, id):
-    
-    obj = User.objects.get(id = id)
-    ids = str(id)
-    profile_form = ProfileForm(request.POST or None, request.FILES, instance= obj)
 
-    print(profile_form)
-    print(id)
-    print(obj)
+    profile_form = ProfileForm(request.POST, request.FILES)
     
     if request.method == 'POST':
         if profile_form.is_valid():

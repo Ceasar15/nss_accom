@@ -128,6 +128,7 @@ def detail_viewVisitor(request, vistor_id):
     }
     return render(request, 'staff/detail_visitor.html', context)
 
+
 @user_passes_test(check_user, login_url='/loginStaff')
 def update_viewVisitor(request, vistoor_id):
     

@@ -134,7 +134,7 @@ def update_viewVisitor(request, vistoor_id):
     
     obj = get_object_or_404(NewVisitor, vistor_id=vistoor_id)
 
-    form = NewVisitor(request.POST or None, instance= obj )
+    form = NewVisitor(request.POST or None, instance=obj )
 
     if form.is_valid():
         form.save()

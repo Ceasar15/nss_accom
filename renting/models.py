@@ -101,6 +101,7 @@ class Amenities(models.Model):
 class PreferredTenant(models.Model):
     gender = models.CharField(max_length=1, choices=GENDER_PREF)
     nrh = models.OneToOneField(NewRentalHouse, on_delete=models.CASCADE)
+    description = models.TextField(default='Massa tempor nec feugiat nisl pretium. Egestas fringilla phasellus faucibus scelerisque eleifend donec Porta nibh venenatis cras sed felis eget velit aliquet. Neque volutpat ac tincidunt vitae semper quis lectus. Turpis in eu mi bibendum neque egestas congue quisque. Sed elementum tempus egestas sed sed risus pretium quam. Dignissim sodales ut eu sem. Nibh mauris cursus mattis molesteeiaculis at erat pellentesque. Id interdum velit laoreet id donec', null=True, blank=True)
 
 
 class Rules(models.Model):

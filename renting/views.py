@@ -403,6 +403,8 @@ def staffViewRentAds(request):
     
     return render(request, 'renting/staff_view_rent_ads.html', {'filter': f, 'profile': profile})
 
+
+
 # the page where a landlord can view all of their posted ads.
 @user_passes_test(check_user, login_url='/signInLandlord')
 def landlordViewRentAds(request):
@@ -413,6 +415,8 @@ def landlordViewRentAds(request):
     elif request.user.is_anonymous:
         modl='true'
         return render(request, 'renting/landlord_view_rent_ads.html', locals())
+
+
 
 # the page where the landlord can see his own house details.
 @user_passes_test(check_user, login_url='/signInLandlord')
@@ -636,6 +640,8 @@ def student_payment(request):
         }
         return render(request, "renting/student_payment.html", context)
 
+
+
 # Process Payment for Staff
 def staff_payment(request):
     form = PaymentsForm(request.POST)
@@ -654,3 +660,15 @@ def staff_payment(request):
             'form': PaymentsForm(),
         }
         return render(request, "renting/staff_payment.html", context)
+
+
+
+
+# landlord view ads from other landlords.
+@user_passes_test(check_user, login_url='/signInLandlord')
+def landlordViewAdsOfOtherLandlords(request):
+    f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())
+    for house in f.qs:
+        profile = Profile.objects.get(user_id=house.user_id)
+
+    return render(request, "renting/landlord_view_other_landlord_houses.html", {'filter': f, 'profile': profile})

@@ -356,14 +356,6 @@ def postRentAdds(request):
 
     return render(request, 'renting/post_rent_adds.html', locals())
 
-def delete_rent_ad(request, id):
-    context = {}
-    product = get_object_or_404(NewRentalHouse, pk=id)
-    if request.method == 'POST':
-        product.delete()
-        return redirect('renting:landlordViewRentAds')
-    return render(request, 'renting/landlord_view_rent_ads.html', context)
-
 
 
 # check if student is authenticated
@@ -423,7 +415,14 @@ def landlordViewRentAds(request):
         modl='true'
         return render(request, 'renting/landlord_view_rent_ads.html', locals())
 
-
+# landlord delete rent ad
+def delete_rent_ad(request, id):
+    product = get_object_or_404(NewRentalHouse, pk=id)
+    house_list = NewRentalHouse.objects.filter(user=request.user).order_by('-date_registered')
+    if request.method == 'POST':
+        product.delete()
+        return redirect('renting:landlordViewRentAds')
+    return render(request, 'renting/landlord_view_rent_ads.html', locals())
 
 # the page where the landlord can see his own house details.
 @user_passes_test(check_user, login_url='/signInLandlord')

@@ -150,6 +150,9 @@ def edit_whole(request, id):
     if request.method == 'GET':
         if nrh_obj:
             images_list = []
+            form = RentalHouseForm(instance=nrh_obj)
+            img_form = HouseImagesEditForm(request.POST or None , request.FILES)
+
             if img_qset:
                 for img_obj in img_qset:
                     images_list.append(img_obj)
@@ -174,8 +177,20 @@ def edit_whole(request, id):
             else:
                 ptform = PreferredTenantForm()
         return render(request, 'renting/rentalad_edit.html', locals())
+    
+    else:
+        hform = HouseHasForm()
+        aform = AmenitiesForm()
+        rform = RulesForm()
+        ptform = PreferredTenantForm()
 
-        return render(request, 'renting/rental_ad_edit.html', locals())
+
+
+
+
+
+
+
 
     elif request.user.is_anonymous:
         modl = 'true'

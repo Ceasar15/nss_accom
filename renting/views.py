@@ -92,7 +92,6 @@ def update_rent_ad(request, id):
 @user_passes_test(check_user, login_url='/signInLandlord')
 def edit_whole(request, id):
     nrh_obj = NewRentalHouse.objects.get(pk=id)
-    #hh_fobj = get_object_or_404(HouseHas, nrh=nrh_obj)
     hh_fobj = HouseHas.objects.filter(nrh=nrh_obj)
     a_fobj = Amenities.objects.filter(nrh=nrh_obj)
     r_fobj = Rules.objects.filter(nrh=nrh_obj)

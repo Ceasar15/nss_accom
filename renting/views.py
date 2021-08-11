@@ -661,8 +661,6 @@ def staff_payment(request):
         return render(request, "renting/staff_payment.html", context)
 
 
-
-
 # landlord view ads from other landlords.
 @user_passes_test(check_user, login_url='/signInLandlord')
 def landlordViewAdsOfOtherLandlords(request):

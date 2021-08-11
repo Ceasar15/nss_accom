@@ -624,7 +624,6 @@ def update_landlordProfile(request, id):
 
     else:
         profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
-        
         if profile_form.is_valid():
             pro = profile_form.save(commit=False)
             pro.user_id = request.user.id
@@ -637,6 +636,7 @@ def update_landlordProfile(request, id):
             'profile_form': profile_form
             }
         return render(request, 'renting/update_landlord_profile.html', context)
+
 
 # Payment Process for Student
 from .forms import PaymentsForm 

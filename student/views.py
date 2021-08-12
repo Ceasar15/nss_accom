@@ -2,11 +2,11 @@ from django.contrib.auth.models import User
 from staff.models import PostAnnouncement
 from django.http import request
 from users.models import Typed
-from django.shortcuts import render, redirect  	
+from django.shortcuts import get_object_or_404, render, redirect  	
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.decorators import  user_passes_test
-
+from notifications.utils import slug2id
 from notifications.models import Notification
 
 from .models import NewComplaint
@@ -53,7 +53,7 @@ def studentDashboard(request):
     resolved = NewComplaint.objects.filter(complaint_status='RESOLVED', student_hall=typed.student_hall, user=request.user).count()
     user = User.objects.get(id=request.user.id)
     notif = user.notifications.unread().count()
-    
+
     context = {
 
         'total_complains': total_complains,
@@ -64,6 +64,20 @@ def studentDashboard(request):
     }
     
     return render(request, 'student/student_dashboard.html', context)
+
+@user_passes_test(check_user, login_url='/loginStudent')
+def mark_as_read(request, slug=None):
+    notification_id = slug2id(slug)
+
+    notification = get_object_or_404(Notification, recipient=request.user, id=notification_id)
+    notification.mark_as_read()
+
+    _next = request.GET.get('next')
+
+    if _next:
+        return redirect(_next)
+
+    return redirect('notifications:unread')
 
 
 @user_passes_test(check_user, login_url='/loginStudent')

@@ -87,7 +87,7 @@ def mark_all_as_read(request):
 
     if _next:
         return redirect(_next)
-    return redirect('notifications:unread')
+    return redirect('student:studentViewAnnouncements')
 
 @user_passes_test(check_user, login_url='/loginStudent')
 def studentSubmitComplaint(request):

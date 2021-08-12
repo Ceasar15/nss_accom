@@ -119,8 +119,27 @@ def studentViewAnnouncements(request):
 
     typed = Typed.objects.filter(user_id=request.user).first()
     dataset = PostAnnouncement.objects.filter(hall=typed.student_hall).order_by("-date_submitted")
+    announcement = request.user.notifications.unread()
 
     context = {
         'dataset': dataset,
+        'announcement': announcement,
     }
     return render(request, 'student/student_view_announcements.html', context)
+
+
+                #   {% if dataset %}
+                #       {% for data in dataset %}
+                #   <div class="carousel-item" >
+                #     <div class='announcementTitle' style="text-align: center;">
+                #         <h2 style="margin-top: 30px;"> {{ data.announcement_title }} </h2>
+                #       </div>
+
+                #       <hr style="position: relative; bottom: 20px;" />
+
+                #       <div class='announcementBody' style="padding-left: 30px; font-size: 18px; position: relative; top: -20px;">
+                #             {{ data.announcement_body }}
+                #       </div>
+                #   </div>
+                #       {% endfor %}
+                #   {% endif %}

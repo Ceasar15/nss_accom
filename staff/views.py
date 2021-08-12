@@ -186,13 +186,10 @@ def staffPostAnnouncement(request):
             des = obj.announcement_body
             title = obj.announcement_title
             obj.save()
-            print(title)
-            print(des)
             messages.success(request, f'Your Announcement has been Posted Successfully')
             typed = Typed.objects.filter(user_id=request.user).first()
             user_list = []
             user_list =  User.objects.filter()
-            print(user_list)
             notify.send(sender=request.user, recipient=user_list, description=des, verb=title)
             return redirect('staff:staffPostAnnouncement')
     context={

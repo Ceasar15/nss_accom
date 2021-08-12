@@ -216,7 +216,7 @@
                         <div class='announcementBody' style="padding-left: 30px; font-size: 18px; position: relative; top: -20px;">
                             {{ data.description }}
                         </div>
-                        <a class="close pull-right" href="{% url 'student:mark_as_read' data.slug %}">
+                        <a class="close pull-right" style="margin-left: 200px;" href="{% url 'student:mark_as_read' data.slug %}">
                             {% if data.unread is True %} <span>mark as read</span> {% else %} <span>read already </span>{% endif %}              
                         </a>
                     </div>

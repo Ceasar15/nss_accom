@@ -219,6 +219,7 @@
                         <a class="close pull-right" style="margin-left: 200px;" href="{% url 'student:mark_as_read' data.slug %}">
                             {% if data.unread is True %} <span>mark as read</span> {% else %} <span>read already </span>{% endif %}              
                         </a>
+                        
                     </div>
                       {% endfor %}
                   {% endif %}

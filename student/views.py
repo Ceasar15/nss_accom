@@ -52,17 +52,13 @@ def studentDashboard(request):
     pending = NewComplaint.objects.filter(complaint_status='PENDING', student_hall=typed.student_hall, user=request.user).count()
     resolved = NewComplaint.objects.filter(complaint_status='RESOLVED', student_hall=typed.student_hall, user=request.user).count()
     user = User.objects.get(id=request.user.id)
-    # notif = Notification.objects.unread().count()
     notif = user.notifications.unread().count()
-    notiff = Notification.objects.unread().count()
-    print(notif)
     context = {
 
         'total_complains': total_complains,
         'pending': pending,
         'resolved': resolved,
         'unread_notif': notif,
-        'notiff': notiff,
 
     }
     

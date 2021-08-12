@@ -188,6 +188,7 @@ def staffPostAnnouncement(request):
             obj.save()
             messages.success(request, f'Your Announcement has been Posted Successfully')
             typed = Typed.objects.filter(user_id=request.user).first()
+            print(typed.student_hall)
             user_list = []
             user_list =  User.objects.filter()
             notify.send(sender=request.user, recipient=user_list, description=des, verb=title)

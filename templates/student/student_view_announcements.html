@@ -204,22 +204,23 @@
 
                   </div>
 
-
-                  {% if dataset %}
-                      {% for data in dataset %}
+                  {% if announcement %}
+                      {% for data in announcement %}
                   <div class="carousel-item" >
                     <div class='announcementTitle' style="text-align: center;">
-                        <h2 style="margin-top: 30px;"> {{ data.announcement_title }} </h2>
+                        <h2 style="margin-top: 30px;"> {{ data.verb }} </h2>
                       </div>
 
                       <hr style="position: relative; bottom: 20px;" />
 
                       <div class='announcementBody' style="padding-left: 30px; font-size: 18px; position: relative; top: -20px;">
-                            {{ data.announcement_body }}
+                            {{ data.description }}
                       </div>
                   </div>
                       {% endfor %}
                   {% endif %}
+
+
 
                 {{ announcement }}
 

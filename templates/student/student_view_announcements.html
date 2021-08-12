@@ -188,7 +188,9 @@
                     <div class='announcementTitle' style="text-align: center;">
                         <h2 style="margin-top: 30px;"> Examination Timetable </h2>
                       </div>
-
+                      <a class="close pull-right" href="{% url 'notifications:mark_as_read' data.slug %}">
+                        <i class="icon-close">mark as read</i>
+                      </a>
                       <hr style="position: relative; bottom: 20px;" />
 
                       <div class='announcementBody' style="padding-left: 30px; font-size: 18px; position: relative; top: -20px;">
@@ -211,6 +213,9 @@
                         <h2 style="margin-top: 30px;"> {{ data.verb }} </h2>
                       </div>
                       <h3 style="margin-top: 30px;" > {{data.timesince }} ago</h3>
+                      <a class="close pull-right" href="{% url 'notifications:mark_as_read' notice.slug %}">
+                        <i class="icon-close">mark as read</i>
+                      </a>
                       <hr style="position: relative; bottom: 20px;" />
                       <div class='announcementBody' style="padding-left: 30px; font-size: 18px; position: relative; top: -20px;">
                             {{ data.description }}

@@ -438,8 +438,11 @@ def staffViewRentAds(request):
 # the page where a landlord can view all of their posted ads.
 @user_passes_test(check_user, login_url='/signInLandlord')
 def landlordViewRentAds(request):
+
     if request.user.is_authenticated:
         house_list = NewRentalHouse.objects.filter(user=request.user).order_by('-date_registered')
+        for house in house_list:
+            hey = house.id
         return render(request, 'renting/landlord_view_rent_ads.html', locals())
 
     elif request.user.is_anonymous:

@@ -171,8 +171,11 @@
                         <p>{% notifications_unread as unread_count %}
                             {% if unread_count %}
                                 You have <strong>{{ unread_count }}</strong> unread notifications.
+                            {% else %}
+                                You have <strong>zero(0)</strong> unread notifications.
                             {% endif %}
                         </p>
+                        <p>.................unread notif {{ unread_notif }}</p>
                         </div>
 
                         <ul>

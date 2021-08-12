@@ -1,5 +1,5 @@
 <div class="main">
-    <form action="{% url 'renting:edit_whole' nrh_obj.id %}" method="post">
+    <form action="{% url 'renting:edit_whole' nrh_obj.id %}" method="post" enctype="multipart/form-data">
         {% if messages %}
         {% for message in messages %}
             {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}

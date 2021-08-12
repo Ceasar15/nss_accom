@@ -90,6 +90,25 @@ def staff_addNewStudent(request):
 
 
 @user_passes_test(check_user, login_url='/loginStaff')
+def update_viewStudent(request, id):
+    
+    obj = get_object_or_404(NewStudent, id=id)
+
+    form = NewStudentForm(request.POST or None, request.FILES or None, instance=obj)
+    print(form)
+
+    if form.is_valid():
+        form.save()
+        return redirect('staff:staffViewAllStudents')
+
+    context = {
+
+        'form': form
+   
+    }
+    return render(request, 'staff/update_visitor.html', context)
+
+@user_passes_test(check_user, login_url='/loginStaff')
 def staff_addNewVisitor(request):
     if request.method == 'POST':
         typed = Typed.objects.filter(user_id=request.user).first()
@@ -128,16 +147,17 @@ def detail_viewVisitor(request, vistor_id):
     }
     return render(request, 'staff/detail_visitor.html', context)
 
+
 @user_passes_test(check_user, login_url='/loginStaff')
 def update_viewVisitor(request, vistoor_id):
     
     obj = get_object_or_404(NewVisitor, vistor_id=vistoor_id)
 
-    form = NewVisitor(request.POST or None, instance= obj )
+    form = NewVisitorForm(request.POST or None, request.FILES or None, instance=obj )
 
     if form.is_valid():
         form.save()
-        return HttpResponseRedirect("/"+vistoor_id)
+        return redirect('staff:staffManageVisitors')
 
     context = {
 

@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.contrib import messages
 from django.http import HttpResponseRedirect, JsonResponse
 from django.db.models import Q
+from django.urls.base import is_valid_path
 
 from .forms import ContactLandlordForm, RentalHouseForm, HouseHasForm, AmenitiesForm, RulesForm, PreferredTenantForm, HouseImagesForm, HouseImagesEditForm, RatingForm
 from .models import NewRentalHouse, HouseHas, Amenities, PreferredTenant, Rating, Rules, HouseImages, SearchFilter
@@ -92,7 +93,6 @@ def update_rent_ad(request, id):
 @user_passes_test(check_user, login_url='/signInLandlord')
 def edit_whole(request, id):
     nrh_obj = NewRentalHouse.objects.get(pk=id)
-    #hh_fobj = get_object_or_404(HouseHas, nrh=nrh_obj)
     hh_fobj = HouseHas.objects.filter(nrh=nrh_obj)
     a_fobj = Amenities.objects.filter(nrh=nrh_obj)
     r_fobj = Rules.objects.filter(nrh=nrh_obj)
@@ -137,15 +137,15 @@ def edit_whole(request, id):
             for img_obj in img_qset:
                 images_list.append(img_obj)
     
-        img_form = HouseImagesForm(request.POST, files=request.FILES)
-        hform = HouseHasForm(request.POST, instance=hh_fobj[0])
-        aform = AmenitiesForm(request.POST, instance=a_fobj[0])
-        rform = RulesForm(request.POST, instance=r_fobj[0])
-        ptform = PreferredTenantForm(request.POST, instance=pt_fobj[0])
+        img_form = HouseImagesForm(request.POST or None, request.FILES or None, instance=img_obj)
+        hform = HouseHasForm(request.POST or None, instance=hh_fobj[0])
+        aform = AmenitiesForm(request.POST or None, instance=a_fobj[0])
+        rform = RulesForm(request.POST or None, instance=r_fobj[0])
+        ptform = PreferredTenantForm(request.POST or None, instance=pt_fobj[0])
 
         if request.method == 'POST':
     
-            if all((form.is_valid(), hform.is_valid(), aform.is_valid(), rform.is_valid(), ptform.is_valid())):
+            if all((form.is_valid(), hform.is_valid(), img_form.is_valid(), aform.is_valid(), rform.is_valid(), ptform.is_valid())):
                 rh_obj = form.save(commit=False)
                 rh_obj.user = request.user
                 rh_obj.save()

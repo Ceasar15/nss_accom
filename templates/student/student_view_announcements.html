@@ -206,6 +206,7 @@
 
                   {% if announcement %}
                       {% for data in announcement %}
+                      
                       <a class="close pull-right" href="{% url 'student:mark_as_read' data.slug %}">
                         <i class="icon-close">mark as read</i>
                       </a>

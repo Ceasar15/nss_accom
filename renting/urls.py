@@ -31,6 +31,7 @@ urlpatterns = [
     path('update_profile/<int:id>', rt.update_landlordProfile, name='update_profile'),
     path('student_payment/', rt.student_payment, name="student_payment"),
     path('staff_payment/', rt.staff_payment, name="staff_payment"),
-    path('landlordViewAdsOfOtherLandlords/', rt.landlordViewAdsOfOtherLandlords, name='landlordViewAdsOfOtherLandlords')
+    path('landlordViewAdsOfOtherLandlords/', rt.landlordViewAdsOfOtherLandlords, name='landlordViewAdsOfOtherLandlords'),
+    path('landlordViewAdsDetailsOfOtherLandlords/', rt.landlordViewAdsDetailsOfOtherLandlords, name='landlordViewAdsDetailsOfOtherLandlords')
 
 ]

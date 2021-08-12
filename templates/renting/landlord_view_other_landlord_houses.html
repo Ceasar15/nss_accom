@@ -206,7 +206,7 @@
                                     <div class="col-lg-4 col-sm-6 col-12">
                                         <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                                             <div class="product-img">
-                                                <a href="{% url 'renting:studentViewHouseDetails' house.id %}">
+                                                <a href="{% url 'renting:landlordViewAdsDetailsOfOtherLandlords' %}">
                                                     {% for img in house.houseimages_set.all %}
                                                         {% if forloop.counter == 1 %}
                                                                 <img src="{{ img.imagess.url }}" alt="#" height="280px">
@@ -220,7 +220,7 @@
                                                 </a>
                                                 <div class="real-estate-agent">
                                                     <div class="agent-img">
-                                                        <a href="{% url 'renting:studentViewLandlordDetails'  house.user_id %}"><img src="{{ profile.profile_image.url }}" alt="#"></a>
+                                                        <a href="#"><img src="{{ profile.profile_image.url }}" alt="#"></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -230,11 +230,11 @@
                                                         <li class="sale-badg">For Rent </li>
                                                     </ul>
                                                 </div>
-                                                <h2 class="product-title"><a href="{% url 'renting:studentViewHouseDetails' house.id %}">New Apartment Nice View</a></h2>
+                                                <h2 class="product-title"><a href="#">New Apartment Nice View</a></h2>
                                                 <div class="product-img-location">
                                                     <ul>
                                                         <li>
-                                                            <a href="{% url 'renting:studentViewHouseDetails' house.id %}"><i class="flaticon-pin"></i>{{ house.area }}, {{ house.city }}</a>
+                                                            <a href="#"><i class="flaticon-pin"></i>{{ house.area }}, {{ house.city }}</a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -249,12 +249,12 @@
                                                 <div class="product-hover-action">
                                                     <ul>
                                                         <li>
-                                                            <a href="{%  url 'renting:studentViewHouseDetails' house.id %}" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
+                                                            <a href="#" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
                                                                 <i class="flaticon-expand"></i>
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <a href="{%  url 'renting:studentViewHouseDetails' house.id  %}" title="Product Details">
+                                                            <a href="#" title="Product Details">
                                                                 <i class="flaticon-add"></i>
                                                             </a>
                                                         </li>

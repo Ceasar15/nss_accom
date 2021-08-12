@@ -53,6 +53,7 @@ def studentDashboard(request):
     resolved = NewComplaint.objects.filter(complaint_status='RESOLVED', student_hall=typed.student_hall, user=request.user).count()
     user = User.objects.get(id=request.user.id)
     notif = user.notifications.unread().count()
+    
     context = {
 
         'total_complains': total_complains,

@@ -534,7 +534,7 @@ def studentViewHouseDetails(request, id):
 
 # the page where the student can view the details of the landlord.
 from users.models import Typed, Profile
-@user_passes_test(check_student_user, login_url='/loginStudent')
+# @user_passes_test(check_student_user, login_url='/loginStudent')
 def studentViewLandlordDetails(request, id):
     landlord = User.objects.get(id=id)
     profile = Profile.objects.get(user_id=id)
@@ -734,6 +734,8 @@ def landlordViewAdsOfOtherLandlords(request):
 
     return render(request, "renting/landlord_view_other_landlord_houses.html", {'filter': f, 'profile': profile})
 
+
+
 # landlord view details of ads posted by other landlords
 @user_passes_test(check_user, login_url='/signInLandlord')
 def landlordViewAdsDetailsOfOtherLandlords(request, id):
@@ -757,7 +759,7 @@ def landlordViewAdsDetailsOfOtherLandlords(request, id):
             fm.save()
 
 
-        return render(request, 'renting/student_view_ad_details.html', locals())
+        return render(request, 'renting/landlord_view_details_of_ads_posted_by_other_landlords.html', locals())
 
     if request.user.is_authenticated:
         try:

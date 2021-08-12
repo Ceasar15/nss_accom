@@ -207,18 +207,19 @@
                   {% if announcement %}
                       {% for data in announcement %}
 
-                      <a class="close pull-right" href="{% url 'student:mark_as_read' data.slug %}">
-                        {% if data.unread is True %} <span>mark as read</span> {% else %} <span>read already </span>{% endif %}                      </a>
-                  <div class="carousel-item" >
-                    <div class='announcementTitle' style="text-align: center;">
-                        <h2 style="margin-top: 30px;"> {{ data.verb }} </h2>
-                      </div>
-                      <h3 style="margin-top: 30px;" > {{data.timesince }} ago</h3>
-                      <hr style="position: relative; bottom: 20px;" />
-                      <div class='announcementBody' style="padding-left: 30px; font-size: 18px; position: relative; top: -20px;">
+                    <div class="carousel-item" >
+                        <div class='announcementTitle' style="text-align: center;">
+                            <h2 style="margin-top: 30px;"> {{ data.verb }} </h2>
+                        </div>
+                        <h3 style="margin-top: 30px;" > {{data.timesince }} ago</h3>
+                        <hr style="position: relative; bottom: 20px;" />
+                        <div class='announcementBody' style="padding-left: 30px; font-size: 18px; position: relative; top: -20px;">
                             {{ data.description }}
-                      </div>
-                  </div>
+                        </div>
+                        <a class="close pull-right" href="{% url 'student:mark_as_read' data.slug %}">
+                            {% if data.unread is True %} <span>mark as read</span> {% else %} <span>read already </span>{% endif %}              
+                        </a>
+                    </div>
                       {% endfor %}
                   {% endif %}
 

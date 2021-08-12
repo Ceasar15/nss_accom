@@ -254,3 +254,9 @@ def solved(request, complaint_id):
     complaint.complaint_status = 'RESOLVED'
     complaint.save()
     return redirect('staff:staffViewAllComplaints')
+
+
+
+# datatables tutorial.
+def dataTables(request):
+    return render (request, 'staff/data_tables.html')

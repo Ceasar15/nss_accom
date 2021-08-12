@@ -206,10 +206,9 @@
 
                   {% if announcement %}
                       {% for data in announcement %}
-                      
+
                       <a class="close pull-right" href="{% url 'student:mark_as_read' data.slug %}">
-                        <i class="icon-close">mark as read</i>
-                      </a>
+                        {% if data.unread is True %} <span>mark as read</span> {% else %} <span>read already </span>{% endif %}                      </a>
                   <div class="carousel-item" >
                     <div class='announcementTitle' style="text-align: center;">
                         <h2 style="margin-top: 30px;"> {{ data.verb }} </h2>

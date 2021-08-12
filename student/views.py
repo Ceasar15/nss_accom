@@ -141,7 +141,9 @@ def studentViewAnnouncements(request):
     typed = Typed.objects.filter(user_id=request.user).first()
     dataset = PostAnnouncement.objects.filter(hall=typed.student_hall).order_by("-date_submitted")
     announcement = request.user.notifications.all() 
-
+    for a in announcement:
+        print(a.unread)
+        
     context = {
         'dataset': dataset,
         'announcement': announcement,

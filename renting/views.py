@@ -534,7 +534,7 @@ def studentViewHouseDetails(request, id):
 
 # the page where the student can view the details of the landlord.
 from users.models import Typed, Profile
-# @user_passes_test(check_student_user, login_url='/loginStudent')
+@user_passes_test(check_student_user, login_url='/loginStudent')
 def studentViewLandlordDetails(request, id):
     landlord = User.objects.get(id=id)
     profile = Profile.objects.get(user_id=id)

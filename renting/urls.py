@@ -33,6 +33,6 @@ urlpatterns = [
     path('staff_payment/', rt.staff_payment, name="staff_payment"),
     path('landlordViewAdsOfOtherLandlords/', rt.landlordViewAdsOfOtherLandlords, name='landlordViewAdsOfOtherLandlords'),
     path('landlordViewAdsDetailsOfOtherLandlords/', rt.landlordViewAdsDetailsOfOtherLandlords, name='landlordViewAdsDetailsOfOtherLandlords'),
-    path('landlordEditRentAds/', rt.landlordEditRentAds, name='landlordEditRentads')
+    path('landlordEditRentAds/', rt.landlordEditRentAds, name='landlordEditRentAds')
 
 ]

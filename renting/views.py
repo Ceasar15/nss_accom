@@ -738,6 +738,12 @@ def landlordViewAdsOfOtherLandlords(request):
 # landlord view details of ads posted by other landlords
 @user_passes_test(check_user, login_url='/signInLandlord')
 def landlordViewAdsDetailsOfOtherLandlords(request):
-        return render(request, 'renting/landlord_view_details_of_ads_posted_by_other_landlords.html')
+    return render(request, 'renting/landlord_view_details_of_ads_posted_by_other_landlords.html')
 
     
+
+
+# landlord edit rent ads
+@user_passes_test(check_user, login_url='/signInLandlord')
+def landlordEditRentAds(request):
+    return render(request, 'renting/landlord_edit_rent_ads.html')

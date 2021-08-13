@@ -183,13 +183,15 @@ def staffPostAnnouncement(request):
         if p_form.is_valid():
             obj = p_form.save(commit=False)
             obj.annou_user = request.user
+            des = obj.announcement_body
+            title = obj.announcement_title
             obj.save()
             messages.success(request, f'Your Announcement has been Posted Successfully')
             typed = Typed.objects.filter(user_id=request.user).first()
+            print(typed.student_hall)
             user_list = []
-            user_list = PostAnnouncement.objects.filter(hall=typed.student_hall)
-            print(user_list)
-            notify.send(request.user, recipient=user_list, verb='new announcement posted')
+            user_list =  User.objects.filter()
+            notify.send(sender=request.user, recipient=user_list, description=des, verb=title)
             return redirect('staff:staffPostAnnouncement')
     context={
             'p_form': PostAnnoumcementForm()

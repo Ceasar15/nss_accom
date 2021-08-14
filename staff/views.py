@@ -37,7 +37,7 @@ def loginStaff(request):
         if user is not None:
             typed = Typed.objects.filter(user_id=user).first();
             if typed.user_group == 'staff':
-                login(request, user)	
+                login(request, user)
                 if request.user:
                     return redirect('staff:staffDashboard')
         else:

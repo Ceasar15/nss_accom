@@ -107,6 +107,7 @@ def studentSubmitComplaint(request):
             complaint.complaint_description = request.POST.get('complaint_description')
             complaint.mobile_number = request.POST.get('mobile_number')
             complaint.student_hall = typed.student_hall
+            complaint.user_id = typed.user_id_id
 
             complaint.save()
 
@@ -125,7 +126,8 @@ def studentSubmitComplaint(request):
 @user_passes_test(check_user, login_url='/loginStudent')
 def studentViewAllComplaints(request):
     typed = Typed.objects.filter(user_id=request.user).first()
-    dataset = NewComplaint.objects.filter(student_hall=typed.student_hall, user=request.user)
+    dataset = NewComplaint.objects.filter(student_hall=typed.student_hall, user_id=request.user.id)
+
 
 
     context = {

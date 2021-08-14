@@ -123,6 +123,11 @@
                             <i class="fas fa-user-graduate fa-2x" style="margin-left: 40px; position: relative; bottom: 8px;"></i>  
 
                         </div>
+                        {% if messages %}
+                            {% for message in messages %}
+                                {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+                            {% endfor %}
+                        {% endif %}
 
                       
                         <form id="contact-form" method="post" action="#" >

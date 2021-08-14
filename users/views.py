@@ -28,12 +28,12 @@ def Studentregister(request):
         user_contact_form = UserContactFrom(request.POST)
         if all((form.is_valid(), user_contact_form.is_valid() )):
 
-            tt = form.save()
+            user = form.save()
             obs = user_contact_form.save(commit=False)
-            obs.user_id_id = tt.id
-            username = tt.username
+            obs.user_id_id = user.id
+            username = user.username
             obs.save()
-            login(request, tt, backend='django.contrib.auth.backends.ModelBackend')
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             messages.info(request, f"You are now logged in as {username}")
             return redirect('student:studentDashboard')
 
@@ -67,10 +67,12 @@ def StaffRegister(request):
         form = StudentRegisterForm(request.POST)
         user_contact_form = UserContactFrom(request.POST)
         if all((form.is_valid(), user_contact_form.is_valid() )):
-            tt = form.save()
+            user = form.save()
             obs = user_contact_form.save(commit=False)
-            obs.user_id_id = tt.id
+            obs.user_id_id = user.id
+            username = user.username
             obs.save()
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
 
             return redirect('staff:loginStaff')
 

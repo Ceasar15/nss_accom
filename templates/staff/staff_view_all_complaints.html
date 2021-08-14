@@ -230,7 +230,7 @@
                             <td>{{ data.student_room_number }}</td>
                             <td>{{ data.mobile_number }}</td>
                             <td>{{ data.complaint_type }}</td>
-                            <td>{{ data.complaint_description }}</td>
+                            <td>{{ data.complaint_description|slice:":30" }}...</td>
                             <td>{{ data.date_submitted.date }}</td>
                             {% if data.complaint_status == "PENDING" %}
                             <td> PENDING </td>

@@ -13,7 +13,7 @@ from django.shortcuts import render, redirect
 from student.forms import StudentRegisterForm, EditProfileForm, UserContactFrom
 from users.forms import StaffRegisterForm, EditProfileForm
 from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.auth import logout
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
@@ -26,14 +26,18 @@ def Studentregister(request):
     if request.method == 'POST':
         form = StudentRegisterForm(request.POST)
         user_contact_form = UserContactFrom(request.POST)
+        # print(form)
+        # print(user_contact_form)
+        for field in form:
+            print(field.help_text)
         if all((form.is_valid(), user_contact_form.is_valid() )):
 
             tt = form.save()
-            print(tt.id)
             obs = user_contact_form.save(commit=False)
             obs.user_id_id = tt.id
             obs.save()
-
+            messages.success(request, f"New Account Created: {obs.first_name}")
+            login(request, tt)
             return redirect('student:loginStudent')
 
     context = {

@@ -22,6 +22,13 @@ class StudentRegisterForm(UserCreationForm):
 
         )
 
+    def clean_email(self):
+        """
+        ensure that email is always lower case.
+        """
+        return self.cleaned_data['email'].lower()
+
+
 class UserContactFrom(forms.ModelForm):
     phone_no = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'input'}))
     user_group  = forms.CharField(max_length=30, widget=forms.Select(choices= CHOICES))

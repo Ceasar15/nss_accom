@@ -69,6 +69,13 @@ class StaffRegisterForm(UserCreationForm):
             'user_group',
         )
 
+    def clean_email(self):
+        """
+        ensure that email is always lower case.
+        """
+        return self.cleaned_data['email'].lower()
+
+
     @transaction.atomic  
     def save(self):
         user = super().save(commit=False)

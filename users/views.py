@@ -107,11 +107,24 @@ def LandlordRegister(request):
         if all((form.is_valid(), user_contact_form.is_valid() )):
             user = form.save()
             obs = user_contact_form.save(commit=False)
-            obs.user_id_id = tt.id
+            obs.user_id_id = user.id
             obs.save()
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
 
-            return redirect('renting:signInLandlord')
+            return redirect('renting:postRentAdds')
 
+        else:
+            password1 = form.data['password1']
+            password2 = form.data['password2']
+            email = form.data['email']
+            for msg in form.errors.as_data():
+                if msg == 'email':
+                    messages.error(request, f"Your email: {email} is not valid")
+                if msg == 'password2' and password1 == password2:
+                    messages.error(request, f"The selected password is not strong enough. Mininum of 8 Characters")
+                elif msg == 'password2' and password1 != password2:
+                    messages.error(request, f"Password and Confirmation Password do not match")
+    
     context = {
         'form': StudentRegisterForm(),
         'user_contact_form': UserContactFrom()

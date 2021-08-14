@@ -54,6 +54,7 @@ def studentDashboard(request):
     user = User.objects.get(id=request.user.id)
     notif = user.notifications.unread().count()
 
+
     context = {
 
         'total_complains': total_complains,

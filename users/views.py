@@ -68,7 +68,6 @@ def StaffRegister(request):
         user_contact_form = UserContactFrom(request.POST)
         if all((form.is_valid(), user_contact_form.is_valid() )):
             tt = form.save()
-            print(tt.id)
             obs = user_contact_form.save(commit=False)
             obs.user_id_id = tt.id
             obs.save()

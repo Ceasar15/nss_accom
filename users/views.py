@@ -35,10 +35,25 @@ def Studentregister(request):
             tt = form.save()
             obs = user_contact_form.save(commit=False)
             obs.user_id_id = tt.id
+            first_name = tt.first_name
+            username = tt.username
             obs.save()
-            messages.success(request, f"New Account Created: {obs.first_name}")
-            login(request, tt)
-            return redirect('student:loginStudent')
+            messages.success(request, f"New Account Created: {first_name}")
+            login(request, tt, backend='django.contrib.auth.backends.ModelBackend')
+            messages.info(request, f"You are now logged in as {username}")
+            return redirect('student:studentDashboard')
+
+        else:
+            password1 = form.data['password1']
+            password2 = form.data['password2']
+            email = form.data['email']
+            for msg in form.errors.as_data():
+                if msg == 'email':
+                    messages.error(request, f"Declared {email} is not valid")
+                if msg == 'password2' and password1 == password2:
+                    messages.error(request, f"Selected password: {password1} is not strong enough")
+                elif msg == 'password2' and password1 != password2:
+                    messages.error(request, f"Password: '{password1}' and Confirmation Password: '{password2}' do not match")
 
     context = {
         'form': StudentRegisterForm(),

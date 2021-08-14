@@ -34,7 +34,7 @@ def Studentregister(request):
             username = user.username
             obs.save()
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-            messages.info(request, f"You are now logged in as {username}")
+            # messages.info(request, f"You are now logged in as {username}")
             return redirect('student:studentDashboard')
 
 
@@ -73,8 +73,21 @@ def StaffRegister(request):
             username = user.username
             obs.save()
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            # messages.info(request, f"You are now logged in as {username}")
 
-            return redirect('staff:loginStaff')
+            return redirect('staff:staffDashboard')
+
+        else:
+            password1 = form.data['password1']
+            password2 = form.data['password2']
+            email = form.data['email']
+            for msg in form.errors.as_data():
+                if msg == 'email':
+                    messages.error(request, f"Your email: {email} is not valid")
+                if msg == 'password2' and password1 == password2:
+                    messages.error(request, f"The selected password is not strong enough. Mininum of 8 Characters")
+                elif msg == 'password2' and password1 != password2:
+                    messages.error(request, f"Password and Confirmation Password do not match")
 
     context = {
         'form': StudentRegisterForm(),
@@ -92,8 +105,7 @@ def LandlordRegister(request):
         form = StudentRegisterForm(request.POST)
         user_contact_form = UserContactFrom(request.POST)
         if all((form.is_valid(), user_contact_form.is_valid() )):
-            tt = form.save()
-            print(tt.id)
+            user = form.save()
             obs = user_contact_form.save(commit=False)
             obs.user_id_id = tt.id
             obs.save()

@@ -157,10 +157,11 @@
 
                                 <div class="col-md-6">
                                     <div class="input-item input-item-email ltn__custom-icon">
-                                        <input type="password" id="id_password1" name="password1" autocomplete="new-password" placeholder="PASSWORD" required >
+                                        <input type="password" id="my_input" name="password1" autocomplete="new-password" placeholder="PASSWORD" required >
+                                        <input type="checkbox" onclick="myFunction()">Show Password
+                                        
                                     </div>
                                 </div> 
-
 
                                 <div class="col-md-6">
                                     <div class="input-item input-item-email ltn__custom-icon">
@@ -391,12 +392,24 @@
 <!-- Body main wrapper end -->
 
     <!-- All JS Plugins -->
+    
     <script src="{% static 'js/plugins.js' %}"></script>
     <!-- Main JS -->
     <script src="{% static 'js/main.js' %}"></script>
     <!-- Custom javascript -->
     <script src="{% static 'js/custom.js' %}"></script>
-  
+    <script>
+
+function myFunction() {
+    var x = document.getElementById("myInput");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+} 
+
+    </script>
 </body>
 
 </html>

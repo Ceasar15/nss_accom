@@ -26,10 +26,6 @@ def Studentregister(request):
     if request.method == 'POST':
         form = StudentRegisterForm(request.POST)
         user_contact_form = UserContactFrom(request.POST)
-        # print(form)
-        # print(user_contact_form)
-        for field in form:
-            print(field.help_text)
         if all((form.is_valid(), user_contact_form.is_valid() )):
 
             tt = form.save()

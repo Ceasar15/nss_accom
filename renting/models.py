@@ -110,14 +110,6 @@ class Rules(models.Model):
 
     nrh = models.OneToOneField(NewRentalHouse, on_delete=models.CASCADE)
 
-class SearchFilter(django_filters.FilterSet):	
-    class Meta:    
-        model = NewRentalHouse 
-        fields={
-            'rent': ['gt', 'lt'],
-            'city': ['iexact'], 
-            'area': ['iexact'],
-        }
 
 class SearchFilter(django_filters.FilterSet):
     city = django_filters.CharFilter(method='custom_filter')
@@ -129,7 +121,7 @@ class SearchFilter(django_filters.FilterSet):
     
     def custom_filter(self, queryset, name, value):
         return NewRentalHouse.objects.filter(
-            Q(city__iexact=value) | Q(area__iexact=value) | Q(area__iexact=value) 
+            Q(city__icontains=value) | Q(area__icontains=value) | Q(region__icontains=value) 
         )
 
 class ContactLandlord(models.Model):

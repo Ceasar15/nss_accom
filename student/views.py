@@ -90,6 +90,7 @@ def mark_all_as_read(request):
         return redirect(_next)
     return redirect('student:studentViewAnnouncements')
 
+
 @user_passes_test(check_user, login_url='/loginStudent')
 def studentSubmitComplaint(request):
     if request.method == 'POST':

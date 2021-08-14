@@ -419,9 +419,12 @@ def studentViewRentAds(request):
     f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())
     for house in f.qs:
         profile = Profile.objects.get(user_id=house.user_id)
-
-    return render(request, 'renting/student_view_rent_ads.html', {'filter': f, 
-    'profile': profile})
+    
+    if f:
+        return render(request, 'renting/student_view_rent_ads.html', {'filter': f, 
+            'profile': profile})
+    else:
+        return render(request, 'student/login_student.html')
 
 
 # the page where a staff can view all rent ads.

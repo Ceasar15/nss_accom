@@ -115,7 +115,8 @@ class SearchFilter(django_filters.FilterSet):
         model = NewRentalHouse 
         fields={
             'rent': ['gt', 'lt'],
-            'city': ['iexact']
+            'city': ['iexact'], 
+            'area': ['iexact'],
         }
 
 class SearchFilter(django_filters.FilterSet):
@@ -128,10 +129,8 @@ class SearchFilter(django_filters.FilterSet):
     
     def custom_filter(self, queryset, name, value):
         return NewRentalHouse.objects.filter(
-            Q(city__iexact=value)  
+            Q(city__iexact=value) | Q(area__iexact=value) | Q(area__iexact=value) 
         )
-
-
 
 class ContactLandlord(models.Model):
     full_name = models.CharField(max_length=150)

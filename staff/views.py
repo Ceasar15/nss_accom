@@ -32,9 +32,8 @@ def loginStaff(request):
 
         username = request.POST.get('username')
         password =request.POST.get('password')
-
         user = authenticate(request, username=username, password=password)
-
+        
         if user is not None:
             typed = Typed.objects.filter(user_id=user).first();
             if typed.user_group == 'staff':

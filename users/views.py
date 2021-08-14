@@ -35,7 +35,6 @@ def Studentregister(request):
             tt = form.save()
             obs = user_contact_form.save(commit=False)
             obs.user_id_id = tt.id
-            first_name = tt.first_name
             username = tt.username
             obs.save()
             login(request, tt, backend='django.contrib.auth.backends.ModelBackend')

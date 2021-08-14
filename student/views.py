@@ -128,8 +128,6 @@ def studentViewAllComplaints(request):
     typed = Typed.objects.filter(user_id=request.user).first()
     dataset = NewComplaint.objects.filter(student_hall=typed.student_hall, user_id=request.user.id)
 
-
-
     context = {
         'dataset': dataset,
     }

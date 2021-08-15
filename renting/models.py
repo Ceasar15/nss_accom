@@ -1,3 +1,4 @@
+from users.models import Profile
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Q
@@ -64,7 +65,7 @@ class NewRentalHouse(models.Model):
     country = models.CharField(max_length=100, default='Ghana')
     date_registered = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    
+    landlord_profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True)
     rent = models.PositiveIntegerField(default=100)
 
 image_dafault = 'img/default.jpg'

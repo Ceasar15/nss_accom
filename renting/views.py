@@ -347,6 +347,10 @@ def postRentAdds(request):
     amenities_form = AmenitiesForm(request.POST)
     rules_form = RulesForm(request.POST)
     preferred_tenant_form = PreferredTenantForm(request.POST)
+    profile = Profile.objects.get(user_id=request.user.id)
+    users_profile = Profile.objects.get(user_id=request.user.id)
+    if users_profile.occupation == 'dummy_occupation':
+        messages.success(request, f"Please update your profile!, Click on your username!")
 
 
     if request.method == 'POST' and request.user.is_authenticated:
@@ -354,6 +358,7 @@ def postRentAdds(request):
         if all((form.is_valid(), house_has_form.is_valid(), amenities_form.is_valid(), rules_form.is_valid(), preferred_tenant_form.is_valid())):
             rh_obj = form.save(commit=False)
             rh_obj.user = request.user
+            rh_obj.landlord_profile = profile.user_id
             rh_obj.save()
             nrh_obj = NewRentalHouse.objects.get(pk=rh_obj.id)
             if img_form.is_valid():

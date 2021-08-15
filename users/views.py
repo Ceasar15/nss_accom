@@ -100,6 +100,7 @@ def StaffRegister(request):
 def LandlordRegister(request):
     
     form = StudentRegisterForm()
+    print(form)
     user_contact_form =  UserContactFrom()
     if request.method == 'POST':
         form = StudentRegisterForm(request.POST)
@@ -120,7 +121,7 @@ def LandlordRegister(request):
             obs.save()
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
 
-            return redirect('renting:update_profile',  id=user.id)
+            return redirect('renting:landlordProfile',  id=user.id)
 
         else:
             password1 = form.data['password1']

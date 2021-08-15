@@ -639,17 +639,23 @@ def staffViewAdDetails(request, id):
 from users.forms import ProfileForm
 @user_passes_test(check_user, login_url='/signInLandlord')
 def landlordProfile(request, id):
-
+    profile = Profile.objects.get(user_id=request.user.id)
     profile_form = ProfileForm(request.POST, request.FILES)
-    
-    if request.method == 'POST':
+    if request.method == 'GET':
+        context =  {
+            'profile': profile,
+            'profile_form': ProfileForm(instance=profile)
+        }
+        return render(request, 'renting/landlord_profile.html', context)
+
+    elif request.method == 'POST':
         if profile_form.is_valid():
             pro = profile_form.save(commit=False)
             pro.user_id = request.user.id
             pro.save()
             messages.success(request, f'Your profile has been Updated!')
             return redirect('renting:landlordViewRentAds')
-    
+
     context =  {
         'profile_form': profile_form
         }

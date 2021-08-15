@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from users.managers import UT
 from django.dispatch import receiver
 from django.db.models.signals import post_save
-from renting.models import NewRentalHouse
 
 CHOICES = (
     ('student','student'),
@@ -31,7 +30,7 @@ class Profile(models.Model):
     location = models.CharField(max_length=30)
     occupation = models.CharField(max_length=190)
     profile_image = models.ImageField(upload_to='landlord/profile_image/', blank=True)
-    nrh = models.ForeignKey(NewRentalHouse, on_delete=models.CASCADE, null=True, blank=True) 
+    # nrh = models.ForeignKey(NewRentalHouse, on_delete=models.CASCADE, null=True, blank=True) 
 
 class Contact(models.Model):
     fullname = models.CharField(max_length=190)

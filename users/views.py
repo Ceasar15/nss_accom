@@ -31,6 +31,8 @@ def Studentregister(request):
             user = form.save()
             obs = user_contact_form.save(commit=False)
             obs.user_id_id = user.id
+            obs.user_group = 'student'
+
             username = user.username
             obs.save()
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
@@ -70,6 +72,7 @@ def StaffRegister(request):
             user = form.save()
             obs = user_contact_form.save(commit=False)
             obs.user_id_id = user.id
+            obs.user_group = 'staff'
             username = user.username
             obs.save()
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
@@ -100,20 +103,17 @@ def StaffRegister(request):
 def LandlordRegister(request):
     
     form = StudentRegisterForm()
-    print(form)
     user_contact_form =  UserContactFrom()
     if request.method == 'POST':
         form = StudentRegisterForm(request.POST)
         user_contact_form = UserContactFrom(request.POST)
-        profile_form = Profile()
-        print(profile_form)
         print(user_contact_form)
-        print(form)
+        profile_form = Profile()
         if all((form.is_valid(), user_contact_form.is_valid() )):
             user = form.save()
-            print(user.id)
             obs = user_contact_form.save(commit=False)
             obs.user_id_id = user.id
+            obs.user_group = 'landlord'
             profile_form.user_id =  user.id
             profile_form.location = 'dummy location'
             profile_form.occupation = 'dummy_occupation'

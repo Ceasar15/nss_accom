@@ -31,13 +31,11 @@ class StudentRegisterForm(UserCreationForm):
 
 class UserContactFrom(forms.ModelForm):
     phone_no = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'input'}))
-    user_group  = forms.CharField(max_length=30, widget=forms.Select(choices= CHOICES))
 
     class Meta:
         model = Typed
         fields = (
             'phone_no',
-            'user_group',
             'student_hall',
         )
     

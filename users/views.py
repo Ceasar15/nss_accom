@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 
 from users.forms import ContactForm, UserTypeForm, UserForm, UpdatePhoneNo,ProfileForm
-from users.models import Typed
+from users.models import Profile, Typed
 
 
 from django.http import HttpResponse
@@ -104,19 +104,23 @@ def LandlordRegister(request):
     if request.method == 'POST':
         form = StudentRegisterForm(request.POST)
         user_contact_form = UserContactFrom(request.POST)
-        profile_form = ProfileForm(request.POST, request.FILES)
+        profile_form = Profile()
+        print(profile_form)
+        print(user_contact_form)
+        print(form)
         if all((form.is_valid(), user_contact_form.is_valid() )):
             user = form.save()
+            print(user.id)
             obs = user_contact_form.save(commit=False)
             obs.user_id_id = user.id
-            profile_form.user =  user
+            profile_form.user_id =  user.id
             profile_form.location = 'dummy location'
             profile_form.occupation = 'dummy_occupation'
             profile_form.save()
             obs.save()
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
 
-            return redirect('renting:postRentAdds')
+            return redirect('renting:update_profile',  id=user.id)
 
         else:
             password1 = form.data['password1']

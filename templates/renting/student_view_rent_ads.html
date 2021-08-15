@@ -217,7 +217,6 @@
                                                     {% for img in house.houseimages_set.all %}
                                                         {% if forloop.counter == 1 %}
                                                                 <img src="{{ img.imagess.url }}" alt="#" height="280px">
-                                                        
                                                             {% endif %}
                                                         {% empty %}
                                                         <div class="columns is-centered">

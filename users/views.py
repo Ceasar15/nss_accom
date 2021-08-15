@@ -143,29 +143,29 @@ def LandlordRegister(request):
 
 
 
-def Staffregister(request):
+# def Staffregister(request):
 
-    if request.method == 'POST':
-        form = StaffRegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('tracking:index')
+#     if request.method == 'POST':
+#         form = StaffRegisterForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('tracking:index')
 
-    context = {'form': StaffRegisterForm()}
-    return render(request, 'tracking/sign_up.html', context)
+#     context = {'form': StaffRegisterForm()}
+#     return render(request, 'tracking/sign_up.html', context)
 
 
 
-def Landlordregister(request):
+# def Landlordregister(request):
 
-    if request.method == 'POST':
-        form = StudentRegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('tracking:index')
+#     if request.method == 'POST':
+#         form = StudentRegisterForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('tracking:index')
 
-    context = {'form': StudentRegisterForm()}
-    return render(request, 'tracking/sign_up.html', context)
+#     context = {'form': StudentRegisterForm()}
+#     return render(request, 'tracking/sign_up.html', context)
 
 
 @login_required(login_url='/usr/login')

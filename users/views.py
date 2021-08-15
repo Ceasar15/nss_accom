@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.contrib import messages
 
-from users.forms import ContactForm, UserTypeForm, UserForm, UpdatePhoneNo
+from users.forms import ContactForm, UserTypeForm, UserForm, UpdatePhoneNo,ProfileForm
 from users.models import Typed
 
 
@@ -104,11 +104,15 @@ def LandlordRegister(request):
     if request.method == 'POST':
         form = StudentRegisterForm(request.POST)
         user_contact_form = UserContactFrom(request.POST)
+        profile_form = ProfileForm(request.POST, request.FILES)
         if all((form.is_valid(), user_contact_form.is_valid() )):
             user = form.save()
             obs = user_contact_form.save(commit=False)
             obs.user_id_id = user.id
-            
+            profile_form.user =  user
+            profile_form.location = 'dummy location'
+            profile_form.occupation = 'dummy_occupation'
+            profile_form.save()
             obs.save()
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
 

@@ -232,7 +232,7 @@
 
                                     <!-- ltn__product-item 1 -->
                                     {% if filter %}
-                                        {% for house in filter.qs %}
+                                        {% for house in filter %}
                                     <div class="col-lg-4 col-sm-6 col-12">
                                         <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                                             <div class="product-img">
@@ -252,7 +252,7 @@
                                                     <div class="agent-img">
                                                         <a href="{% url 'renting:staffViewLandlordDetails' house.user_id  %}">
                                                             
-                                                            <img src="#" alt="#">
+                                                            <img src="{{ house.landlord_profile.profile_image.url }}" alt="LandLord Profile">
                                                             
                                                         </a>
                                                     </div>

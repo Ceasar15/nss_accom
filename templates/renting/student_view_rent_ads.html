@@ -168,7 +168,11 @@
                     <div class="tab-content" style="overflow-x: hidden;">
                         <div class="tab-pane fade active show" id="liton_product_grid">
                             <div class="ltn__product-tab-content-inner ltn__product-grid-view">
-
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+                                    {% endfor %}
+                                {% endif %}
                                 <form method="get" action="{% url 'renting:studentViewRentAds' %}">
                                     {% csrf_token %}
 

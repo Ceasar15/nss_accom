@@ -640,7 +640,7 @@ from users.forms import ProfileForm
 @user_passes_test(check_user, login_url='/signInLandlord')
 def landlordProfile(request, id):
     profile = Profile.objects.get(user_id=request.user.id)
-    profile_form = ProfileForm(request.POST, request.FILES)
+    profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
     if request.method == 'GET':
         context =  {
             'profile': profile,
@@ -662,30 +662,30 @@ def landlordProfile(request, id):
     return render(request, 'renting/landlord_profile.html', context)
 
 
-@user_passes_test(check_user, login_url='/signInLandlord')
-def update_landlordProfile(request, id):
-    profile = Profile.objects.get(user_id=request.user.id)
-    if request.method == 'GET':
-        context =  {
-            'profile': profile,
-            'profile_form': ProfileForm(instance=profile)
-        }
-        return render(request, 'renting/update_landlord_profile.html', context)
+# @user_passes_test(check_user, login_url='/signInLandlord')
+# def update_landlordProfile(request, id):
+#     profile = Profile.objects.get(user_id=request.user.id)
+#     if request.method == 'GET':
+#         context =  {
+#             'profile': profile,
+#             'profile_form': ProfileForm(instance=profile)
+#         }
+#         return render(request, 'renting/update_landlord_profile.html', context)
 
-    else:
-        profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
-        if profile_form.is_valid():
-            pro = profile_form.save(commit=False)
-            pro.user_id = request.user.id
-            pro.save()
-            messages.success(request, f'Your profile has been Updated!')
-            return redirect('renting:landlordProfile', id=request.user.id)
+#     else:
+#         profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
+#         if profile_form.is_valid():
+#             pro = profile_form.save(commit=False)
+#             pro.user_id = request.user.id
+#             pro.save()
+#             messages.success(request, f'Your profile has been Updated!')
+#             return redirect('renting:landlordProfile', id=request.user.id)
 
-        context =  {
-            'profile': profile,
-            'profile_form': profile_form
-            }
-        return render(request, 'renting/update_landlord_profile.html', context)
+#         context =  {
+#             'profile': profile,
+#             'profile_form': profile_form
+#             }
+#         return render(request, 'renting/update_landlord_profile.html', context)
 
 
 # Payment Process for Student

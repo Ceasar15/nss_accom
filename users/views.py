@@ -108,6 +108,7 @@ def LandlordRegister(request):
             user = form.save()
             obs = user_contact_form.save(commit=False)
             obs.user_id_id = user.id
+            
             obs.save()
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
 

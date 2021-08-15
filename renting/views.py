@@ -543,12 +543,9 @@ def studentViewLandlordDetails(request, id):
     typed = Typed.objects.get(user_id_id=id)
     
     contact_landlord = ContactLandlordForm(request.POST)
-    # print(contact_landlord)
     if request.method == 'POST':
-        print(contact_landlord)
         if contact_landlord.is_valid():
             cl = contact_landlord.save(commit=False)
-            print(cl)
             cl.user = request.user
             cl.landlord_id = request.user.id
             cl.save()

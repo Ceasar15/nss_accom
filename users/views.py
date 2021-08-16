@@ -17,8 +17,6 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
-
-
 def Studentregister(request):
 
     form = StudentRegisterForm()
@@ -106,7 +104,6 @@ def LandlordRegister(request):
     if request.method == 'POST':
         form = StudentRegisterForm(request.POST)
         user_contact_form = UserContactFrom(request.POST)
-        print(user_contact_form)
         profile_form = Profile()
         if all((form.is_valid(), user_contact_form.is_valid() )):
             user = form.save()

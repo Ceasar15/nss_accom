@@ -39,7 +39,8 @@ def Studentregister(request):
             obs.save()
             #student_profile
             spf = student_profile.save(commit=False)
-            
+            spf.user_id = user.id
+            spf.save()
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             messages.info(request, f"You are now logged in as {username}")
             return redirect('student:studentDashboard')

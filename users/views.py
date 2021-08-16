@@ -41,6 +41,8 @@ def Studentregister(request):
             spf = student_profile.save(commit=False)
             spf.user_id = user.id
             spf.save()
+            
+            #auto login
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             messages.info(request, f"You are now logged in as {username}")
             return redirect('student:studentDashboard')

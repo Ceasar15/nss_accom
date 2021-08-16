@@ -535,10 +535,6 @@ def studentViewHouseDetails(request, id):
         modl='true'
         return render(request, 'renting/student_view_ad_details.html', locals())
 
-
-
-
-
 # the page where the student can view the details of the landlord.
 from users.models import Typed, Profile
 @user_passes_test(check_student_user, login_url='/loginStudent')

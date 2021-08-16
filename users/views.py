@@ -4,8 +4,8 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.contrib import messages
 
-from users.forms import ContactForm, UserTypeForm, UserForm, UpdatePhoneNo
-from users.models import Typed
+from users.forms import ContactForm, UserTypeForm, UserForm, UpdatePhoneNo,ProfileForm
+from users.models import Profile, Typed
 
 
 from django.http import HttpResponse
@@ -13,7 +13,7 @@ from django.shortcuts import render, redirect
 from student.forms import StudentRegisterForm, EditProfileForm, UserContactFrom
 from users.forms import StaffRegisterForm, EditProfileForm
 from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.auth import logout
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
@@ -28,13 +28,29 @@ def Studentregister(request):
         user_contact_form = UserContactFrom(request.POST)
         if all((form.is_valid(), user_contact_form.is_valid() )):
 
-            tt = form.save()
-            print(tt.id)
+            user = form.save()
             obs = user_contact_form.save(commit=False)
-            obs.user_id_id = tt.id
-            obs.save()
+            obs.user_id_id = user.id
+            obs.user_group = 'student'
 
-            return redirect('student:loginStudent')
+            username = user.username
+            obs.save()
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            # messages.info(request, f"You are now logged in as {username}")
+            return redirect('student:studentDashboard')
+
+
+        else:
+            password1 = form.data['password1']
+            password2 = form.data['password2']
+            email = form.data['email']
+            for msg in form.errors.as_data():
+                if msg == 'email':
+                    messages.error(request, f"Your email: {email} is not valid")
+                if msg == 'password2' and password1 == password2:
+                    messages.error(request, f"The selected password is not strong enough. Mininum of 8 Characters")
+                elif msg == 'password2' and password1 != password2:
+                    messages.error(request, f"Password and Confirmation Password do not match")
 
     context = {
         'form': StudentRegisterForm(),
@@ -53,13 +69,28 @@ def StaffRegister(request):
         form = StudentRegisterForm(request.POST)
         user_contact_form = UserContactFrom(request.POST)
         if all((form.is_valid(), user_contact_form.is_valid() )):
-            tt = form.save()
-            print(tt.id)
+            user = form.save()
             obs = user_contact_form.save(commit=False)
-            obs.user_id_id = tt.id
+            obs.user_id_id = user.id
+            obs.user_group = 'staff'
+            username = user.username
             obs.save()
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            # messages.info(request, f"You are now logged in as {username}")
 
-            return redirect('staff:loginStaff')
+            return redirect('staff:staffDashboard')
+
+        else:
+            password1 = form.data['password1']
+            password2 = form.data['password2']
+            email = form.data['email']
+            for msg in form.errors.as_data():
+                if msg == 'email':
+                    messages.error(request, f"Your email: {email} is not valid")
+                if msg == 'password2' and password1 == password2:
+                    messages.error(request, f"The selected password is not strong enough. Mininum of 8 Characters")
+                elif msg == 'password2' and password1 != password2:
+                    messages.error(request, f"Password and Confirmation Password do not match")
 
     context = {
         'form': StudentRegisterForm(),
@@ -76,15 +107,34 @@ def LandlordRegister(request):
     if request.method == 'POST':
         form = StudentRegisterForm(request.POST)
         user_contact_form = UserContactFrom(request.POST)
+        print(user_contact_form)
+        profile_form = Profile()
         if all((form.is_valid(), user_contact_form.is_valid() )):
-            tt = form.save()
-            print(tt.id)
+            user = form.save()
             obs = user_contact_form.save(commit=False)
-            obs.user_id_id = tt.id
+            obs.user_id_id = user.id
+            obs.user_group = 'landlord'
+            profile_form.user_id =  user.id
+            profile_form.location = 'dummy location'
+            profile_form.occupation = 'dummy_occupation'
+            profile_form.save()
             obs.save()
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
 
-            return redirect('renting:signInLandlord')
+            return redirect('renting:landlordProfile',  id=user.id)
 
+        else:
+            password1 = form.data['password1']
+            password2 = form.data['password2']
+            email = form.data['email']
+            for msg in form.errors.as_data():
+                if msg == 'email':
+                    messages.error(request, f"Your email: {email} is not valid")
+                if msg == 'password2' and password1 == password2:
+                    messages.error(request, f"The selected password is not strong enough. Mininum of 8 Characters")
+                elif msg == 'password2' and password1 != password2:
+                    messages.error(request, f"Password and Confirmation Password do not match")
+    
     context = {
         'form': StudentRegisterForm(),
         'user_contact_form': UserContactFrom()
@@ -94,29 +144,29 @@ def LandlordRegister(request):
 
 
 
-def Staffregister(request):
+# def Staffregister(request):
 
-    if request.method == 'POST':
-        form = StaffRegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('tracking:index')
+#     if request.method == 'POST':
+#         form = StaffRegisterForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('tracking:index')
 
-    context = {'form': StaffRegisterForm()}
-    return render(request, 'tracking/sign_up.html', context)
+#     context = {'form': StaffRegisterForm()}
+#     return render(request, 'tracking/sign_up.html', context)
 
 
 
-def Landlordregister(request):
+# def Landlordregister(request):
 
-    if request.method == 'POST':
-        form = StudentRegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('tracking:index')
+#     if request.method == 'POST':
+#         form = StudentRegisterForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('tracking:index')
 
-    context = {'form': StudentRegisterForm()}
-    return render(request, 'tracking/sign_up.html', context)
+#     context = {'form': StudentRegisterForm()}
+#     return render(request, 'tracking/sign_up.html', context)
 
 
 @login_required(login_url='/usr/login')

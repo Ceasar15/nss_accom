@@ -1,3 +1,4 @@
+from users.models import Profile
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Q
@@ -64,7 +65,7 @@ class NewRentalHouse(models.Model):
     country = models.CharField(max_length=100, default='Ghana')
     date_registered = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    
+    landlord_profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True)
     rent = models.PositiveIntegerField(default=100)
 
 image_dafault = 'img/default.jpg'
@@ -110,13 +111,6 @@ class Rules(models.Model):
 
     nrh = models.OneToOneField(NewRentalHouse, on_delete=models.CASCADE)
 
-class SearchFilter(django_filters.FilterSet):	
-    class Meta:    
-        model = NewRentalHouse 
-        fields={
-            'rent': ['gt', 'lt'],
-            'city': ['iexact']
-        }
 
 class SearchFilter(django_filters.FilterSet):
     city = django_filters.CharFilter(method='custom_filter')
@@ -128,10 +122,8 @@ class SearchFilter(django_filters.FilterSet):
     
     def custom_filter(self, queryset, name, value):
         return NewRentalHouse.objects.filter(
-            Q(city__iexact=value)  
+            Q(city__icontains=value) | Q(area__icontains=value) | Q(region__icontains=value) 
         )
-
-
 
 class ContactLandlord(models.Model):
     full_name = models.CharField(max_length=150)

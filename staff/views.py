@@ -32,13 +32,12 @@ def loginStaff(request):
 
         username = request.POST.get('username')
         password =request.POST.get('password')
-
         user = authenticate(request, username=username, password=password)
-
+        
         if user is not None:
             typed = Typed.objects.filter(user_id=user).first();
             if typed.user_group == 'staff':
-                login(request, user)	
+                login(request, user)
                 if request.user:
                     return redirect('staff:staffDashboard')
         else:
@@ -183,13 +182,15 @@ def staffPostAnnouncement(request):
         if p_form.is_valid():
             obj = p_form.save(commit=False)
             obj.annou_user = request.user
+            des = obj.announcement_body
+            title = obj.announcement_title
             obj.save()
             messages.success(request, f'Your Announcement has been Posted Successfully')
             typed = Typed.objects.filter(user_id=request.user).first()
+            print(typed.student_hall)
             user_list = []
-            user_list = PostAnnouncement.objects.filter(hall=typed.student_hall)
-            print(user_list)
-            notify.send(request.user, recipient=user_list, verb='new announcement posted')
+            user_list =  User.objects.filter()
+            notify.send(sender=request.user, recipient=user_list, description=des, verb=title)
             return redirect('staff:staffPostAnnouncement')
     context={
             'p_form': PostAnnoumcementForm()
@@ -274,3 +275,9 @@ def solved(request, complaint_id):
     complaint.complaint_status = 'RESOLVED'
     complaint.save()
     return redirect('staff:staffViewAllComplaints')
+
+
+
+# datatables tutorial.
+def dataTables(request):
+    return render (request, 'staff/data_tables.html')

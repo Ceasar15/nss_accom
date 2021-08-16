@@ -277,12 +277,9 @@ def registerAccount(request):
     if request.method == 'POST':
         form = StudentRegisterForm(request.POST)
         user_contact_form = UserContactFrom(request.POST)
-        print(form)
-        print(user_contact_form)
         if all((form.is_valid(), user_contact_form.is_valid() )):
 
             tt = form.save()
-            print(tt.id)
             obs = user_contact_form.save(commit=False)
             obs.user_id_id = tt.id
             obs.save()
@@ -350,13 +347,18 @@ def postRentAdds(request):
     amenities_form = AmenitiesForm(request.POST)
     rules_form = RulesForm(request.POST)
     preferred_tenant_form = PreferredTenantForm(request.POST)
-
+    profile = Profile.objects.get(user_id=request.user.id)
+    users_profile = Profile.objects.get(user_id=request.user.id)
+    if users_profile.occupation == 'dummy_occupation':
+        messages.success(request, f"Please update your profile!, Click on your username!")
+        return redirect('renting:landlordProfile', id=request.user.id)
 
     if request.method == 'POST' and request.user.is_authenticated:
     
         if all((form.is_valid(), house_has_form.is_valid(), amenities_form.is_valid(), rules_form.is_valid(), preferred_tenant_form.is_valid())):
             rh_obj = form.save(commit=False)
             rh_obj.user = request.user
+            rh_obj.landlord_profile = profile.user_id
             rh_obj.save()
             nrh_obj = NewRentalHouse.objects.get(pk=rh_obj.id)
             if img_form.is_valid():
@@ -416,30 +418,38 @@ def check_staff_user(user):
 # the page where a student can view all rent ads.
 @user_passes_test(check_student_user, login_url='/loginStudent')
 def studentViewRentAds(request):
-    f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())
-    for house in f.qs:
-        profile = Profile.objects.get(user_id=house.user_id)
+    all_rental = NewRentalHouse.objects.all()
+    
+    f = SearchFilter(request.GET, queryset=all_rental)
 
-    return render(request, 'renting/student_view_rent_ads.html', {'filter': f, 
-    'profile': profile})
-
+    if f.qs.count() == 0:
+        messages.info(request, f"No properties found")
+        return render(request, 'renting/student_view_rent_ads.html', {'filter': all_rental})
+    else:
+        return render(request, 'renting/student_view_rent_ads.html', {'filter': f.qs})
 
 # the page where a staff can view all rent ads.
 @user_passes_test(check_staff_user, login_url='/loginStaff')
 def staffViewRentAds(request):
-    f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.all())
-    for house in f.qs:
-        profile = Profile.objects.get(user_id=house.user_id)
+    all_rental = NewRentalHouse.objects.all()
     
-    return render(request, 'renting/staff_view_rent_ads.html', {'filter': f, 'profile': profile})
+    f = SearchFilter(request.GET, queryset=all_rental)
 
-
+    if f.qs.count() == 0:
+        messages.info(request, f"No properties found")
+        return render(request, 'renting/staff_view_rent_ads.html', {'filter': all_rental})
+    else:
+        return render(request, 'renting/staff_view_rent_ads.html', {'filter': f.qs})
+    
 
 # the page where a landlord can view all of their posted ads.
 @user_passes_test(check_user, login_url='/signInLandlord')
 def landlordViewRentAds(request):
+
     if request.user.is_authenticated:
         house_list = NewRentalHouse.objects.filter(user=request.user).order_by('-date_registered')
+        for house in house_list:
+            hey = house.id
         return render(request, 'renting/landlord_view_rent_ads.html', locals())
 
     elif request.user.is_anonymous:
@@ -527,6 +537,8 @@ def studentViewHouseDetails(request, id):
 
 
 
+
+
 # the page where the student can view the details of the landlord.
 from users.models import Typed, Profile
 @user_passes_test(check_student_user, login_url='/loginStudent')
@@ -536,12 +548,9 @@ def studentViewLandlordDetails(request, id):
     typed = Typed.objects.get(user_id_id=id)
     
     contact_landlord = ContactLandlordForm(request.POST)
-    # print(contact_landlord)
     if request.method == 'POST':
-        print(contact_landlord)
         if contact_landlord.is_valid():
             cl = contact_landlord.save(commit=False)
-            print(cl)
             cl.user = request.user
             cl.landlord_id = request.user.id
             cl.save()
@@ -635,47 +644,53 @@ def staffViewAdDetails(request, id):
 from users.forms import ProfileForm
 @user_passes_test(check_user, login_url='/signInLandlord')
 def landlordProfile(request, id):
+    profile = Profile.objects.get(user_id=request.user.id)
+    profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
+    if request.method == 'GET':
+        context =  {
+            'profile': profile,
+            'profile_form': ProfileForm(instance=profile)
+        }
+        return render(request, 'renting/landlord_profile.html', context)
 
-    profile_form = ProfileForm(request.POST, request.FILES)
-    
-    if request.method == 'POST':
+    elif request.method == 'POST':
         if profile_form.is_valid():
             pro = profile_form.save(commit=False)
             pro.user_id = request.user.id
             pro.save()
             messages.success(request, f'Your profile has been Updated!')
             return redirect('renting:landlordViewRentAds')
-    
+
     context =  {
         'profile_form': profile_form
         }
     return render(request, 'renting/landlord_profile.html', context)
 
 
-@user_passes_test(check_user, login_url='/signInLandlord')
-def update_landlordProfile(request, id):
-    profile = Profile.objects.get(user_id=request.user.id)
-    if request.method == 'GET':
-        context =  {
-            'profile': profile,
-            'profile_form': ProfileForm(instance=profile)
-        }
-        return render(request, 'renting/update_landlord_profile.html', context)
+# @user_passes_test(check_user, login_url='/signInLandlord')
+# def update_landlordProfile(request, id):
+#     profile = Profile.objects.get(user_id=request.user.id)
+#     if request.method == 'GET':
+#         context =  {
+#             'profile': profile,
+#             'profile_form': ProfileForm(instance=profile)
+#         }
+#         return render(request, 'renting/update_landlord_profile.html', context)
 
-    else:
-        profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
-        if profile_form.is_valid():
-            pro = profile_form.save(commit=False)
-            pro.user_id = request.user.id
-            pro.save()
-            messages.success(request, f'Your profile has been Updated!')
-            return redirect('renting:landlordProfile', id=request.user.id)
+#     else:
+#         profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
+#         if profile_form.is_valid():
+#             pro = profile_form.save(commit=False)
+#             pro.user_id = request.user.id
+#             pro.save()
+#             messages.success(request, f'Your profile has been Updated!')
+#             return redirect('renting:landlordProfile', id=request.user.id)
 
-        context =  {
-            'profile': profile,
-            'profile_form': profile_form
-            }
-        return render(request, 'renting/update_landlord_profile.html', context)
+#         context =  {
+#             'profile': profile,
+#             'profile_form': profile_form
+#             }
+#         return render(request, 'renting/update_landlord_profile.html', context)
 
 
 # Payment Process for Student
@@ -728,3 +743,57 @@ def landlordViewAdsOfOtherLandlords(request):
         profile = Profile.objects.get(user_id=house.user_id)
 
     return render(request, "renting/landlord_view_other_landlord_houses.html", {'filter': f, 'profile': profile})
+
+
+
+# landlord view details of ads posted by other landlords
+@user_passes_test(check_user, login_url='/signInLandlord')
+def landlordViewAdsDetailsOfOtherLandlords(request, id):
+    form = RatingForm(request.POST)
+    product = get_object_or_404(NewRentalHouse, pk=id)
+    if request.method == "POST":
+        nrh_obj = NewRentalHouse.objects.get(pk=id)
+        r_hh = HouseHas.objects.get(nrh=nrh_obj)
+        am = Amenities.objects.get(nrh=nrh_obj)
+        pt = PreferredTenant.objects.get(nrh=nrh_obj)
+        rl = Rules.objects.get(nrh=nrh_obj)
+        imgs = HouseImages.objects.filter(nrh=nrh_obj)
+        rating_count = Rating.objects.filter(landlord_id=nrh_obj.id).count()
+        rating = Rating.objects.filter(landlord_id=nrh_obj.id).order_by('-date')
+        for img in imgs:
+            print(img.images)
+        if form.is_valid():
+            fm = form.save(commit=False)
+            fm.user = request.user
+            fm.landlord = product
+            fm.save()
+
+
+        return render(request, 'renting/landlord_view_details_of_ads_posted_by_other_landlords.html', locals())
+
+    if request.user.is_authenticated:
+        try:
+            nrh_obj = NewRentalHouse.objects.get(pk=id)
+            r_hh = HouseHas.objects.get(nrh=nrh_obj)
+            am = Amenities.objects.get(nrh=nrh_obj)
+            pt = PreferredTenant.objects.get(nrh=nrh_obj)
+            rl = Rules.objects.get(nrh=nrh_obj)
+            imgs = HouseImages.objects.filter(nrh=nrh_obj)
+            rating_count = Rating.objects.filter(landlord_id=nrh_obj.id).count()
+            rating = Rating.objects.filter(landlord_id=nrh_obj.id).order_by('-date')
+            for img in imgs:
+                print(img.images)
+        except:
+            nrh_obj = None
+        if nrh_obj:
+            return render(request, 'renting/landlord_view_details_of_ads_posted_by_other_landlords.html', locals())
+    elif request.user.is_anonymous:
+        modl='true'
+        return render(request, 'renting/landlord_view_details_of_ads_posted_by_other_landlords.html', locals())
+    return render(request, 'renting/landlord_view_details_of_ads_posted_by_other_landlords.html')
+
+
+# landlord edit rent ads
+@user_passes_test(check_user, login_url='/signInLandlord')
+def landlordEditRentAds(request):
+    return render(request, 'renting/landlord_edit_rent_ads.html')

@@ -1,23 +1,594 @@
-<div class="main">
-    <form action="{% url 'renting:edit_whole' nrh_obj.id %}" method="post" enctype="multipart/form-data">
-        {% if messages %}
-        {% for message in messages %}
-            {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
-        {% endfor %}
-    {% endif %}
-        {% csrf_token %}
-        {{ form.as_p }}
-        {{ hform.as_p }}
-        {% if images_list %}
-            {% for img in images_list %}
-            <img id='{{img.id}}' class="img-ad-cls" src="{{ img.imagess.url }}">
-            {% endfor %}
-        {% endif %}
-        <span>Upload Images</span>
-        {{ img_form.imagess }} 
-        {{ aform.as_p }}
-        {{ rform.as_p }}
-        {{ ptform.as_p }}
-        <input type="submit" value="Edit Ad">
-    </form>
-</div>
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Landlord post rent ad</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Place favicon.png in the root directory -->
+   <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon" />
+   <!-- Font Icons css -->
+   <link rel="stylesheet" href="{% static 'css/font-icons.css' %}">
+   <!-- plugins css -->
+   <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+   <!-- Main Stylesheet -->
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   <!-- Responsive css -->
+   <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+
+<!-- Body main wrapper start -->
+<div class="body-wrapper">
+
+    <!-- HEADER AREA START (header-5) -->
+    <header class="ltn__header-area ltn__header-5 ltn__header-transparent--- gradient-color-4---">
+         <!-- ltn__header-top-area start -->
+         <div class="ltn__header-top-area section-bg-6 top-area-color-white---">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="top-bar-right text-right">
+                            <div class="ltn__top-bar-menu">
+                                <ul>
+                                    <li>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ltn__header-top-area end -->
+        
+
+
+        
+       
+        <!-- ltn__header-middle-area start -->
+        <div class="ltn__header-middle-area ltn__header-sticky ltn__sticky-bg-white">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="site-logo-wrap">
+                            <div class="site-logo">
+                                <a href="{% url 'tracking:index' %}"><img src="{% static 'img/ug_logo.png' %}" alt="Logo" height="100px" ></a> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col header-menu-column">
+                        <div class="header-menu d-none d-xl-block">
+                            <nav>
+                                <div class="ltn__main-menu">
+                                    <ul style="float: right;">
+                                        <li>
+                                            <a href="#">Home</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#">About</a>
+                                        </li>
+                                      
+                                        <li>
+                                            <a href="#">Contact</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="{% url 'renting:postRentAdds' %}">Post rent ads</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="{% url 'renting:landlordViewRentAds' %}">View rent ads</a>
+                                        </li>
+
+                                        {% if user.is_authenticated %}	
+                                        <li class="menu-icon"><a href="{% url 'renting:landlordProfile' user.id %}">{{ user.first_name }}</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'renting:landlordProfile' user.id %}">Profile</a>
+                                                </li>
+                                            </ul>
+                                            {% else %}
+                                        </li>
+
+                                        <li>
+                                            <a href="{% url 'renting:signInLandlord' %}">Login</a>
+                                        </li>
+                                        {% endif %}
+
+
+                                        <li class="btn-wrapper animated">
+                                            <a href="{% url 'logout' %}" class="theme-btn-1 btn btn-effect-1" style="height:60px; width:100px;"  >Sign Out</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ltn__header-middle-area end -->
+    </header>
+    <!-- HEADER AREA END -->
+
+   
+
+    <!-- BREADCRUMB AREA START -->
+    <div class="ltn__breadcrumb-area text-left bg-overlay-white-30 bg-image "  data-bg="img/bg/14.jpg">
+     
+    
+    <!-- BREADCRUMB AREA END -->
+
+    
+
+
+    
+    <!-- CONTACT MESSAGE AREA START -->
+    <div class="ltn__contact-message-area mb-120 mb--100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ltn__form-box contact-form-box box-shadow white-bg">
+                        <h4 class="title-2">Edit the details of your rent ad below:</h4>
+                        <h4 class="title-2">1. House details</h4>
+                        {% if messages %}
+                            {% for message in messages %}
+                                {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+                            {% endfor %}
+                        {% endif %}
+
+                        <form id="contact-form" method="post" enctype="multipart/form-data">{% csrf_token %}
+
+                            <!-- First requirements ( House address )-->
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-car ">
+                                        <label for='id_house_no'> House Number * </label>
+                                        <input type="text" id="id_house_no" name="house_no" placeholder="House number" required maxlength="5" >
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-phone ">
+                                        <label for='id_street_address'> Street Address *</label>
+                                        <input type="text" id="id_street_address" name="street_address" placeholder="Street address" required maxlength="10">
+                                    </div>
+                                </div>              
+                                
+                                
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-phone ">
+                                        <label for='id_area'> Area *</label>
+                                        <input type="text" id="id_area" name="area" placeholder="Area" required maxlength="10">
+                                    </div>
+                                </div>  
+
+
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-phone ">
+                                        <label for='id_city'> City *</label>
+                                        <input type="text" id="id_city" name="city" placeholder="City" required maxlength="10">
+                                    </div>
+                                </div>  
+
+
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-phone ">
+                                        <label for='id_country'> Country *</label>
+                                        <input type="text" id="id_country" readonly value="Ghana" name="country" placeholder="Ghana" required maxlength="10">
+                                    </div>
+                                </div>  
+
+
+                                <div class="col-md-6">
+                                    <div class="input-item">
+                                        <label for='id_region'> Region *</label>
+                                        <select class="nice-select" id="id_region" name="region" required>
+                                            <option>Greater Accra Region</option>
+                                            <option>Ashanti Region</option>
+                                            <option>Western North Region</option>
+                                            <option>Western Region</option>
+                                            <option>Volta Region</option>
+                                            <option>Eastern Region</option>
+                                            <option>Upper East Region</option>
+                                            <option>Upper West Region</option>
+                                            <option>Northern Region</option>
+                                            <option>North East Region</option>
+                                            <option>Ahafo Region</option>
+                                            <option>Bono Region</option>
+                                            <option>Savanna Region</option>
+                                            <option>Bono East Region</option>
+                                            <option>Oti Region</option>
+                                            <option>Western Region</option>
+                                            <option>Central Region</option>
+                                        </select>
+                                    </div>
+                                </div> 
+
+
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-phone ">
+                                        <label for='id_rent'> Rent *</label>
+                                        <input type="text" id="id_rent" name="rent" placeholder="Rent Price (Amount Per Month)" required maxlength="10">
+                                    </div>
+                                </div> 
+
+
+                                <!-- start date and end date
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-phone ">
+                                        <label for='id_mobile_number'> Start Date</label>
+                                        <input type="text" id="id_mobile_number" name="mobile_number" placeholder="Start Date" required maxlength="10">
+                                    </div>
+                                </div> 
+
+
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-phone ">
+                                        <label for='id_mobile_number'> End Date</label>
+                                        <input type="text" id="id_mobile_number" name="mobile_number" placeholder="End Date" required maxlength="10">
+                                    </div>
+                                </div> 
+                                -->
+
+
+                                <div class="col-md-6" style="margin-top: 50px;">
+                                    <input type="file" id='id_imagess' name="imagess" placeholder="Upload house images" multiple required>
+                                    <p>Upload house images *</p>
+                                </div>
+
+
+                                </div>  </br> </br> </br> <!-- End of first requirements -->
+
+
+
+
+
+
+                                <!-- Second requirements ( House has ) -->
+                                <h4 class="title-2">2. House has</h4>
+
+                                <div class='row'>
+
+                                <div class="col-md-6">
+                                    <div class="input-item">
+                                        <label for='id_kitchen'>Kitchen *</label>
+                                        <select class="nice-select" id="id_kitchen" name="kitchen" required>
+                                            <option value="Pr">Private</option>
+                                            <option value='Sh'>Shared</option>
+                                            <option value='No'>Not Available</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="input-item">
+                                        <label for='id_bedroom'>Bedroom *</label>
+                                        <select class="nice-select" id="id_bedroom" name="bedroom" required>
+                                            <option value='zero'>0</option>
+                                            <option value="one">1</option>
+                                            <option value='two'>2</option>
+                                            <option value='three'>3</option>
+                                            <option value='three_plus'>4</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="input-item">
+                                        <label for='id_bathroom'>Bathroom * </label>
+                                        <select class="nice-select" id="id_bathroom" name="bathroom" required>
+                                            <option value="Pr">Private</option>
+                                            <option value='Sh'>Shared</option>
+                                            <option value='No'>Not Available</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="input-item">
+                                        <label for='id_balcony'>Balcony *</label>
+                                        <select class="nice-select" id="id_balcony" name="balcony" required>
+                                            <option value="Pr">Private</option>
+                                            <option value='Sh'>Shared</option>
+                                            <option value='No'>Not Available</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-md-6">
+                                    <div class="input-item">
+                                        <label for='id_toilet'>Toilet *</label>
+                                        <select class="nice-select" id="id_toilet" name="toilet" required>
+                                            <option value="Pr">Private</option>
+                                            <option value='Sh'>Shared</option>
+                                            <option value='No'>Not Available</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-md-6">
+                                    <div class="input-item">
+                                        <label for='id_living_room'>Living Room *</label>
+                                        <select class="nice-select" id="id_living_room" name="living_room" required>
+                                            <option value="Pr">Private</option>
+                                            <option value='Sh'>Shared</option>
+                                            <option value='No'>Not Available</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="input-item">
+                                        <label for='id_parking'>Parking *</label>
+                                        <select class="nice-select" id="id_parking" name="parking" required>
+                                            <option value="Y">Yes</option>
+                                            <option value='N'>No</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                            </div> </br> </br> </br> <!-- End of second requirements -->
+
+
+
+
+                            <!-- 3rd requirements ( Amenities )-->
+                            <h4 class="title-2">3. Amenities </h4>
+
+                            <div class='row'>
+
+                                <div class="col-md-6">
+                                    <div class="input-item">
+                                        <label for='id_complaint_type'>Bed *</label>
+                                        <select class="nice-select" id="id_bed" name="bed" required>
+                                            <option value="Y">Yes</option>
+                                            <option value='N'>No</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-md-6">
+                                    <div class="input-item">
+                                        <label for='id_complaint_type'>Furnished *</label>
+                                        <select class="nice-select" id="id_furnished" name="furnished" required>
+                                            <option value="Y">Yes</option>
+                                            <option value='N'>No</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                            </div> <br/> <br/> <br/>  <!-- End of 3rd requirements -->
+
+
+
+
+                            <!-- 4th requirements ( Rules )-->
+                            <h4 class="title-2">4. Rules </h4>
+
+                            <div class='row'>
+
+                                <div class="col-md-6">
+                                    <div class="input-item">
+                                        <label for='id_smoking_allowed'>Smoking Allowed *</label>
+                                        <select class="nice-select" id="id_smoking_allowed" name="smoking_allowed" required>
+                                            <option value="Y">Yes</option>
+                                            <option value='N'>No</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="input-item">
+                                        <label for='id_musical_instrument'>Loud Music Volumes *</label>
+                                        <select class="nice-select" id="id_musical_instrument" name="musical_instrument" required>
+                                            <option value="Y">Yes</option>
+                                            <option value='N'>No</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div> <br/> <br/> <br/> <!-- End of 4th requirements -->
+
+
+
+
+
+                            <!-- Fifth requirements ( Preferred Tenant ) -->
+
+                            <h4 class="title-2">5. Preferred Tenant </h4>
+
+                            <div class='row'>
+
+                                <div class="col-md-6">
+                                    <div class="input-item">
+                                        <label for='id_gender'>Gender *</label>
+                                        <select class="nice-select" id="id_gender" name="gender" required>
+                                            <option value="M">Male</option>
+                                            <option value='F'>Female</option>
+                                            <option value='O'>Any</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div> <br/> <br/> <br/> <!-- end of fifth requirements -->
+
+
+
+                            <!-- Final requirements ( Description ) -->
+                            <div>
+                            <h4 class="title-2">6. Brief House Description </h4>
+                                <label for='id_description'>Description </label>
+                                <div class="input-item input-item-textarea ltn__custom-icon">
+                                    <textarea name="description" id="id_description" placeholder="This is an optional field. You can give a brief description of the house and include other information we may not have captured but you wish to let your customers know. This will be displayed to customers and can influence their interest in your house. !!" ></textarea>
+                                </div>
+
+                             <br/> <br/> <br/> 
+
+                            </div> <!-- end of final requirements -->
+
+
+                            
+
+
+                            <div class="btn-wrapper mt-0">
+                                <button id="btn" class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Post Your Ad</button>
+                            </div>
+                            <p class="form-messege mb-0 mt-20"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- CONTACT MESSAGE AREA END -->
+
+   
+
+
+
+
+   <!-- FOOTER AREA START -->
+    <footer style="position: relative; top: 300px;" class="ltn__footer-area  ">
+        <div class="footer-top-area  section-bg-2 plr--5">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-3 col-md-6 col-sm-6 col-12">
+                        <div class="footer-widget footer-about-widget">
+                            <div class="footer-logo">
+                                <div class="site-logo">
+                                    <img src="img/logo-2.png" alt="Logo">
+                                </div>
+                            </div>
+                            <p>This is a system that helps hall assistants to keep track of students in the hall, also enable students submit complain and help NSS Personnels find accommodation with ease.</p>
+                            <div class="footer-address">
+                                <ul>
+                                    <li>
+                                        <div class="footer-address-icon">
+                                            <i class="icon-placeholder"></i>
+                                        </div>
+                                        <div class="footer-address-info">
+                                            <p>University of Ghana, Legon, Accra.</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="footer-address-icon">
+                                            <i class="icon-call"></i>
+                                        </div>
+                                        <div class="footer-address-info">
+                                            <p><a href="tel:+233 240 090 168">+233 240 090 168</a></p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="footer-address-icon">
+                                            <i class="icon-mail"></i>
+                                        </div>
+                                        <div class="footer-address-info">
+                                            <p><a href="mailto:marianboyeamoah@gmail.com">marianboyeamoah@gmail.com</a></p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="ltn__social-media mt-20">
+                                <ul>
+                                    <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="#" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
+                                    <li><a href="#" title="Youtube"><i class="fab fa-youtube"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-6 col-sm-6 col-12">
+                        <div class="footer-widget footer-menu-widget clearfix">
+                            <h4 class="footer-title">Institution</h4>
+                            <div class="footer-menu">
+                                <ul>
+                                    <li><a href="#">About</a></li>
+                                    <li><a href="contact.html">Contact us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-6 col-sm-6 col-12">
+                        <div class="footer-widget footer-menu-widget clearfix">
+                            <h4 class="footer-title">Services</h4>
+                            <div class="footer-menu">
+                                <ul>
+                                   <li><a href="login.html">Access NSS accommodation</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <div class="ltn__copyright-area ltn__copyright-2 section-bg-7  plr--5">
+            <div class="container-fluid ltn__border-top-2">
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <div class="ltn__copyright-design clearfix">
+                            <p>All Rights Reserved @ Company <span class="current-year"></span></p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12 align-self-center">
+                        <div class="ltn__copyright-menu text-right">
+                            <ul>
+                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Claim</a></li>
+                                <li><a href="#">Privacy & Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div>
+    <!-- FOOTER AREA END -->
+
+<!-- Body main wrapper end -->
+
+    <!-- All JS Plugins -->
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <!-- Main JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+    <!-- Custom javascript -->
+    <script src="{% static 'js/custom.js' %}"></script>
+  
+</body>
+
+</html>
+

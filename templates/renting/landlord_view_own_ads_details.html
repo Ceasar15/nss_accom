@@ -76,6 +76,14 @@
                                         </li>
 
                                         <li>
+                                            <a href="#">About</a>
+                                        </li>
+                                      
+                                        <li>
+                                            <a href="#">Contact</a>
+                                        </li>
+
+                                        <li>
                                             <a href="{% url 'renting:postRentAdds' %}">Post rent ads</a>
                                         </li>
 
@@ -83,9 +91,21 @@
                                             <a href="{% url 'renting:landlordViewRentAds' %}">View your rent ads</a>
                                         </li>
 
-                                        <li>
-                                            <a href="#">User</a>
+                                        {% if user.is_authenticated %}	
+                                        <li class="menu-icon"><a href="{% url 'renting:landlordProfile' user.id %}">{{ user.first_name }}</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'renting:landlordProfile' user.id %}">Profile</a>
+                                                </li>
+                                            </ul>
+                                            {% else %}
                                         </li>
+
+                                        <li>
+                                            <a href="{% url 'renting:signInLandlord' %}">Login</a>
+                                        </li>
+                                        {% endif %}
+
 
                                         <li class="btn-wrapper animated">
                                             <a href="{% url 'logout' %}" class="theme-btn-1 btn btn-effect-1" style="height:60px; width:100px;"  >Sign Out</a>
@@ -410,10 +430,12 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="call-to-action-inner call-to-action-inner-6 ltn__secondary-bg text-center---">
+                        <a href="{% url 'renting:postRentAdds' %}">
                         <div class="coll-to-info text-color-white" style="cursor: pointer;">
                             <h1>Click here to post an add of your available apartment</h1>
                             <p>We can help you find tenants for your apartment</p>
                         </div>
+                        </a>
                         <div class="btn-wrapper">
                             <a class="btn btn-effect-3 btn-white" href="{% url 'renting:postRentAdds' %}">Explore available Rent Ads <i class="icon-next"></i></a>
                         </div>

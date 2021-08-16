@@ -168,7 +168,11 @@
                     <div class="tab-content" style="overflow-x: hidden;">
                         <div class="tab-pane fade active show" id="liton_product_grid">
                             <div class="ltn__product-tab-content-inner ltn__product-grid-view">
-
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+                                    {% endfor %}
+                                {% endif %}
                                 <form method="get" action="{% url 'renting:studentViewRentAds' %}">
                                     {% csrf_token %}
 
@@ -209,7 +213,7 @@
                                     <div class="row" style="position: relative; bottom: 60px" >
                                     <!-- ltn__product-item 1 -->
                                     {% if filter %}
-                                        {% for house in filter.qs %}
+                                        {% for house in filter %}
                                     <div class="col-lg-4 col-sm-6 col-12">
                                         <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                                             <div class="product-img">
@@ -217,7 +221,6 @@
                                                     {% for img in house.houseimages_set.all %}
                                                         {% if forloop.counter == 1 %}
                                                                 <img src="{{ img.imagess.url }}" alt="#" height="280px">
-                                                        
                                                             {% endif %}
                                                         {% empty %}
                                                         <div class="columns is-centered">
@@ -227,7 +230,7 @@
                                                 </a>
                                                 <div class="real-estate-agent">
                                                     <div class="agent-img">
-                                                        <a href="{% url 'renting:studentViewLandlordDetails'  house.user_id %}"><img src="{{ profile.profile_image.url }}" alt="#"></a>
+                                                        <a href="{% url 'renting:studentViewLandlordDetails'  house.user_id %}"><img src="{{ house.landlord_profile.profile_image.url }}" alt="LandLord Profile"></a>
                                                     </div>
                                                 </div>
                                             </div>

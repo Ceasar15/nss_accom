@@ -22,13 +22,10 @@
     <!-- Responsive css -->
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
 
-    <!-- For animation 
-    <link rel="stylesheet" href="font-awesome-animation.min.css">
-    -->
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
+    
+    <!-- For animation  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  
 
 
 
@@ -90,11 +87,23 @@
                                             </ul>
                                         </li>
 
-
                                         <li class="menu-icon"><a href="#">Announcements</a>
                                             <ul>
                                                 <li>
-                                                    <a href="{% url 'student:studentViewAnnouncements' %}">View all announcements</a></li>
+                                                    <a href="{% url 'student:studentViewAnnouncements' %}">
+                                                        View All Announcement
+                                                    {% notifications_unread as unread_count %}
+                                                    {% if unread_count %}
+                                                        You have <strong>{{ unread_count }}</strong> unread notifications.
+                                                    {% else %}
+                                                        You have <strong>zero(0)</strong> unread notifications.
+                                                    {% endif %}
+                                                    {% if unread_notif %}
+                                                        <i class="fas fa-bell"></i>
+                                                      {% else %}
+                                                        <i class="fas fa-deaf"></i>
+                                                      {% endif %}
+                                                    </a></li>
                                                 </li>
 
                                             </ul>
@@ -168,11 +177,6 @@
                         <div style="display:flex;">
                             <i class="fas fa-user-graduate fa-3x"></i>
                         <h1 style="margin-left: 20px;">Student Dashboard</h1>
-                        <p>{% notifications_unread as unread_count %}
-                            {% if unread_count %}
-                                You have <strong>{{ unread_count }}</strong> unread notifications.
-                            {% endif %}
-                        </p>
                         </div>
 
                         <ul>
@@ -188,7 +192,11 @@
                            
                         </ul>
                     </div>
-
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+                        {% endfor %}
+                    {% endif %}
 
                     
 

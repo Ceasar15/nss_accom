@@ -24,7 +24,6 @@ def Studentregister(request):
     form = StudentRegisterForm()
     user_contact_form =  UserContactFrom()
     student_profile = StudentProfileForm()
-    print(form, user_contact_form, student_profile)
     if request.method == 'POST':
         form = StudentRegisterForm(request.POST)
         user_contact_form = UserContactFrom(request.POST)

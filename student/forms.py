@@ -59,7 +59,7 @@ class EditProfileForm(UserChangeForm):
             'password',
             'phone_no',
         ]
-class ProfileForm(forms.ModelForm):
+class StudentProfileForm(forms.ModelForm):
     
     class Meta:
         model = StudentProfile

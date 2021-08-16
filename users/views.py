@@ -10,7 +10,7 @@ from users.models import Profile, Typed
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from student.forms import StudentRegisterForm, EditProfileForm, UserContactFrom
+from student.forms import StudentProfileForm, StudentRegisterForm, EditProfileForm, UserContactFrom
 from users.forms import StaffRegisterForm, EditProfileForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import login, logout
@@ -23,10 +23,12 @@ def Studentregister(request):
 
     form = StudentRegisterForm()
     user_contact_form =  UserContactFrom()
+    student_profile = StudentProfileForm()
     if request.method == 'POST':
         form = StudentRegisterForm(request.POST)
         user_contact_form = UserContactFrom(request.POST)
-        if all((form.is_valid(), user_contact_form.is_valid() )):
+        student_profile = student_profile(request.POST, request.FILES)
+        if all((form.is_valid(), user_contact_form.is_valid(), student_profile.is_valid() )):
 
             user = form.save()
             obs = user_contact_form.save(commit=False)

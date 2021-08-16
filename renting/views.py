@@ -351,7 +351,7 @@ def postRentAdds(request):
     users_profile = Profile.objects.get(user_id=request.user.id)
     if users_profile.occupation == 'dummy_occupation':
         messages.success(request, f"Please update your profile!, Click on your username!")
-
+        return redirect('renting:landlordProfile', id=request.user.id)
 
     if request.method == 'POST' and request.user.is_authenticated:
     

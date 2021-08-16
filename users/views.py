@@ -24,6 +24,7 @@ def Studentregister(request):
     form = StudentRegisterForm()
     user_contact_form =  UserContactFrom()
     student_profile = StudentProfileForm()
+    print(form, user_contact_form, student_profile)
     if request.method == 'POST':
         form = StudentRegisterForm(request.POST)
         user_contact_form = UserContactFrom(request.POST)
@@ -31,16 +32,18 @@ def Studentregister(request):
         if all((form.is_valid(), user_contact_form.is_valid(), student_profile.is_valid() )):
 
             user = form.save()
+            user.refresh_from_db()
+            #student_profile
+            spf = student_profile.save(commit=False)
+            spf.user_id = user.id
+            spf.save()
+            user.save()
             # user_contact_form
             obs = user_contact_form.save(commit=False)
             obs.user_id_id = user.id
             obs.user_group = 'student'
             username = user.first_name
             obs.save()
-            #student_profile
-            spf = student_profile.save(commit=False)
-            spf.user_id = user.id
-            spf.save()
             
             #auto login
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')

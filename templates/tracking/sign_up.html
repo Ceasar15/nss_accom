@@ -121,7 +121,7 @@
                                 {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
                             {% endfor %}
                         {% endif %}
-                        <form id="contact-form"  method="post">
+                        <form id="contact-form"  method="post" enctype="multipart/form-data">
                             
                             {% csrf_token %}
                             
@@ -173,7 +173,7 @@
                                         <input type="text" id="id_phone_no" name="phone_no" placeholder="PHONE NUMBER" maxlength="10" required >
                                     </div>
                                 </div> 
-                                
+
                                 <!-- Start of new select hall with datalist-->
                                 <div class="col-md-6">
                                     <div class="input-item input-item-email ltn__custom-icon">

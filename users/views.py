@@ -142,32 +142,6 @@ def LandlordRegister(request):
     return render(request, 'tracking/sign_up_landlord.html', context)
 
 
-
-# def Staffregister(request):
-
-#     if request.method == 'POST':
-#         form = StaffRegisterForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('tracking:index')
-
-#     context = {'form': StaffRegisterForm()}
-#     return render(request, 'tracking/sign_up.html', context)
-
-
-
-# def Landlordregister(request):
-
-#     if request.method == 'POST':
-#         form = StudentRegisterForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('tracking:index')
-
-#     context = {'form': StudentRegisterForm()}
-#     return render(request, 'tracking/sign_up.html', context)
-
-
 @login_required(login_url='/usr/login')
 def profile(request):
     context = {'user': request.user}

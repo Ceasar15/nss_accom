@@ -38,3 +38,9 @@ class NewComplaint(models.Model):
 
     def __str__(self):
         return self.student_index_number
+
+
+class StudentProfile(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    profile_image = models.ImageField(upload_to='student/profile_image/')
+    

@@ -2,9 +2,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
-from django.db import transaction
-from django.forms import fields
-from student.models import CHOICES
+from student.models import CHOICES, StudentProfile
 from users.forms import Typed
 
 class StudentRegisterForm(UserCreationForm):
@@ -61,3 +59,10 @@ class EditProfileForm(UserChangeForm):
             'password',
             'phone_no',
         ]
+class ProfileForm(forms.ModelForm):
+    
+    class Meta:
+        model = StudentProfile
+        fields = {
+            'profile_image',
+        }

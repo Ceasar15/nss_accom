@@ -25,7 +25,8 @@ def Studentregister(request):
     if request.method == 'POST':
         form = StudentRegisterForm(request.POST)
         user_contact_form = UserContactFrom(request.POST)
-        student_profile = student_profile(request.POST, request.FILES)
+        student_profile = StudentProfileForm(request.POST, request.FILES)
+        print(form, user_contact_form, student_profile)
         if all((form.is_valid(), user_contact_form.is_valid(), student_profile.is_valid() )):
 
             user = form.save()

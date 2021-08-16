@@ -33,12 +33,11 @@ def Studentregister(request):
             obs.user_id_id = user.id
             obs.user_group = 'student'
 
-            username = user.username
+            username = user.first_name
             obs.save()
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-            # messages.info(request, f"You are now logged in as {username}")
+            messages.info(request, f"You are now logged in as {username}")
             return redirect('student:studentDashboard')
-
 
         else:
             password1 = form.data['password1']

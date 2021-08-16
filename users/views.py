@@ -31,12 +31,15 @@ def Studentregister(request):
         if all((form.is_valid(), user_contact_form.is_valid(), student_profile.is_valid() )):
 
             user = form.save()
+            # user_contact_form
             obs = user_contact_form.save(commit=False)
             obs.user_id_id = user.id
             obs.user_group = 'student'
-
             username = user.first_name
             obs.save()
+            #student_profile
+            spf = student_profile.save(commit=False)
+            
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             messages.info(request, f"You are now logged in as {username}")
             return redirect('student:studentDashboard')

@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import fields
-from .models import GENDER_PREF, LEVEL_CHOICES, NewStudent, NewVisitor, PostAnnouncement, UpdateVisitor
+from .models import GENDER_PREF, LEVEL_CHOICES, NewStudent, NewVisitor, PostAnnouncement, StaffProfile, UpdateVisitor
 
 
 class PostAnnoumcementForm(forms.ModelForm):
@@ -87,3 +87,11 @@ class UpdateVisitorForm(forms.ModelForm):
             'visitor_update',
         )
     
+
+class StaffProfileForm(forms.ModelForm):
+    
+    class Meta:
+        model = StaffProfile
+        fields = {
+            'profile_image',
+        }

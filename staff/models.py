@@ -87,3 +87,8 @@ class UpdateVisitor(models.Model):
 
     def __str__(self):
         return self.visitor
+
+
+class StaffProfile(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    profile_image = models.ImageField(upload_to='staff/profile_image/')

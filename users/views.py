@@ -1,3 +1,4 @@
+from staff.forms import StaffProfileForm
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponseRedirect
 from django.urls import reverse
@@ -26,9 +27,8 @@ def Studentregister(request):
         form = StudentRegisterForm(request.POST)
         user_contact_form = UserContactFrom(request.POST)
         student_profile = StudentProfileForm(request.POST, request.FILES)
-        print(form, user_contact_form, student_profile)
         if all((form.is_valid(), user_contact_form.is_valid(), student_profile.is_valid() )):
-
+            #save user
             user = form.save()
             user.refresh_from_db()
             #student_profile
@@ -73,18 +73,31 @@ def StaffRegister(request):
     
     form = StudentRegisterForm()
     user_contact_form =  UserContactFrom()
+    staff_profile = StudentProfileForm()
+
     if request.method == 'POST':
         form = StudentRegisterForm(request.POST)
         user_contact_form = UserContactFrom(request.POST)
-        if all((form.is_valid(), user_contact_form.is_valid() )):
+        staff_profile = StaffProfileForm(request.POST, request.FILES)
+        if all((form.is_valid(), user_contact_form.is_valid(), staff_profile.is_valid() )):
+            # save user
             user = form.save()
+            user.refresh_from_db()
+            # staff profile
+            stf = staff_profile.save(commit=False)
+            stf.user_id = user.id
+            stf.save()
+            user.save()
+            #user contact form
             obs = user_contact_form.save(commit=False)
             obs.user_id_id = user.id
             obs.user_group = 'staff'
-            username = user.username
+            username = user.first_name
             obs.save()
+
+            # auto login
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-            # messages.info(request, f"You are now logged in as {username}")
+            messages.info(request, f"You are now logged in as {username}")
 
             return redirect('staff:staffDashboard')
 

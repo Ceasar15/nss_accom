@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import  user_passes_test
 from notifications.utils import slug2id
 from notifications.models import Notification
 
-from .models import NewComplaint
+from .models import NewComplaint, StudentProfile
 
 # Create your views here.
 def check_user(user):
@@ -53,7 +53,7 @@ def studentDashboard(request):
     resolved = NewComplaint.objects.filter(complaint_status='RESOLVED', student_hall=typed.student_hall, user=request.user).count()
     user = User.objects.get(id=request.user.id)
     notif = user.notifications.unread().count()
-
+    profile_image = StudentProfile.objects.get(user_id=request.user.id)
 
     context = {
 
@@ -61,6 +61,7 @@ def studentDashboard(request):
         'pending': pending,
         'resolved': resolved,
         'unread_notif': notif,
+        'profile_image': profile_image,
 
     }
     

@@ -44,7 +44,6 @@ def loginStudent(request):
     return render(request, 'student/login_student.html', context)
     
 
-
 @user_passes_test(check_user, login_url='/loginStudent')
 def studentDashboard(request):
     typed = Typed.objects.filter(user_id=request.user).first()

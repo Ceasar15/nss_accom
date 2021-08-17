@@ -142,9 +142,14 @@
 
                                         {% if user.is_authenticated %}	
                                         <li>
-                                            <a href="#">{{ user.first_name }}</a></li>
-                                            {% else %}
+                                            <!-- <a href="#">{{ user.first_name }}</a> -->
+                                            <a href="#">
+                                            <img src="#" height="100px" alt="Profile Picture" />
+                                            </a>
                                         </li>
+                                            {% else %}
+                                        <!-- </li> -->
+
                                         <li>
                                             <a href="{% url 'student:loginStudent' %}">Login</a></li>
                                         {% endif %}

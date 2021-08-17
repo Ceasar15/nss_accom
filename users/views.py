@@ -55,7 +55,7 @@ def Studentregister(request):
             for msg in form.errors.as_data():
                 if msg == 'email':
                     messages.error(request, f"Your email: {email} is not valid")
-                if msg == 'password2' and password1 == password2:
+                if msg == 'password2':
                     messages.error(request, f"The selected password is not strong enough. Mininum of 8 Characters")
                 elif msg == 'password2' and password1 != password2:
                     messages.error(request, f"Password and Confirmation Password do not match")
@@ -109,7 +109,7 @@ def StaffRegister(request):
                 print(msg)
                 if msg == 'email':
                     messages.error(request, f"Your email: {email} is not valid")
-                if msg == 'password2' and password1 == password2:
+                if msg == 'password2':
                     messages.error(request, f"The selected password is not strong enough. Mininum of 8 Characters")
                 elif msg == 'password2' and password1 != password2:
                     messages.error(request, f"Password and Confirmation Password do not match")

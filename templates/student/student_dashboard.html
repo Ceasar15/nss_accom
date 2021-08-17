@@ -77,15 +77,16 @@
                                         <li class="menu-icon"><a href="#">Complaints</a>
                                             <ul>
                                                 <li>
-                                                    <a href="{% url 'student:studentSubmitComplaint' %}">Submit complaint</a></li>
+                                                    <a href="{% url 'student:studentSubmitComplaint' %}">Submit complaint</a>
                                                 </li>
 
                                                 <li>
-                                                    <a href="{% url 'student:studentViewAllComplaints' %}">View all complaints</a></li>
+                                                    <a href="{% url 'student:studentViewAllComplaints' %}">View all complaints</a>
                                                 </li>
 
                                             </ul>
                                         </li>
+
 
                                         <li class="menu-icon"><a href="#">Announcements</a>
                                             <ul>
@@ -104,7 +105,7 @@
                                                         <i class="fas fa-deaf"></i>
                                                       {% endif %}
                                                     </a></li>
-                                                </li>
+                                                
 
                                             </ul>
                                         </li>
@@ -113,7 +114,7 @@
                                         <li class="menu-icon"><a href="#">NSS Accommodation</a>
                                             <ul>
                                                 <li>
-                                                    <a href="{% url 'renting:studentViewRentAds' %}">Access NSS Accommodation</a></li>
+                                                    <a href="{% url 'renting:studentViewRentAds' %}">Access NSS Accommodation</a>
                                                 </li>
 
                                             </ul>
@@ -124,15 +125,15 @@
                                         <li class="menu-icon"><a href="#">UG Student Services</a>
                                             <ul>
                                                 <li>
-                                                    <a href="https://sakai.ug.edu.gh/portal/site/!gateway/tool/!gateway-110" target="_blank">Sakai LMS</a></li>
+                                                    <a href="https://sakai.ug.edu.gh/portal/site/!gateway/tool/!gateway-110" target="_blank">Sakai LMS</a>
                                                 </li>
 
                                                 <li>
-                                                    <a href="https://sts.ug.edu.gh/services/" target="_blank">STS</a></li>
+                                                    <a href="https://sts.ug.edu.gh/services/" target="_blank">STS</a>
                                                 </li>
 
                                                 <li>
-                                                    <a href="https://ienabler.ug.edu.gh/pls/prodi41/w99pkg.mi_login" target="_blank">MIS</a></li>
+                                                    <a href="https://ienabler.ug.edu.gh/pls/prodi41/w99pkg.mi_login" target="_blank">MIS</a>
                                                 </li>
 
                                             </ul>
@@ -141,17 +142,40 @@
 
 
                                         {% if user.is_authenticated %}	
-                                        <li>
-                                            <a href="#">{{ user.first_name }}</a></li>
+                                        <li class="menu-icon"> <a href="#">{{ user.first_name }}</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="#">Update profile</a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="{% url 'student:studentDashboard' %}">Dashboard</a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="{% url 'logout' %}">Sign out</a>
+                                                </li>
+
+                                            </ul>
                                             {% else %}
                                         </li>
-                                        <li>
-                                            <a href="{% url 'student:loginStudent' %}">Login</a></li>
-                                        {% endif %}
 
-                                        <li class="btn-wrapper animated">
-                                            <a href="{% url 'logout' %}" class="theme-btn-1 btn btn-effect-1" style="height:60px; width:100px;"  >Sign Out</a>
+                                        
+
+                                        <li>
+                                            <a href="{% url 'student:loginStudent' %}">Login</a>
+                                        {% endif %}
                                         </li>
+
+
+                                        <!-- Student profile picture here -->
+                                        <img height="60px" style="border-radius: 40%; margin-right: 30px;" src="{{ profile_image.profile_image.url }}" >
+                        
+
+
+                                        <!-- <li class="btn-wrapper animated">
+                                            <a href="{% url 'logout' %}" class="theme-btn-1 btn btn-effect-1" style="height:60px; width:100px;"  >Sign Out</a>
+                                        </li> -->
                                      
                                     </ul>
                                 </div>
@@ -177,7 +201,6 @@
                         <div style="display:flex;">
                             <i class="fas fa-user-graduate fa-3x"></i>
                         <h1 style="margin-left: 20px;">Student Dashboard</h1>
-                        <a href="#" class="nav-link"><img class="img-xs rounded-circle nav-item" style="height: 50px; width: 50px;" src="{{ profile_image.profile_image.url }}" onerror="this.src='{% static 'images/deff.png' %}'; this.onerror='';"></a>
                         </div>
 
                         <ul>
@@ -262,7 +285,7 @@
                                           
                                             <div class="product-info">
                                                 <div class="product-badge">
-                                                    <i class="fas fa-spinner fa-5x"  style="margin-bottom: 30px; "></i>
+                                                    <i class="fas fa-spinner fa-5x" style="margin-bottom: 30px;"></i>
                                                     <ul>
                                                         <li><h4 class="sale-badg" style="color:#FF5A3C;">Pending:</h4><h2 style="color:#FF5A3C;"> {{ pending }} </h2></li>
                                                     </ul>

@@ -52,6 +52,7 @@ def Studentregister(request):
             password1 = form.data['password1']
             password2 = form.data['password2']
             email = form.data['email']
+            print(form.errors)
             for msg in form.errors.as_data():
                 if msg == 'email':
                     messages.error(request, f"Your email: {email} is not valid")
@@ -62,7 +63,9 @@ def Studentregister(request):
 
     context = {
         'form': StudentRegisterForm(),
-        'user_contact_form': UserContactFrom()
+        'user_contact_form': UserContactFrom(),
+        'student_profile' : StudentProfileForm()
+
         }
 
     return render(request, 'tracking/sign_up.html', context)
@@ -73,7 +76,7 @@ def StaffRegister(request):
     
     form = StudentRegisterForm()
     user_contact_form =  UserContactFrom()
-    staff_profile = StudentProfileForm()
+    staff_profile = StaffProfileForm()
 
     if request.method == 'POST':
         form = StudentRegisterForm(request.POST)
@@ -98,7 +101,6 @@ def StaffRegister(request):
             # auto login
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             messages.info(request, f"You are now logged in as {username}")
-
             return redirect('staff:staffDashboard')
 
         else:
@@ -109,14 +111,16 @@ def StaffRegister(request):
                 print(msg)
                 if msg == 'email':
                     messages.error(request, f"Your email: {email} is not valid")
-                if msg == 'password2' and password1 == password2:
+                if msg == 'password2':
                     messages.error(request, f"The selected password is not strong enough. Mininum of 8 Characters")
                 elif msg == 'password2' and password1 != password2:
                     messages.error(request, f"Password and Confirmation Password do not match")
 
     context = {
         'form': StudentRegisterForm(),
-        'user_contact_form': UserContactFrom()
+        'user_contact_form': UserContactFrom(),
+        'staff_profile' : StaffProfileForm()
+
         }
 
     return render(request, 'tracking/sign_up_staff.html', context)

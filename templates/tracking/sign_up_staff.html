@@ -123,7 +123,7 @@
                                 {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
                             {% endfor %}
                         {% endif %}
-                        <form id="contact-form"  method="post">
+                        <form id="contact-form"  method="post" enctype="multipart/form-data">
                             {% csrf_token %}
 
                             <div class="row">

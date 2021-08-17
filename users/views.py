@@ -30,12 +30,12 @@ def Studentregister(request):
         if all((form.is_valid(), user_contact_form.is_valid(), student_profile.is_valid() )):
             #save user
             user = form.save()
-            user.refresh_from_db()
+            # user.refresh_from_db()
             #student_profile
             spf = student_profile.save(commit=False)
             spf.user_id = user.id
             spf.save()
-            user.save()
+            # user.save()
             # user_contact_form
             obs = user_contact_form.save(commit=False)
             obs.user_id_id = user.id
@@ -106,6 +106,7 @@ def StaffRegister(request):
             password2 = form.data['password2']
             email = form.data['email']
             for msg in form.errors.as_data():
+                print(msg)
                 if msg == 'email':
                     messages.error(request, f"Your email: {email} is not valid")
                 if msg == 'password2' and password1 == password2:

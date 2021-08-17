@@ -10,31 +10,40 @@ from users.models import Profile, Typed
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from student.forms import StudentRegisterForm, EditProfileForm, UserContactFrom
+from student.forms import StudentProfileForm, StudentRegisterForm, EditProfileForm, UserContactFrom
 from users.forms import StaffRegisterForm, EditProfileForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
-
-
 def Studentregister(request):
 
     form = StudentRegisterForm()
     user_contact_form =  UserContactFrom()
+    student_profile = StudentProfileForm()
     if request.method == 'POST':
         form = StudentRegisterForm(request.POST)
         user_contact_form = UserContactFrom(request.POST)
-        if all((form.is_valid(), user_contact_form.is_valid() )):
+        student_profile = StudentProfileForm(request.POST, request.FILES)
+        print(form, user_contact_form, student_profile)
+        if all((form.is_valid(), user_contact_form.is_valid(), student_profile.is_valid() )):
 
             user = form.save()
+            user.refresh_from_db()
+            #student_profile
+            spf = student_profile.save(commit=False)
+            spf.user_id = user.id
+            spf.save()
+            user.save()
+            # user_contact_form
             obs = user_contact_form.save(commit=False)
             obs.user_id_id = user.id
             obs.user_group = 'student'
-
             username = user.first_name
             obs.save()
+            
+            #auto login
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             messages.info(request, f"You are now logged in as {username}")
             return redirect('student:studentDashboard')
@@ -106,7 +115,6 @@ def LandlordRegister(request):
     if request.method == 'POST':
         form = StudentRegisterForm(request.POST)
         user_contact_form = UserContactFrom(request.POST)
-        print(user_contact_form)
         profile_form = Profile()
         if all((form.is_valid(), user_contact_form.is_valid() )):
             user = form.save()
@@ -140,32 +148,6 @@ def LandlordRegister(request):
         }
 
     return render(request, 'tracking/sign_up_landlord.html', context)
-
-
-
-# def Staffregister(request):
-
-#     if request.method == 'POST':
-#         form = StaffRegisterForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('tracking:index')
-
-#     context = {'form': StaffRegisterForm()}
-#     return render(request, 'tracking/sign_up.html', context)
-
-
-
-# def Landlordregister(request):
-
-#     if request.method == 'POST':
-#         form = StudentRegisterForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('tracking:index')
-
-#     context = {'form': StudentRegisterForm()}
-#     return render(request, 'tracking/sign_up.html', context)
 
 
 @login_required(login_url='/usr/login')

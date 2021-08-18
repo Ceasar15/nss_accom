@@ -164,4 +164,5 @@ media/
 .media/
 .media
 /.media
+
 !media/default.jpeg

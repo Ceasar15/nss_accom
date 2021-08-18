@@ -94,7 +94,6 @@ def update_viewStudent(request, id):
     obj = get_object_or_404(NewStudent, id=id)
 
     form = NewStudentForm(request.POST or None, request.FILES or None, instance=obj)
-    print(form)
 
     if form.is_valid():
         form.save()

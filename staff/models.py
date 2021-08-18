@@ -34,7 +34,7 @@ class NewStudent(models.Model):
     course = models.CharField(max_length=50)
     level = models.CharField(max_length=50)
     mobile_number = models.CharField(max_length=50)
-    images = models.ImageField(upload_to='media/StudentImages/%Y/%m/%d/', blank=True)
+    images = models.ImageField(upload_to='media/StudentImages/%Y/%m/%d/', blank=True, )
     date_registered = models.DateTimeField(auto_now=True)
     check_in = models.BooleanField(default=False)
     hall = models.CharField(max_length=50, default='No Hall', blank=True, null=True)

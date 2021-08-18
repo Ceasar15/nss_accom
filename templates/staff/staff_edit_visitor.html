@@ -3,10 +3,11 @@
 <html class="no-js" lang="zxx">
 
 
+<!-- Mirrored from maelectrics.com/tf/html/quarter-preview/quarter/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Jul 2021 16:55:02 GMT -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Staff Sign Up</title>
+    <title>Edit visitor details</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -45,7 +46,7 @@
                             <div class="ltn__top-bar-menu">
                                 <ul>
                                     <li class="d-none">
-                                     
+                                    
                                     </li>
                                 </ul>
                             </div>
@@ -55,8 +56,6 @@
             </div>
         </div>
         <!-- ltn__header-top-area end -->
-
-        
         
         <!-- ltn__header-middle-area start -->
         <div class="ltn__header-middle-area ltn__header-sticky ltn__sticky-bg-white">
@@ -75,14 +74,79 @@
                             <nav>
                                 <div class="ltn__main-menu">
                                     <ul style="float: right;">
-                                        <li class="#"><a href="index.html">Home</a>
-                                          
+                                        <li class="menu-icon"><a href="#">Students</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'staff:addNewStudent' %}">Add new student</a>
+                                                </li>
+        
+                                                <li>
+                                                    <a href="{% url 'staff:staffViewAllStudents' %}">View all students</a>
+                                                </li>
+                                            </ul>
                                         </li>
-                                        <li class="#"><a href="#">About</a>
-                                            
+
+
+                                        <li class="menu-icon"><a href="#">Visitors</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'staff:addNewVisitor' %}">Add new visitor</a>
+                                                </li>
+        
+                                                <li>
+                                                    <a href="{% url 'staff:staffManageVisitors' %}">Manage visitors</a>
+                                                </li>
+                                            </ul>
                                         </li>
-                                       
-                                        <li><a href="{% url 'users:contact' %}">Contact</a></li>
+
+
+                                        <li class="menu-icon"><a href="#">Complaints</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'staff:staffViewAllComplaints' %}">View all complaints</a>
+                                                </li>
+        
+                                            </ul>
+                                        </li>
+
+
+                                        <li class="menu-icon"><a href="#">Announcements</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'staff:staffPostAnnouncement' %}">Post an announcement</a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="{% url 'staff:staffPostAnnouncement' %}">Manage announcements</a>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+
+
+                                        <li class="menu-icon"><a href="#">NSS Accommodation</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'renting:staffViewRentAds' %}">Access NSS Accommodation</a></li>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+            
+
+                                        {% if user.is_authenticated %}	
+                                        <li>
+                                            <a href="#">{{ user.first_name }}</a></li>
+                                            {% else %}
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'student:loginStudent' %}">Login</a></li>
+                                        {% endif %}
+
+
+                                        <li class="btn-wrapper animated">
+                                            <a href="{% url 'logout' %}" class="theme-btn-1 btn btn-effect-1" style="height:60px; width:100px;"  >Sign Out</a>
+                                        </li>
 
                                     </ul>
                                 </div>
@@ -104,7 +168,6 @@
      
     
     <!-- BREADCRUMB AREA END -->
-
     
     
     <!-- CONTACT MESSAGE AREA START -->
@@ -113,138 +176,65 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ltn__form-box contact-form-box box-shadow white-bg">
-                        <div class="row" style="margin-left: 2px">
-                            <h4 class="title-2">Staff Sign Up !</h4>  
-                            <i class="fas fa-user-tie fa-2x" style="margin-left: 40px; position: relative; bottom: 8px;"></i>  
-
-                        </div>
+                        <h4 class="title-2">Edit details of selected visitor here !</h4>
                         {% if messages %}
                             {% for message in messages %}
                                 {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
                             {% endfor %}
                         {% endif %}
-                        <form id="contact-form"  method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-
+                        <form id="contact-form" method="post"> {% csrf_token %}
                             <div class="row">
-
                                 <div class="col-md-6">
                                     <div class="input-item input-item-name ltn__custom-icon">
-                                         <input type="text" id="id_first_name" name="first_name" placeholder="FIRST NAME" required autofocus >
+                                        <input type="text" id="id_visitor_full_name" name="visitor_fullName" placeholder="Visitor Full Name">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="input-item">
+                                        <select class="nice-select" id="id_visiting_status" name="visiting_status" onChange="checkOption(this)" >
+                                            <option>Is the visitor a UG student?</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
                                     </div>
                                 </div>
 
 
                                 <div class="col-md-6">
-                                    <div class="input-item input-item-name ltn__custom-icon">
-                                         <input type="text" id="id_last_name" name="last_name" placeholder="LAST NAME" required>
+                                    <div class="input-item input-item-email ltn__custom-icon">
+                                        <input type="text" id="id_visitor_index" name="visitor_index" placeholder="Index Number" maxlength="8" disabled>
                                     </div>
-                                </div>            
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-email ltn__custom-icon">
+                                        <input type="text" id="id_visiting_room" name="visiting_room" placeholder="Room of visit" maxlength="5">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="input-item input-item-email ltn__custom-icon">
+                                        <input type="text" id="id_room_member_getting_visited" name="room_member_getting_visited" placeholder="Person being visited">
+                                    </div>
+                                </div>
+
                                 
-                                
-                                <div class="col-md-6">
-                                    <div class="input-item input-item-name ltn__custom-icon">
-                                        <input type="text" id="id_username" name="username" placeholder="USERNAME(STAFF ID)" required  >
-                                    </div>
-                                </div> 
-
-
-                                <div class="col-md-6">
-                                    <div class="input-item input-item-email ltn__custom-icon">
-                                        <input type="text" id="id_email" name="email" placeholder="EMAIL" required >
-                                    </div>
-                                </div> 
-
-
-                                <div class="col-md-6">
-                                    <div class="input-item input-item-email ltn__custom-icon">
-                                        <input type="password" id="id_password1" name="password1" autocomplete="new-password" placeholder="PASSWORD" required >
-                                    </div>
-                                </div> 
-
-
-                                <div class="col-md-6">
-                                    <div class="input-item input-item-email ltn__custom-icon">
-                                        <input type="password" id="id_password2" name="password2" autocomplete="new-password" placeholder="Confirm PASSWORD" required >
-                                    </div>
-                                </div> 
-
 
                                 <div class="col-md-6">
                                     <div class="input-item input-item-phone ltn__custom-icon">
-                                        <input type="text" id="id_phone_no" name="phone_no" placeholder="PHONE NUMBER" required maxlength="10" >
-                                    </div>
-                                </div> 
-
-
-
-                                <!-- Start of new select hall with datalist-->
-                                <div class="col-md-6">
-                                    <div class="input-item input-item-email ltn__custom-icon">
-                                        <input list="student_hall" name="student_hall" id="id_student_hall" required class="nice-select" placeholder="SELECT YOUR HALL" />
-                                            <datalist id="student_hall" >
-                                                <option value="Akuafo Main Hall">Akuafo Main Hall</option>
-                                                <option value="Akuafo Hall Annex A">Akuafo Hall Annex A</option>
-                                                <option value="Akuafo Hall Annex B">Akuafo Hall Annex B</option>
-                                                <option value="Akuafo Hall Annex C">Akuafo Hall Annex C</option>
-                                                <option value="Akuafo Hall Annex D">Akuafo Hall Annex D</option>
-                                                <option value="Legon Main Hall">Legon Main Hall</option>
-                                                <option value="Legon Hall Annex A">Legon Hall Annex A</option>
-                                                <option value="Legon Hall Annex B">Legon Hall Annex B</option>
-                                                <option value="Legon Hall Annex C">Legon Hall Annex C</option>
-                                                <option value="Commonwealth Hall">Commonwealth Hall</option>
-                                                <option value="Volta Hall Annex A">Volta Hall Annex A</option>
-                                                <option value="Volta Hall Annex B">Volta Hall Annex C</option>
-                                                <option value="Volta Hall Annex C">Volta Hall Annex C</option>
-                                                <option value="Volta Hall Annex D">Volta Hall Annex D</option>
-                                                <option value="Mensah Sarbah Main Hall">Mensah Sarbah Main Hall</option>
-                                                <option value="Mensah Sarbah Annex A">Mensah Sarbah Annex A</option>
-                                                <option value="Mensah Sarbah Annex B">Mensah Sarbah Annex B</option>
-                                                <option value="Mensah Sarbah Annex C">Mensah Sarbah Annex C</option>
-                                                <option value="Mensah Sarbah Annex D">Mensah Sarbah Annex D</option>
-                                                <option value="Hilla Limann Hall">Hilla Limann Hall</option>
-                                                <option value="Alexander Kwapong">Alexander Kwapong</option>
-                                                <option value="Elizabeth Frances Sey">Elizabeth Frances Sey Hall</option>
-                                                <option value="Jean Nelson Aka">Jean Nelson Aka</option>
-                                                <option value="Pent Block A">Pent Block A</option>
-                                                <option value="Pent Block B">Pent Block B</option>
-                                                <option value="Pent Block C">Pent Block C</option>
-                                                <option value="Evandy">Evandy</option>
-                                                <option value="Bani Hostel Block A">Bani Hostel Block A</option>
-                                                <option value="Bani Hostel Block B">Bani Hostel Block B</option>
-                                                <option value="Bani Hostel Block C">Bani Hostel Block C</option>
-                                                <option value="Bani Hostel Block D">Bani Hostel Block D</option>
-                                                <option value="Bani Hostel Block D">Bani Hostel Block D</option>
-                                                <option value="TF">TF</option>
-                                            </datalist>
-
-                                    </div>
-
-                                </div>
-                                <!--End of new select hall with datalist-->
-
-                                <div class="col-md-6">
-                                    <div class="input-item input-item-phone">
-                                        <input type="file" id="id_profile_image" name="profile_image" accept="image/*" required>
+                                        <input type="text" id="id_visiting_mobile_number" name="visiting_mobile_number" maxlength="10" placeholder="Visitor phone number">
                                     </div>
                                 </div>
-
 
                             </div>
-                            <span style="position: relative; top: 10px;">Upload profile picture</span>
 
-
+                          
                             <div class="btn-wrapper mt-0">
-                                <button type="submit" value="SIGN IN" id="btn" class="btn theme-btn-1 btn-effect-1 text-uppercase" style="position: relative; top: 40px; width: 100%" > Sign Up </button>
+                                <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Add visitor</button>
                             </div>
-
-                                <!--  <button id="btn" class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Submit Complaint</button> -->
- 
-
-                            <div class="go-to-btn mt-20">
-                                <a href="{% url 'staff:loginStaff' %}"style="position: relative; top: 30px;" ><small>Already have an account? Log in here</small></a>
-                            </div> 
-
+                            <p class="form-messege mb-0 mt-20"></p>
                         </form>
                     </div>
                 </div>
@@ -256,7 +246,7 @@
    
 
    <!-- FOOTER AREA START -->
-    <footer style="position: relative; top: 300px;" class="ltn__footer-area  ">
+   <footer class="ltn__footer-area" style="position: relative; top: 300px;">
         <div class="footer-top-area  section-bg-2 plr--5">
             <div class="container-fluid">
                 <div class="row">
@@ -363,8 +353,10 @@
     <script src="{% static 'js/plugins.js' %}"></script>
     <!-- Main JS -->
     <script src="{% static 'js/main.js' %}"></script>
-    <!-- Custom javascript -->
+    <!-- Custom -->
     <script src="{% static 'js/custom.js' %}"></script>
+
+
   
 </body>
 

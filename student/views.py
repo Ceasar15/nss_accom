@@ -151,3 +151,10 @@ def studentViewAnnouncements(request):
         'announcement': announcement,
     }
     return render(request, 'student/student_view_announcements.html', context)
+
+
+
+
+# student edit complaint.
+def studentEditComplaint( request ):
+    return render (request, 'student/student_edit_complaint.html')

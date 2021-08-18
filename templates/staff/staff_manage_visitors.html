@@ -218,6 +218,7 @@
                             <th scope='col'>Date Of Visit</th>
                             <th scope='col'>Time Of Visit</th>
                             <th scope='col'>Departure Time</th>
+                            <th scope='col'>Visit Status</th>
                             <th scope='col'>Actions</th>
 
                         </tr>
@@ -243,10 +244,12 @@
                             {% endif %}
 
                             {% if data.departed_at is None %}
-                            <td><a href="{% url 'staff:leave' data.vistor_id %}" class="btn btn-danger"> Visit over</a></td>
+                            <td><a href="{% url 'staff:leave' data.vistor_id %}" class="btn btn-danger" style="width: 100px"> Visit over</a></td>
                             {% else %}
                             <td>Departed</td>
                             {% endif %}
+                            <td><a href="{% url 'staff:staffEditVisitorDetails' %}"><i class="fas fa-pen" title="Edit Visitor Details" style="color: #FF5A3C"></i></a> <i class="fas fa-trash-alt" title="Delete Visitor" style="margin-left: 20px; color: #FF5A3C"></i></td>
+
                         </tr>
                             {% endfor %}
                         {% endif %}

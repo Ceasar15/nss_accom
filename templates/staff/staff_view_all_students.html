@@ -216,6 +216,7 @@
                             <th scope='col'>Mobile Number</th>
                             <th scope='col'>Date Added</th>
                             <th scope='col'>Check In Status</th>
+                            <th scope='col'>Check In Status</th>
                             <th scope='col'>Actions</th>
 
                         </tr>
@@ -240,8 +241,6 @@
                             {% else %}
                             <td>CHECKED OUT</td>
                             {% endif %}
-
-                            <!-- <td><i class="fas fa-edit"></i> <i class="fas fa-trash-alt"></i></td> -->
                             
                             {% if data.check_in is False %}
                             <td><a href="{% url 'staff:check_in' data.id %}">CHECK OUT</a></td>
@@ -249,6 +248,9 @@
                             <td><i class="fas fa-check" ></i></td>
                             {% endif %}
 
+
+                            <!-- For editing and deleting students -->
+                            <td><a href="{% url 'staff:staffEditStudentDetails' %}"><i class="fas fa-pen" title="Edit Student Details" style="color: #FF5A3C"></i></a> <i class="fas fa-trash-alt" title="Delete Student" style="margin-left: 20px; color: #FF5A3C"></i></td>
 
                         </tr>
                             {% endfor %}

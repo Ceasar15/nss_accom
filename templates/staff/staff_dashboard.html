@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Display Ads</title>
+    <title>Staff Dashboard</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -138,7 +138,7 @@
             
 
                                         {% if user.is_authenticated %}	
-                                        <li>
+                                        <li class="menu-icon"> <a href="#">{{ user.first_name }}</a>
                                             <ul>
                                                 <li>
                                                     <a href="#">Update profile</a>
@@ -155,15 +155,14 @@
                                             </ul>
                                             {% else %}
                                         </li>
-
-
+                                        
                                         <li>
                                             <a href="{% url 'student:loginStudent' %}">Login</a>
-                                            {% endif %}
+                                        {% endif %}
                                         </li>
 
 
-                                        <!-- Staff profile picture here -->
+                                        <!-- Student profile picture here -->
                                         <img height="60px" style="border-radius: 40%; margin-right: 30px;" src="{{ profile_image.profile_image.url }}" >
 
 

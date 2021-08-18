@@ -277,6 +277,19 @@ def solved(request, complaint_id):
 
 
 
-# datatables tutorial.
-def dataTables(request):
-    return render (request, 'staff/data_tables.html')
+
+# staff edit student details page.
+def staffEditStudentDetails( request ):
+    return render (request, 'staff/staff_edit_student.html')
+
+
+
+# staff edit visitor details page.
+def staffEditVisitorDetails( request ):
+    return render (request, 'staff/staff_edit_visitor.html')
+
+
+
+# staff edit announcements page.
+def staffEditAnnouncements( request ):
+    return render (request, 'staff/staff_edit_announcements.html')

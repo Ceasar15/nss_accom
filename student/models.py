@@ -42,5 +42,5 @@ class NewComplaint(models.Model):
 
 class StudentProfile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    profile_image = models.ImageField(upload_to='student/profile_image/')
+    profile_image = models.ImageField(upload_to='student/profile_image/', default='default.jpeg')
     

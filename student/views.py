@@ -8,6 +8,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import  user_passes_test
 from notifications.utils import slug2id
 from notifications.models import Notification
+from django.contrib.auth.password_validation import  UserAttributeSimilarityValidator
 
 from .models import NewComplaint, StudentProfile
 

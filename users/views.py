@@ -71,7 +71,6 @@ def Studentregister(request):
     return render(request, 'tracking/sign_up.html', context)
 
 
-
 def StaffRegister(request):
     
     form = StudentRegisterForm()
@@ -85,13 +84,13 @@ def StaffRegister(request):
         if all((form.is_valid(), user_contact_form.is_valid(), staff_profile.is_valid() )):
             # save user
             user = form.save()
-            user.refresh_from_db()
+            # user.refresh_from_db()
             # staff profile
             stf = staff_profile.save(commit=False)
             stf.user_id = user.id
             stf.save()
-            user.save()
-            #user contact form
+            # user.save()
+            # user contact form
             obs = user_contact_form.save(commit=False)
             obs.user_id_id = user.id
             obs.user_group = 'staff'
@@ -107,8 +106,8 @@ def StaffRegister(request):
             password1 = form.data['password1']
             password2 = form.data['password2']
             email = form.data['email']
+            print(form.error_messages)
             for msg in form.errors.as_data():
-                print(msg)
                 if msg == 'email':
                     messages.error(request, f"Your email: {email} is not valid")
                 if msg == 'password2':

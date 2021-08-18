@@ -105,7 +105,7 @@ def update_viewStudent(request, id):
         'form': form
    
     }
-    return render(request, 'staff/update_visitor.html', context)
+    return render(request, 'staff/update_student.html', context)
 
 @user_passes_test(check_user, login_url='/loginStaff')
 def staff_addNewVisitor(request):

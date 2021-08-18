@@ -250,7 +250,7 @@
 
 
                             <!-- For editing and deleting students -->
-                            <td><a href="{% url 'staff:update_viewStudent' %}"><i class="fas fa-pen" title="Edit Student Details" style="color: #FF5A3C"></i></a> <i class="fas fa-trash-alt" title="Delete Student" style="margin-left: 20px; color: #FF5A3C"></i></td>
+                            <td><a href="{% url 'staff:update_viewStudent'  data.id %}"><i class="fas fa-pen" title="Edit Student Details" style="color: #FF5A3C"></i></a> <i class="fas fa-trash-alt" title="Delete Student" style="margin-left: 20px; color: #FF5A3C"></i></td>
 
                         </tr>
                             {% endfor %}

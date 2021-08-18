@@ -90,11 +90,11 @@ def staff_addNewStudent(request):
 
 @user_passes_test(check_user, login_url='/loginStaff')
 def update_viewStudent(request, id):
+    # updateStudent = NewStudent.objects.get(id=id)
     
     obj = get_object_or_404(NewStudent, id=id)
 
     form = NewStudentForm(request.POST or None, request.FILES or None, instance=obj)
-    print(form)
 
     if form.is_valid():
         form.save()
@@ -222,6 +222,8 @@ def updateVisitorStatus(request):
 def staffViewAllStudents(request):
     typed = Typed.objects.filter(user_id=request.user).first()
     dataset = NewStudent.objects.filter(hall=typed.student_hall)
+    for data in dataset:
+        print(data.id)
     context = {
         'dataset': dataset,
     }

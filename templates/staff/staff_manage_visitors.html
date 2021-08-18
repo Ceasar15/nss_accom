@@ -248,7 +248,7 @@
                             {% else %}
                             <td>Departed</td>
                             {% endif %}
-                            <td><i class="fas fa-pen" title="Edit Visitor Details" style="color: #FF5A3C"></i> <i class="fas fa-trash-alt" title="Delete Visitor" style="margin-left: 20px; color: #FF5A3C"></i></td>
+                            <td><a href="{% url 'staff:staffEditVisitorDetails' %}"><i class="fas fa-pen" title="Edit Visitor Details" style="color: #FF5A3C"></i></a> <i class="fas fa-trash-alt" title="Delete Visitor" style="margin-left: 20px; color: #FF5A3C"></i></td>
 
                         </tr>
                             {% endfor %}

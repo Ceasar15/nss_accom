@@ -228,7 +228,7 @@
                             <td>{{ data.complaint_description}}</td>
                             <td>{{ data.date_submitted.date}}</td>
                             <td>{{ data.complaint_status}}</td>
-                            <td><i class="fas fa-pen" title="Edit Complaint" style="color: #FF5A3C"></i> <i class="fas fa-trash-alt" title="Delete Complaint" style="margin-left: 20px; color: #FF5A3C"></i></td>
+                            <td><a href="{% url 'student:studentEditComplaint' %}"> <i class="fas fa-pen" title="Edit Complaint" style="color: #FF5A3C"></i></a> <i class="fas fa-trash-alt" title="Delete Complaint" style="margin-left: 20px; color: #FF5A3C"></i></td>
                                                       
                         </tr>
                             {% endfor %}

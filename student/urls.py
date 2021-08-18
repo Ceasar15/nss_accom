@@ -20,5 +20,7 @@ urlpatterns = [
 	path('studentViewAnnouncements/', st.studentViewAnnouncements, name='studentViewAnnouncements'),
 	pattern('mark-all-as-read/$', st.mark_all_as_read, name='mark_all_as_read'),
     pattern('mark-as-read/(?P<slug>\d+)/$', st.mark_as_read, name='mark_as_read'),
+    path('studentEditComplaint/', st.studentEditComplaint, name='studentEditComplaint'),
+
 
 ]

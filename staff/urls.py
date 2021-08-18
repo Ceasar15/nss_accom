@@ -22,5 +22,8 @@ urlpatterns = [
     path('leave/<vistor_id>', sf.leave, name='leave'),
     path('solved/<complaint_id>', sf.solved, name='solved'),
     path('check_in/<id>', sf.check_in, name='check_in'),
-    path('dataTables/', sf.dataTables, name="dataTables")
+    path('staffEditStudentDetails/', sf.staffEditStudentDetails, name="staffEditStudentDetails"),
+    path('staffEditVisitorDetails/', sf.staffEditVisitorDetails, name="staffEditVisitorDetails"),
+    path('staffEditAnnouncements/', sf.staffEditAnnouncements, name="staffEditAnnouncements")
+
 ]

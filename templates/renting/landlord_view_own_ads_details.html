@@ -204,16 +204,12 @@
                         <h4 class="title-2">Apartment Details</h4>  
                         <div class="property-detail-info-list section-bg-1 clearfix mb-60">                          
                             <ul>
-                                <!-- <li><label>Property ID:</label><span>HZ29</span></li> -->
-                                <!-- <li><label>Home Area: </label> <span>120 sqft</span></li> -->
-                                <li><label>Rooms:</label> <span>{{ r_hh.bedroom }}</span></li>
-                                <li><label>Baths:</label> <span>{{ r_hh.bathroom }}</span></li>
-                                <li><label>Year built:</label> <span>1992</span></li>
+                                <li><label>Bedrooms:</label> <span>{{ r_hh.bedroom }}</span></li>
+                                <li><label>Bathroom:</label> {% if r_hh.balcony == 'Pr' %}<span class="sub-txt">Private</span>{%elif r_hh.balcony == 'Sh'%}<span class="sub-txt">Shared</span>{%else%}<span>Not Available</span>{%endif%}</span>
+                                <li><label>Year built:</label> <span>2019</span></li>
                             </ul>
                             <ul>
-                                <!-- <li><label>Lot Area:</label> <span>HZ29 </span></li> -->
-                                <!-- <li><label>Lot dimensions:</label> <span>120 sqft</span></li> -->
-                                <li><label>Beds:</label> <span>{{ am.bed }}</span></li>
+                                <li><label>Beds:</label> {% if am.bed == 'Y' %}<span class="sub-txt">Yes</span>{% else %}<span class="sub-txt">No</span>{% endif%}
                                 <li><label>Price:</label> <span>GHc {{ nrh_obj.rent }}.00</span></li>
                                 <li><label>Property Status:</label> <span>For Rent</span></li>
                             </ul>
@@ -265,31 +261,31 @@
                                     <div class="ltn__menu-widget">
                                         <ul>
                                             <li>
-                                                <label class="checkbox-item">Living Room: 'Put value here'
+                                                <label class="checkbox-item">Living Room: {% if r_hh.living_room == 'Pr' %}<span class="sub-txt">Private</span>{%elif r_hh.living_room == 'Sh'%}<span class="sub-txt">Public</span>{%else%}<span>Not Available</span>{%endif%}</span>
                                                     <input type="checkbox" checked="checked" disabled>
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </li>
                                             <li>
-                                                <label class="checkbox-item">Parking: 'Put value here'
+                                                <label class="checkbox-item">Parking: {% if r_hh.parking == 'Y' %}<span class="sub-txt">Yes</span>{% else %}<span class="sub-txt">No</span>{% endif%}
                                                     <input type="checkbox" checked="checked" disabled>
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </li>
                                             <li>
-                                                <label class="checkbox-item">Bed: 'Put value here'
+                                                <label class="checkbox-item">Bed: {% if am.bed == 'Y' %}<span class="sub-txt">Yes</span>{% else %}<span class="sub-txt">No</span>{% endif%}
                                                     <input type="checkbox" checked="checked" disabled>
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </li>
                                             <li>
-                                                <label class="checkbox-item">Furnished: 'Put value here'
+                                                <label class="checkbox-item">Furnished: {% if am.furnished == 'Y' %}<span class="sub-txt">Yes</span>{% else %}<span class="sub-txt">No</span>{% endif%}
                                                     <input type="checkbox" checked="checked" disabled>
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </li>
                                             <li>
-                                                <label class="checkbox-item">Smoking Allowed: 'Put value here'
+                                                <label class="checkbox-item">Smoking Allowed: {% if rl.smoking_allowed == 'Y' %}<span class="sub-txt">Yes</span>{% else %}<span class="sub-txt">No</span>{% endif%}
                                                     <input type="checkbox" checked="checked" disabled>
                                                     <span class="checkmark"></span>
                                                 </label>
@@ -301,7 +297,7 @@
                                     <div class="ltn__menu-widget">
                                         <ul>
                                             <li>
-                                                <label class="checkbox-item">Musical Instruments: 'Put value here'
+                                                <label class="checkbox-item">Musical Instruments: {% if rl.musical_instrument == 'Y' %}<span class="sub-txt">Yes</span>{% else %}<span class="sub-txt">No</span>{% endif%}
                                                     <input type="checkbox" checked="checked" disabled>
                                                     <span class="checkmark"></span>
                                                 </label>

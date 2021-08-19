@@ -736,6 +736,8 @@ def staff_payment(request):
 def landlordViewAdsOfOtherLandlords(request):
     all_rental = NewRentalHouse.objects.exclude(user_id=request.user).order_by('-date_registered')
     
+
+    
     f = SearchFilter(request.GET, queryset=all_rental)
 
     if f.qs.count() == 0:

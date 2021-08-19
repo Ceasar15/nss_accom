@@ -159,10 +159,6 @@ vs
 # Google Credentials 
 nss-accom-2a99f1221647.json
 .vs
-media
-media/
-.media/
-.media
-/.media
+
 
 !media/default.jpeg

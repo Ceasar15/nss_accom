@@ -748,8 +748,6 @@ def landlordViewAdsOfOtherLandlords(request):
     else:
         return render(request, 'renting/landlord_view_other_landlord_houses.html', {'filter': f.qs})
 
-
-
 # landlord view details of ads posted by other landlords
 @user_passes_test(check_user, login_url='/signInLandlord')
 def landlordViewAdsDetailsOfOtherLandlords(request, id):

@@ -240,19 +240,19 @@
                                                 </label>
                                             </li>
                                             <li>
-                                                <label class="checkbox-item">Bathroom: 'Put Value here'
+                                                <label class="checkbox-item">Bathroom: {% if r_hh.balcony == 'Pr' %}<span class="sub-txt">Private</span>{%elif r_hh.balcony == 'Sh'%}<span class="sub-txt">Public</span>{%else%}<span>Not Available</span>{%endif%}</span>
                                                     <input type="checkbox" checked="checked" disabled>
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </li>
                                             <li>
-                                                <label class="checkbox-item">Balcony: 'Put Value here'
+                                                <label class="checkbox-item">Balcony: {% if r_hh.balcony == 'Pr' %}<span class="sub-txt"> Private</span>{%elif r_hh.balcony == 'Sh'%}<span class="sub-txt">Public</span>{%else%}<span>Not Available</span>{%endif%}</span>
                                                     <input type="checkbox" checked="checked" disabled>
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </li>
                                             <li>
-                                                <label class="checkbox-item">Toilet: 'Put Value here'
+                                                <label class="checkbox-item">Toilet: {% if r_hh.toilet == 'Pr' %}<span class="sub-txt">Private</span>{%elif r_hh.toilet == 'Sh'%}<span class="sub-txt">Public</span>{%else%}<span>Not Available</span>{%endif%}</span>
                                                     <input type="checkbox" checked="checked" disabled>
                                                     <span class="checkmark"></span>
                                                 </label>

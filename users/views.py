@@ -154,8 +154,8 @@ def LandlordRegister(request):
             for msg in form.errors.as_data():
                 if msg == 'email':
                     messages.error(request, f"Your email: {email} is not valid")
-                if msg == 'password2' and password1 == password2:
-                    messages.error(request, f"The selected password is not strong enough. Mininum of 8 Characters")
+                if msg == 'password2':
+                    messages.error(request, f"Your password can’t be too similar to your other personal information!")
                 elif msg == 'password2' and password1 != password2:
                     messages.error(request, f"Password and Confirmation Password do not match")
     

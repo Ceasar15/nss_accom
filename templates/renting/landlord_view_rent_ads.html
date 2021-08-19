@@ -266,10 +266,17 @@
                                     </div>
                                         {% endfor %}
                                     {% else %}
-                                    <div class="box column is-full resul-txt">Sorry..!! You don't have any ads..<a class="button is-primary" href="#">Post Ad</a></div>
+                                    <div>
+                                        <h3 class="title-2" style="margin-left: 20px;">
+                                            Sorry...!! You don't have any ads..
+                                        </h3>
+
+                                        <div class="btn-wrapper animated">
+                                            <a href="{% url 'renting:postRentAdds' %}" class="theme-btn-1 btn btn-effect-1" style="margin-left: 20px;">Post A Rent Ad</a>
+                                        </div>
+                                    
                                     {% endif %}
                                     <!-- end of ltn_product item 1 -->
-
 
                                 </div>
                             </div>

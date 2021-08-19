@@ -592,6 +592,28 @@ def staffViewLandlordDetails(request, id):
 
     return render(request, 'renting/staff_view_landlord_details.html', context)
 
+# Landlor view details of other landlords
+@user_passes_test(check_user, login_url='/signInLandlord')
+def landlordViewLandlordDetails(request, id):
+    landlord = User.objects.get(id=id)
+    profile = Profile.objects.get(user_id=id)
+    typed = Typed.objects.get(user_id_id=id)
+    
+    contact_landlord = ContactLandlordForm(request.POST)
+    if request.method == 'POST':
+        if contact_landlord.is_valid():
+            cl = contact_landlord.save(commit=False)
+            cl.user = request.user
+            cl.landlord_id = request.user.id
+            cl.save()
+
+            return render(request, 'renting/landlord_view_landlord_details.html')
+    context = {
+        'landlord': landlord,
+        'profile': profile,
+        'typed': typed,
+    }
+    return render(request, 'renting/landlord_view_landlord_details.html', context)
 
 
 # the page where the staff can view the details of the ad.

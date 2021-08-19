@@ -478,6 +478,9 @@ def landlordViewHouseDetails(request, id):
             pt = PreferredTenant.objects.get(nrh=nrh_obj)
             rl = Rules.objects.get(nrh=nrh_obj)
             imgs = HouseImages.objects.filter(nrh=nrh_obj)
+            rating_count = Rating.objects.filter(landlord_id=nrh_obj.id).count()
+            rating = Rating.objects.filter(landlord_id=nrh_obj.id).order_by('-date')
+            print(rating_count)
             for img in imgs:
                 print(img.images)
         except:

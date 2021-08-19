@@ -455,6 +455,8 @@ def landlordViewRentAds(request):
     else:
         return render(request, 'renting/landlord_view_rent_ads.html', {'filter': f.qs})
 
+
+
 # landlord delete rent ad
 @user_passes_test(check_user, login_url='/signInLandlord')
 def delete_rent_ad(request, id):

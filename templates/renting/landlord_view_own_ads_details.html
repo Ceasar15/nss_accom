@@ -228,13 +228,13 @@
                                     <div class="ltn__menu-widget">
                                         <ul>
                                             <li>
-                                                <label class="checkbox-item">Kitchen: 'Put Value here'
+                                                <label class="checkbox-item">Kitchen: {% if r_hh.kitchen == 'Pr' %}<span class="sub-txt">Private</span>{%elif r_hh.kitchen  == 'Sh'%}<span class="sub-txt">Public</span>{%else%}<span>Not Available</span>{%endif%}</span>
                                                     <input type="checkbox" checked="checked" disabled>
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </li>
                                             <li>
-                                                <label class="checkbox-item">Bedroom: 'Put Value here'
+                                                <label class="checkbox-item">Bedroom: {{ r_hh.bedroom }}
                                                     <input type="checkbox" checked="checked" disabled>
                                                     <span class="checkmark"></span>
                                                 </label>

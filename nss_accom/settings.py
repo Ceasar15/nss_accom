@@ -186,17 +186,16 @@ from nss_accom import gcloud
 # DEFAULT_FILE_STORAGE = 'gcloud.GoogleCloudMediaFileStorage'
 
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'ceasar',
-    'API_KEY': '711327323721563',
-
-}
-
 
 MEDIA_URL = '/media/'
 # MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(os.environ.get('GS_MEDIA_BUCKET_NAME'))
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'hx8k6usix',
+    'API_KEY': '576719345761538',
+    'API_SECRET': 'OYNr6JW_rzJuPWA8iOdJflBz3cA'
+}
 
 # Adding the settings is very import and choosing the environ names
 # GS_PROJECT_ID = os.environ['GS_PROJECT_ID']

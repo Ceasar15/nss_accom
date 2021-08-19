@@ -598,7 +598,8 @@ def landlordViewLandlordDetails(request, id):
     landlord = User.objects.get(id=id)
     profile = Profile.objects.get(user_id=id)
     typed = Typed.objects.get(user_id_id=id)
-    
+    pp = Profile.objects.get(user_id=31)
+
     contact_landlord = ContactLandlordForm(request.POST)
     if request.method == 'POST':
         if contact_landlord.is_valid():
@@ -735,8 +736,6 @@ def staff_payment(request):
 @user_passes_test(check_user, login_url='/signInLandlord')
 def landlordViewAdsOfOtherLandlords(request):
     all_rental = NewRentalHouse.objects.exclude(user_id=request.user).order_by('-date_registered')
-    for house in all_rental:
-        print(house.landlord_profile)
 
     f = SearchFilter(request.GET, queryset=all_rental)
 

@@ -230,7 +230,9 @@
                                                         <li class="sale-badg">For Rent </li>
                                                     </ul>
                                                 </div>
-                                                <h2 class="product-title"><a href="#">View House Details</a></h2>
+                                                <h2 class="product-title"><a href="{% url 'renting:landlordViewAdsDetailsOfOtherLandlords' house.id %}">View House Details</a></h2>
+                                                <span><a href="{% url 'renting:landlordViewLandlordDetails'  house.user_id %}">View Landlord Details</a></span>
+
                                                 <div class="product-img-location">
                                                     <ul>
                                                         <li>

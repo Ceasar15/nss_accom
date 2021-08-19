@@ -738,11 +738,15 @@ def staff_payment(request):
 # landlord view ads from other landlords.
 @user_passes_test(check_user, login_url='/signInLandlord')
 def landlordViewAdsOfOtherLandlords(request):
-    f = SearchFilter(request.GET, queryset=NewRentalHouse.objects.exclude(user_id=request.user))
-    for house in f.qs:
-        profile = Profile.objects.get(user_id=house.user_id)
+    all_rental = NewRentalHouse.objects.filter(user=request.user).order_by('-date_registered')
+    
+    f = SearchFilter(request.GET, queryset=all_rental)
 
-    return render(request, "renting/landlord_view_other_landlord_houses.html", {'filter': f, 'profile': profile})
+    if f.qs.count() == 0:
+        messages.info(request, f"No properties found")
+        return render(request, 'renting/landlord_view_other_landlord_houses.html', {'filter': all_rental})
+    else:
+        return render(request, 'renting/landlord_view_other_landlord_houses.html', {'filter': f.qs})
 
 
 

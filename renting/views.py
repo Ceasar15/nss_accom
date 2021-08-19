@@ -765,7 +765,6 @@ def landlordViewAdsOfOtherLandlords(request):
     f = SearchFilter(request.GET, queryset=all_rental)
 
     if f.qs.count() == 0:
-        print(all_rental, 'bbbbbbbbbbb')
         messages.info(request, f"No properties found")
         return render(request, 'renting/landlord_view_other_landlord_houses.html', {'filter': all_rental})
     else:  

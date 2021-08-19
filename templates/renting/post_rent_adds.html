@@ -98,7 +98,11 @@
                                         <li class="menu-icon"><a href="{% url 'renting:landlordProfile' user.id %}">{{ user.first_name }}</a>
                                             <ul>
                                                 <li>
-                                                    <a href="{% url 'renting:landlordProfile' user.id %}">Profile</a>
+                                                    <a href="{% url 'renting:landlordProfile' user.id %}">Update profile</a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="{% url 'logout' %}">Sign out</a>
                                                 </li>
                                             </ul>
                                             {% else %}
@@ -110,9 +114,16 @@
                                         {% endif %}
 
 
-                                        <li class="btn-wrapper animated">
+
+                                        <!-- Landlord profile picture here {{ profile_image.profile_image.url }} -->
+                                        <img height="60px" style="border-radius: 40%; margin-right: 30px;" src="https://media.istockphoto.com/photos/smiling-man-outdoors-in-the-city-picture-id1179420343?k=6&m=1179420343&s=612x612&w=0&h=y7GrwxrbixTWvJfaeiu55rWXMGYr6oP583uzJJ4-Kis=" >
+
+
+
+                                        <!-- <li class="btn-wrapper animated">
                                             <a href="{% url 'logout' %}" class="theme-btn-1 btn btn-effect-1" style="height:60px; width:100px;"  >Sign Out</a>
-                                        </li>
+                                        </li> -->
+
 
                                     </ul>
                                 </div>

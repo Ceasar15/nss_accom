@@ -358,7 +358,7 @@ def postRentAdds(request):
         if all((form.is_valid(), house_has_form.is_valid(), amenities_form.is_valid(), rules_form.is_valid(), preferred_tenant_form.is_valid())):
             rh_obj = form.save(commit=False)
             rh_obj.user = request.user
-            rh_obj.landlord_profile = profile.user_id
+            rh_obj.landlord_profile = profile
             rh_obj.save()
             nrh_obj = NewRentalHouse.objects.get(pk=rh_obj.id)
             if img_form.is_valid():

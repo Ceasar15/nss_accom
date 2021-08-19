@@ -202,7 +202,7 @@
                                     <div class="row" style="position: relative; bottom: 100px" >
                                     <!-- ltn__product-item 1 -->
                                     {% if filter %}
-                                        {% for house in filter.qs %}
+                                        {% for house in filter %}
                                     <div class="col-lg-4 col-sm-6 col-12">
                                         <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                                             <div class="product-img">
@@ -220,7 +220,7 @@
                                                 </a>
                                                 <div class="real-estate-agent">
                                                     <div class="agent-img">
-                                                        <a href="#"><img src="{{ profile.profile_image.url }}" alt="#"></a>
+                                                        <a href="{% url 'renting:landlordViewLandlordDetails'  house.user_id %}"><img src="{{ house.landlord_profile.profile_image.url }}" alt="LandLord Profile"></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -269,6 +269,12 @@
                                         </div>
                                     </div>
                                         {% endfor %}
+                                    {% else %}
+                                        <div>
+                                            <h3 class="title-2" style="margin-left: 20px;">
+                                                Sorry...!! No ads Posted by Others yet..
+                                            </h3>
+                                        
                                     {% endif %}
 
                                     <!-- ltn product item end -->

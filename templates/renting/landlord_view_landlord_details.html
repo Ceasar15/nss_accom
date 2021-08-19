@@ -1,0 +1,381 @@
+{% load static %}
+
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Landlord's details</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <!-- Place favicon.png in the root directory -->
+   <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon" />
+   <!-- Font Icons css -->
+   <link rel="stylesheet" href="{% static 'css/font-icons.css' %}">
+   <!-- plugins css -->
+   <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+   <!-- Main Stylesheet -->
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   <!-- Responsive css -->
+   <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+</head>
+
+<body>
+<!-- Body main wrapper start -->
+<div class="body-wrapper">
+
+    <!-- HEADER AREA START (header-5) -->
+    <header class="ltn__header-area ltn__header-5 ltn__header-transparent--- gradient-color-4---">
+        <!-- ltn__header-top-area start -->
+        <div class="ltn__header-top-area section-bg-6 top-area-color-white---">
+            <div class="container">
+                <div class="row">
+                    <!-- <div class="col-md-7">
+                        <div class="ltn__top-bar-menu">
+                            <ul>
+                                <li><a href="mailto:info@webmail.com?Subject=Flower%20greetings%20to%20you"><i class="icon-mail"></i> info@webmail.com</a></li>
+                                <li><a href="locations.html"><i class="icon-placeholder"></i> 15/A, Nest Tower, NYC</a></li>
+                            </ul>
+                        </div>
+                    </div> -->
+                    <div class="col-md-5">
+                        <div class="top-bar-right text-right">
+                            <div class="ltn__top-bar-menu">
+                                <ul>
+                                    <li class="d-none">
+
+                                    </li>
+                                    <li>
+                                    </li>
+                                    <li>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ltn__header-top-area end -->
+        
+        <!-- ltn__header-middle-area start -->
+        <div class="ltn__header-middle-area ltn__header-sticky ltn__sticky-bg-white">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="site-logo-wrap">
+                            <div class="site-logo" style="height: 85px">
+                                <a href="{% url 'tracking:index' %}"><img src="{% static 'img/ug_logo.png' %}" alt="Logo" height="80px" ></a> 
+                            </div>
+                      
+                        </div>
+                    </div>
+                    
+                    <div class="col header-menu-column">
+                        <div class="header-menu d-none d-xl-block">
+                            <nav>
+                                <div class="ltn__main-menu">
+                                    <ul style="float: right;">
+                                        <li class="menu-icon"><a href="#">Complaints</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'student:studentSubmitComplaint' %}">Submit complaint</a></li>
+                                                </li>
+
+                                                <li>
+                                                    <a href="{% url 'student:studentViewAllComplaints' %}">View all complaints</a></li>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+
+
+                                        <li class="menu-icon"><a href="#">Announcements</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'student:studentViewAnnouncements' %}">View all announcements</a></li>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+
+
+                                        <li class="menu-icon"><a href="#">NSS Accommodation</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'renting:studentViewRentAds' %}">Access NSS Accommodation</a></li>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+
+
+
+                                        {% if user.is_authenticated %}	
+                                        <li>
+                                            <a href="#">{{ user.first_name }}</a></li>
+                                            {% else %}
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'student:loginStudent' %}">Login</a></li>
+                                        {% endif %}
+
+                                        <li class="btn-wrapper animated">
+                                            <a href="{% url 'logout' %}" class="theme-btn-1 btn btn-effect-1" style="height:60px; width:100px;"  >Sign Out</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+
+
+                   
+
+    
+   
+    <!-- TEAM DETAILS AREA START -->
+    <div class="ltn__team-details-area mb-120" style="margin-top: 100px;">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-4">
+                    <div class="ltn__team-details-member-info text-center mb-40">
+                        <div class="team-details-img">
+                            <img src="{{ profile.profile_image.url }}"
+                            height="250px" width="350px" alt="Team Member Image">
+                        </div>
+                        <h2>{{ landlord.last_name }} {{ landlord.first_name }}</h2>
+                        <h6 class="text-uppercase ltn__secondary-color">{{ profile.occupation }}</h6>
+                        <div class="ltn__social-media-3">
+                            <ul>
+                                <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-8">
+                    <div class="ltn__team-details-member-info-details">
+                        <h4 class="title-2">Landlord Details</h4>
+
+                        <div class="row" style="margin-top: 50px;">
+                            <div class="col-lg-6">
+                                <div class="ltn__team-details-member-about">
+                                    <ul>
+                                        <li><strong>Occupation:</strong>{{ profile.occupation }}</li>
+                                        <li><strong>Location:</strong>{{ profile.location }}</li>
+                                        <!-- <li><strong>Practice Area:</strong> Property Seller</li> -->
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="ltn__team-details-member-about">
+                                    <ul>
+                                        <li><strong>Email:</strong>{{ landlord.email }}</li>
+                                        <!-- <li><strong>Fax:</strong> +0123-456 789</li> -->
+                                        <li><strong>Phone:</strong> +233 (0) {{ typed.phone_no }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <hr style="position:relative; top: 40px;">
+
+                        </div>
+
+                        </div>
+                        </div>
+
+
+
+                        
+                        <div class="ltn__form-box contact-form-box box-shadow white-bg mt-50" style="width: 1150px">
+                            <h4 class="title-2" >Interested in this house? Contact {{ landlord.last_name }} {{ landlord.first_name }} for further inquiry</h4>
+                            <form id="contact-form" method="post" autocapitalize="word">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="input-item input-item-name ltn__custom-icon">
+                                            <input type="text" id="id_full_name" name="full_name" placeholder="Enter your name">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="input-item input-item-email ltn__custom-icon">
+                                            <input type="email" id="id_email" name="email" placeholder="Enter email address">
+                                        </div>
+                                    </div>
+
+               
+                                    <div class="col-md-6">
+                                        <div class="input-item input-item-phone ltn__custom-icon">
+                                            <input type="text" id="id_phone" name="phone" placeholder="Enter phone number">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="input-item input-item-textarea ltn__custom-icon">
+                                    <textarea id="id_message" name="message" placeholder="Enter message"></textarea>
+                                </div>
+                                
+                                <div class="btn-wrapper mt-0">
+                                    <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Send Details To Landlord </button>
+                                </div>
+                                
+                            </form>
+                        </div> 
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- TEAM DETAILS AREA END -->
+
+
+
+
+
+    <!-- CALL TO ACTION START (call-to-action-6) -->
+     <div class="ltn__call-to-action-area call-to-action-6 before-bg-bottom" data-bg="img/1.jpg--">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                <div class="call-to-action-inner call-to-action-inner-6 ltn__secondary-bg text-center---">
+                       <a href="{% url 'renting:studentViewRentAds' %}"><div class="coll-to-info text-color-white">
+                            <h1>Looking for a convenient and affordable accommodation?</h1>
+                            <p>We can help you find one. Explore now!</p>
+                        </div></a>
+                        <!-- <div class="btn-wrapper">
+                            <a class="btn btn-effect-3 btn-white" href="contact.html">Explore Properties <i class="icon-next"></i></a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- CALL TO ACTION END -->
+
+    <!-- FOOTER AREA START -->
+      <footer class="ltn__footer-area  ">
+        <div style="align-content: center;" class="footer-top-area  section-bg-2 plr--5">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-3 col-md-6 col-sm-6 col-12">
+                        <div class="footer-widget footer-about-widget">
+                            <div class="footer-logo">
+                                <div class="site-logo">
+                                    <li><a href="index.html">LOGO</a></li>
+                                    <!-- <img src="img/logo-2.png" alt="Logo"> -->
+                                </div>
+                            </div>
+                            <p>This is a system that helps hall assistants to keep track of students in the hall, also enable students submit complain and help NSS Personnels find accommodation with ease</p>
+                            <div class="footer-address">
+                                <ul>
+                                    <li>
+                                        <div class="footer-address-icon">
+                                            <i class="icon-placeholder"></i>
+                                        </div>
+                                        <div class="footer-address-info">
+                                            <p>University of Ghana, Legon, Accra.</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="footer-address-icon">
+                                            <i class="icon-call"></i>
+                                        </div>
+                                        <div class="footer-address-info">
+                                            <p><a href="tel:+233 240 090 168">+233 240 090 168</a></p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="footer-address-icon">
+                                            <i class="icon-mail"></i>
+                                        </div>
+                                        <div class="footer-address-info">
+                                            <p><a href="mailto:marianboyeamoah@gmail.com">marianboyeamoah@gmail.com</a></p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="ltn__social-media mt-20">
+                                <ul>
+                                    <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="#" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
+                                    <li><a href="#" title="Youtube"><i class="fab fa-youtube"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-6 col-sm-6 col-12">
+                        <div  class="footer-widget footer-menu-widget clearfix">
+                            <h4 class="footer-title">Institution</h4>
+                            <div class="footer-menu">
+                                <ul>
+                                    <li><a href="#">About</a></li>
+                                    <li><a href="contact.html">Contact us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-6 col-sm-6 col-12">
+                        <div class="footer-widget footer-menu-widget clearfix">
+                            <h4 class="footer-title">Services</h4>
+                            <div class="footer-menu">
+                                <ul>
+                                    <li><a href="login.html">Login as a Student</a></li>
+                                    <li><a href="login_staff.html">Login as a Staff</a></li>
+                                    <li><a href="index_NSS.html">Access NSS accommodation</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ltn__copyright-area ltn__copyright-2 section-bg-7  plr--5">
+            <div class="container-fluid ltn__border-top-2">
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <div class="ltn__copyright-design clearfix">
+                            <p>All Rights Reserved @ Group Two <span class="current-year"></span></p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12 align-self-center">
+                        <div class="ltn__copyright-menu text-right">
+                            <ul>
+                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Claim</a></li>
+                                <li><a href="#">Privacy & Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- FOOTER AREA END -->
+
+</div>
+<!-- Body main wrapper end -->
+
+    <!-- All JS Plugins -->
+    <script src="js/plugins.js"></script>
+    <!-- Main JS -->
+    <script src="js/main.js"></script>
+  
+</body>
+</html>
+

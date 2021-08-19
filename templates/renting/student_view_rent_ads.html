@@ -278,9 +278,18 @@
                                             </div>
                                         </div>
                                     </div>
-                                        {% endfor %}
-                                    {% endif %}
-
+                                            {% endfor %}
+                                        {% else %}
+                                        <div>
+                                            <h3 class="title-2" style="margin-left: 20px;">
+                                                Sorry...!! No ads Posted by Others yet..
+                                            </h3>
+    
+                                            <div class="btn-wrapper animated">
+                                                <a href="{% url 'renting:postRentAdds' %}" class="theme-btn-1 btn btn-effect-1" style="margin-left: 20px;">Post A Rent Ad</a>
+                                            </div>
+                                        
+                                        {% endif %}
                                     <!-- ltn product item end -->
                                 </div>
                             </div>

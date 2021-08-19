@@ -30,6 +30,7 @@ urlpatterns = [
     path('landlordProfile/<int:id>', rt.landlordProfile, name='landlordProfile'),
     path('student_payment/', rt.student_payment, name="student_payment"),
     path('staff_payment/', rt.staff_payment, name="staff_payment"),
+    path('landlordViewLandlordDetails/<int:id>/', rt.landlordViewLandlordDetails, name='landlordViewLandlordDetails'),
     path('landlordViewAdsOfOtherLandlords/', rt.landlordViewAdsOfOtherLandlords, name='landlordViewAdsOfOtherLandlords'),
     path('landlordViewAdsDetailsOfOtherLandlords/<int:id>/', rt.landlordViewAdsDetailsOfOtherLandlords, name='landlordViewAdsDetailsOfOtherLandlords'),
     path('landlordEditRentAds/', rt.landlordEditRentAds, name='landlordEditRentAds')

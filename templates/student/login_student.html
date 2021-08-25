@@ -140,8 +140,9 @@
 
 
                                 <div class="col-md-6">
-                                    <div class="input-item input-item-email ltn__custom-icon">
+                                    <div class="input-item input-item-email ">
                                         <input type="password" id="id_password" name="password" placeholder="PASSWORD" required >
+                                        <i class="far fa-eye" id="togglePassword" style="margin-left: -40px; cursor: pointer; color: #FF5A3C" title="Show/hide password"></i>
                                     </div>
                                 </div>                                
 
@@ -154,7 +155,7 @@
 
 
                             <div class="go-to-btn mt-20">
-                                <a href="{% url 'users:student_register' %}" style="position: relative; top:10px;" ><small>Don't have an account? Sign up here</small></a>
+                                <a href="{% url 'users:student_register' %}" style="position: relative; top:10px;" ><small style="font-size: 16px;">Don't have an account? Sign up here</small></a>
                             </div>
 
 
@@ -283,6 +284,9 @@
     <script src="{% static 'js/main.js' %}"></script>
     <!-- Custom javascript -->
     <script src="{% static 'js/custom.js' %}"></script>
+    <!-- Show password -->
+    <script src="{% static 'js/showPassword.js' %}"></script>
+
   
 </body>
 

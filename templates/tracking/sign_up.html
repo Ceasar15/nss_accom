@@ -156,14 +156,16 @@
 
 
                                 <div class="col-md-6">
-                                    <div class="input-item input-item-email ltn__custom-icon">
-                                        <input type="password" id="id_password1" name="password1" autocomplete="new-password" placeholder="PASSWORD" required >                                        
+                                    <div class="input-item input-item-email">
+                                        <input type="password" id="id_password1" name="password1" autocomplete="new-password" placeholder="PASSWORD" required data-toggle="tooltip" data-placement="right" title="Password should be a minimum of 8 characters long, should not contain your personal details, should not be only numbers and should not be a commonly used password" >                                        
+                                        <i class="far fa-eye" id="togglePassword" style="margin-left: -40px; cursor: pointer; color: #FF5A3C" title="Show/hide password"></i>
                                     </div>
                                 </div> 
 
                                 <div class="col-md-6">
-                                    <div class="input-item input-item-email ltn__custom-icon">
-                                        <input type="password" id="id_password2" name="password2" autocomplete="new-password" placeholder="Confirm PASSWORD" required >
+                                    <div class="input-item input-item-email">
+                                        <input type="password" id="id_password2" name="password2" autocomplete="new-password" placeholder="Confirm PASSWORD" required data-toggle="tooltip" data-placement="right" title="Password should be a minimum of 8 characters long, should not contain your personal details, should not be only numbers and should not be a commonly used password" >
+                                        <i class="far fa-eye" id="togglePassword2" style="margin-left: -40px; cursor: pointer; color: #FF5A3C" title="Show/hide password"></i>
                                     </div>
                                 </div> 
 
@@ -236,7 +238,7 @@
                             <!--  <button id="btn" class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Submit Complaint</button> -->
  
                             <div class="go-to-btn mt-20" style="position: relative; top: 30px;">
-                                <a href="{% url 'student:loginStudent' %}" >Already have an account? Log in here</a>
+                                <a href="{% url 'student:loginStudent' %}"> <small style="font-size: 18px;">Already have an account? Log in here </small></a>
                             </div> 
 
                         </form>
@@ -359,7 +361,10 @@
     <!-- Main JS -->
     <script src="{% static 'js/main.js' %}"></script>
     <!-- Custom javascript -->
-    <script src="{% static 'js/custom.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>    
+    <!-- Show password -->
+    <script src="{% static 'js/showSignUpPasswords.js' %}"></script>
+
 
 </body>
 

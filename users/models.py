@@ -1,3 +1,4 @@
+from cloudinary.models import CloudinaryField
 from django.db import models
 from django.contrib.auth.models import User
 from users.managers import UT
@@ -29,7 +30,7 @@ class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     location = models.CharField(max_length=30, null=True, blank=True)
     occupation = models.CharField(max_length=190, null=True, blank=True)
-    profile_image = models.ImageField(upload_to='landlord/profile_image/',  default='default.jpeg', blank=True, null=True)
+    profile_image = CloudinaryField('image',  default='default.jpeg', blank=True, null=True)
 
 class Contact(models.Model):
     fullname = models.CharField(max_length=190)

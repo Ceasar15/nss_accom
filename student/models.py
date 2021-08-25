@@ -1,3 +1,4 @@
+from cloudinary.models import CloudinaryField
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
@@ -42,5 +43,5 @@ class NewComplaint(models.Model):
 
 class StudentProfile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    profile_image = models.ImageField(upload_to='student/profile_image/', default='default.jpeg')
+    profile_image = CloudinaryField('image', default='default.jpeg')
     

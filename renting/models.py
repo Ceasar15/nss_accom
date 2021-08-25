@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Q
 import django_filters
+from cloudinary.models import CloudinaryField
 # Create your models here.
 
 STATE_CHOICES = [
@@ -71,7 +72,7 @@ class NewRentalHouse(models.Model):
 image_dafault = 'img/default.jpg'
 
 class HouseImages(models.Model):
-    imagess = models.ImageField(upload_to=house_images, blank=True, default=image_dafault)
+    imagess = CloudinaryField('image', blank=True, default=image_dafault)
     nrh = models.ForeignKey(NewRentalHouse, on_delete=models.CASCADE)
 
     def images(self):

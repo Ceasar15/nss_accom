@@ -186,12 +186,18 @@ from nss_accom import gcloud
 # DEFAULT_FILE_STORAGE = 'gcloud.GoogleCloudMediaFileStorage'
 
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'hx8k6usix',
-    'API_KEY': '576719345761538',
-    'API_SECRET': 'OYNr6JW_rzJuPWA8iOdJflBz3cA'
-}
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': 'hx8k6usix',
+#     'API_KEY': '576719345761538',
+#     'API_SECRET': 'OYNr6JW_rzJuPWA8iOdJflBz3cA'
+# }
 
+import cloudinary
+cloudinary.config( 
+  cloud_name = "hx8k6usix", 
+  api_key = "576719345761538", 
+  api_secret = "OYNr6JW_rzJuPWA8iOdJflBz3cA" 
+)
 # MEDIA_URL = '/media/'
 # # MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(os.environ.get('GS_MEDIA_BUCKET_NAME'))
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

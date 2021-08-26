@@ -43,6 +43,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
    
 
+    <!--Responsive datatable css -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.css">
 
 
 </head>
@@ -202,10 +204,10 @@
     <div class="ltn__slider-area ltn__slider-3  section-bg-1"  data-bg="img/bg/14.jpg">
         <div style="position: relative; top: 50px;" class="container">
 
-            <h2 style="margin-left: 460px; margin-bottom: 30px;">List of all visitors</h2>
+            <h2 style="margin-bottom: 30px;">List of all visitors</h2>
 
             <div class="container mb-3 mt-3">
-                <table id="table_id" class="display">
+                <table id="table_id" class="display" width="100%" >
                     <thead>
                         <tr style="background-color: #FF5A3C; color: black; ">
                             
@@ -385,6 +387,25 @@
     <script src="{% static 'js/main.js' %}"></script>
 
 
+        <!-- Initializing data table -->
+        <script>
+            $(document).ready( function () {
+              $('#table_id').DataTable(
+                {
+                    dom: 'Bfrtip',
+                    buttons: [
+                                'copy', 'csv', 'excel', 'pdf', 'print'
+                             ],
+                    responsive: true
+                }
+              );
+            } );
+            
+        </script>
+    
+    
+
+
 
     <!-- Jquery for data table ( min ) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -414,20 +435,9 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script> 
 
 
-    <!-- Initializing data table -->
-    <script>
-        $(document).ready( function () {
-          $('#table_id').DataTable(
-            {
-                dom: 'Bfrtip',
-                buttons: [
-                            'copy', 'csv', 'excel', 'pdf', 'print'
-                         ]
-            }
-          );
-        } );
-        
-    </script>
+    <!-- Datatables responsiveness -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.js"></script> 
+
 
 
 </body>

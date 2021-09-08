@@ -1,3 +1,4 @@
+from django.contrib.auth.password_validation import UserAttributeSimilarityValidator
 from staff.forms import StaffProfileForm
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponseRedirect
@@ -5,7 +6,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.contrib import messages
 
-from users.forms import ContactForm, UserTypeForm, UserForm, UpdatePhoneNo,ProfileForm
+from users.forms import ContactForm, UserTypeForm, UserForm, UpdatePhoneNo, ProfileForm
 from users.models import Profile, Typed
 
 
@@ -18,20 +19,21 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+
 def Studentregister(request):
 
     form = StudentRegisterForm()
-    user_contact_form =  UserContactFrom()
+    user_contact_form = UserContactFrom()
     student_profile = StudentProfileForm()
     if request.method == 'POST':
         form = StudentRegisterForm(request.POST)
         user_contact_form = UserContactFrom(request.POST)
         student_profile = StudentProfileForm(request.POST, request.FILES)
-        if all((form.is_valid(), user_contact_form.is_valid(), student_profile.is_valid() )):
-            #save user
+        if all((form.is_valid(), user_contact_form.is_valid(), student_profile.is_valid())):
+            # save user
             user = form.save()
             # user.refresh_from_db()
-            #student_profile
+            # student_profile
             spf = student_profile.save(commit=False)
             spf.user_id = user.id
             spf.save()
@@ -42,8 +44,8 @@ def Studentregister(request):
             obs.user_group = 'student'
             username = user.first_name
             obs.save()
-            
-            #auto login
+
+            # auto login
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             messages.info(request, f"You are now logged in as {username}")
             return redirect('student:studentDashboard')
@@ -55,33 +57,36 @@ def Studentregister(request):
             print(form.errors)
             for msg in form.errors.as_data():
                 if msg == 'email':
-                    messages.error(request, f"Your email: {email} is not valid")
+                    messages.error(
+                        request, f"Your email: {email} is not valid")
                 if msg == 'password2' and password1 == password2:
-                    messages.error(request, f"The selected password is not strong enough. Mininum of 8 Characters")
+                    messages.error(
+                        request, f"The selected password is not strong enough. Mininum of 8 Characters")
                 elif msg == 'password2' and password1 != password2:
-                    messages.error(request, f"Password and Confirmation Password do not match")
+                    messages.error(
+                        request, f"Password and Confirmation Password do not match")
 
     context = {
         'form': StudentRegisterForm(),
         'user_contact_form': UserContactFrom(),
-        'student_profile' : StudentProfileForm()
+        'student_profile': StudentProfileForm()
 
-        }
+    }
 
     return render(request, 'tracking/sign_up.html', context)
 
 
 def StaffRegister(request):
-    
+
     form = StudentRegisterForm()
-    user_contact_form =  UserContactFrom()
+    user_contact_form = UserContactFrom()
     staff_profile = StaffProfileForm()
 
     if request.method == 'POST':
         form = StudentRegisterForm(request.POST)
         user_contact_form = UserContactFrom(request.POST)
         staff_profile = StaffProfileForm(request.POST, request.FILES)
-        if all((form.is_valid(), user_contact_form.is_valid(), staff_profile.is_valid() )):
+        if all((form.is_valid(), user_contact_form.is_valid(), staff_profile.is_valid())):
             # save user
             user = form.save()
             # user.refresh_from_db()
@@ -109,36 +114,39 @@ def StaffRegister(request):
             print(form.error_messages)
             for msg in form.errors.as_data():
                 if msg == 'email':
-                    messages.error(request, f"Your email: {email} is not valid")
+                    messages.error(
+                        request, f"Your email: {email} is not valid")
                 if msg == 'password2':
-                    messages.error(request, f"Your password can’t be too similar to your other personal information!")
+                    messages.error(
+                        request, f"Your password can’t be too similar to your other personal information!")
                 elif msg == 'password2' and password1 != password2:
-                    messages.error(request, f"Password and Confirmation Password do not match")
+                    messages.error(
+                        request, f"Password and Confirmation Password do not match")
 
     context = {
         'form': StudentRegisterForm(),
         'user_contact_form': UserContactFrom(),
-        'staff_profile' : StaffProfileForm()
+        'staff_profile': StaffProfileForm()
 
-        }
+    }
 
     return render(request, 'tracking/sign_up_staff.html', context)
 
 
 def LandlordRegister(request):
-    
+
     form = StudentRegisterForm()
-    user_contact_form =  UserContactFrom()
+    user_contact_form = UserContactFrom()
     if request.method == 'POST':
         form = StudentRegisterForm(request.POST)
         user_contact_form = UserContactFrom(request.POST)
         profile_form = Profile()
-        if all((form.is_valid(), user_contact_form.is_valid() )):
+        if all((form.is_valid(), user_contact_form.is_valid())):
             user = form.save()
             obs = user_contact_form.save(commit=False)
             obs.user_id_id = user.id
             obs.user_group = 'landlord'
-            profile_form.user_id =  user.id
+            profile_form.user_id = user.id
             profile_form.location = 'dummy location'
             profile_form.occupation = 'dummy_occupation'
             profile_form.save()
@@ -153,16 +161,19 @@ def LandlordRegister(request):
             email = form.data['email']
             for msg in form.errors.as_data():
                 if msg == 'email':
-                    messages.error(request, f"Your email: {email} is not valid")
+                    messages.error(
+                        request, f"Your email: {email} is not valid")
                 if msg == 'password2':
-                    messages.error(request, f"Your password can’t be too similar to your other personal information!")
+                    messages.error(
+                        request, f"Your password can’t be too similar to your other personal information!")
                 elif msg == 'password2' and password1 != password2:
-                    messages.error(request, f"Password and Confirmation Password do not match")
-    
+                    messages.error(
+                        request, f"Password and Confirmation Password do not match")
+
     context = {
         'form': StudentRegisterForm(),
         'user_contact_form': UserContactFrom()
-        }
+    }
 
     return render(request, 'tracking/sign_up_landlord.html', context)
 
@@ -202,6 +213,7 @@ def logout_view(request):
     logout(request)
     return redirect('users:login')
 
+
 def user_type(request):
     if request.user.is_authenticated:
         try:
@@ -218,9 +230,8 @@ def user_type(request):
 
             # Handle the form errors
 
-            return JsonResponse({'user_type':ut_obj.user_type.capitalize()})
+            return JsonResponse({'user_type': ut_obj.user_type.capitalize()})
 
-            
         elif request.method == 'POST':
             utform = UserTypeForm(data=request.POST)
             if utform.is_valid():
@@ -229,11 +240,11 @@ def user_type(request):
                 ut_obj.save()
 
             # Handle the form errors
-            
-            return JsonResponse({'user_type':ut_obj.user_type.capitalize()})
-            
+
+            return JsonResponse({'user_type': ut_obj.user_type.capitalize()})
+
     else:
-        return JsonResponse({'data':'error'},status=404)
+        return JsonResponse({'data': 'error'}, status=404)
 
 
 def settings(request):
@@ -259,7 +270,7 @@ def settings(request):
             form.save()
 
         return render(request, 'users/settings.html', locals())
-    
+
     else:
         return render(request, 'users/settings.html', locals())
 
@@ -282,7 +293,5 @@ def contact(request):
     context = {
         'form': ContactForm()
     }
-    
-    return render(request, 'users/contact.html', context)
 
-from django.contrib.auth.password_validation import UserAttributeSimilarityValidator
+    return render(request, 'users/contact.html', context)

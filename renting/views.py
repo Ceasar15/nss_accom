@@ -500,10 +500,7 @@ def landlordViewHouseDetails(request, id):
 def studentViewHouseDetails(request, id):
     form = RatingForm(request.POST)
 
-    recom = NewRentalHouse.objects.filter(city='tema').exclude(pk=id)
-    for rc in recom:
-        print(rc.city)
-    print('hello' , recom)
+    recomddd = NewRentalHouse.objects.filter(city='tema').exclude(pk=id)
 
 
     product = get_object_or_404(NewRentalHouse, pk=id)
@@ -531,7 +528,11 @@ def studentViewHouseDetails(request, id):
         try:
             nrh_obj = NewRentalHouse.objects.get(pk=id)
             city = nrh_obj.city
-            recom = NewRentalHouse.objects.filter(city=city)
+            recommendation = NewRentalHouse.objects.filter(city=city).exclude(pk=id)
+            print('exclude', recommendation)
+            for rec in recommendation:
+                print('images', rec.houseimages.imagess)
+                print(rec.househas.bedroom)
             r_hh = HouseHas.objects.get(nrh=nrh_obj)
             am = Amenities.objects.get(nrh=nrh_obj)
             pt = PreferredTenant.objects.get(nrh=nrh_obj)

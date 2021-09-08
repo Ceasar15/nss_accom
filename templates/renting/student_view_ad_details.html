@@ -377,6 +377,7 @@
                               <div class="carousel-item active"> <!-- Start of carousel item active -->
 
                                 <div class='row'> <!-- Start of row class -->
+                                    {% for rec in recommendation %}
                                 <div class="col-lg-4 col-sm-6 col-12">
                                     <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
                                         <div class="product-img">
@@ -404,15 +405,15 @@
                                             <div class="product-img-location">
                                                 <ul>
                                                     <li>
-                                                        <a href="#"><i class="flaticon-pin"></i>{{ house.area }}, {{ house.city }}</a>
+                                                        <a href="#"><i class="flaticon-pin"></i>{{ rec.area }}, {{ rec.city }}</a>
                                                     </li>
                                                 </ul>
                                             </div>
                                             <ul class="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
-                                                <li><span>{{ house.househas.bedroom }}</span>
+                                                <li><span>{{ rec.househas.bedroom }}</span>
                                                     Bedrooms
                                                 </li>
-                                                <li><span>{{ house.househas.bathroom }}</span>
+                                                <li><span>{{ rec.househas.bathroom }}</span>
                                                     Bathrooms
                                                 </li>
                                             </ul>
@@ -433,11 +434,12 @@
                                         </div>
                                         <div class="product-info-bottom">
                                             <div class="product-price">
-                                                <span>GHc{{house.rent}}.00<label>/Month</label></span>
+                                                <span>GHc{{rec.rent}}.00<label>/Month</label></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                {% endfor %}
 
 
                                 <div class="col-lg-4 col-sm-6 col-12">

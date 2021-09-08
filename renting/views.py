@@ -500,8 +500,9 @@ def landlordViewHouseDetails(request, id):
 def studentViewHouseDetails(request, id):
     form = RatingForm(request.POST)
 
-    
     recom = NewRentalHouse.objects.filter(city='tema').exclude(pk=id)
+    for rc in recom:
+        print(rc.city)
     print('hello' , recom)
 
 
@@ -529,6 +530,8 @@ def studentViewHouseDetails(request, id):
     if request.user.is_authenticated:
         try:
             nrh_obj = NewRentalHouse.objects.get(pk=id)
+            city = nrh_obj.city
+            recom = NewRentalHouse.objects.filter(city=city)
             r_hh = HouseHas.objects.get(nrh=nrh_obj)
             am = Amenities.objects.get(nrh=nrh_obj)
             pt = PreferredTenant.objects.get(nrh=nrh_obj)

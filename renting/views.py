@@ -500,9 +500,6 @@ def landlordViewHouseDetails(request, id):
 def studentViewHouseDetails(request, id):
     form = RatingForm(request.POST)
 
-    # recomddd = NewRentalHouse.objects.filter(city='tema').exclude(pk=id)
-
-
     product = get_object_or_404(NewRentalHouse, pk=id)
     if request.method == "POST":
         nrh_obj = NewRentalHouse.objects.get(pk=id)
@@ -530,16 +527,13 @@ def studentViewHouseDetails(request, id):
             city = nrh_obj.city
             recommendation = NewRentalHouse.objects.filter(city=city).exclude(pk=id)
             imgee = HouseImages.objects.filter(nrh=recommendation)
-            # print('imageess', imgee)  
             r_hh = HouseHas.objects.get(nrh=nrh_obj)
             am = Amenities.objects.get(nrh=nrh_obj)
             pt = PreferredTenant.objects.get(nrh=nrh_obj)
             rl = Rules.objects.get(nrh=nrh_obj)
             imgs = HouseImages.objects.filter(nrh=nrh_obj)
-            rating_count = Rating.objects.filter(
-                landlord_id=nrh_obj.id).count()
-            rating = Rating.objects.filter(
-                landlord_id=nrh_obj.id).order_by('-date')
+            rating_count = Rating.objects.filter(landlord_id=nrh_obj.id).count()
+            rating = Rating.objects.filter(landlord_id=nrh_obj.id).order_by('-date')
             for img in imgs:
                 print(img.images)
         except:

@@ -529,10 +529,6 @@ def studentViewHouseDetails(request, id):
             nrh_obj = NewRentalHouse.objects.get(pk=id)
             city = nrh_obj.city
             recommendation = NewRentalHouse.objects.filter(city=city).exclude(pk=id)
-            print('exclude', recommendation)
-            for rec in recommendation:
-                # print('images', rec.houseimages.imagess)
-                print(rec.househas.bedroom)
             r_hh = HouseHas.objects.get(nrh=nrh_obj)
             am = Amenities.objects.get(nrh=nrh_obj)
             pt = PreferredTenant.objects.get(nrh=nrh_obj)

@@ -10,3 +10,18 @@ def index(request):
 
 
 
+
+# The about page.
+def about(request):
+    return render(request, 'tracking/about.html')
+
+
+
+# The frequently asked questions page.
+def faq(request):
+    return render(request, 'tracking/faq.html')
+
+
+
+
+

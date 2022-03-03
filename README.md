@@ -39,12 +39,13 @@ python manage.py runserver
 ```
 
 ## Visuals
-
-```image 1
-![Screenshot](screenshot.png)
-![plot](./directory_1/directory_2/.../directory_n/plot.png)
-![Alt text](relative/path/to/img.jpg?raw=true "Title")
-```
+![Home Page ](https://user-images.githubusercontent.com/42820626/156565887-0c722940-0d3c-496a-916a-592899dc2a09.png)
+![Student Dashboard Page](https://user-images.githubusercontent.com/42820626/156565905-0872c42f-3766-4a8f-b085-8b6d2d92fdcf.png)
+![Apartment Listings Page](https://user-images.githubusercontent.com/42820626/156565913-bc0fb414-af88-425f-954d-21c6a89cacc1.png)
+![Details Page ](https://user-images.githubusercontent.com/42820626/156565920-962ccf4e-4d88-4361-a8e4-a56ddbe97a2e.png)
+![Landlord Index Page](https://user-images.githubusercontent.com/42820626/156565937-e3e6690d-f624-41ca-8285-a666b1e69559.png)
+![Post Products Page](https://user-images.githubusercontent.com/42820626/156565953-97216cde-94c1-4997-8226-c9d64f10c334.png)
+![Landlord HomePage ](https://user-images.githubusercontent.com/42820626/156565961-6983435f-f2ea-4620-bc83-cb5c49515f89.png)
 
 
 ## Skills
